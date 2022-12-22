@@ -1,4 +1,4 @@
-package com.3team.camping;
+package com.project.camping;
 
 import java.text.DateFormat;
 import java.util.Date;
