@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.camping.main.MainMapper">
+<insert id="insertCampingData" parameterType="com.project.camping.main.MainDTO">
+	insert into camping_site values(camping_site_seq.nextval, #{c_zipcode}, #{c_addr1}, #{c_animalCmgCl}, #{c_bizrno}, #{c_brazierCl}, #{c_caravAcmpnyAt}, #{c_caravInnerFclty}, #{c_caravSiteCo}, #{c_clturEventAt}, #{c_trlerAcmpnyAt}, #{c_exprnProgrmAt}, #{c_clturEvent}, #{c_doNm}, #{c_sigunguNm}, #{c_exprnProgrm}, #{c_facltNm}, #{c_firstImageUrl}, #{c_glampInnerFclty}, #{c_glampSiteCo}, #{c_gnrlSiteCo}, #{c_homepage}, #{c_insrncAt}, #{c_intro}, #{c_lineIntro}, #{c_mapX}, #{c_mapY}, #{c_operDeCl}, #{c_operPdCl}, #{c_posblFcltyCl}, #{c_resveCl}, #{c_resveUrl}, #{c_sbrsCl}, #{c_tel}, #{c_themaEnvrnCl}, #{c_toiletCo}, #{c_wtrplCo}, #{c_tooltip})
+</insert>
+<delete id="deleteAlldata">
+	delete camping_site
+</delete>
+<select id="getAllCampingSite" resultType="com.project.camping.main.MainDTO">
+	select * from camping_site
+</select>
+</mapper>
