@@ -1,0 +1,341 @@
+
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'KorailRoundGothicBold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KorailRoundGothicBold.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+.camping-container {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.camping-item-container {
+	width: 80%;
+	padding: 20px 0px;
+	font-size: 0.8em;
+	margin: 20px 0px;
+	background-color: #f8fcfe;
+}
+
+.camping-item-desc {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	font-size: 12px;
+}
+
+.camping-item-desc-item {
+	padding: 10px 10px;
+	margin-right: 5px;
+}
+
+.camping-item-desc-item1 {
+	padding: 4px 8px;
+	background-color: #547ac0;
+	color: white;
+}
+
+.camping-item-desc-item2 {
+	padding: 4px 8px;
+	background-color: #d6394c;
+	color: white;
+}
+
+.camping-item-desc-item3 {
+	padding: 4px 8px;
+	background-color: #444444;
+	color: white;
+}
+
+.camping-item-desc-item4 {
+	padding: 4px 8px;
+	background-color: #f7f7f7;
+	color: #5e5e5e;
+}
+
+.camping-item-img-container {
+	width: 25%;
+}
+
+.camping-item-img-container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.camping-item-box-container {
+	display: flex;
+	margin-top: 20px;
+}
+
+.camping-item-desc2 {
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.camping-item-desc2-title {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin-left: 5%;
+	cursor: pointer;
+}
+
+.camping-item-desc2-title a:hover {
+	border-bottom: 2px solid #5e5e5e;
+}
+
+.camping-item-desc2-title-icon-position {
+	width: 20px;
+	margin-right: 10px;
+}
+
+.camping-item-desc2-title-icon-phone {
+	width: 20px;
+	margin-left: 20px;
+	margin-right: 10px;
+}
+
+.camping-item-desc2-header {
+	font-size: 20px;
+}
+
+.camping-item-desc2-content {
+	font-size: 16px;
+}
+
+.camping-item-desc2-info {
+	font-size: 14px;
+}
+
+.camping-item-facilities {
+	margin-top: 30px;
+	width: 68%;
+	border: 1px solid #e8e8e8;
+	background-color: #fff;
+	margin-left: 28%;
+	margin-right: auto;
+	border-radius: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.camping-item-facilities-items {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 20px;
+}
+
+.camping-item-facilities-icon {
+	width: 50px;
+	height: 50px;
+	margin-bottom: 5px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.page-wrapper {
+	width: 100%;
+	height: 100%;
+	background: url(https://goo.gl/OeVhun) center no-repeat;
+	background-size: cover;
+}
+
+.blur-it {
+	filter: blur(4px);
+}
+
+a.btn {
+	width: 200px;
+	padding: 18px 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #fff;
+	border-radius: 0;
+	background: #e2525c;
+}
+
+.modal-wrapper {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(41, 171, 164, 0.8);
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.25s ease-in-out;
+}
+
+.modal-wrapper.open {
+	opacity: 1;
+	visibility: visible;
+}
+
+.modal {
+	width: 600px;
+	height: 400px;
+	display: block;
+	margin: 50% 0 0 -300px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	background: #fff;
+	opacity: 0;
+	transition: all 0.5s ease-in-out;
+}
+
+.modal-wrapper.open .modal {
+	margin-top: -200px;
+	opacity: 1;
+}
+
+.head {
+	width: 90%;
+	height: 32px;
+	padding: 12px 30px;
+	overflow: hidden;
+	background: #e2525c;
+}
+
+.btn-close {
+	font-size: 28px;
+	display: block;
+	float: right;
+	color: #fff;
+}
+
+.content {
+	padding: 10%;
+}
+
+.good-job {
+	text-align: center;
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	color: #e2525c;
+}
+
+.good-job .fa-thumbs-o-up {
+	font-size: 60px;
+}
+
+.good-job h1 {
+	font-size: 45px;
+}
+
+.camping-custom-btn-container {
+	display: flex;
+	justify-content: center;
+}
+
+.custom-btn {
+	margin: 20px;
+	outline: none;
+	width: 160px;
+	height: 60px;
+	padding: 10px 25px;
+	border: 2px solid #000;
+	font-weight: 500;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+}
+
+.btn-15 {
+	 font-family: 'Cafe24Ssurround';
+	background: #000;
+	color: #fff;
+	z-index: 1;
+}
+
+.btn-15:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 100%;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	background: #f8fcfe;
+	transition: all 0.3s ease;
+}
+
+.btn-15:hover {
+	color: #000;
+}
+
+.btn-15:hover:after {
+	left: 0;
+	width: 100%;
+}
+
+.btn-15:active {
+	top: 2px;
+}
+
+/* 16 */
+.btn-16 {
+	 font-family: 'Cafe24Ssurround';
+	background: #000;
+	color: #fff;
+	z-index: 1;
+}
+
+.btn-16:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 100%;
+	top: 0;
+	left: 0;
+	direction: rtl;
+	z-index: -1;
+	background: #f8fcfe;
+	transition: all 0.3s ease;
+}
+
+.btn-16:hover {
+	color: #000;
+}
+
+.btn-16:hover:after {
+	left: auto;
+	right: 0;
+	width: 100%;
+}
+
+.btn-16:active {
+	top: 2px;
+}
