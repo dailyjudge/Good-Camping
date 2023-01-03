@@ -43,7 +43,6 @@ public class MainController {
 		
 		// 페이징처리
 		mDAO.getCampingSite(p, request);
-		
 		request.setAttribute("loginPage", "account/login.jsp");
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
 		return "index";

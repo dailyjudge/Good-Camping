@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "Cafe24SsurroundAir";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'BMJUA';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Hahmlet-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Hahmlet-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#top-div {
+	font-family: 'Hahmlet-Regular';
+	/* border: 5px solid black; */
+	justify-content: center;
+	overflow: hidden;
+	width: 100%;
+}
+
+.second-div {
+	border: 1.5px solid #DFDFE1;
+	margin: 2%;
+	width: 200px;
+	height: 300px;
+	padding: 10px;
+	display: inline-block;
+	text-align: center;
+}
+
+.product-img {
+	/* border: 2px solid red; */
+	height: 65%;
+}
+
+.product-img img {
+	max-width: 100%;
+	/* border: 2px solid red; */
+	border-radius: 5px;
+	max-height: 100%;
+}
+
+.product-name {
+	border-bottom: 1.5px solid #DFDFE1;
+	margin: 3%;
+	max-width: 100%;
+	/* border: 2px solid blue; */
+	height: 17%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.product-price {
+	margin-top: 5%;
+	/* border: 3px solid green; */
+	height: 12%;
+}
+
+.stuff-search {
+	margin-top: 3%;
+	margin-bottom: 3%;
+	display: flex;
+	justify-content: center;
+}
+
+button {
+	background-color: #333;
+	color: #fff;
+	font-family: 'Hahmlet-Regular';
+	display: block;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.9s, color 0.3;
+}
+
+.button:hover {
+	box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.5) inset;
+}
+
+input {
+	font-family: 'Hahmlet-Regular';
+}
+
+#shop-paging-btn {
+	margin: 3%;
+	display: flex;
+	justify-content: center;
+}
+
+.wrap-second {
+	width: 75%;
+	margin: 0px auto;
+}
+
+
