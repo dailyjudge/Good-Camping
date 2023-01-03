@@ -12,6 +12,7 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
 <link rel="stylesheet" href="resources/css/account.css">
+<link rel="stylesheet" href="resources/css/camping-stuff.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript" src="resources/js/campingSearch.js"></script>
 <script type="text/javascript" src="resources/js/account.js"></script>
