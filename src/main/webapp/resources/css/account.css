@@ -2,6 +2,12 @@ body{
 	margin: 0;
 	padding: 0;
 }
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 @font-face {
   font-family: "S-CoreDream-3Light";
@@ -22,7 +28,7 @@ body{
   display: flex;
   justify-content: space-between;
   height: 80px;
-  background-color: antiquewhite;
+  background-color: #f3f3f3;
   padding-left: 40%;
 }
 a {
@@ -49,7 +55,7 @@ a {
   text-align: center;
   padding: 20px 5px;
   margin: 0;
-  background-color: #006e51;
+  background-color: #3CB371;
   font-family: "Cafe24SsurroundAir";
 }
 #main-slide {
@@ -70,8 +76,10 @@ a {
   height: 50px;
 }
 .second-menu-li {
+  font-family: 'Happiness-Sans-Title';
+  font-size: 1.1em;
   color: #fff;
-  background-color: #006e51;
+  background-color: #3CB371;
   margin: 0px 15px;
   padding: 20px 10px;
   position: relative;

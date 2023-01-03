@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+$speed: 0.5s;
+
+
 @font-face {
 	font-family: "Cafe24SsurroundAir";
 	src:
@@ -28,7 +31,7 @@
 }
 
 #top-div {
-	font-family: 'Hahmlet-Regular';
+    font-family: 'NanumSquareNeo-Variable';
 	/* border: 5px solid black; */
 	justify-content: center;
 	overflow: hidden;
@@ -58,6 +61,8 @@
 }
 
 .product-name {
+	font-family: 'NanumSquareNeo-Variable';
+	padding-bottom: 2px;
 	border-bottom: 1.5px solid #DFDFE1;
 	margin: 3%;
 	max-width: 100%;
@@ -65,12 +70,15 @@
 	height: 17%;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	font-size: 1.0em;
 }
 
 .product-price {
+	font-family: 'NanumSquareNeo-Variable';
 	margin-top: 5%;
 	/* border: 3px solid green; */
 	height: 12%;
+	font-size: 0.9em;
 }
 
 .stuff-search {
@@ -80,26 +88,11 @@
 	justify-content: center;
 }
 
-button {
-	background-color: #333;
-	color: #fff;
-	font-family: 'Hahmlet-Regular';
-	display: block;
-	width: 200px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	cursor: pointer;
-	transition: all 0.9s, color 0.3;
-}
 
 .button:hover {
 	box-shadow: 200px 0 0 0 rgba(0, 0, 0, 0.5) inset;
 }
 
-input {
-	font-family: 'Hahmlet-Regular';
-}
 
 #shop-paging-btn {
 	margin: 3%;
@@ -112,4 +105,31 @@ input {
 	margin: 0px auto;
 }
 
+/* search */
+
+.stuff-search-container {	
+    position: relative;
+    width: 400px;
+    height: 50px;
+    margin: 30px auto;
+}
+
+#stuff-search-input {
+	font-family: 'NanumSquareNeo-Variable';
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #5e5e5e;
+    font-size: 1.1em;
+}
+
+.stuff-search-img {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 8px;
+    right: 9px;
+    cursor: pointer;
+}
 

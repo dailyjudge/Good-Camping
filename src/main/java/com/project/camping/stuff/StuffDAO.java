@@ -29,8 +29,8 @@ public class StuffDAO {
 
 	public void refreshStuffData() {
 		// b13e5282f450344d8407d2f28c9f408e
-
-		String[] items = { "랜턴", "바비큐", "버너", "소화기", "핫팩", "캠핑의자", "야전침대", "로프" };
+		// 바비큐 랜턴 버너 숯 캠핑매트 캠핑테이블 캠핑의자 야전침대 캠핑코펠 핫팩 로프 
+		String[] items = { "랜턴", "바비큐", "버너", "핫팩", "캠핑의자", "캠핑테이블", "캠핑코펠", "숯", "캠핑매트", "야전침대", "로프" };
 
 		for (int i = 0; i < items.length; i++) {
 
@@ -38,7 +38,6 @@ public class StuffDAO {
 			String str = items[i];
 
 			String url = "https://openapi.naver.com/v1/search/shop.json?query=";
-			int start = 1;
 
 			HttpURLConnection huc = null;
 			int count = 0;
@@ -46,50 +45,45 @@ public class StuffDAO {
 			try {
 				// Fp8eOr3uZhrFffjvlRwM
 				// 01R350IQhi
+				url += URLEncoder.encode(str, "utf-8");
+				url += "&display=100";
 
-				for (int j = 0; j < 10; i++) {
+				System.out.println(url);
 
-					url += URLEncoder.encode(str, "utf-8");
-					url += "&display=100&start=" + start;
+				URL u = new URL(url);
 
-					System.out.println(url);
+				huc = (HttpURLConnection) u.openConnection();
+				huc.addRequestProperty("X-Naver-Client-Id", "Fp8eOr3uZhrFffjvlRwM");
+				huc.addRequestProperty("X-Naver-Client-Secret", "01R350IQhi");
+				InputStream is = huc.getInputStream();
+				InputStreamReader isr = new InputStreamReader(is, "utf-8");
+				System.out.println(is);
 
-					URL u = new URL(url);
+				JSONParser jp = new JSONParser();
+				JSONObject stuffData = (JSONObject) jp.parse(isr);
+				// System.out.println(stuffData);
 
-					huc = (HttpURLConnection) u.openConnection();
-					huc.addRequestProperty("X-Naver-Client-Id", "Fp8eOr3uZhrFffjvlRwM");
-					huc.addRequestProperty("X-Naver-Client-Secret", "01R350IQhi");
-					InputStream is = huc.getInputStream();
-					InputStreamReader isr = new InputStreamReader(is, "utf-8");
-					System.out.println(is);
+				JSONArray products = (JSONArray) stuffData.get("items");
 
-					JSONParser jp = new JSONParser();
-					JSONObject stuffData = (JSONObject) jp.parse(isr);
-					// System.out.println(stuffData);
+				for (Object p : products) {
+					JSONObject stuff = (JSONObject) p;
 
-					JSONArray products = (JSONArray) stuffData.get("items");
+					StuffDTO s = new StuffDTO();
+					s.setS_brand(stuff.get("brand").toString());
+					s.setS_category(stuff.get("category3").toString());
+					s.setS_productId(stuff.get("productId").toString());
+					s.setS_image(stuff.get("image").toString());
+					s.setS_detail_category(stuff.get("category4").toString());
+					s.setS_title(stuff.get("title").toString());
+					s.setS_price(stuff.get("lprice").toString());
 
-					for (Object p : products) {
-						JSONObject stuff = (JSONObject) p;
-
-						StuffDTO s = new StuffDTO();
-						s.setS_brand(stuff.get("brand").toString());
-						s.setS_category(stuff.get("category3").toString());
-						s.setS_productId(stuff.get("productId").toString());
-						s.setS_image(stuff.get("image").toString());
-						s.setS_detail_category(stuff.get("category4").toString());
-						s.setS_title(stuff.get("title").toString());
-						s.setS_price(stuff.get("lprice").toString());
-
-						System.out.println(s.toString());
-						if (ss.getMapper(StuffMapper.class).insertStuff(s) == 1) {
-							System.out.println(++count + "번째 데이터 삽입 성공");
-						} else {
-							System.out.println("실패");
-						}
+					System.out.println(s.toString());
+					if (ss.getMapper(StuffMapper.class).insertStuff(s) == 1) {
+						System.out.println(++count + "번째 데이터 삽입 성공");
+					} else {
+						System.out.println("실패");
 					}
 
-					start += 100;
 				}
 
 			} catch (Exception e) {
@@ -103,26 +97,26 @@ public class StuffDAO {
 
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		stuffs = sm.getAllStuff(s);
-		
+
 		// <b></b> 이게 싫음 => 없애자
 		// replace
 		// <b>글자가 들어가있음</b>
-		
+
 		for (StuffDTO stuffDTO : stuffs) {
 			String title = stuffDTO.getS_title();
 			title = title.replace("<b>", "");
 			title = title.replace("</b>", "");
-			
+
 			stuffDTO.setS_title(title);
-			
+
 //			stuffDTO.setS_title(stuffDTO.getS_title().replace("<b>", "").replace("</b>", ""));
 		}
-		
+
 		req.setAttribute("stuffs", stuffs);
 	}
 
 	public void StuffPaging(int sp, HttpServletRequest req) {
-		
+
 		int count = 12;
 		int start = (sp - 1) * count + 1;
 		int end = start + (count - 1);
@@ -132,8 +126,8 @@ public class StuffDAO {
 		System.out.println("222");
 
 		for (int i = start - 1; i < end; i++) {
-				stuffs2.add(stuffs.get(i));
-				
+			stuffs2.add(stuffs.get(i));
+
 		}
 
 		int stuffCount = (int) Math.ceil(stuffs.size() / (double) count);

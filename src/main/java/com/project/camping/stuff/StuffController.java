@@ -14,9 +14,6 @@ public class StuffController {
 	@Autowired
 	private StuffDAO sDAO;
 	
-	
-	
-	
 	@RequestMapping(value = "/do.refresh.stuffData", method = RequestMethod.GET)
 	public String refreshStuffData(HttpServletRequest request) {
 		
