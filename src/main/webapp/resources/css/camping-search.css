@@ -15,6 +15,26 @@
 	font-style: normal;
 }
 
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	color: black;
+}
+
+
 .camping-container {
 	display: flex;
 	width: 100%;
@@ -96,7 +116,7 @@
 }
 
 .camping-item-desc2-title a:hover {
-	border-bottom: 2px solid #5e5e5e;
+	text-decoration: underline;
 }
 
 .camping-item-desc2-title-icon-position {
@@ -338,4 +358,18 @@ a.btn {
 
 .btn-16:active {
 	top: 2px;
+}
+
+.camping-item-search-count-container {
+    background-color: #fff;
+    margin-bottom: 0px;
+}
+.camping-item-search-count-container span {
+    font-family: 'BMJUA';
+    font-size: 25px;
+}
+
+.search-count-span {
+   /*  color: #6E6ED7; */
+   color : #8EC3B0;
 }

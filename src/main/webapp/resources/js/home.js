@@ -1,4 +1,6 @@
 $(function () {
+	
+	
   var slideIndex = 0;
 
   function showSlides() {
@@ -309,5 +311,7 @@ $(function () {
         $gugun.append("<option value='" + this + "'>" + this + "</option>");
       });
     }
-  });
+  }); 
+
+      
 });

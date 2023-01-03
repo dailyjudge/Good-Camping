@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
     <nav id="top-menu-nav">
       <div id="top-menu-log">
-        <a href="http://localhost/camping/"> <img id="logo-img" src="resources/home_img/logo.png"/></a>
+        <a href="http://localhost:8080/camping/"> <img id="logo-img" src="resources/home_img/logo.png"/></a>
       </div>
       <ul id="top-menu-something">
         <li class="something-icon">

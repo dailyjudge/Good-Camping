@@ -46,6 +46,6 @@ create sequence camping_site_seq
 drop sequence camping_site_seq
 
 select * from camping_site
-select * from camping_site where c_no = 13282
+select c_lineIntro from camping_site where c_no = 13281
 
 select count(*) from camping_site;

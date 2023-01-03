@@ -25,10 +25,10 @@
           <img class="slideshow-image" src="resources/home_img/wallpaperbetter.jpg" />
         </div>
       </div>
-      <form class="search-input-form" placeholder="">
+      <form action="do.search.campingSite" class="search-input-form" onsubmit="return searchCampingSite()">
         <div id="allform">
           <div id="input-button">
-            <input id="search-input" />
+            <input id="search-input" placeholder="검색어 입력" name="searchValue"/>
             <button class="btn">검색</button>
           </div>
           <div id="city">

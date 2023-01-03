@@ -29,6 +29,11 @@ public class facilityDTO {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+
+	@Override
+	public String toString() {
+		return "facilityDTO [image=" + image + ", desc=" + desc + "]";
+	}
 	
 	
 }
