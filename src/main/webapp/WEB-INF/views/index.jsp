@@ -14,6 +14,7 @@
 	href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
 <link rel="stylesheet" href="resources/css/account.css">
 <link rel="stylesheet" href="resources/css/camping-stuff.css">
+<link rel="stylesheet" href="resources/css/camping-stuff-detail.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript" src="resources/js/campingSearch.js"></script>

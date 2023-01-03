@@ -8,4 +8,6 @@ public interface StuffMapper {
 
 	List<StuffDTO> getAllStuff(StuffDTO s);
 
+	StuffDTO getDetailStuff(StuffDTO s);
+
 }
