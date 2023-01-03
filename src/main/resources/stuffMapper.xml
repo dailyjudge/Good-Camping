@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.camping.stuff.StuffMapper">
+
+<insert id="insertStuff" parameterType="com.project.camping.stuff.StuffDTO">
+ insert into stuff values (stuff_seq.nextval, #{s_productId},#{s_category},#{s_detail_category},#{s_title},#{s_image},#{s_brand},#{s_price})
+</insert>
+
+<select id="getAllStuff" resultType="com.project.camping.stuff.StuffDTO">
+select * from stuff
+</select>
+</mapper>

@@ -24,7 +24,7 @@
     <nav id="second-menu-nav">
       <ul id="second-menu-ul">
         <li class="second-menu-li" onclick="location.href='go.camping.find'">캠핑장 찾기</li>
-        <li class="second-menu-li">메뉴2</li>
+        <li class="second-menu-li" onclick="location.href='go.camping.shop'">Shop</li>
         <li class="second-menu-li">메뉴3</li>
         <li class="second-menu-li">메뉴4</li>
       </ul>
