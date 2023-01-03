@@ -47,4 +47,32 @@ public class MainController {
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/do.search.campingSite", method = RequestMethod.GET)
+	public String searchCampingSite(SearchDTO s, HttpServletRequest request) {
+		
+		// 검색 하는 일
+		mDAO.searchCampingSite(s, request);
+		
+		// 페이징처리
+		mDAO.getCampingSite(1, request);
+		
+		request.setAttribute("loginPage", "account/login.jsp");
+		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/go.camping.detail", method = RequestMethod.GET)
+	public String goCampingDetail(MainDTO m, HttpServletRequest request) {
+		
+		System.out.println("들어옴 !! " + m.getC_no());
+		
+		mDAO.getCampingDetail(m, request);
+		
+		request.setAttribute("loginPage", "account/login.jsp");
+		request.setAttribute("contentPage", "camping-search/camping-detail.jsp");
+
+		return "index";
+	}
+	
 }

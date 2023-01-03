@@ -9,7 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<div class="camping-container">
+        <div class="camping-item-container camping-item-search-count-container">
+            <span>총 <span class="search-count-span">${searchCount }</span>개의 캠핑장이 검색되었습니다.</span>
+        </div>
+    </div>
+
 	<div class="camping-container">
 		<c:forEach var="c" items="${campingSites }">
 			<div class="camping-item-container">
@@ -27,22 +32,16 @@
 					</div>
 					<div class="camping-item-desc2">
 						<div class="camping-item-desc2-title camping-item-desc2-header">
-							<a>[${c.c_doNm } ${c.c_sigunguNm }] ${c.c_facltNm }</a>
+							<a href="go.camping.detail?c_no=${c.c_no }">[${c.c_doNm } ${c.c_sigunguNm }] ${c.c_facltNm }</a>
 						</div>
 						<div class="camping-item-desc2-title camping-item-desc2-content">
-							<a>${c.c_lineIntro }</a>
+							<a href="go.camping.detail?c_no=${c.c_no }">${c.c_lineIntro }</a>
 						</div>
 						<div class="camping-item-desc2-title camping-item-desc2-info">
 							<img class="camping-item-desc2-title-icon-position"
 								src="resources/facilities-icon/position.png" alt=""> <span>${c.c_addr1 }
 							</span> <img class="camping-item-desc2-title-icon-phone"
 								src="resources/facilities-icon/phoneCall.png" alt=""> <span>${c.c_tel }</span>
-
-							<img class="camping-item-desc2-title-icon-phone"
-								src="resources/facilities-icon/map.png" alt=""> <span
-								onclick="showCampingSiteView()">지도로 보기 </span> <input
-								type="hidden" id="mapX" value="${c.c_mapX }"> <input
-								type="hidden" id="mapY" value="${c.c_mapY }">
 						</div>
 					</div>
 				</div>

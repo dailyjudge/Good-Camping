@@ -83,6 +83,7 @@ body {
   background-color: #006e51;
   border: none;
   font-family: "Cafe24SsurroundAir";
+  cursor: pointer;
 }
 /* -------------------------------------------푸터-------------------------------------------- */
 #footer {

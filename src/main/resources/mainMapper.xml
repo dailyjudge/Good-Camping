@@ -10,4 +10,26 @@
 <select id="getAllCampingSite" resultType="com.project.camping.main.MainDTO">
 	select * from camping_site
 </select>
+<select id="searchCampingSite" parameterType="com.project.camping.main.SearchDTO" resultType="com.project.camping.main.MainDTO">
+	select * from camping_site 
+	where (c_doNm like '%'||#{sido1}||'%' and c_sigunguNm like '%'||#{gugun1}||'%') 
+	and
+	(c_addr1 like '%'||#{searchValue}||'%' or
+	c_clturevent like '%'||#{searchValue}||'%' or
+	c_donm like '%'||#{searchValue}||'%' or
+	c_sigungunm like '%'||#{searchValue}||'%' or
+	c_exprnprogrm like '%'||#{searchValue}||'%' or
+	c_facltnm like '%'||#{searchValue}||'%' or
+	c_intro like '%'||#{searchValue}||'%' or
+	c_lineintro like '%'||#{searchValue}||'%' or
+	c_operdecl like '%'||#{searchValue}||'%' or
+	c_operpdcl like '%'||#{searchValue}||'%' or
+	c_posblfcltycl like '%'||#{searchValue}||'%' or
+	c_sbrscl like '%'||#{searchValue}||'%' or
+	c_themaenvrncl like '%'||#{searchValue}||'%' or
+	c_tooltip like '%'||#{searchValue}||'%')
+</select>
+<select id="getCampingSite" resultType="com.project.camping.main.MainDTO">
+	select * from camping_site where c_no = #{c_no}
+</select>
 </mapper>

@@ -9,5 +9,9 @@ public interface MainMapper {
 	int deleteAlldata();
 
 	List<MainDTO> getAllCampingSite();
+
+	List<MainDTO> searchCampingSite(SearchDTO s);
+
+	MainDTO getCampingSite(MainDTO m);
 	
 }

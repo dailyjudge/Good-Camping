@@ -1,0 +1,386 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MICEGothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.camping-detail-title {
+    font-family: 'GangwonEdu_OTFBoldA';
+    margin-bottom: 15px;
+    font-size: 2.0em;
+    letter-spacing: 7px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.camping-detail-item-container {
+    display: flex;
+    width: 90%;
+    margin: 0px auto;
+    padding: 20px 0px;
+    border-radius: 10px;
+    justify-content: center;
+    background-color: #f8fcfe;
+}
+
+.camping-detail-top-container {
+	margin-top: 60px;
+}
+
+.camping-detail-desc-container {
+    display: flex;
+    width: 90%;
+    align-items: center;
+}
+
+.camping-detail-item-img {
+    width: 25%;
+    height: 100%;   
+}
+
+.camping-detail-item-desc-container {
+    width: 75%;
+}
+
+.camping-detail-item-desc-items {
+    width: calc(100% - 10px)px;
+    display: flex;
+    padding: 10px 20px;
+}
+
+.camping-detail-item-desc-items span {
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 1.1em;
+}
+
+.camping-detail-item-separator {
+    color: #5e5e5e;
+}
+.camping-detail-item-category {
+    font-weight: 600;
+    width: 130px;
+}
+.camping-detail-item-content {
+    cursor: pointer;
+    position: relative;
+}
+
+.camping-detail-item-content img{
+    margin-left: 5px;
+    width: 15px;
+    height: 15px;
+}
+
+.camping-detail-item-content:hover {
+    text-decoration: underline;
+}
+
+
+/* type */
+.camping-detail-type-list {
+    font-family: 'KorailRoundGothicBold';
+    display: flex;
+    font-size: 1.2em;
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+
+
+.camping-detail-type-item {
+    font-weight: 600;
+    color: white; 
+    background-color: #8D8D8D;
+    width: calc(33.3% - 1px);
+    margin-right: 1px;
+    text-align: center;
+    padding: 22px 0px;
+    cursor: pointer;
+}
+
+.camping-datail-list-type-item {
+    width: 90%;
+    border-bottom: 1px solid #8D8D8D;
+    padding: 10px 0px;
+    letter-spacing: 1.7px;
+    margin: 0px auto;
+}
+
+.camping-detail-list-type-additional {
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 1.4em;
+}
+
+.camping-detail-facilities {
+    margin-top: 15px;
+    width: 100%;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.camping-detail-facilities-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 20px;
+}
+
+.camping-detail-facilities-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.camping-detail-list-type-item-img {
+    width: 10px;
+    margin-right: 20px;
+}
+
+.camping-detail-list-type-item-etc {
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 1.1em;
+    font-weight: lighter;
+}
+
+.camping-detail-list-type-item-etc-category {
+    display: inline-block;
+    width: 110px;
+    font-weight: 600;
+}
+
+/* review */
+.camping-detail-type-review {
+    display: flex;
+    width: 90%;
+    margin: 0px auto;
+    border: 1px solid #DFDFE1;
+    border-left: #fff;
+    border-right: #fff;
+}
+
+.review-user-container {
+    background-color: #F0F0F2;
+    border-right: 1px solid #DFDFE1;
+    font-family: 'GangwonEdu_OTFBoldA';
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.review-user-img {
+    width: 50%;
+    border-radius: 60%;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.review-content-container {
+    font-family: 'GangwonEdu_OTFBoldA';
+    padding-top: 5px;
+    padding-left: 10px;
+    width: 80%;
+    font-size: 1.2em;
+}
+
+.review-content-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-content-content {
+    font-size: 0.8em;
+}
+.review-content-content-star {
+    margin-right: 10px;
+}
+
+.review-content-content-separaotr {
+    margin-right: 10px;
+    color: #8D8D8D;
+}
+
+.review-content-content-author {
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.review-content-content-date {
+    font-size: 0.8em;
+    color: #8D8D8D;
+}
+.review-content-comment {
+    margin-top: 2px;
+    font-size: 0.9em;
+}
+
+.review-content-control {
+    font-size: 0.8em;
+    color: #8D8D8D;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.camping-category-selected {
+	background-color: #8EC3B0;
+}
+.camping-category-item1 {
+	display: none;
+}
+
+.camping-category-item2 {
+	display: none;
+	width: 90%;
+	margin: 0px auto;
+	border: 1px solid #8D8D8D;
+}
+
+.camping-category-item3 {
+	display: none;
+}
+
+.camping-category-item-on {
+	display: block;
+	position: relative;
+}
+
+#map {
+    float: left;
+    margin-top: 2%;
+}
+
+.camping-detail-find-way {
+    font-family: 'MICEGothic Bold';
+    float: right;
+}
+
+.camping-find-way-button-container {
+    font-size: 1.6em;
+    width: 90%;
+    margin-left: 3%;
+    margin-top: 3%;
+}
+.camping-find-way-span {
+    color: #5e5e5e;
+}
+.camping-find-way-button-container button {
+    margin-left: 3%;
+    font-family: 'MICEGothic Bold';
+}
+
+.camping-find-way-items {
+    font-family: 'MICEGothic Bold';
+    border-top: 1px solid #8D8D8D;
+    display: none;
+    /*display: flex;*/
+    flex-wrap: wrap;
+    margin-top: 7%;
+    font-size: 1.2em;
+}
+
+.camping-find-way-item {
+    color: #5e5e5e;
+    padding-top: 5%;
+    padding-left: 5%;
+    margin-bottom: 3%;
+    width: 100%;
+}
+
+.camping-find-way-category {
+    margin-bottom: 3%;
+    font-size: 1.2em;
+    font-weight: 600;
+    width: 100%;
+    color: #8EC3B0;
+}
+
+
+.camping-find-way-button{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  margin: 0px auto;
+  width: 100%;
+}
+
+.camping-find-way-button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+.camping-find-way-button:before,.camping-find-way-button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.camping-find-way-button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.camping-find-way-button:hover:before,.camping-find-way-button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+.camping-find-way-spinner-container {
+	/*display: flex;*/
+	display: none;
+	justify-content: center;
+	width: 30%;
+	height: 30%;
+	align-items: center;
+	margin: 0px auto;
+	margin-top: 30px;
+}
+.spinner {
+        animation: spin 2s linear infinite;
+      }
+      @keyframes spin {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+
