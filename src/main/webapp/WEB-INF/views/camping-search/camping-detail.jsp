@@ -52,7 +52,7 @@
             
             <c:if test="${m.c_homepage != '#' }">
 	            <span class="camping-detail-item-content">
-	              <a href="${m.c_homepage }">홈페이지 바로가기</a>
+	              <a href="${m.c_homepage }" target="_blank">홈페이지 바로가기</a>
 	              <img class="camping-detail-content-img" src="resources/camping-detail-icon/link.png"/>
 	            </span>
             </c:if>
@@ -110,11 +110,11 @@
     </div>
 
     <div class="camping-datail-list-type-item camping-detail-list-type-item-etc">
-      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">반려 동물 출입</span><span>: ${m.c_animalCmgCl }</span></p>
-      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">테마 환경</span><span>: ${m.c_themaEnvrnCl }</span></p>
-      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">화로대</span><span>: ${m.c_brazierCl }</span></p>
-      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">객실 환경</span><span>: 화장실(${m.c_toiletCo }), 개수대(${m.c_wtrplCo })</span></p>
-      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">툴팁</span><span>: ${m.c_tooltip }</span></p>
+      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">반려 동물 출입</span><span>| &nbsp;&nbsp;${m.c_animalCmgCl }</span></p>
+      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">테마 환경</span><span>| &nbsp;&nbsp;${m.c_themaEnvrnCl }</span></p>
+      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">화로대</span><span>| &nbsp;&nbsp;${m.c_brazierCl }</span></p>
+      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">객실 환경</span><span>| &nbsp;&nbsp;화장실(${m.c_toiletCo }), 개수대(${m.c_wtrplCo })</span></p>
+      <p><img class="camping-detail-list-type-item-img" src="resources/camping-detail-icon/check.png"><span class="camping-detail-list-type-item-etc-category">툴팁</span><span>| &nbsp;&nbsp;${m.c_tooltip }</span></p>
     </div>
    </div>
    

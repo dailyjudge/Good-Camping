@@ -10,7 +10,7 @@ public class StuffDTO {
 	private String s_image;
 	private String s_brand;
 	private String s_price;
-
+	
 	public StuffDTO() {
 		// TODO Auto-generated constructor stub
 	}

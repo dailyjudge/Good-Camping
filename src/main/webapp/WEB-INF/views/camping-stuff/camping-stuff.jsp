@@ -9,11 +9,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="top-div">
-		<div class="stuff-search">
+		 <!-- <div class="stuff-search">
 			<input placeholder="상품명 입력" />
 			<button>검색</button>
-		</div>
+		</div> -->
+		
+
+	<div class="stuff-search-container">
+        <input id="stuff-search-input" placeholder="상품명 입력">
+        <img src="resources/stuff/searchInput.png" class="stuff-search-img">
+    </div>
+		
+		
+		
+	<div id="top-div">
 		<div class="wrap-second">
 
 			<c:forEach var="stuffs" items="${stuffs }">
