@@ -144,4 +144,10 @@ public class StuffDAO {
 
 	}
 
+	public void StuffDetail(StuffDTO s, HttpServletRequest req) {
+		
+		StuffMapper sm = ss.getMapper(StuffMapper.class);
+		req.setAttribute("stuffs", sm.getDetailStuff(s));
+	}
+
 }

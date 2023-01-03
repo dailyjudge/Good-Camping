@@ -20,10 +20,10 @@
 
 				<div class="second-div">
 					<div class="product-img">
-						<img onclick="loaction.href='go.stuff.detail?s_no=${stuffs.s_no}'" src="${stuffs.s_image }" />
+						<img onclick="location.href='go.stuff.detail?s_no=${stuffs.s_no}'" src="${stuffs.s_image }" />
 					</div>
 					<div class="product-name">
-						<span onclick="loaction.href='go.stuff.detail?s_no=${stuffs.s_no}'">${stuffs.s_title }</span>
+						<span onclick="location.href='go.stuff.detail?s_no=${stuffs.s_no}'">${stuffs.s_title }</span>
 					</div>
 					<div class="product-price">
 						<fmt:formatNumber value="${stuffs.s_price }" pattern="#,###" />

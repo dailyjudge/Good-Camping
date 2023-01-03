@@ -9,4 +9,8 @@
 <select id="getAllStuff" resultType="com.project.camping.stuff.StuffDTO">
 select * from stuff
 </select>
+
+<select id="getDetailStuff" resultType="com.project.camping.stuff.StuffDTO" parameterType="com.project.camping.stuff.StuffDTO">
+select * from stuff where s_no=#{s_no}
+</select>
 </mapper>
