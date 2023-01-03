@@ -14,9 +14,8 @@
 }
 
 .camping-detail-title {
-    font-family: 'GangwonEdu_OTFBoldA';
-    margin-bottom: 15px;
-    font-size: 2.0em;
+    font-family: 'NanumSquareNeo-Variable';
+    font-size: 1.7em;
     letter-spacing: 7px;
 }
 
@@ -30,7 +29,7 @@ body {
     display: flex;
     width: 90%;
     margin: 0px auto;
-    padding: 20px 0px;
+    padding-top: 20px;
     border-radius: 10px;
     justify-content: center;
     background-color: #f8fcfe;
@@ -62,7 +61,7 @@ body {
 }
 
 .camping-detail-item-desc-items span {
-    font-family: 'GangwonEdu_OTFBoldA';
+    font-family: 'NanumSquareNeo-Variable';
     font-size: 1.1em;
 }
 
@@ -71,7 +70,7 @@ body {
 }
 .camping-detail-item-category {
     font-weight: 600;
-    width: 130px;
+    width: 160px;
 }
 .camping-detail-item-content {
     cursor: pointer;
@@ -91,7 +90,7 @@ body {
 
 /* type */
 .camping-detail-type-list {
-    font-family: 'KorailRoundGothicBold';
+    font-family: 'NanumSquareNeo-Variable';
     display: flex;
     font-size: 1.2em;
     width: 90%;
@@ -122,7 +121,7 @@ body {
 }
 
 .camping-detail-list-type-additional {
-    font-family: 'GangwonEdu_OTFBoldA';
+    font-family: 'NanumSquareNeo-Variable';
     font-size: 1.4em;
 }
 
@@ -160,14 +159,14 @@ body {
 }
 
 .camping-detail-list-type-item-etc {
-    font-family: 'GangwonEdu_OTFBoldA';
+    font-family: 'NanumSquareNeo-Variable';
     font-size: 1.1em;
     font-weight: lighter;
 }
 
 .camping-detail-list-type-item-etc-category {
     display: inline-block;
-    width: 110px;
+    width: 140px;
     font-weight: 600;
 }
 
@@ -201,7 +200,7 @@ body {
 }
 
 .review-content-container {
-    font-family: 'GangwonEdu_OTFBoldA';
+    font-family: 'NanumSquareNeo-Variable';
     padding-top: 5px;
     padding-left: 10px;
     width: 80%;
@@ -276,12 +275,12 @@ body {
 }
 
 .camping-detail-find-way {
-    font-family: 'MICEGothic Bold';
+    font-family: 'NanumSquareNeo-Variable';
     float: right;
 }
 
 .camping-find-way-button-container {
-    font-size: 1.6em;
+    font-size: 1.2em;
     width: 90%;
     margin-left: 3%;
     margin-top: 3%;
@@ -291,11 +290,11 @@ body {
 }
 .camping-find-way-button-container button {
     margin-left: 3%;
-    font-family: 'MICEGothic Bold';
+    font-family: 'NanumSquareNeo-Variable';
 }
 
 .camping-find-way-items {
-    font-family: 'MICEGothic Bold';
+    font-family: 'NanumSquareNeo-Variable';
     border-top: 1px solid #8D8D8D;
     display: none;
     /*display: flex;*/
@@ -315,9 +314,9 @@ body {
 .camping-find-way-category {
     margin-bottom: 3%;
     font-size: 1.2em;
-    font-weight: 600;
+    font-weight: 800;
     width: 100%;
-    color: #8EC3B0;
+    color: #1AAB8A;
 }
 
 

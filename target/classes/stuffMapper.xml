@@ -7,7 +7,7 @@
 </insert>
 
 <select id="getAllStuff" resultType="com.project.camping.stuff.StuffDTO">
-select * from stuff
+select * from stuff order by s_image
 </select>
 
 <select id="getDetailStuff" resultType="com.project.camping.stuff.StuffDTO" parameterType="com.project.camping.stuff.StuffDTO">

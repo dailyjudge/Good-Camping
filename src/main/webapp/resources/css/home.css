@@ -49,7 +49,7 @@ body {
   display: flex;
   justify-content: center;
   /* background-color: #4caf50; */
-  font-family: "Cafe24SsurroundAir";
+  font-family: 'Happiness-Sans-Title';
 }
 
 #input-button {
@@ -58,11 +58,13 @@ body {
 }
 #search-input {
   width: 100%;
-  height: 40px;
-  border-radius: 10px;
+  height: 55px;
+  border-radius: 5px;
   border: 2px solid green;
-  font-size: 20px;
-  font-family: "Cafe24SsurroundAir";
+  font-size: 1.0em;
+  font-family: 'Happiness-Sans-Title';
+  font-weight: lighter;
+  outline: none;
 }
 #city {
   display: flex;
@@ -71,18 +73,19 @@ body {
   height: 40px;
   width: 200px;
 
-  font-family: "Cafe24SsurroundAir";
+  font-family: 'Happiness-Sans-Title';
 }
 
 .btn {
   width: 20%;
   height: fit-content;
+  border-radius: 5px;
   font-size: 20px;
   padding: 10px;
   color: white;
-  background-color: #006e51;
+  background-color: #0C964A;
   border: none;
-  font-family: "Cafe24SsurroundAir";
+  font-family: 'Happiness-Sans-Title';
   cursor: pointer;
 }
 /* -------------------------------------------푸터-------------------------------------------- */
