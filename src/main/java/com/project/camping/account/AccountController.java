@@ -1,4 +1,4 @@
-package com.project.camping;
+package com.project.camping.account;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,29 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.project.camping.account.AccountDAO;
-import com.project.camping.main.MainDAO;
-
 @Controller
-public class HomeController {
-	
-	@Autowired
-	MainDAO mDAO;
+public class AccountController {
 	
 	@Autowired
 	AccountDAO aDAO;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(HttpServletRequest request) {
+	//do.account.login
+	@RequestMapping(value = "/do.account.login", method = RequestMethod.GET)
+	public String refreshCampingData(HttpServletRequest request) {
+		
+		aDAO.login(request);
 		
 		aDAO.loginCheck(request);
 		
 		request.setAttribute("contentPage", "home.jsp");
-
 		return "index";
 	}
-	
-	
-	
-	
 }
