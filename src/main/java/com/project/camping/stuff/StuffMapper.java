@@ -10,4 +10,6 @@ public interface StuffMapper {
 
 	StuffDTO getDetailStuff(StuffDTO s);
 
+	List<StuffDTO> getSearchStuff(StuffSearchDTO s);
+
 }

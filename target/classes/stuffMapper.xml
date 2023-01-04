@@ -13,4 +13,8 @@ select * from stuff order by s_image
 <select id="getDetailStuff" resultType="com.project.camping.stuff.StuffDTO" parameterType="com.project.camping.stuff.StuffDTO">
 select * from stuff where s_no=#{s_no}
 </select>
+
+<select id="getSearchStuff" parameterType="com.project.camping.stuff.StuffSearchDTO" resultType="com.project.camping.stuff.StuffDTO">
+select * from stuff where s_category like '%'||#{stuffs}||'%' or s_title like '%'||#{stuffs}||'%'or s_detail_category like '%'||#{stuffs}||'%'
+</select>
 </mapper>

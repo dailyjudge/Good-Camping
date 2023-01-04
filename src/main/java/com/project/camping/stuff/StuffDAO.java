@@ -121,9 +121,7 @@ public class StuffDAO {
 		int start = (sp - 1) * count + 1;
 		int end = start + (count - 1);
 
-		System.out.println("111");
 		List<StuffDTO> stuffs2 = new ArrayList<StuffDTO>();
-		System.out.println("222");
 
 		for (int i = start - 1; i < end; i++) {
 			stuffs2.add(stuffs.get(i));
@@ -142,6 +140,14 @@ public class StuffDAO {
 		
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		req.setAttribute("stuffs", sm.getDetailStuff(s));
+	}
+
+	public void StuffSearch(StuffSearchDTO sd, HttpServletRequest req) {
+		
+		StuffMapper sm =  ss.getMapper(StuffMapper.class);
+		stuffs = sm.getSearchStuff(sd);
+		req.setAttribute("stuffs", stuffs);
+		 
 	}
 
 }

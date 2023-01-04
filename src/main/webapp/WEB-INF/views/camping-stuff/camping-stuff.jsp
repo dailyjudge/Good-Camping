@@ -14,11 +14,12 @@
 			<button>검색</button>
 		</div> -->
 		
-
+<form action="go.stuff.search" onsubmit="return StuffSearch()">
 	<div class="stuff-search-container">
-        <input id="stuff-search-input" placeholder="상품명 입력">
+        <input id="stuff-search-input" placeholder="상품명 입력" name="stuffs">
         <img src="resources/stuff/searchInput.png" class="stuff-search-img">
     </div>
+</form>
 		
 		
 		

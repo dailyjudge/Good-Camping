@@ -54,4 +54,15 @@ public class StuffController {
 		req.setAttribute("contentPage", "camping-stuff/camping-stuff-detail.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/go.stuff.search", method = RequestMethod.GET)
+	public String stuffSearch(StuffSearchDTO sd,StuffDTO s, HttpServletRequest req) {
+		
+		
+		sDAO.StuffSearch(sd,req);
+		sDAO.StuffPaging(1,req);
+		req.setAttribute("loginPage", "account/login.jsp");
+		req.setAttribute("contentPage", "camping-stuff/camping-stuff.jsp");
+		return "index";
+	}
 }
