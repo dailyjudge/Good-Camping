@@ -7,17 +7,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.camping.account.AccountDAO;
+
 @Controller
 public class MainController {
 	
 	@Autowired
-	MainDAO mDAO;
+	private MainDAO mDAO;
+	
+	@Autowired
+	private AccountDAO aDAO;
 	
 	@RequestMapping(value = "/do.refresh.data", method = RequestMethod.GET)
 	public String refreshCampingData(HttpServletRequest request) {
 		
 		mDAO.refreshCampingData(request);
+		
+		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
+		
 		return "index";
 	}
 	
@@ -27,10 +35,10 @@ public class MainController {
 		// 모든 캠핑 지역의 정보를 조회하는 일
 		mDAO.getAllCampingSite(request);
 				
-				// 페이징처리
+		// 페이징처리
 		mDAO.getCampingSite(1, request);
 				
-		request.setAttribute("loginPage", "account/login.jsp");
+		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
 
 		return "index";
@@ -43,8 +51,10 @@ public class MainController {
 		
 		// 페이징처리
 		mDAO.getCampingSite(p, request);
-		request.setAttribute("loginPage", "account/login.jsp");
+		
+		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
+		
 		return "index";
 	}
 	
@@ -57,8 +67,9 @@ public class MainController {
 		// 페이징처리
 		mDAO.getCampingSite(1, request);
 		
-		request.setAttribute("loginPage", "account/login.jsp");
+		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
+		
 		return "index";
 	}
 	
@@ -69,7 +80,7 @@ public class MainController {
 		
 		mDAO.getCampingDetail(m, request);
 		
-		request.setAttribute("loginPage", "account/login.jsp");
+		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "camping-search/camping-detail.jsp");
 
 		return "index";

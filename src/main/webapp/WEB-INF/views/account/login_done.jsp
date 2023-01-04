@@ -4,9 +4,17 @@
       <div id="top-menu-log">
         <a href="http://localhost:8080/camping/"> <img id="logo-img" src="resources/home_img/logo.png"/></a>
       </div>
-      <div class="top-menu-login">
-      	<button onclick="location.href='do.account.login'">로그인</button>
-      </div>
+      <ul id="top-menu-something">
+        <li class="something-icon">
+          <a><img src="resources/home_img/heart.png" /></a>
+        </li>
+        <li class="something-icon">
+          <a><img src="resources/home_img/basket.png" /></a>
+        </li>
+        <li class="something-icon">
+          <a><img src="resources/home_img/login.png" /></a>
+        </li>
+      </ul>
       <ul id="top-menu-something2-ul">
         <li id="something-icon2">
           <a href=""><img src="resources/home_img/menu_bar.png" /></a>
