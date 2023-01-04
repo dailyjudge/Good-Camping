@@ -24,12 +24,30 @@ body{
   font-style: normal;
 }
 
+.top-menu-login {
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f3f3f3;
+}
+
+.top-menu-login button {
+	font-family: "NanumSquareNeo-Variable";
+	text-align: center;
+	background-color: #f3f3f3;
+	color: #5e5e5e;
+	border: 3px solid #DFDFE1;
+	padding: 10px 40px;
+	border-radius: 10px;
+	cursor: pointer;
+	letter-spacing: 2px;
+}
 #top-menu-nav {
   display: flex;
   justify-content: space-between;
   height: 80px;
   background-color: #f3f3f3;
-  padding-left: 40%;
 }
 a {
   text-decoration: none;
@@ -68,7 +86,7 @@ a {
   display: flex;
   justify-content: center;
   width: 40%;
-  padding-left: 40%;
+  padding-left: 32%;
 }
 
 #second-menu-div {
