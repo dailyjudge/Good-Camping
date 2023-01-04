@@ -146,6 +146,18 @@ public class StuffDAO {
 		
 		StuffMapper sm =  ss.getMapper(StuffMapper.class);
 		stuffs = sm.getSearchStuff(sd);
+		
+		for (StuffDTO stuffDTO : stuffs) {
+			String title = stuffDTO.getS_title();
+			title = title.replace("<b>", "");
+			title = title.replace("</b>", "");
+
+			stuffDTO.setS_title(title);
+
+//			stuffDTO.setS_title(stuffDTO.getS_title().replace("<b>", "").replace("</b>", ""));
+		}
+
+		
 		req.setAttribute("stuffs", stuffs);
 		 
 	}

@@ -46,12 +46,12 @@
 		<div id="shop-paging-btn">
 			<c:if test="${sp != 1 }">
 
-				<button onclick="location.href='do.stuff.change?sp=${sp -1}'">Pre</button>
+				<button class="shop-paging-btn-pre" onclick="location.href='do.stuff.change?sp=${sp -1}'">Pre</button>
 
 			</c:if>
 			<c:if test="${sp != stuffCount }">
 
-				<button onclick="location.href='do.stuff.change?sp=${sp +1}'">Next</button>
+				<button class="shop-paging-btn-next" onclick="location.href='do.stuff.change?sp=${sp +1}'">Next</button>
 
 			</c:if>
 		</div>
