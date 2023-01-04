@@ -21,6 +21,7 @@ public class AccountDAO {
 		AccountDTO a = new AccountDTO(ac_id, ac_pw, ac_name, ac_img);
 		
 		request.getSession().setAttribute("loginAccount", a);
+		request.getSession().setMaxInactiveInterval(60 * 10);
 	}
 
 	public void loginCheck(HttpServletRequest request) {

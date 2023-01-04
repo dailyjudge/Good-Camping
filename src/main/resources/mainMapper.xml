@@ -32,4 +32,27 @@
 <select id="getCampingSite" resultType="com.project.camping.main.MainDTO">
 	select * from camping_site where c_no = #{c_no}
 </select>
+<select id="getReviews" parameterType="com.project.camping.main.MainDTO" resultType="com.project.camping.main.ReviewDTO">
+	SELECT CR_NO, CR_CAMPINGSITENO, CR_AUTHOR, CR_TITLE, CR_STAR, CR_CONTENT, CR_DATE 
+	from CAMPING_SITE, CAMPINGSITE_REVIEW 
+	WHERE CAMPING_SITE.C_NO = CAMPINGSITE_REVIEW.CR_CAMPINGSITENO AND 
+	CR_CAMPINGSITENO = #{c_no} 
+	order by cr_date desc
+</select>
+<delete id="deleteReview" parameterType="com.project.camping.main.ReviewDTO">
+	delete campingSite_review where cr_no = #{cr_no}
+</delete>
+<update id="updateReview" parameterType="com.project.camping.main.ReviewDTO">
+	update campingSite_review set cr_title = #{cr_title}, cr_content = #{cr_content} where cr_no = #{cr_no}
+</update>
+<insert id="createReview" parameterType="com.project.camping.main.ReviewDTO">
+	insert into campingSite_review values(campingSite_review_seq.nextval, #{cr_campingSiteNo}, #{cr_author}, #{cr_title}, #{cr_star}, #{cr_content}, sysdate)
+</insert>
+
+<select id="getReviewCount" parameterType="com.project.camping.main.MainDTO" resultType="int">
+	SELECT COUNT(*)
+	from CAMPING_SITE, CAMPINGSITE_REVIEW 
+	WHERE CAMPING_SITE.C_NO = CAMPINGSITE_REVIEW.CR_CAMPINGSITENO AND 
+	CR_CAMPINGSITENO = #{c_no} 
+</select>
 </mapper>

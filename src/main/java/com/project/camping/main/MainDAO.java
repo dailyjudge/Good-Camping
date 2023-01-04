@@ -6,20 +6,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.chainsaw.Main;
-import org.apache.taglibs.standard.lang.jstl.test.PageContextImpl;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.project.camping.account.AccountDTO;
 
 @Service
 public class MainDAO {
@@ -163,7 +162,7 @@ public class MainDAO {
 						caravSiteCo, clturEventAt, trlerAcmpnyAt, exprnProgrmAt, clturEvent, doNm, sigunguNm,
 						exprnProgrm, facltNm, firstImageUrl, glampInnerFclty, glampSiteCo, gnrlSiteCo, homepage,
 						insrncAt, intro, lineIntro, mapX, mapY, operDeCl, operPdCl, posblFcltyCl, resveCl, resveUrl,
-						sbrsCl, tel, themaEnvrnCl, toiletCo, wtrplCo, tooltip, null);
+						sbrsCl, tel, themaEnvrnCl, toiletCo, wtrplCo, tooltip, null, 0);
 				System.out.println(m.toString());
 				count++;
 
@@ -206,6 +205,8 @@ public class MainDAO {
 		
 		for (MainDTO mDTO : campingSites) {
 			
+			// 리뷰수 처리
+			mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
 			// default 이미지 처리
 			if(mDTO.getC_firstImageUrl().equals("#")) mDTO.setC_firstImageUrl("resources/facilities-icon/firstImgUrldefault.png");
 			// 값 대체
@@ -321,5 +322,30 @@ public class MainDAO {
 		targetDTO.setFacilities(facilityItems);
 		
 		request.setAttribute("m", targetDTO);
+	}
+
+	public void getReviews(MainDTO m, HttpServletRequest request) {
+		
+		// 게시글 아이디!!
+		request.setAttribute("reviews", ss.getMapper(MainMapper.class).getReviews(m));
+	}
+
+	public int deleteReview(ReviewDTO r) {
+		return ss.getMapper(MainMapper.class).deleteReview(r);
+	}
+
+	public int updateReview(ReviewDTO r) {
+		return ss.getMapper(MainMapper.class).updateReview(r);
+	}
+
+	public void createReview(ReviewDTO r, HttpServletRequest request) {
+		r.setCr_star(String.format("%.1f", (double)r.getCr_no() / 2));
+		System.out.println(r.toString());
+		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
+		r.setCr_author(a.getAc_id());
+		if(ss.getMapper(MainMapper.class).createReview(r) == 1) {
+			System.out.println("리뷰 등록 성공!");
+		}
+		
 	}	
 }
