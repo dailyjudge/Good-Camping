@@ -42,6 +42,7 @@ $speed: 0.5s;
   padding: 10px;
   display: inline-block;
   text-align: center;
+  margin-right: 60px;
 }
 
 .product-img {

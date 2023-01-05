@@ -2,6 +2,8 @@ package com.project.camping.stuff;
 
 import java.util.List;
 
+import com.project.camping.account.AccountDTO;
+
 public interface StuffMapper {
 
 	int insertStuff(StuffDTO sDto);
@@ -9,5 +11,11 @@ public interface StuffMapper {
 	List<StuffDTO> getAllStuff(StuffDTO s);
 
 	StuffDTO getDetailStuff(StuffDTO s);
+
+	List<StuffDTO> getSearchStuff(StuffSearchDTO s);
+
+	List<CartDTO> getALlCartstuff(AccountDTO a);
+
+	int deleteCartItem(CartDTO c);
 
 }

@@ -14,11 +14,12 @@
 			<button>검색</button>
 		</div> -->
 		
-
+<form action="go.stuff.search" onsubmit="return StuffSearch()">
 	<div class="stuff-search-container">
-        <input id="stuff-search-input" placeholder="상품명 입력">
+        <input id="stuff-search-input" placeholder="상품명 입력" name="stuffs">
         <img src="resources/stuff/searchInput.png" class="stuff-search-img">
     </div>
+</form>
 		
 		
 		
@@ -45,12 +46,12 @@
 		<div id="shop-paging-btn">
 			<c:if test="${sp != 1 }">
 
-				<button onclick="location.href='do.stuff.change?sp=${sp -1}'">Pre</button>
+				<button class="custom-btn btn-16" onclick="location.href='do.stuff.change?sp=${sp -1}'">이전 페이지</button>
 
 			</c:if>
 			<c:if test="${sp != stuffCount }">
 
-				<button onclick="location.href='do.stuff.change?sp=${sp +1}'">Next</button>
+				<button  class="custom-btn btn-15" onclick="location.href='do.stuff.change?sp=${sp +1}'">다음 페이지</button>
 
 			</c:if>
 		</div>

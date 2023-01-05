@@ -26,3 +26,26 @@ create sequence stuff_seq
 
 drop table stuff
 delete stuff
+
+select * from stuff_cart;
+
+create table stuff_cart(
+	
+sc_cart_id number not null primary key,
+sc_user_id varchar2(20 char) not null,
+sc_stuff_no number(7) not null,
+sc_amount  number default 0
+);
+
+select * from stuff_cart
+create sequence stuff_cart_seq;
+drop sequence stuff_cart_seq;
+
+insert  into stuff_cart values(stuff_cart_seq.nextval,'test',8075,4);
+
+-- 상품, 유저, 장바구니
+select  s_title,s_price,s_image, sc_amount, s_price*sc_amount money
+from stuff, stuff_cart, account
+where account.ac_id = stuff_cart.sc_user_id and
+stuff.s_no = stuff_cart.sc_stuff_no and
+account.ac_id = 'test'
