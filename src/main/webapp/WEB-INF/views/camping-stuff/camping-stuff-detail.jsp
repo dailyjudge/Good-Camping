@@ -27,7 +27,7 @@
 				</div>
 				<div class="box bg-3">
 					<button
-						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-m">
+						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						ADD TO CART</button>
 					<button
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">

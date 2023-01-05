@@ -15,12 +15,15 @@
 <link rel="stylesheet" href="resources/css/account.css">
 <link rel="stylesheet" href="resources/css/camping-stuff.css">
 <link rel="stylesheet" href="resources/css/camping-stuff-detail.css">
+<link rel="stylesheet" href="resources/css/camping-stuff-cart.css">
+
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript" src="resources/js/campingSearch.js"></script>
 <script type="text/javascript" src="resources/js/account.js"></script>
 <script type="text/javascript" src="resources/js/home.js"></script>
 <script type="text/javascript" src="resources/js/campingDetail.js"></script>
+<script type="text/javascript" src="resources/js/campingStuff.js"></script>
 <style type="text/css">
 .areaDiv{
 margin: 0;

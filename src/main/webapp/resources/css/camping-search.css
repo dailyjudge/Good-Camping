@@ -1,9 +1,10 @@
-
 @font-face {
-    font-family: 'Cafe24Ssurround';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Cafe24Ssurround';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
@@ -16,21 +17,25 @@
 }
 
 @font-face {
-    font-family: 'BMJUA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'BMJUA';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'NanumSquareNeo-Variable';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 a:visited {
@@ -40,7 +45,6 @@ a:visited {
 a:hover {
 	color: black;
 }
-
 
 .camping-container {
 	display: flex;
@@ -292,18 +296,19 @@ a.btn {
 	width: 160px;
 	height: 60px;
 	padding: 10px 25px;
-	border: 2px solid #000;
+	border: 2px solid #8EC3B0;
 	font-weight: 500;
 	background: transparent;
 	cursor: pointer;
 	transition: all 0.3s ease;
 	position: relative;
 	display: inline-block;
+	border-radius: 5px;
 }
 
 .btn-15 {
-	 font-family: 'Cafe24Ssurround';
-	background: #000;
+	font-family: 'NanumSquareNeo-Variable';
+	background: #3CB371;
 	color: #fff;
 	z-index: 1;
 }
@@ -321,7 +326,7 @@ a.btn {
 }
 
 .btn-15:hover {
-	color: #000;
+	color: #8EC3B0;
 }
 
 .btn-15:hover:after {
@@ -335,8 +340,8 @@ a.btn {
 
 /* 16 */
 .btn-16 {
-	 font-family: 'Cafe24Ssurround';
-	background: #000;
+	font-family: 'NanumSquareNeo-Variable';
+	background:#3CB371;
 	color: #fff;
 	z-index: 1;
 }
@@ -355,7 +360,7 @@ a.btn {
 }
 
 .btn-16:hover {
-	color: #000;
+	color: #8EC3B0;
 }
 
 .btn-16:hover:after {
@@ -369,15 +374,16 @@ a.btn {
 }
 
 .camping-item-search-count-container {
-    background-color: #fff;
-    margin-bottom: 0px;
+	background-color: #fff;
+	margin-bottom: 0px;
 }
+
 .camping-item-search-count-container span {
-    font-family: 'BMJUA';
-    font-size: 25px;
+	font-family: 'BMJUA';
+	font-size: 25px;
 }
 
 .search-count-span {
-   /*  color: #6E6ED7; */
-   color : #8EC3B0;
+	/*  color: #6E6ED7; */
+	color: #8EC3B0;
 }

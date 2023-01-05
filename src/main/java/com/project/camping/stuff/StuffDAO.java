@@ -17,6 +17,10 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.camping.account.AccountDTO;
+
+import sun.text.normalizer.CodePointTrie.Small;
+
 @Service
 public class StuffDAO {
 
@@ -29,7 +33,7 @@ public class StuffDAO {
 
 	public void refreshStuffData() {
 		// b13e5282f450344d8407d2f28c9f408e
-		// 바비큐 랜턴 버너 숯 캠핑매트 캠핑테이블 캠핑의자 야전침대 캠핑코펠 핫팩 로프 
+		// 바비큐 랜턴 버너 숯 캠핑매트 캠핑테이블 캠핑의자 야전침대 캠핑코펠 핫팩 로프
 		String[] items = { "랜턴", "바비큐", "버너", "핫팩", "캠핑의자", "캠핑테이블", "캠핑코펠", "숯", "캠핑매트", "야전침대", "로프" };
 
 		for (int i = 0; i < items.length; i++) {
@@ -137,16 +141,16 @@ public class StuffDAO {
 	}
 
 	public void StuffDetail(StuffDTO s, HttpServletRequest req) {
-		
+
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		req.setAttribute("stuffs", sm.getDetailStuff(s));
 	}
 
 	public void StuffSearch(StuffSearchDTO sd, HttpServletRequest req) {
-		
-		StuffMapper sm =  ss.getMapper(StuffMapper.class);
+
+		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		stuffs = sm.getSearchStuff(sd);
-		
+
 		for (StuffDTO stuffDTO : stuffs) {
 			String title = stuffDTO.getS_title();
 			title = title.replace("<b>", "");
@@ -157,9 +161,29 @@ public class StuffDAO {
 //			stuffDTO.setS_title(stuffDTO.getS_title().replace("<b>", "").replace("</b>", ""));
 		}
 
-		
 		req.setAttribute("stuffs", stuffs);
-		 
+
+	}
+
+	public void getAllCart(HttpServletRequest req) {
+		StuffMapper sm = ss.getMapper(StuffMapper.class);
+		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
+		System.out.println(a.getAc_id());
+		List<CartDTO> carts = sm.getALlCartstuff(a);
+		
+		int money = 0;
+		
+		for (CartDTO c : carts) {
+			money += c.getSc_amount() * c.getS_price();
+		}
+		
+		req.setAttribute("money", money);
+		req.setAttribute("carts", carts);
+
+	}
+
+	public int deleteCartItem(CartDTO c) {
+		return ss.getMapper(StuffMapper.class).deleteCartItem(c);
 	}
 
 }

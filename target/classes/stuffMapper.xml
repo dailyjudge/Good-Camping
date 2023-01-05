@@ -2,19 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.camping.stuff.StuffMapper">
 
-<insert id="insertStuff" parameterType="com.project.camping.stuff.StuffDTO">
- insert into stuff values (stuff_seq.nextval, #{s_productId},#{s_category},#{s_detail_category},#{s_title},#{s_image},#{s_brand},#{s_price})
-</insert>
+	<insert id="insertStuff"
+		parameterType="com.project.camping.stuff.StuffDTO">
+		insert into stuff values (stuff_seq.nextval,
+		#{s_productId},#{s_category},#{s_detail_category},#{s_title},#{s_image},#{s_brand},#{s_price})
+	</insert>
 
-<select id="getAllStuff" resultType="com.project.camping.stuff.StuffDTO">
-select * from stuff order by s_image
-</select>
+	<select id="getAllStuff"
+		resultType="com.project.camping.stuff.StuffDTO">
+		select * from stuff order by s_image
+	</select>
 
-<select id="getDetailStuff" resultType="com.project.camping.stuff.StuffDTO" parameterType="com.project.camping.stuff.StuffDTO">
-select * from stuff where s_no=#{s_no}
-</select>
+	<select id="getDetailStuff"
+		resultType="com.project.camping.stuff.StuffDTO"
+		parameterType="com.project.camping.stuff.StuffDTO">
+		select * from stuff where s_no=#{s_no}
+	</select>
 
-<select id="getSearchStuff" parameterType="com.project.camping.stuff.StuffSearchDTO" resultType="com.project.camping.stuff.StuffDTO">
-select * from stuff where s_category like '%'||#{stuffs}||'%' or s_title like '%'||#{stuffs}||'%'or s_detail_category like '%'||#{stuffs}||'%'
-</select>
+	<select id="getSearchStuff"
+		parameterType="com.project.camping.stuff.StuffSearchDTO"
+		resultType="com.project.camping.stuff.StuffDTO">
+		select * from stuff where s_category like '%'||#{stuffs}||'%' or s_title
+		like '%'||#{stuffs}||'%'or s_detail_category like '%'||#{stuffs}||'%'
+	</select>
+
+	<select id="getALlCartstuff"
+		parameterType="com.project.camping.account.AccountDTO"
+		resultType="com.project.camping.stuff.CartDTO">
+		select sc_cart_id, s_title,s_price,s_image, sc_amount
+		from stuff, stuff_cart, account
+		where account.ac_id = stuff_cart.sc_user_id and
+		stuff.s_no = stuff_cart.sc_stuff_no and
+		account.ac_id = #{ac_id}
+	</select>
+	<delete id="deleteCartItem" parameterType="com.project.camping.stuff.CartDTO">
+		delete stuff_cart where sc_cart_id = #{sc_cart_id}
+	</delete>
 </mapper>
