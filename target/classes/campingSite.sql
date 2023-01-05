@@ -73,7 +73,7 @@ drop table campingSite_review;
 
 create sequence campingSite_review_seq;
 
-insert into campingSite_review values(campingSite_review_seq.nextval, 13268, 'test', '테스트 제목', '5.0', '테스트 내용입니다 너무 즐거워요!!', sysdate);
+insert into campingSite_review values(campingSite_review_seq.nextval, 13268, 'test2', '테스트 제목', '5.0', '테스트 내용입니다 너무 즐거워요!!', sysdate);
 insert into campingSite_review values(campingSite_review_seq.nextval, 13268, 'test', '테스트 제목2', '4.5', '테스트 내용2입니다 너무 좋아요!!', sysdate);
 
 select * from campingSite_review;
