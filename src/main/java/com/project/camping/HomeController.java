@@ -14,10 +14,10 @@ import com.project.camping.main.MainDAO;
 public class HomeController {
 	
 	@Autowired
-	MainDAO mDAO;
+	private MainDAO mDAO;
 	
 	@Autowired
-	AccountDAO aDAO;
+	private AccountDAO aDAO;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(HttpServletRequest request) {

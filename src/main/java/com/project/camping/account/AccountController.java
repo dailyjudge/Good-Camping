@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AccountController {
 	
 	@Autowired
-	AccountDAO aDAO;
+	private AccountDAO aDAO;
 	
 	//do.account.login
 	@RequestMapping(value = "/do.account.login", method = RequestMethod.GET)

@@ -17,13 +17,18 @@
 
 	<div class="camping-container">
 		<c:forEach var="c" items="${campingSites }">
+			<input type="hidden" id="camping-login-id-${c.c_no }" value="${sessionScope.loginAccount.ac_id }">
+			<input type="hidden" id="camping-site-id-${c.c_no }" value="${c.c_no }">
 			<div class="camping-item-container">
 				<div class="camping-item-desc">
 					<span class="camping-item-desc-item camping-item-desc-item1">관광사업자
 						등록업체</span> <span class="camping-item-desc-item camping-item-desc-item2">리뷰수
-						0</span> <span class="camping-item-desc-item camping-item-desc-item3">조회수
-						20557</span> <span class="camping-item-desc-item camping-item-desc-item4">추천수
-						2</span>
+						${c.reviewCount }</span> <span class="camping-item-desc-item camping-item-desc-item3">조회수
+						${c.siteViewCount }</span> 
+						<span class="camping-item-desc-item camping-item-desc-item4">
+								<img class="camping-like-img-tag" alt="" src="resources/camping-detail-icon/like.png">
+								<span class="camping-like-count camping-like-count-${c.c_no }">${c.siteLikeCount }</span>
+						</span>
 				</div>
 
 				<div class="camping-item-box-container">
@@ -32,7 +37,16 @@
 					</div>
 					<div class="camping-item-desc2">
 						<div class="camping-item-desc2-title camping-item-desc2-header">
-							<a href="go.camping.detail?c_no=${c.c_no }">[${c.c_doNm } ${c.c_sigunguNm }] ${c.c_facltNm }</a>
+								<a href="go.camping.detail?c_no=${c.c_no }">[${c.c_doNm } ${c.c_sigunguNm }] ${c.c_facltNm }</a>
+								<c:choose>
+									<c:when test="${c.isLiked == 1 }">
+										<img onclick="heartClick('${c.c_no }')" class="camping-like-img" alt="" src="resources/camping-detail-icon/like.png">
+									</c:when>
+									<c:otherwise>
+										<img onclick="heartClick('${c.c_no}')" class="camping-like-img camping-like-img-${c.c_no }" alt="" src="resources/camping-detail-icon/not-like.png">
+									</c:otherwise>
+								</c:choose>
+								
 						</div>
 						<div class="camping-item-desc2-title camping-item-desc2-content">
 							<a href="go.camping.detail?c_no=${c.c_no }">${c.c_lineIntro }</a>

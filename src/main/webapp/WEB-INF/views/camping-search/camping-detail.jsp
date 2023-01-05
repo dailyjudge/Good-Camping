@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
   <body>
-  
   	<input id="mapX" type="hidden" value="${m.c_mapX }">
   	<input id="mapY" type="hidden" value="${m.c_mapY }">
   	<input id="detail-facltNm" type="hidden" value="${m.c_facltNm}">
@@ -82,7 +81,7 @@
 
     <div class="camping-datail-list-type-item">
       <span>
-        ${m.c_lineIntro }
+        ${m.c_intro }
       </span>
     </div>
 
@@ -158,9 +157,81 @@
             </div>
         </div>
    </div>
+   	
    
    <div class="camping-category-item3">
-   3번항목
+   	 <c:if test="${sessionScope.loginAccount != null }">
+   		<div class="camping-detail-type-review">
+        <div class="review-user-container">
+            <img class="review-user-img" src="resources/camping-detail-review/images.jpeg" alt="">
+        </div>
+        <form id="camping-create-review-form" action="do.create.review" onsubmit="return createReview()">
+        <input name="cr_author" type="hidden" value="${sessionScope.loginAccount.ac_id }">
+        <input name="cr_campingSiteNo" type="hidden" value="${m.c_no }">
+        <div class="review-content-container">
+            <div class="review-content-title">
+                <span>제목</span> <span>별점</span>
+                
+                <div>
+                    <button class="review-content-control review-content-control-button">등록하기</button>
+                </div>
+            </div>
+
+            <input name="cr_title" class="camping-review-write-title">
+            	<span class="star">
+              	  ★★★★★
+           	    <span>★★★★★</span>
+            <input name="cr_no" id="camping-review-star" type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+            </span>
+            <br><br>
+            <span>내용</span>
+            <div class="review-content-comment">
+                <textarea name="cr_content" class="camping-review-write-content"></textarea>
+            </div>
+
+        </div>
+        </form>
+    </div>
+   </c:if>	
+   
+     <c:forEach var="r" items="${reviews }">
+     	<div class="camping-detail-type-review camping-detail-${r.cr_no }">
+        	<div class="review-user-container">
+          	  <img class="review-user-img" src="resources/camping-detail-review/images.jpeg" alt="">
+           	  <span>별점: ${r.cr_star }</span>
+       	    </div>
+       	    
+       	    <div class="review-content-container">
+            	<div class="review-content-title">
+                	<span class="review-content-title-span review-visible-${r.cr_no } review-visible-${r.cr_no}-title">${r.cr_title }</span>
+                	<input class="review-content-title-span review-hidden-${r.cr_no } review-hidden-${r.cr_no}-title" value="${r.cr_title }" style="display: none">
+                	
+                	
+                	<div>
+                	<c:if test="${sessionScope.loginAccount.ac_id == r.cr_author }">
+                    	<span class="review-content-control review-visible-${r.cr_no }" onclick="openHiddenContents('${r.cr_no}')">수정</span>
+                    	<span class="review-content-control review-visible-${r.cr_no }" onclick="deleteReview('${r.cr_no}')">삭제</span>
+                    	<span class="review-content-control review-hidden-${r.cr_no }" onclick="updateReview('${r.cr_no}')" style="display: none; margin-bottom: 10px">수정하기</span>
+           				<span class="review-content-control review-hidden-${r.cr_no }" onclick="closeHiddenContents('${r.cr_no}')" style="display: none">취소하기</span>
+  				  	</c:if>             
+                	</div>
+            </div>
+
+            <div class="review-content-content review-visible-${r.cr_no }">
+                <span class="review-content-content-star">★★★★★</span><span class="review-content-content-separaotr">|</span>
+                <span class="review-content-content-author">${r.cr_author }</span>
+                <span class="review-content-content-date">작성일 : ${r.cr_date }</span> 
+            </div>
+            
+            <div class="review-content-comment">
+                <span class="review-visible-${r.cr_no } review-visible-${r.cr_no}-content">${r.cr_content}</span>
+                <textarea class="review-hidden-${r.cr_no } review-hidden-${r.cr_no}-content" style="display: none">${r.cr_content}</textarea>
+            </div>
+        </div>
+     </div>
+     </c:forEach>
    </div>
+   
+   
   </body>
 </html>

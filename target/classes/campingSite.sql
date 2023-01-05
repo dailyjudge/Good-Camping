@@ -49,3 +49,54 @@ select * from camping_site
 select c_lineIntro from camping_site where c_no = 13281
 
 select count(*) from camping_site;
+
+
+----- 캠핑장 리뷰
+create table campingSite_review(
+	-- pk
+	cr_no number(7) primary key,
+	-- 게시글 pk
+	cr_campingSiteNo number(7) not null,
+	-- 리뷰 작성자
+	cr_author varchar2(20 char) not null,
+	-- 리뷰 제목
+	cr_title varchar2(30 char) not null,
+	-- 리뷰 별점
+	cr_star varchar2(4 char) not null,
+	-- 리뷰 내용
+	cr_content varchar2(100 char) not null,
+	-- 리뷰 작성 시간
+	cr_date date not null
+);
+
+drop table campingSite_review;
+
+create sequence campingSite_review_seq;
+
+insert into campingSite_review values(campingSite_review_seq.nextval, 13268, 'test2', '테스트 제목', '5.0', '테스트 내용입니다 너무 즐거워요!!', sysdate);
+insert into campingSite_review values(campingSite_review_seq.nextval, 13268, 'test', '테스트 제목2', '4.5', '테스트 내용2입니다 너무 좋아요!!', sysdate);
+
+select * from campingSite_review;
+
+SELECT CR_NO, CR_CAMPINGSITENO, CR_AUTHOR, CR_TITLE, CR_STAR, CR_CONTENT, CR_DATE
+from CAMPING_SITE, CAMPINGSITE_REVIEW
+WHERE CAMPING_SITE.C_NO = CAMPINGSITE_REVIEW.CR_CAMPINGSITENO 
+AND CR_CAMPINGSITENO = 13268
+
+-- 조회수
+-- 컨셉 : 조회수 기준은 비로그인 - 로그인 상관 없음. 바로 1 올려주기. 다만 재요청시만 제어
+create table campingSite_view(
+	-- 조회수 테이블 pk
+	cv_no number(7) primary key,
+	-- 조회한 사이트 넘버
+	cv_siteNo number(7) not null,
+	-- 조회수
+	cv_viewCount number(7)
+);
+
+select * from campingSite_view
+insert into campingSite_view values(campingSite_view_seq.nextval, 13268, 8);
+drop table campingSite_view
+create sequence campingSite_view_seq;
+drop sequence campingSite_view_seq;
+
