@@ -1,119 +1,118 @@
 @charset "UTF-8";
 /* --------------------슬라이더---------------------------- */
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .slideList {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .slideshow-image {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .slideImg {
-	width: 100%;
-	height: 650px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slide {
-	position: relative;
-	margin: auto;
-	height: 650px;
+  position: relative;
+  margin: auto;
+  height: 650px;
 }
 
 .fade {
-	animation-name: fade;
-	animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
 }
 
-@
-keyframes fade {from { opacity:0.4;
-	
-}
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
 
-to {
-	opacity: 1;
-}
-
+  to {
+    opacity: 1;
+  }
 }
 /* --------------------------------검색창-------------------------------------------- */
 .search-input-form {
-	/* border: 3px solid #4caf50; */
-	position: relative;
-	width: 30%;
-	top: -400px;
-	margin: auto;
-	display: flex;
-	justify-content: center;
-	/* background-color: #4caf50; */
-	font-family: 'Happiness-Sans-Title';
+  /* border: 3px solid #4caf50; */
+  position: relative;
+  width: 30%;
+  top: -400px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  /* background-color: #4caf50; */
+  font-family: "Happiness-Sans-Title";
 }
 
 #input-button {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #search-input {
-	width: 100%;
-	height: 55px;
-	border-radius: 5px;
-	border: 2px solid green;
-	font-size: 1.0em;
-	font-family: 'Happiness-Sans-Title';
-	font-weight: lighter;
-	outline: none;
+  width: 100%;
+  height: 55px;
+  border-radius: 5px;
+  border: 2px solid green;
+  font-size: 1em;
+  font-family: "Happiness-Sans-Title";
+  font-weight: lighter;
+  outline: none;
 }
 
 #city {
-	display: flex;
+  display: flex;
 }
 
 #city select {
-	height: 40px;
-	width: 200px;
-	font-family: 'NanumSquareNeo-Variable';
+  height: 40px;
+  width: 200px;
+  font-family: "NanumSquareNeo-Variable";
 }
 
 .btn {
-	width: 20%;
-	border-radius: 5px;
-	font-size: 20px;
-	padding: 10px;
-	color: white;
-	background-color: #0C964A;
-	border: none;
-	font-family: 'Happiness-Sans-Title';
-	cursor: pointer;
+  width: 20%;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 10px;
+  color: white;
+  background-color: #0c964a;
+  border: none;
+  font-family: "Happiness-Sans-Title";
+  cursor: pointer;
 }
 /* -------------------------------------------푸터-------------------------------------------- */
 #footer {
-	display: flex;
-	justify-content: center;
-	border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
 }
 
 #footer-div {
-	display: flex;
-	justify-content: center;
-	border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
 }
 
 #footer-logo {
-	border: 1px solid black;
-	padding: 12px;
+  border: 1px solid black;
+  padding: 12px;
 }
 
 #footer-logo img {
-	width: 200px;
-	height: 70px;
+  width: 200px;
+  height: 70px;
 }

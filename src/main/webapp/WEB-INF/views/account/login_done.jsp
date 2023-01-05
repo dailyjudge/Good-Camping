@@ -9,7 +9,7 @@
           <a><img src="resources/home_img/heart.png" /></a>
         </li>
         <li class="something-icon">
-          <a><img src="resources/home_img/basket.png" /></a>
+          <a href="go.stuff.cart"><img src="resources/home_img/basket.png" /></a>
         </li>
         <li class="something-icon">
           <a><img src="resources/home_img/login.png" /></a>

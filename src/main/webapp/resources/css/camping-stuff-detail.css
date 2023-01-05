@@ -137,10 +137,10 @@
   transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 }
 .button--aylen::before {
-  background: #7986cb;
+  background: #999999;
 }
 .button--aylen::after {
-  background: #3f51b5;
+  background: #666666;
 }
 .button--aylen:hover {
   color: #fff;
