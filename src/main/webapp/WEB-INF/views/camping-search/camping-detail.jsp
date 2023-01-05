@@ -131,7 +131,7 @@
             </div>
             
             <div class="camping-find-way-button-container camping-find-way-spinner-container">
-            	 <div class="spinner"><i class="fas fa-spinner fa-2x"></i></div>
+            	 <div class="spinner"><i class="fas fa-spinner fa-2x fa-spin"></i></div>
             	 <div style="margin-left: 30px"><span>계산중...</span></div>
             </div>
             
