@@ -131,7 +131,7 @@
             </div>
             
             <div class="camping-find-way-button-container camping-find-way-spinner-container">
-            	 <div class="spinner"><i class="fas fa-spinner fa-2x"></i></div>
+            	 <div class="spinner"><i class="fas fa-spinner fa-2x fa-spin"></i></div>
             	 <div style="margin-left: 30px"><span>계산중...</span></div>
             </div>
             
@@ -218,7 +218,7 @@
             </div>
 
             <div class="review-content-content review-visible-${r.cr_no }">
-                <span class="review-content-content-star">★★★★★</span><span class="review-content-content-separaotr">|</span>
+                <span class="review-content-content-star"><img class="camping-content-star-img" src="resources/star/star-${r.cr_star }.jpeg"></span><span class="review-content-content-separaotr">|</span>
                 <span class="review-content-content-author">${r.cr_author }</span>
                 <span class="review-content-content-date">작성일 : ${r.cr_date }</span> 
             </div>

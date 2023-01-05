@@ -164,7 +164,7 @@ public class MainDAO {
 						caravSiteCo, clturEventAt, trlerAcmpnyAt, exprnProgrmAt, clturEvent, doNm, sigunguNm,
 						exprnProgrm, facltNm, firstImageUrl, glampInnerFclty, glampSiteCo, gnrlSiteCo, homepage,
 						insrncAt, intro, lineIntro, mapX, mapY, operDeCl, operPdCl, posblFcltyCl, resveCl, resveUrl,
-						sbrsCl, tel, themaEnvrnCl, toiletCo, wtrplCo, tooltip, null, 0, 0);
+						sbrsCl, tel, themaEnvrnCl, toiletCo, wtrplCo, tooltip, null, 0, 0, 0, 0);
 				System.out.println(m.toString());
 				count++;
 
@@ -204,8 +204,27 @@ public class MainDAO {
 		
 		List<facilityDTO> facilityItems;
 		facilityDTO fDTO;
-		
+		LikeDTO lDTO;
 		for (MainDTO mDTO : campingSites) {
+		
+			// 사이트 좋아요 개수 처리
+			lDTO = new LikeDTO();
+			lDTO.setCl_siteNo(mDTO.getC_no());
+			mDTO.setSiteLikeCount(ss.getMapper(MainMapper.class).getSiteLikeCount(lDTO));
+			
+			// 유저가 좋아요를 눌렀는지 처리
+			// 유저가 로그인 돼있는지?
+			AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
+			if(a != null) {
+				lDTO.setCl_userId(a.getAc_id());
+				if(ss.getMapper(MainMapper.class).checkIsLikedCampingSite(lDTO) == 1) {
+					mDTO.setIsLiked(1);
+				} else {
+					mDTO.setIsLiked(0);
+				}
+			} else {
+				mDTO.setIsLiked(0);
+			}
 			
 			// 조회수 처리
 			SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(mDTO);
@@ -377,5 +396,21 @@ public class MainDAO {
 			System.out.println("리뷰 등록 성공!");
 		}
 		
+	}
+
+	public int createCampingSiteLike(LikeDTO l) {
+		
+		if(ss.getMapper(MainMapper.class).createCampingSiteLike(l) == 1) {
+			return ss.getMapper(MainMapper.class).getSiteLikeCount(l);
+		} 
+		return 0;
+	}
+
+	public int deleteCampingSiteLike(LikeDTO l) {
+		
+		if(ss.getMapper(MainMapper.class).deleteCampingSiteLike(l) == 1) {
+			return ss.getMapper(MainMapper.class).getSiteLikeCount(l);
+		}
+		return 0;
 	}	
 }
