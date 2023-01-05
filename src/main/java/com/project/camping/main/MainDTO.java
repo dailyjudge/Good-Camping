@@ -86,6 +86,9 @@ public class MainDTO {
 
 //  리뷰 수를 담는 변수
 	private int reviewCount;
+
+//  조회 수를 담는 변수
+	private int siteViewCount;
 	
 	public MainDTO() {
 		// TODO Auto-generated constructor stub
@@ -99,7 +102,7 @@ public class MainDTO {
 			String c_lineIntro, String c_mapX, String c_mapY, String c_operDeCl, String c_operPdCl,
 			String c_posblFcltyCl, String c_resveCl, String c_resveUrl, String c_sbrsCl, String c_tel,
 			String c_themaEnvrnCl, String c_toiletCo, String c_wtrplCo, String c_tooltip, List<facilityDTO> facilities,
-			int reviewCount) {
+			int reviewCount, int siteViewCount) {
 		super();
 		this.c_no = c_no;
 		this.c_zipcode = c_zipcode;
@@ -141,6 +144,7 @@ public class MainDTO {
 		this.c_tooltip = c_tooltip;
 		this.facilities = facilities;
 		this.reviewCount = reviewCount;
+		this.siteViewCount = siteViewCount;
 	}
 
 	public int getC_no() {
@@ -463,6 +467,14 @@ public class MainDTO {
 		this.reviewCount = reviewCount;
 	}
 
+	public int getSiteViewCount() {
+		return siteViewCount;
+	}
+
+	public void setSiteViewCount(int siteViewCount) {
+		this.siteViewCount = siteViewCount;
+	}
+
 	@Override
 	public String toString() {
 		return "MainDTO [c_no=" + c_no + ", c_zipcode=" + c_zipcode + ", c_addr1=" + c_addr1 + ", c_animalCmgCl="
@@ -478,7 +490,7 @@ public class MainDTO {
 				+ ", c_resveCl=" + c_resveCl + ", c_resveUrl=" + c_resveUrl + ", c_sbrsCl=" + c_sbrsCl + ", c_tel="
 				+ c_tel + ", c_themaEnvrnCl=" + c_themaEnvrnCl + ", c_toiletCo=" + c_toiletCo + ", c_wtrplCo="
 				+ c_wtrplCo + ", c_tooltip=" + c_tooltip + ", facilities=" + facilities + ", reviewCount=" + reviewCount
-				+ "]";
+				+ ", siteViewCount=" + siteViewCount + "]";
 	}
 	
 	

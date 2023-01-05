@@ -55,4 +55,14 @@
 	WHERE CAMPING_SITE.C_NO = CAMPINGSITE_REVIEW.CR_CAMPINGSITENO AND 
 	CR_CAMPINGSITENO = #{c_no} 
 </select>
+
+<select id="getSiteViewCount" parameterType="com.project.camping.main.MainDTO" resultType="com.project.camping.main.SiteViewDTO">
+	select * from campingSite_view where cv_siteNo = #{c_no}
+</select>
+<insert id="createSiteView" parameterType="com.project.camping.main.MainDTO">
+	insert into campingSite_view values(campingSite_view_seq.nextval, #{c_no}, 1)
+</insert>
+<update id="upSiteViewCount" parameterType="com.project.camping.main.MainDTO">
+	update campingSite_view set cv_viewCount = cv_viewCount + 1 where cv_siteNo = #{c_no}
+</update>
 </mapper>

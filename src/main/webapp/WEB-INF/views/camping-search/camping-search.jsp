@@ -22,7 +22,7 @@
 					<span class="camping-item-desc-item camping-item-desc-item1">관광사업자
 						등록업체</span> <span class="camping-item-desc-item camping-item-desc-item2">리뷰수
 						${c.reviewCount }</span> <span class="camping-item-desc-item camping-item-desc-item3">조회수
-						20557</span> <span class="camping-item-desc-item camping-item-desc-item4">추천수
+						${c.siteViewCount }</span> <span class="camping-item-desc-item camping-item-desc-item4">추천수
 						2</span>
 				</div>
 
@@ -32,7 +32,7 @@
 					</div>
 					<div class="camping-item-desc2">
 						<div class="camping-item-desc2-title camping-item-desc2-header">
-							<a href="go.camping.detail?c_no=${c.c_no }">[${c.c_doNm } ${c.c_sigunguNm }] ${c.c_facltNm }</a>
+								<a href="go.camping.detail?c_no=${c.c_no }">[${c.c_doNm } ${c.c_sigunguNm }] ${c.c_facltNm }</a>
 						</div>
 						<div class="camping-item-desc2-title camping-item-desc2-content">
 							<a href="go.camping.detail?c_no=${c.c_no }">${c.c_lineIntro }</a>

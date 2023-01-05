@@ -38,10 +38,22 @@ public class MainController {
 				
 		// 페이징처리
 		mDAO.getCampingSite(1, request);
-				
+		
 		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
 
+		return "index";
+	}
+	
+	@RequestMapping(value = "/go.camping.back", method = RequestMethod.GET)
+	public String backToCampingList(HttpServletRequest request) {
+		
+		// 페이징처리
+		mDAO.getCampingSite(Integer.parseInt(request.getParameter("p")), request);
+		
+		aDAO.loginCheck(request);
+		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
+		
 		return "index";
 	}
 	

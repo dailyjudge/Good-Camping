@@ -5,8 +5,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
@@ -162,7 +164,7 @@ public class MainDAO {
 						caravSiteCo, clturEventAt, trlerAcmpnyAt, exprnProgrmAt, clturEvent, doNm, sigunguNm,
 						exprnProgrm, facltNm, firstImageUrl, glampInnerFclty, glampSiteCo, gnrlSiteCo, homepage,
 						insrncAt, intro, lineIntro, mapX, mapY, operDeCl, operPdCl, posblFcltyCl, resveCl, resveUrl,
-						sbrsCl, tel, themaEnvrnCl, toiletCo, wtrplCo, tooltip, null, 0);
+						sbrsCl, tel, themaEnvrnCl, toiletCo, wtrplCo, tooltip, null, 0, 0);
 				System.out.println(m.toString());
 				count++;
 
@@ -205,6 +207,9 @@ public class MainDAO {
 		
 		for (MainDTO mDTO : campingSites) {
 			
+			// 조회수 처리
+			SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(mDTO);
+			mDTO.setSiteViewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
 			// 리뷰수 처리
 			mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
 			// default 이미지 처리
@@ -285,6 +290,31 @@ public class MainDAO {
 	}
 
 	public void getCampingDetail(MainDTO m, HttpServletRequest request) {
+		
+		// 조회수 1 올려주기
+		SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(m);
+		
+		// 조회수가 0인 경우
+		if(svDTO == null) {
+			// 레코드 생성
+			if(ss.getMapper(MainMapper.class).createSiteView(m) == 1) {
+				System.out.println("새로운 Row 생성");
+				
+				for (MainDTO mDTO : campingSites) {
+					if(mDTO.getC_no() == m.getC_no()) mDTO.setSiteViewCount(1);
+				}
+			}
+		} else {
+			// 조회수만 1 올리기
+			if(ss.getMapper(MainMapper.class).upSiteViewCount(m) == 1) {
+				System.out.println("조회수 1증가");
+				
+				for (MainDTO mDTO : campingSites) {
+					if(mDTO.getC_no() == m.getC_no()) mDTO.setSiteViewCount(mDTO.getSiteViewCount() + 1);
+				}
+			}
+		}
+		
 		// 들고오는 일
 		MainDTO targetDTO = ss.getMapper(MainMapper.class).getCampingSite(m);
 		

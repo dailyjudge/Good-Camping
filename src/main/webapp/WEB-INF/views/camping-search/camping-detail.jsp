@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
   <body>
-  
   	<input id="mapX" type="hidden" value="${m.c_mapX }">
   	<input id="mapY" type="hidden" value="${m.c_mapY }">
   	<input id="detail-facltNm" type="hidden" value="${m.c_facltNm}">

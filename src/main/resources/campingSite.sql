@@ -82,3 +82,21 @@ SELECT CR_NO, CR_CAMPINGSITENO, CR_AUTHOR, CR_TITLE, CR_STAR, CR_CONTENT, CR_DAT
 from CAMPING_SITE, CAMPINGSITE_REVIEW
 WHERE CAMPING_SITE.C_NO = CAMPINGSITE_REVIEW.CR_CAMPINGSITENO 
 AND CR_CAMPINGSITENO = 13268
+
+-- 조회수
+-- 컨셉 : 조회수 기준은 비로그인 - 로그인 상관 없음. 바로 1 올려주기. 다만 재요청시만 제어
+create table campingSite_view(
+	-- 조회수 테이블 pk
+	cv_no number(7) primary key,
+	-- 조회한 사이트 넘버
+	cv_siteNo number(7) not null,
+	-- 조회수
+	cv_viewCount number(7)
+);
+
+select * from campingSite_view
+insert into campingSite_view values(campingSite_view_seq.nextval, 13268, 8);
+drop table campingSite_view
+create sequence campingSite_view_seq;
+drop sequence campingSite_view_seq;
+
