@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.camping.account.AccountDAO;
 
@@ -37,10 +38,22 @@ public class MainController {
 				
 		// 페이징처리
 		mDAO.getCampingSite(1, request);
-				
+		
 		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
 
+		return "index";
+	}
+	
+	@RequestMapping(value = "/go.camping.back", method = RequestMethod.GET)
+	public String backToCampingList(HttpServletRequest request) {
+		
+		// 페이징처리
+		mDAO.getCampingSite(Integer.parseInt(request.getParameter("p")), request);
+		
+		aDAO.loginCheck(request);
+		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
+		
 		return "index";
 	}
 	
@@ -76,14 +89,50 @@ public class MainController {
 	@RequestMapping(value = "/go.camping.detail", method = RequestMethod.GET)
 	public String goCampingDetail(MainDTO m, HttpServletRequest request) {
 		
-		System.out.println("들어옴 !! " + m.getC_no());
-		
 		mDAO.getCampingDetail(m, request);
+		
+		// 리뷰 정보를 들고 오는 일
+		mDAO.getReviews(m, request);
 		
 		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "camping-search/camping-detail.jsp");
 
 		return "index";
+	}
+	
+	@RequestMapping(value = "/do.create.review", method = RequestMethod.GET)
+	public String createReview(ReviewDTO r, HttpServletRequest request) {
+		
+		mDAO.createReview(r, request);
+		
+		
+		MainDTO m = new MainDTO();
+		m.setC_no(r.getCr_campingSiteNo());
+		
+		mDAO.getCampingDetail(m, request);
+		
+		mDAO.getReviews(m, request);
+		
+		aDAO.loginCheck(request);
+		request.setAttribute("contentPage", "camping-search/camping-detail.jsp");
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/do.delete.review", method = RequestMethod.GET)
+	@ResponseBody
+	public int deleteReview(ReviewDTO r, HttpServletRequest request) {
+		// 리뷰 정보를 삭제하는 일
+		
+		return mDAO.deleteReview(r);
+	}
+	
+	@RequestMapping(value = "/do.update.review", method = RequestMethod.GET)
+	@ResponseBody
+	public int updateReview(ReviewDTO r, HttpServletRequest request) {
+		// 리뷰 정보를 삭제하는 일
+		
+		return mDAO.updateReview(r);
 	}
 	
 }

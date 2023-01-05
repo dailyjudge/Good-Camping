@@ -21,6 +21,7 @@
 <script type="text/javascript" src="resources/js/account.js"></script>
 <script type="text/javascript" src="resources/js/home.js"></script>
 <script type="text/javascript" src="resources/js/campingDetail.js"></script>
+<script type="text/javascript" src="resources/js/campingDetailReview.js"></script>
 <style type="text/css">
 .areaDiv{
 margin: 0;
