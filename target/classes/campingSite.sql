@@ -100,3 +100,20 @@ drop table campingSite_view
 create sequence campingSite_view_seq;
 drop sequence campingSite_view_seq;
 
+-- 캠핑 사이트 좋아요 
+create table campingSite_like(
+	-- 캠핑 기본키
+	cl_no number(7) primary key,
+	
+	-- 좋아요 누른 유저 id
+	cl_userId varchar2(20 char) not null,
+	
+	-- 좋아요 누른 사이트 no
+	cl_siteNo number(7) not null
+);
+
+create sequence campingSite_like_seq;
+
+select * from campingSite_like;
+
+insert into campingSite_like values(campingSite_like_seq.nextval, 'test', 13268);

@@ -65,4 +65,18 @@
 <update id="upSiteViewCount" parameterType="com.project.camping.main.MainDTO">
 	update campingSite_view set cv_viewCount = cv_viewCount + 1 where cv_siteNo = #{c_no}
 </update>
+<select id="checkIsLikedCampingSite" resultType="int" parameterType="com.project.camping.main.LikeDTO">
+	select count(*) from campingSite_like 
+	where cl_userId = #{cl_userId} and cl_siteNo = #{cl_siteNo}
+</select>
+<select id="getSiteLikeCount" parameterType="com.project.camping.main.LikeDTO" resultType="int">
+	select count(*) from campingSite_like
+	where cl_siteNo = #{cl_siteNo}
+</select>
+<insert id="createCampingSiteLike" parameterType="com.project.camping.main.LikeDTO">
+	insert into campingSite_like values(campingSite_like_seq.nextval, #{cl_userId}, #{cl_siteNo})
+</insert>
+<delete id="deleteCampingSiteLike" parameterType="com.project.camping.main.LikeDTO">
+	delete campingSite_like where cl_userId = #{cl_userId} and cl_siteNo = #{cl_siteNo}
+</delete>
 </mapper>

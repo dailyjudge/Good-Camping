@@ -36,5 +36,13 @@ public interface MainMapper {
 	int createSiteView(MainDTO m);
 
 	int upSiteViewCount(MainDTO m);
+
+	int checkIsLikedCampingSite(LikeDTO lDTO);
+
+	int getSiteLikeCount(LikeDTO lDTO);
+
+	int createCampingSiteLike(LikeDTO l);
+
+	int deleteCampingSiteLike(LikeDTO l);
 	
 }

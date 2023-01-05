@@ -135,4 +135,18 @@ public class MainController {
 		return mDAO.updateReview(r);
 	}
 	
+	@RequestMapping(value = "/do.create.campingSite.like", method = RequestMethod.GET)
+	@ResponseBody
+	public int createSiteLike(LikeDTO l, HttpServletRequest request) {
+		// 유저의 사이트 좋아요 정보를 추가하는 일
+		return mDAO.createCampingSiteLike(l);
+	}
+	
+	@RequestMapping(value = "/do.delete.campingSite.like", method = RequestMethod.GET)
+	@ResponseBody
+	public int deleteSiteLike(LikeDTO l, HttpServletRequest request) {
+		// 유저의 사이트 좋아요 정보를 삭제하는 일
+		return mDAO.deleteCampingSiteLike(l);
+	}
+	
 }

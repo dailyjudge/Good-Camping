@@ -89,6 +89,11 @@ public class MainDTO {
 
 //  조회 수를 담는 변수
 	private int siteViewCount;
+
+//  사이트에 좋아요 개수
+	private int siteLikeCount;
+//  유저가 좋아요를 눌렀는지 확인할 수 있는 변수 (1 : 좋아요, 2: x)
+	private int isLiked;
 	
 	public MainDTO() {
 		// TODO Auto-generated constructor stub
@@ -102,7 +107,7 @@ public class MainDTO {
 			String c_lineIntro, String c_mapX, String c_mapY, String c_operDeCl, String c_operPdCl,
 			String c_posblFcltyCl, String c_resveCl, String c_resveUrl, String c_sbrsCl, String c_tel,
 			String c_themaEnvrnCl, String c_toiletCo, String c_wtrplCo, String c_tooltip, List<facilityDTO> facilities,
-			int reviewCount, int siteViewCount) {
+			int reviewCount, int siteViewCount, int siteLikeCount, int isLiked) {
 		super();
 		this.c_no = c_no;
 		this.c_zipcode = c_zipcode;
@@ -145,6 +150,8 @@ public class MainDTO {
 		this.facilities = facilities;
 		this.reviewCount = reviewCount;
 		this.siteViewCount = siteViewCount;
+		this.siteLikeCount = siteLikeCount;
+		this.isLiked = isLiked;
 	}
 
 	public int getC_no() {
@@ -475,6 +482,22 @@ public class MainDTO {
 		this.siteViewCount = siteViewCount;
 	}
 
+	public int getSiteLikeCount() {
+		return siteLikeCount;
+	}
+
+	public void setSiteLikeCount(int siteLikeCount) {
+		this.siteLikeCount = siteLikeCount;
+	}
+
+	public int getIsLiked() {
+		return isLiked;
+	}
+
+	public void setIsLiked(int isLiked) {
+		this.isLiked = isLiked;
+	}
+
 	@Override
 	public String toString() {
 		return "MainDTO [c_no=" + c_no + ", c_zipcode=" + c_zipcode + ", c_addr1=" + c_addr1 + ", c_animalCmgCl="
@@ -490,7 +513,8 @@ public class MainDTO {
 				+ ", c_resveCl=" + c_resveCl + ", c_resveUrl=" + c_resveUrl + ", c_sbrsCl=" + c_sbrsCl + ", c_tel="
 				+ c_tel + ", c_themaEnvrnCl=" + c_themaEnvrnCl + ", c_toiletCo=" + c_toiletCo + ", c_wtrplCo="
 				+ c_wtrplCo + ", c_tooltip=" + c_tooltip + ", facilities=" + facilities + ", reviewCount=" + reviewCount
-				+ ", siteViewCount=" + siteViewCount + "]";
+				+ ", siteViewCount=" + siteViewCount + ", siteLikeCount=" + siteLikeCount + ", isLiked=" + isLiked
+				+ "]";
 	}
 	
 	
