@@ -423,6 +423,7 @@ to {
 	height: 100%;
 	position: absolute;
 	left: 0;
+	top: 0;
 	opacity: 0;
 	cursor: pointer;
 }
@@ -476,3 +477,4 @@ to {
 .camping-content-star-img {
 	width: 100px;
 }
+

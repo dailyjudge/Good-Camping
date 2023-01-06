@@ -43,7 +43,7 @@
 	delete campingSite_review where cr_no = #{cr_no}
 </delete>
 <update id="updateReview" parameterType="com.project.camping.main.ReviewDTO">
-	update campingSite_review set cr_title = #{cr_title}, cr_content = #{cr_content} where cr_no = #{cr_no}
+	update campingSite_review set cr_title = #{cr_title}, cr_content = #{cr_content}, cr_star = #{cr_star} where cr_no = #{cr_no}
 </update>
 <insert id="createReview" parameterType="com.project.camping.main.ReviewDTO">
 	insert into campingSite_review values(campingSite_review_seq.nextval, #{cr_campingSiteNo}, #{cr_author}, #{cr_title}, #{cr_star}, #{cr_content}, sysdate)
