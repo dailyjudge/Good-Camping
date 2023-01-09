@@ -198,18 +198,27 @@
      	<div class="camping-detail-type-review camping-detail-${r.cr_no }">
         	<div class="review-user-container">
           	  <img class="review-user-img" src="resources/camping-detail-review/images.jpeg" alt="">
-           	  <span>별점: ${r.cr_star }</span>
+           	  <span>별점: <span class="review-user-star-${r.cr_no }">${r.cr_star }</span></span>
        	    </div>
        	    
        	    <div class="review-content-container">
+       	    		<span class="review-hidden-category review-hidden-category-${r.cr_no }" style="margin-bottom: -20px;">제목</span>
+                	<span style="margin-left: 74%" class="review-hidden-category review-hidden-category-${r.cr_no }">별점</span>
             	<div class="review-content-title">
                 	<span class="review-content-title-span review-visible-${r.cr_no } review-visible-${r.cr_no}-title">${r.cr_title }</span>
-                	<input class="review-content-title-span review-hidden-${r.cr_no } review-hidden-${r.cr_no}-title" value="${r.cr_title }" style="display: none">
                 	
+                	<input class="review-content-title-span  review-hidden-${r.cr_no } review-hidden-${r.cr_no}-title" value="${r.cr_title }" style="display: none">
+            		
+            		<span class="star star-hidden star-hidden-${r.cr_no }">
+              	 	 ★★★★★
+           	    	<span>★★★★★</span>
+            		<input name="cr_nod" class="camping-review-star-${r.cr_no }" type="range" oninput="drawStar2(this)" value="10" step="1" min="0" max="10">
+            		<input class="camping-review-star-origin-${r.cr_no }" value="${r.cr_star }" type="hidden">
+            		</span>
                 	
                 	<div>
                 	<c:if test="${sessionScope.loginAccount.ac_id == r.cr_author }">
-                    	<span class="review-content-control review-visible-${r.cr_no }" onclick="openHiddenContents('${r.cr_no}')">수정</span>
+                    	<span class="review-content-control review-visible-${r.cr_no }" onclick="openHiddenContents('${r.cr_no}', '${r.cr_star }')">수정</span>
                     	<span class="review-content-control review-visible-${r.cr_no }" onclick="deleteReview('${r.cr_no}')">삭제</span>
                     	<span class="review-content-control review-hidden-${r.cr_no }" onclick="updateReview('${r.cr_no}')" style="display: none; margin-bottom: 10px">수정하기</span>
            				<span class="review-content-control review-hidden-${r.cr_no }" onclick="closeHiddenContents('${r.cr_no}')" style="display: none">취소하기</span>
@@ -218,13 +227,14 @@
             </div>
 
             <div class="review-content-content review-visible-${r.cr_no }">
-                <span class="review-content-content-star"><img class="camping-content-star-img" src="resources/star/star-${r.cr_star }.jpeg"></span><span class="review-content-content-separaotr">|</span>
+                <span class="review-content-content-star"><img class="camping-content-star-img camping-content-star-img-${r.cr_no }" src="resources/star/star-${r.cr_star }.jpeg"></span><span class="review-content-content-separaotr">|</span>
                 <span class="review-content-content-author">${r.cr_author }</span>
                 <span class="review-content-content-date">작성일 : ${r.cr_date }</span> 
             </div>
             
             <div class="review-content-comment">
                 <span class="review-visible-${r.cr_no } review-visible-${r.cr_no}-content">${r.cr_content}</span>
+                <span class="review-hidden-category review-hidden-category-${r.cr_no }">내용</span>
                 <textarea class="review-hidden-${r.cr_no } review-hidden-${r.cr_no}-content" style="display: none">${r.cr_content}</textarea>
             </div>
         </div>

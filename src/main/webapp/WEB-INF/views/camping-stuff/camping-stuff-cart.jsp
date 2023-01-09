@@ -38,7 +38,7 @@
 					<span class="stuff-total-price-span"> 결제예정금액&nbsp;&nbsp; <fmt:formatNumber
 							value="${money }" pattern="#,###" />원 &nbsp;&nbsp;
 					</span>
-					<button class="stuff-buy-btn">구매하기</button>
+					<button class="stuff-buy-btn" onclick="goPaymentPage()">구매하기</button>
 				</div>
 			</c:if>
 			<c:if test="${ empty carts }">

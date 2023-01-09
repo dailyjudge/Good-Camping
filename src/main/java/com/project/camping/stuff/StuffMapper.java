@@ -18,4 +18,14 @@ public interface StuffMapper {
 
 	int deleteCartItem(CartDTO c);
 
+	List<CartDTO> getCartsPayment(String[] strings);
+
+	CartDTO getCartsPayment(String s);
+
+	int insertCart(CartDTO c);
+
+	StuffDTO buyNow(CartDTO c);
+
+	StuffDTO getStuff(StuffDTO s);
+
 }

@@ -117,21 +117,6 @@ function searchCampingSite() {
 	return true;
 }
 
-$(document).ready(function() {
-	$('.trigger').on('click', function() {
-		$('.modal-wrapper').toggleClass('open');
-		$('.page-wrapper').toggleClass('blur-it');
-		return false;
-	});
-
-	$('.modal-wrapper').on('click', function() {
-		console.log("하이!");
-		$('.modal-wrapper').removeClass('open');
-		$('.page-wrapper').removeClass('blur-it');
-	});
-
-});
-
 function heartClick(no) {
 	let src = $('.camping-like-img-' + no).attr('src')
 	let userId = $('#camping-login-id-'+ no).val();
@@ -139,8 +124,14 @@ function heartClick(no) {
 	
 	console.log("userId : " + userId);
 	console.log("siteNo : " + siteNo);
-	// 로그인 되지 않았다면 처리!
 	
+	// 로그인 되지 않았다면 처리!
+	if (userId == '') {
+		alert('로그인이 필요한 서비스입니다.');
+		return;
+	}
+	
+	// 로그인 되었다면
 	if (src == 'resources/camping-detail-icon/not-like.png') {
 		// 좋아요 누른 상태
 		$('.camping-like-img-' + no).attr('src',
