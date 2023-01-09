@@ -40,6 +40,7 @@ sc_amount  number default 0
 select * from stuff_cart
 create sequence stuff_cart_seq;
 drop sequence stuff_cart_seq;
+delete stuff_cart
 
 insert  into stuff_cart values(stuff_cart_seq.nextval,'test',8075,4);
 

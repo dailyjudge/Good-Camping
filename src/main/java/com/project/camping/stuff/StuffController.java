@@ -94,4 +94,40 @@ public class StuffController {
 	public int deleteCartItem(CartDTO c, HttpServletRequest req) {
 		return sDAO.deleteCartItem(c);
 	}
+	@RequestMapping(value = "/do.insert.cart", method = RequestMethod.GET)
+	@ResponseBody
+	public int insertCart(StuffDTO s, HttpServletRequest req) {
+		return sDAO.insertCart(s,req);
+	}
+	
+	@RequestMapping(value = "/go.buynow", method = RequestMethod.GET)
+	public String goBuyNow(StuffDTO s, HttpServletRequest req) {
+		sDAO.goBuyNow(s, req);
+		aDAO.loginCheck(req);
+		
+		req.setAttribute("contentPage", "camping-stuff/camping-stuff-payment.jsp");
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/go.stuff.payment", method = RequestMethod.GET)
+	public String goStuffPayment(HttpServletRequest req) {
+		
+		
+		sDAO.getPaymentItem(req);
+//		System.out.println("들어옴!!");
+//		System.out.println("a: " + aa);
+		
+//		String arr[] = aa.split(",");
+		
+//		System.out.println(arr.length);
+		
+//		System.out.println("내용들 뽑아보기");
+//		for (String s : arr) {
+//			// DB찌르기
+//		}
+		aDAO.loginCheck(req);
+		req.setAttribute("contentPage", "camping-stuff/camping-stuff-payment.jsp");
+		return "index";
+	}
 }

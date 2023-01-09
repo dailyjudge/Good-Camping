@@ -72,3 +72,22 @@ $(function() {
 		});
 	});
 });
+
+
+function insertCart() {
+	
+	
+	$.ajax({
+		
+		url:"do.insert.cart",
+		data:{"s_no": $("#insertCart-btn").val()}
+	}).done(function(data) {
+		console.log(data)
+		alert($("#insertCart-btn").val()+"장바구니 담기 성공!");
+		
+	});
+	
+}
+
+
+	

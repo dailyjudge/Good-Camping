@@ -42,7 +42,9 @@ $speed: 0.5s;
   padding: 10px;
   display: inline-block;
   text-align: center;
-  margin-right: 60px;
+  margin-right: 30px;
+  cursor: pointer;
+  
 }
 
 .product-img {
@@ -68,6 +70,10 @@ $speed: 0.5s;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1em;
+}
+
+.product-name span:hover{
+	text-decoration: underline;
 }
 
 .product-price {

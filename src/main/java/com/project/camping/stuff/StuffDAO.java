@@ -8,6 +8,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.login.AccountNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +17,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.SessionScope;
 
 import com.project.camping.account.AccountDTO;
 
@@ -168,13 +170,13 @@ public class StuffDAO {
 		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
 		System.out.println(a.getAc_id());
 		List<CartDTO> carts = sm.getALlCartstuff(a);
-		
+
 		int money = 0;
-		
+
 		for (CartDTO c : carts) {
 			money += c.getSc_amount() * c.getS_price();
 		}
-		
+
 		req.setAttribute("money", money);
 		req.setAttribute("carts", carts);
 
@@ -182,6 +184,55 @@ public class StuffDAO {
 
 	public int deleteCartItem(CartDTO c) {
 		return ss.getMapper(StuffMapper.class).deleteCartItem(c);
+	}
+
+	public void getPaymentItem(HttpServletRequest req) {
+
+		StuffMapper sm = ss.getMapper(StuffMapper.class);
+
+		String items = req.getParameter("items");
+
+		String itemNumbers[] = items.split(",");
+
+		List<CartDTO> carts2 = new ArrayList<CartDTO>();
+
+		for (String s : itemNumbers) {
+			carts2.add(sm.getCartsPayment(s));
+		}
+		req.setAttribute("carts2", carts2);
+
+	}
+
+	public int insertCart(StuffDTO s, HttpServletRequest req) {
+
+		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
+		// cartDTO!!
+		CartDTO c = new CartDTO();
+		c.setSc_amount(1);
+		c.setSc_stuff_no(s.getS_no());
+		c.setSc_user_id(a.getAc_id());
+		return ss.getMapper(StuffMapper.class).insertCart(c);
+	}
+
+	public void goBuyNow(StuffDTO s, HttpServletRequest req) {
+
+		AccountDTO a= (AccountDTO) req.getSession().getAttribute("loginAccount");
+		
+		CartDTO c =  new CartDTO();
+		// 이미지, 제목, 가격, 총량
+		
+		StuffDTO sDTO = ss.getMapper(StuffMapper.class).getStuff(s);
+		
+		c.setSc_amount(1);
+		c.setSc_stuff_no(sDTO.getS_no());
+		c.setS_price(Integer.parseInt(sDTO.getS_price()));
+		c.setS_title(sDTO.getS_title());
+		c.setS_image(sDTO.getS_image());
+		
+		List<CartDTO> carts = new ArrayList<CartDTO>();
+		carts.add(c);
+		
+		req.setAttribute("carts2", carts);
 	}
 
 }
