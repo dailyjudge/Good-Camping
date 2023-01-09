@@ -26,10 +26,10 @@
 						원</b>
 				</div>
 				<div class="box bg-3">
-					<button
+					<button onclick="insertCart()" id="insertCart-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						ADD TO CART</button>
-					<button
+					<button onclick="location.href='go.buynow?s_no=${stuffs.s_no}'" id="goBuyNow-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						BUY NOW</button>
 				</div>
