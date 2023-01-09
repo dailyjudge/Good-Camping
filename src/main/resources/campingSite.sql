@@ -95,6 +95,7 @@ create table campingSite_view(
 );
 
 select * from campingSite_view
+select * from campingSite_view
 insert into campingSite_view values(campingSite_view_seq.nextval, 13268, 8);
 drop table campingSite_view
 create sequence campingSite_view_seq;
@@ -117,3 +118,17 @@ create sequence campingSite_like_seq;
 select * from campingSite_like;
 
 insert into campingSite_like values(campingSite_like_seq.nextval, 'test', 13268);
+
+-- 사이트 정보를 조회수 순으로 나오게끔!
+select *
+from camping_site, campingSite_view
+where c_no left outer join cv_siteNo
+
+SELECT * 
+FROM camping_site, campingSite_view ;
+
+select * from camping_site left outer join campingSite_view
+on c_no = cv_siteNo
+order by cv_viewcount desc
+
+
