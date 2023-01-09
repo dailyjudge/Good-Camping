@@ -18,6 +18,8 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="resources/css/camping-stuff.css" />
     <link rel="stylesheet" href="resources/css/camping-stuff-detail.css" />
     <link rel="stylesheet" href="resources/css/camping-stuff-cart.css" />
+    <link rel="stylesheet" href="resources/css/camping-theme.css" />
+    <link rel="stylesheet" href="resources/css/modalcss.css" />
 
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -27,6 +29,7 @@ pageEncoding="UTF-8"%>
     <script type="text/javascript" src="resources/js/campingDetail.js"></script>
 
     <script type="text/javascript" src="resources/js/campingStuff.js"></script>
+    <script type="text/javascript" src="resources/js/campingTheme.js"></script>
 
     <script
       type="text/javascript"
@@ -142,6 +145,7 @@ pageEncoding="UTF-8"%>
         <jsp:include page="${contentPage}"></jsp:include>
       </div>
     </div>
+    
     <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=14fb48386afd214fbe82e4cc27f58743"
