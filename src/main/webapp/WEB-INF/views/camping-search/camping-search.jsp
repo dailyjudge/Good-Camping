@@ -33,7 +33,7 @@
 
 				<div class="camping-item-box-container">
 					<div class="camping-item-img-container">
-						<img src="${c.c_firstImageUrl }" alt="">
+						<img src="${c.c_firstImageUrl }" onerror="this.src='resources/camping-search-img/campingSiteDefaultImg.png'" alt="">
 					</div>
 					<div class="camping-item-desc2">
 						<div class="camping-item-desc2-title camping-item-desc2-header">
