@@ -13,6 +13,7 @@ public class AccountController {
 	@Autowired
 	private AccountDAO aDAO;
 	
+	
 	//do.account.login
 	@RequestMapping(value = "/do.account.login", method = RequestMethod.GET)
 	public String refreshCampingData(HttpServletRequest request) {
@@ -24,4 +25,5 @@ public class AccountController {
 		request.setAttribute("contentPage", "home.jsp");
 		return "index";
 	}
+	
 }

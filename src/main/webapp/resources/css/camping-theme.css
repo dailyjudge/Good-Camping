@@ -1,0 +1,83 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.theme-main-container {
+    border: 1px solid #dfdfe1;
+    padding: 20px 0px;
+    width: 90%;
+    margin: 0px auto;
+    margin-bottom: 20px;
+}
+
+.theme-category-span {
+    font-family: 'GongGothicMedium';
+}
+.theme-container {
+    font-family: "BMJUA";
+    padding: 10px 10px;
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 30px;
+    font-size: 1.6em;
+}
+
+.theme-category-container {
+    font-family: "NanumSquareNeo-Variable";
+    border: 1px solid #dfdfe1;
+    border-radius: 10px;
+    font-size: 1.4em;
+    margin-top: 20px;
+}
+
+.theme-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 10px;
+    margin-top: 10px;
+}
+.theme-items-container img {
+    width: 50px;
+}
+
+.theme-item-container span {
+    font-size: 0.7em;
+}
+.theme-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 3px 3px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+
+.theme-btn-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0px;
+}
+
+.theme-btn-container button {
+    font-family: "BMJUA";
+    font-size: 1.2em;
+    padding: 20px 80px;
+    cursor: pointer;
+    background-color: #3CB371;
+    color: #fff;
+    border-color: #38A66C;
+}
+
+.theme-btn-container button:hover {
+    background-color: #38A66C;
+}
+

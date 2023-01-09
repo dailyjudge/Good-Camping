@@ -5,10 +5,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
@@ -270,6 +270,21 @@ public class MainDAO {
 			mDTO.setFacilities(facilityItems);
 			
 		}
+		
+		Collections.sort( campingSites, new Comparator<MainDTO>() {
+            @Override
+            public int compare(MainDTO m1, MainDTO m2) {
+            	if(m1.getSiteViewCount() == m2.getSiteViewCount()) {
+            		if(m1.getSiteLikeCount() == m2.getSiteLikeCount()) {
+            			return m2.getReviewCount() - m2.getReviewCount();
+            		} else {
+            			return m2.getSiteLikeCount() - m1.getSiteLikeCount();
+            		}
+            	} else {
+            		return m2.getSiteViewCount() - m1.getSiteViewCount();
+            	}
+            }
+        });
 		
 		request.setAttribute("searchCount", campingSites.size());
 		//request.setAttribute("campingSites", campingSites);
