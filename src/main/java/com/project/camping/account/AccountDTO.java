@@ -4,18 +4,19 @@ public class AccountDTO {
 	private String ac_id;
 	private String ac_pw;
 	private String ac_name;
-	private String ac_img;
+	private String ac_birth;
+	private String ac_phone;
+	
+	private String ac_postcode;
+	private String ac_address;
+	private String ac_detailAddress;
+	private String ac_extraAddress;
+	
+	private String ac_gender;
+	private String ac_file;
 	
 	public AccountDTO() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public AccountDTO(String ac_id, String ac_pw, String ac_name, String ac_img) {
-		super();
-		this.ac_id = ac_id;
-		this.ac_pw = ac_pw;
-		this.ac_name = ac_name;
-		this.ac_img = ac_img;
 	}
 
 	public String getAc_id() {
@@ -42,17 +43,84 @@ public class AccountDTO {
 		this.ac_name = ac_name;
 	}
 
-	public String getAc_img() {
-		return ac_img;
+	public String getAc_birth() {
+		return ac_birth;
 	}
 
-	public void setAc_img(String ac_img) {
-		this.ac_img = ac_img;
+	public void setAc_birth(String ac_birth) {
+		this.ac_birth = ac_birth;
 	}
 
-	@Override
-	public String toString() {
-		return "AccountDTO [ac_id=" + ac_id + ", ac_pw=" + ac_pw + ", ac_name=" + ac_name + ", ac_img=" + ac_img + "]";
+	public String getAc_phone() {
+		return ac_phone;
 	}
-	
+
+	public void setAc_phone(String ac_phone) {
+		this.ac_phone = ac_phone;
+	}
+
+	public String getAc_postcode() {
+		return ac_postcode;
+	}
+
+	public void setAc_postcode(String ac_postcode) {
+		this.ac_postcode = ac_postcode;
+	}
+
+	public String getAc_address() {
+		return ac_address;
+	}
+
+	public void setAc_address(String ac_address) {
+		this.ac_address = ac_address;
+	}
+
+	public String getAc_detailAddress() {
+		return ac_detailAddress;
+	}
+
+	public void setAc_detailAddress(String ac_detailAddress) {
+		this.ac_detailAddress = ac_detailAddress;
+	}
+
+	public String getAc_extraAddress() {
+		return ac_extraAddress;
+	}
+
+	public void setAc_extraAddress(String ac_extraAddress) {
+		this.ac_extraAddress = ac_extraAddress;
+	}
+
+	public String getAc_gender() {
+		return ac_gender;
+	}
+
+	public void setAc_gender(String ac_gender) {
+		this.ac_gender = ac_gender;
+	}
+
+	public String getAc_file() {
+		return ac_file;
+	}
+
+	public void setAc_file(String ac_file) {
+		this.ac_file = ac_file;
+	}
+
+	public AccountDTO(String ac_id, String ac_pw, String ac_name, String ac_birth, String ac_phone, String ac_postcode,
+			String ac_address, String ac_detailAddress, String ac_extraAddress, String ac_gender, String ac_file) {
+		super();
+		this.ac_id = ac_id;
+		this.ac_pw = ac_pw;
+		this.ac_name = ac_name;
+		this.ac_birth = ac_birth;
+		this.ac_phone = ac_phone;
+		this.ac_postcode = ac_postcode;
+		this.ac_address = ac_address;
+		this.ac_detailAddress = ac_detailAddress;
+		this.ac_extraAddress = ac_extraAddress;
+		this.ac_gender = ac_gender;
+		this.ac_file = ac_file;
+	}
+
 }

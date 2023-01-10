@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="resources/css/camping-detail.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" />
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" />
 <link rel="stylesheet" href="resources/css/account.css" />
@@ -34,10 +35,11 @@
     <link rel="stylesheet" href="resources/css/camping-stuff-detail.css" />
     <link rel="stylesheet" href="resources/css/camping-stuff-cart.css" />
     <link rel="stylesheet" href="resources/css/camping-theme.css" />
-    <link rel="stylesheet" href="resources/css/modalcss.css" />
+    
     
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script type="text/javascript" src="resources/js/loginHead.js"></script>
 <script type="text/javascript" src="resources/js/campingSearch.js"></script>
 <script type="text/javascript" src="resources/js/account.js"></script>
 <script type="text/javascript" src="resources/js/home.js"></script>
