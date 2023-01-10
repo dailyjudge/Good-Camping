@@ -44,5 +44,7 @@ public interface MainMapper {
 	int createCampingSiteLike(LikeDTO l);
 
 	int deleteCampingSiteLike(LikeDTO l);
+
+	int getCampingSiteCount();
 	
 }

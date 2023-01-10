@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.camping.theme.ThemeMapper">
+<select id="getSearchCampingSiteByTheme" parameterType="com.project.camping.theme.ThemeDTO" resultType="com.project.camping.main.MainDTO">
+	select * from camping_site 
+	where c_animalcmgcl like '%'||#{t_pet}||'%' or
+	c_intro like '%'||#{t_valley}||'%' or
+	c_intro like '%'||#{t_sea}||'%' or
+	c_intro like '%'||#{t_mountain}||'%' or
+	c_intro like '%'||#{t_river}||'%' or
+	c_intro like '%'||#{t_tree}||'%' or
+	c_intro like '%'||#{t_fishingArea}||'%' or
+	c_intro like '%'||#{t_nationalPark}||'%' or
+	c_intro like '%'||#{t_amusement}||'%' or
+	c_intro like '%'||#{t_park}||'%' or
+	c_intro like '%'||#{t_lake}||'%' or
+	c_intro like '%'||#{t_skiArea}||'%' or
+	c_intro like '%'||#{t_golfArea}||'%' or
+	c_intro like '%'||#{t_market}||'%' or
+	c_intro like '%'||#{t_sauna}||'%' or
+	c_intro like '%'||#{t_library}||'%' or
+	c_intro like '%'||#{t_cafe}||'%' or
+	c_intro like '%'||#{t_fishing}||'%' or
+	c_intro like '%'||#{t_swimmingArea}||'%' or
+	c_intro like '%'||#{t_waterPlay}||'%' or
+	c_intro like '%'||#{t_singArea}||'%' or
+	c_intro like '%'||#{t_leisure}||'%' or
+	c_intro like '%'||#{t_atv}||'%' or
+	c_intro like '%'||#{t_sled}||'%' or
+	c_intro like '%'||#{t_billiards}||'%' or
+	c_lineIntro like '%'||#{t_valley}||'%' or
+	c_lineIntro like '%'||#{t_sea}||'%' or
+	c_lineIntro like '%'||#{t_mountain}||'%' or
+	c_lineIntro like '%'||#{t_river}||'%' or
+	c_lineIntro like '%'||#{t_tree}||'%' or
+	c_lineIntro like '%'||#{t_fishingArea}||'%' or
+	c_lineIntro like '%'||#{t_nationalPark}||'%' or
+	c_lineIntro like '%'||#{t_park}||'%' or
+	c_lineIntro like '%'||#{t_lake}||'%' or
+	c_lineIntro like '%'||#{t_skiArea}||'%' or
+	c_lineIntro like '%'||#{t_golfArea}||'%' or	
+	c_lineIntro like '%'||#{t_market}||'%' or
+	c_lineIntro like '%'||#{t_sauna}||'%' or
+	c_lineIntro like '%'||#{t_library}||'%' or
+	c_lineIntro like '%'||#{t_cafe}||'%' or
+	c_lineIntro like '%'||#{t_fishing}||'%' or
+	c_lineIntro like '%'||#{t_swimmingArea}||'%' or
+	c_lineIntro like '%'||#{t_waterPlay}||'%' or
+	c_lineIntro like '%'||#{t_singArea}||'%' or
+	c_lineIntro like '%'||#{t_leisure}||'%' or
+	c_lineIntro like '%'||#{t_atv}||'%' or
+	c_lineIntro like '%'||#{t_sled}||'%' or
+	c_lineIntro like '%'||#{t_billiards}||'%' or
+	c_sbrscl like '%'||#{t_exercise}||'%' or	
+	c_sbrscl like '%'||#{t_firewood}||'%' or	
+	c_sbrscl like '%'||#{t_electric}||'%' or	
+	c_sbrscl like '%'||#{t_hotWater}||'%' or	
+	c_sbrscl like '%'||#{t_waterPlay}||'%'	
+</select>
+</mapper>

@@ -74,20 +74,55 @@ $(function() {
 });
 
 
-function insertCart() {
+function insertCart(id) {
 	
+	if(id == '') {
+		alert('로그인이 필요한 서비스입니다.');
+		return;
+	}
 	
+	// 실시간으로 카트에 데이터를 삽입하는 일
 	$.ajax({
-		
 		url:"do.insert.cart",
-		data:{"s_no": $("#insertCart-btn").val()}
+		data:{
+			"s_no": $("#insertCart-btn").val()
+			}
 	}).done(function(data) {
 		console.log(data)
-		alert($("#insertCart-btn").val()+"장바구니 담기 성공!");
-		
+		if(data == 1) {
+			alert($("#insertCart-btn").val()+"장바구니 담기 성공!");
+		} else {
+			alert("장바구니 담기 실패");
+		}
 	});
 	
 }
 
-
+$(function() {
+	
+	$('태그 클릭하는 버튼 클래스 or id 이름').click(function() {
+		// 그 클릭한 키워드에 대한 정제 역할.
+		// 2개 클릭했을 땐 이렇게 못함
+//		let value = $(this).val();
+		
+		// 총 선택된 태그 이름들 다 리스트에 집어넣기
+		let list = [];
+		$('.태그 클래스 돌리기').each(function(index, element) {
+			if($(element).색깔 == 체크된색깔) {
+				list.add($(element.val()))
+			}
+		});
+		
+		let tag = '';
+		// tag에 list에 들어가있는 문자열 다 합치기.
+		// ex) list = ['랜턴', '로프']
+		// tag = 랜턴로프
+		for(let i = 0; i < list.length; i++) {
+			tag += list[i];
+		}
+		
+		// ajax로 비동기 요청해서 실시간으로 12개 데이터 받아와버리기!
+		let query = "";
+	});
+});
 	

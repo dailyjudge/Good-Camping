@@ -1,5 +1,4 @@
 create table stuff(
-	
 	s_no number(7) primary key,
 	-- 기본키
 	s_productId number(30) default ON NULL 0,

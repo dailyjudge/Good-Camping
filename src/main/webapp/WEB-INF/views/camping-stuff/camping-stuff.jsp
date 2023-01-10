@@ -25,9 +25,8 @@
 		
 	<div id="top-div">
 		<div class="wrap-second">
-
+			
 			<c:forEach var="stuffs" items="${stuffs }">
-
 				<div class="second-div">
 					<div class="product-img">
 						<img onclick="location.href='go.stuff.detail?s_no=${stuffs.s_no}'" src="${stuffs.s_image }" />
