@@ -16,7 +16,19 @@ create table stuff(
 	s_price number(10)
 );
 
+--
+-- 1번 : 주문 테이블에 데이터 넣기
+insert into stuff_order values(nextval, id, #{ta, 주소들 , 날짜);
+-- 날짜로 뽑자 (1, 3, 5, 10, 22)
+-- list -> list.get(0).getSo_no()
+select * from stuff_order
+where so_userId = #{so_userId}
+order by so_date desc
 
+select max(so_no) from stuff_order
+where so_userId = #{so_userId}
+
+-- 주문 상품 테이블 (pk, 주문 테이블no, 상품  id, 상품 개수)
 select * from stuff
 
 select count(*) from stuff;

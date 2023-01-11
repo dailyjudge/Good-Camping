@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.camping.account.AccountDAO;
 import com.project.camping.account.AccountDTO;
 import com.project.camping.theme.ThemeDTO;
 import com.project.camping.theme.ThemeMapper;
@@ -167,7 +169,7 @@ public class MainDAO {
 						caravInnerFclty, caravSiteCo, clturEventAt, trlerAcmpnyAt, exprnProgrmAt, clturEvent, doNm,
 						sigunguNm, exprnProgrm, facltNm, firstImageUrl, glampInnerFclty, glampSiteCo, gnrlSiteCo,
 						homepage, insrncAt, intro, lineIntro, mapX, mapY, operDeCl, operPdCl, posblFcltyCl, resveCl,
-						resveUrl, sbrsCl, tel, themaEnvrnCl, toiletCo, wtrplCo, tooltip, null, 0, 0, 0, 0);
+						resveUrl, sbrsCl, tel, themaEnvrnCl, toiletCo, wtrplCo, tooltip, null, 0, 0, 0, 0, null, null);
 				System.out.println(m.toString());
 				count++;
 
@@ -340,53 +342,52 @@ public class MainDAO {
 
 				mDTO.setFacilities(facilityItems);
 			}
+		}
+		
+		LikeDTO lDTO;
+		for (MainDTO mDTO : campingSites) {
 
-			LikeDTO lDTO;
+			// 사이트 좋아요 개수 처리
+			lDTO = new LikeDTO();
+			lDTO.setCl_siteNo(mDTO.getC_no());
+			mDTO.setSiteLikeCount(ss.getMapper(MainMapper.class).getSiteLikeCount(lDTO));
 
-			for (MainDTO mDTO : campingSites) {
-
-				// 사이트 좋아요 개수 처리
-				lDTO = new LikeDTO();
-				lDTO.setCl_siteNo(mDTO.getC_no());
-				mDTO.setSiteLikeCount(ss.getMapper(MainMapper.class).getSiteLikeCount(lDTO));
-
-				// 유저가 좋아요를 눌렀는지 처리
-				// 유저가 로그인 돼있는지?
-				AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
-				if (a != null) {
-					lDTO.setCl_userId(a.getAc_id());
-					if (ss.getMapper(MainMapper.class).checkIsLikedCampingSite(lDTO) == 1) {
-						mDTO.setIsLiked(1);
-					} else {
-						mDTO.setIsLiked(0);
-					}
+			// 유저가 좋아요를 눌렀는지 처리
+			// 유저가 로그인 돼있는지?
+			AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
+			if (a != null) {
+				lDTO.setCl_userId(a.getAc_id());
+				if (ss.getMapper(MainMapper.class).checkIsLikedCampingSite(lDTO) == 1) {
+					mDTO.setIsLiked(1);
 				} else {
 					mDTO.setIsLiked(0);
 				}
-
-				// 조회수 처리
-				SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(mDTO);
-				mDTO.setSiteViewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
-				// 리뷰수 처리
-				mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
-
+			} else {
+				mDTO.setIsLiked(0);
 			}
 
-			Collections.sort(campingSites, new Comparator<MainDTO>() {
-				@Override
-				public int compare(MainDTO m1, MainDTO m2) {
-					if (m1.getSiteViewCount() == m2.getSiteViewCount())
-						if (m1.getSiteLikeCount() == m2.getSiteLikeCount())
-							return m2.getReviewCount() - m2.getReviewCount();
-						else {
-							return m2.getSiteLikeCount() - m1.getSiteLikeCount();
-						}
-					else {
-						return m2.getSiteViewCount() - m1.getSiteViewCount();
-					}
-				}
-			});
+			// 조회수 처리
+			SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(mDTO);
+			mDTO.setSiteViewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
+			// 리뷰수 처리
+			mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
+
 		}
+
+		Collections.sort(campingSites, new Comparator<MainDTO>() {
+			@Override
+			public int compare(MainDTO m1, MainDTO m2) {
+				if (m1.getSiteViewCount() == m2.getSiteViewCount())
+					if (m1.getSiteLikeCount() == m2.getSiteLikeCount())
+						return m2.getReviewCount() - m2.getReviewCount();
+					else {
+						return m2.getSiteLikeCount() - m1.getSiteLikeCount();
+					}
+				else {
+					return m2.getSiteViewCount() - m1.getSiteViewCount();
+				}
+			}
+		});
 		request.setAttribute("searchCount", campingSites.size());
 		// request.setAttribute("campingSites", campingSites);
 	}
@@ -540,7 +541,9 @@ public class MainDAO {
 	public int deleteCampingSiteLike(LikeDTO l) {
 
 		if (ss.getMapper(MainMapper.class).deleteCampingSiteLike(l) == 1) {
-			return ss.getMapper(MainMapper.class).getSiteLikeCount(l);
+			int result = ss.getMapper(MainMapper.class).getSiteLikeCount(l);
+			System.out.println("result : " + result);
+			return result;
 		}
 		return 0;
 	}
@@ -561,7 +564,7 @@ public class MainDAO {
 
 		// 리스트를 돌면서 값 넣기!
 		List<String> facilities = new ArrayList<String>();
-
+		
 		for (String s : hs)
 			if (!s.equals("미제공"))
 				facilities.add(s);
@@ -676,5 +679,69 @@ public class MainDAO {
 
 	public void checkAllCampingSiteCount() {
 		count = ss.getMapper(MainMapper.class).getCampingSiteCount();
+	}
+
+	public void getUserLikeCampingSites(HttpServletRequest request) {
+		// 유저가 좋아요 누른 데이터!!
+		
+		AccountDTO aDTO = (AccountDTO) request.getSession().getAttribute("loginAccount");
+		
+		List<MainDTO> likes = ss.getMapper(MainMapper.class).getAllUserLikes(aDTO.getAc_id());
+		
+		for (MainDTO m : likes) {
+			// 사이트 좋아요 개수
+			LikeDTO lDTO = new LikeDTO(0, "", m.getC_no());
+			m.setSiteLikeCount(ss.getMapper(MainMapper.class).getSiteLikeCount(lDTO));
+			// 별점 평균
+			String starAvg = ss.getMapper(MainMapper.class).getSiteReviewAvg(m);
+			m.setReviewStarAvg(starAvg != null ? starAvg : "리뷰 정보 없음");
+
+			// 조회수
+			SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(m);
+			m.setSiteViewCount(svDTO != null ? svDTO.getCv_viewCount() : 0);
+			
+			List<String> tags = new ArrayList<String>();
+			
+			// 태그 처리
+			String tag = m.getC_posblFcltyCl();
+			
+			String items[];
+			
+			// 미제공일시엔 테마 정보 제공
+			if(!tag.equals("미제공")) {
+				String theme = m.getC_themaEnvrnCl();
+				if(theme != null) {
+					// , 를 기준으로 구분
+					items = theme.split(",");
+					
+					// 태그 내용 추가
+					for (String item : items) tags.add("#" + item);
+				} else {
+					// 테마 정보도 없다면 #힐링 추가
+					tags.add("#힐링");
+				}
+			} else {
+				// 태그 정보 추리기
+				
+				// 공백 없애기
+				tag = tag.replace(" ", "");
+				
+				// ,를 기준으로 구분
+				items = tag.split(",");
+				
+				for (String item : items) tags.add("#" + item);
+			}
+			
+			// MainDTO에 태그 정보 세팅
+			m.setHashtagList(tags);
+		}
+		
+		// 애트리뷰트에 실어주기
+		request.setAttribute("camping_like", likes);
+	}
+
+	public void deleteUserLike(LikeDTO lDTO) {
+		
+		
 	}
 }

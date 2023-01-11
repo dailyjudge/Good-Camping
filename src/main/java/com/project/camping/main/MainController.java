@@ -148,5 +148,18 @@ public class MainController {
 		// 유저의 사이트 좋아요 정보를 삭제하는 일
 		return mDAO.deleteCampingSiteLike(l);
 	}
+	// go.camping.like
 	
+	@RequestMapping(value = "/go.camping.like", method = RequestMethod.GET)
+	public String goCampingLike(HttpServletRequest request) {
+		
+		
+		mDAO.getUserLikeCampingSites(request);
+
+		aDAO.loginCheck(request);
+		
+		request.setAttribute("contentPage", "camping-search/camping-like.jsp");
+
+		return "index";
+	}
 }

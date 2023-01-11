@@ -3,7 +3,7 @@
 <mapper namespace="com.project.camping.theme.ThemeMapper">
 <select id="getSearchCampingSiteByTheme" parameterType="com.project.camping.theme.ThemeDTO" resultType="com.project.camping.main.MainDTO">
 	select * from camping_site 
-	where c_animalcmgcl like '%'||#{t_pet}||'%' or
+	where c_animalcmgcl = #{t_pet} or
 	c_intro like '%'||#{t_valley}||'%' or
 	c_intro like '%'||#{t_sea}||'%' or
 	c_intro like '%'||#{t_mountain}||'%' or
