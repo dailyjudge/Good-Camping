@@ -3,11 +3,13 @@ package com.project.camping.account;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,6 +134,14 @@ public class AccountDAO {
 		}
 		
 		
+	}
+
+	public void doFindId(HttpServletRequest req) {
+		String sr_id = req.getParameter("sr_id");
+		String sr_birth = req.getParameter("sr_birth");
+		
+		
+	
 	}
 }
 	

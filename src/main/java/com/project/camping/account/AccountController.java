@@ -156,6 +156,36 @@ public class AccountController {
 	    	
 	    	return "account/idCheck";
 	    }
+	    // 아이디 or 비번 찾기
+	    @RequestMapping(value="/searchID.go", method=RequestMethod.GET)
+	    public String goFindID(HttpServletRequest req){
+			aDAO.loginCheck(req);
+			req.setAttribute("contentPage", "account/searchId.jsp");
+	    	return "index";
+	    }
+	    @RequestMapping(value="/seachPw.go", method=RequestMethod.GET)
+	    public String GoSeachPw(HttpServletRequest req){
+			aDAO.loginCheck(req);
+			req.setAttribute("contentPage", "account/searchpw.jsp");
+	    	return "index";
+	    }
+	    @RequestMapping(value="/searchID.do", method=RequestMethod.GET)
+	    public String doFindID(HttpServletRequest req){
+	    	
+	    	aDAO.doFindId(req);
+			aDAO.loginCheck(req);
+			req.setAttribute("contentPage", "account/searchIdResult.jsp");
+			
+	    	return "index";
+	    }
+	    @RequestMapping(value="/accountHome.go", method=RequestMethod.GET)
+	    public String GoAccountHome(HttpServletRequest req){
+	    	
+			aDAO.loginCheck(req);
+			req.setAttribute("contentPage", "account/loginHead.jsp");
+			
+	    	return "index";
+	    }
 	    
 //	    @RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
 //	    @ResponseBody
