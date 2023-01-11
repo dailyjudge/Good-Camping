@@ -2,17 +2,22 @@ package com.project.camping.account;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import net.nurigo.sdk.message.model.Message;
 
 @Service
 public class AccountDAO {
@@ -90,7 +95,7 @@ public class AccountDAO {
 	    }
 	}
 	public void accoutRegDo(HttpServletRequest req, Model m, AccountDTO ac){
-		String path = req.getSession().getServletContext().getRealPath("resources/files");
+		String path = req.getSession().getServletContext().getRealPath("resources/profilePic");
 		MultipartRequest mr = null;
 		try {
 			mr = new MultipartRequest(req, path, 31457200, "utf-8", new DefaultFileRenamePolicy());
@@ -128,5 +133,5 @@ public class AccountDAO {
 		
 		
 	}
-	
 }
+	

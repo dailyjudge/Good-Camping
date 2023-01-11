@@ -3,6 +3,13 @@ const autoHyphen = (target) => {
 target.value = target.value
 .replace(/[^0-9]/g, '')
 .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+
+    const phone = document.getElementById("phone").value // 010
+    if(phone.length === 13){
+      document.getElementById("sendMessage").focus();
+      document.getElementById("sendMessage").setAttribute("style","background-color:yellow;")
+      document.getElementById("sendMessage").disabled = false;
+    }
 }
 
 function daumPostcode() {
@@ -147,5 +154,35 @@ function signUpCheck(){
 	  }
 	}
 	
-	  
+function checkidsame(){
+	var id = document.getElementById('ac_id');
+	let idValue = document.getElementById("ac_id").value;
+	   
+	if(idValue == ""){
+      alert("아이디를 입력하시오."); 
+      id.focus();
+ 	}
+  else{
+	location.href='check.id?ac_id2='+idValue;
+	}
+}
+
+function makeNum(){
+	const token = String(Math.floor(Math.random() * 1000000)).padStart(6, "0");
+	alert(token);
+  	document.getElementById("sendMessage").innerText = token;
+  	document.getElementById("completion").disabled = false;
+}
+
+function checkCompletion(){
+	let makeNumCheck = document.getElementById("makeNumCheck").value;
+	const token = document.getElementById("sendMessage").innerText;
+	
+	if(makeNumCheck == token){
+	  alert("문자 인증이 완료되었습니다.");
+	  document.getElementById("completion").innerHTML="인증완료";
+	}else{
+		alert("인증번호가 다릅니다.");
+	}
+}
 	  

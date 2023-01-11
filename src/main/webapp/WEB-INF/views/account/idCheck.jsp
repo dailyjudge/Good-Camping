@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>popUp으로 표시</h1>
+<h1>모달로 띄우기</h1>
 
 <c:choose>
 <c:when test="${idCheckResult eq 'ok'}">

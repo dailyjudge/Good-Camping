@@ -1,0 +1,125 @@
+@charset "UTF-8";
+.wrap3 {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.accountReg3 a {
+  text-decoration: none;
+  color: black;
+}
+
+.wrap3 {
+  width: 100%;
+  height: 98%;
+  display: flex;
+  
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+}
+.wrap3 button{
+	border: 0;
+  outline: none;
+  border-radius: 40px;
+  background: linear-gradient(to left, rgb(70, 237, 61), rgb(134, 245, 168));
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+}
+.wrap3 p {
+	margin: 2px;
+}
+
+.accountReg3 {
+  width: 40%;
+  height: 1300px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.accountReg3 h2 {
+  color: #3CB371;
+  font-size: 2em;
+}
+
+.accountReg3 {
+  margin-top: 20px;
+  width: 85%;
+}
+
+.account_type input {
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+.account_gender input{
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+
+.account_submit {
+  margin-top: 50px;
+  width: 80%;
+}
+.account_submit input {
+  width: 60%;
+  height: 50px;
+  border: 0;
+  outline: none;
+  border-radius: 40px;
+  background: linear-gradient(to left, rgb(70, 237, 61), rgb(134, 245, 168));
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  
+  position: absolute;
+  bottom: 20px;
+}
+.account_left{
+	position: absolute;
+	left: 250px;
+	top: 300px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.account_right{
+	position: absolute;
+	right: 250px;
+	top: 300px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.account_bottom{
+	position: absolute;
+	bottom: 100px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.account_top{
+	position: absolute;
+	top: 20px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
