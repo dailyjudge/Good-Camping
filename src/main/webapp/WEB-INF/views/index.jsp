@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="resources/css/camping-stuff-detail.css" />
 <link rel="stylesheet" href="resources/css/camping-stuff-cart.css" />
 <link rel="stylesheet" href="resources/css/camping-stuff-payment.css">
+<link rel="stylesheet" href="resources/css/camping-stuff-order.css">
 <link rel="stylesheet" href="resources/css/camping-like.css">
   <head>
     <meta charset="UTF-8" />

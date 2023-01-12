@@ -14,21 +14,28 @@
 			<div class="stuff-order-no">
 				<span>주문내역</span>
 			</div>
-
-			<div class="stuff-in-order">
-				<img
-					src="http://www.coleman.co.kr/shop/data/goods/1590125678367m0.jpg" />
-				<div class="stuff-in-order-title">1등급 야자활성탄 1kg 공기정화용 새집증후군제거
-					냄새제거 숯 김민재 활명탄</div>
-				<div class="stuff-in-order-price">12,900 원</div>
-			</div>
+			
+			<c:forEach items="${carts }" var="c">
+				<div class="stuff-in-order">
+					<img
+						src="${c.s_image }" />
+					<div class="stuff-in-order-title">
+						<span>${c.s_title }</span>
+					</div>
+					<div class="stuff-in-order-price">
+						<span>
+							<fmt:formatNumber value="${c.s_price }" pattern="#,###" />원
+						</span>
+					</div>
+				</div>
+			</c:forEach>
 
 
 			<div class="stuff-order-paymentdiv">
 				<h2>결제 정보</h2>
 			</div>
 			<div class="stuff-order-totalPrice">
-				<span>결제 금액</span> 10000000
+				<span>결제 금액</span> <span><fmt:formatNumber value="${totalMoney }" pattern="#,###" />원</span> 
 			</div>
 			<div class="stuff-order-paymenttool">
 				<span>결제 수단</span> 카카오페이
@@ -38,12 +45,12 @@
 				<h2>주문 정보</h2>
 			</div>
 			<div class="stuff-order-number">
-				<span>주문번호</span>001
+				<span>주문번호</span> <span>${userOrder.so_no }</span>
 			</div>
 			<div class="stuff-order-username">
 				<span>주문하신 분</span>${sessionScope.loginAccount.ac_name }</div>
 			<div class="stuff-order-date">
-				<span>결제 일시</span>2023-01-10
+				<span>결제 일시</span>${formattedDate }
 			</div>
 
 			<div class="stuff-order-addrinfo">
@@ -53,7 +60,7 @@
 				<span>연락처</span>010-0000-0000
 			</div>
 			<div class="stuff-order-addrress">
-				<span>주소</span>서울시 어쩌구 어쩌구
+				<span>주소</span><span>${userOrder.so_user_addr } (${userOrder.so_user_detailAddr })</span>
 			</div>
 		</div>
 	</div>

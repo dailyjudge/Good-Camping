@@ -126,6 +126,8 @@ create table stuff_order(
    so_date date not null
 );
 
+select * from stuff_order
+delete stuff_order
 create sequence stuff_order_seq;
 
 -- 주문 상품
@@ -135,6 +137,9 @@ create table stuff_order_items(
    soi_stuff_no number(7) not null,
    soi_sc_amount number(2)not null 
 );
+
+select * from stuff_order_items
+delete from stuff_order_items
 create sequence stuff_order_items_seq;
 
 create table stuff(
@@ -161,3 +166,13 @@ select so_no, s_no, s_title, s_price, soi_sc_amount, so_date, so_user_zonecode, 
 from stuff, stuff_order, stuff_order_items 
 where s_no = soi_stuff_no and so_no = soi_so_no and so_no = #{so_no}
 >>>>>>> fd4b6b28995bdd6e4e8e459a9513b996a08cced4
+
+select sc_cart_id, sc_stuff_no, so_user_id, sc_amount, s_title, s_image, s_price
+from stuff, stuff_cart 
+where sc_stuff_no = s_no
+
+so_user_id = 'test' order by so_date desc
+
+
+
+
