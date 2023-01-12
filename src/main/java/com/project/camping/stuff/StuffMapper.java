@@ -30,13 +30,13 @@ public interface StuffMapper {
 
 	CartDTO getOrderItem(CartDTO cDTO);
 
-	StuffOrderDTO insertOrderStuff(StuffOrderDTO soDTO);
+	int insertOrderStuff(StuffOrderDTO soDTO);
 
-	int  insertOrderList(CartDTO ctDto);
+	int insertOrderList(CartDTO ctDto);
 
-	CartDTO deleteCart(CartDTO ctDto);
+	int deleteCart(CartDTO ctDto);
 
-	int getOrderNum(AccountDTO a);
+	List<StuffOrderDTO> getOrderNum(AccountDTO a);
 
 
 }

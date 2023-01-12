@@ -1,13 +1,20 @@
 package com.project.camping.stuff;
 
 public class CartDTO {
-
+	
+	// 기본키
 	private int sc_cart_id;
+	// 유저 id
 	private String sc_user_id;
+	// 상품 번호
 	private int sc_stuff_no;
+	// 상품 개수
 	private int sc_amount;
+	// 상품 이름
 	private String s_title;
+	// 상품 사진
 	private String s_image;
+	// 상품 가격
 	private int s_price;
 	private int money;
 	private int order_no;
