@@ -223,23 +223,78 @@ public class StuffDAO {
 
 	public void goBuyNow(StuffDTO s, HttpServletRequest req) {
 
-		AccountDTO a= (AccountDTO) req.getSession().getAttribute("loginAccount");
-		
-		CartDTO c =  new CartDTO();
+		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
+
+		CartDTO c = new CartDTO();
 		// 이미지, 제목, 가격, 총량
-		
+
 		StuffDTO sDTO = ss.getMapper(StuffMapper.class).getStuff(s);
-		
+
 		c.setSc_amount(1);
 		c.setSc_stuff_no(sDTO.getS_no());
 		c.setS_price(Integer.parseInt(sDTO.getS_price()));
 		c.setS_title(sDTO.getS_title());
 		c.setS_image(sDTO.getS_image());
-		
+
 		List<CartDTO> carts = new ArrayList<CartDTO>();
 		carts.add(c);
-		
+
 		req.setAttribute("carts2", carts);
+	}
+
+	
+	
+	
+	
+	public void orderPage(StuffOrderDTO soDTO, HttpServletRequest req) {
+
+		String cartNumbers[] = soDTO.getSo_data().split(",");
+
+		CartDTO cDTO;
+
+		List<CartDTO> carts = new ArrayList<CartDTO>();
+
+		for (int i = 0; i < cartNumbers.length; i++) {
+
+			cDTO = new CartDTO();
+			int cart_id = Integer.parseInt(cartNumbers[i]);
+
+			cDTO.setSc_cart_id(cart_id);
+
+			CartDTO targetDTO = ss.getMapper(StuffMapper.class).getOrderItem(cDTO);
+			carts.add(targetDTO);
+			
+		
+
+		}
+
+		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
+
+		soDTO.setSo_user_id(a.getAc_id());
+
+		ss.getMapper(StuffMapper.class).insertOrderStuff(soDTO);
+		
+		int OrderNum = ss.getMapper(StuffMapper.class).getOrderNum(a);
+		for (int i = 0; i < carts.size(); i++) {
+
+			CartDTO ctDto = carts.get(i);
+			ctDto.setOrder_no(OrderNum);
+			
+			
+			
+			ss.getMapper(StuffMapper.class).insertOrderList(ctDto);
+			
+			ss.getMapper(StuffMapper.class).deleteCart(ctDto);
+		}
+		
+		
+
+		
+	
+
+		
+		
+
 	}
 
 }
