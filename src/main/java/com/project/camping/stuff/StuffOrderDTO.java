@@ -91,5 +91,4 @@ public class StuffOrderDTO {
 				+ so_date + ", so_data=" + so_data + "]";
 	}
 	
-	
 }
