@@ -110,6 +110,17 @@ public class StuffController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/go.stuff.buy", method = RequestMethod.POST)
+	public String goBuyNow(StuffOrderDTO soDTO, HttpServletRequest req) {
+		
+		sDAO.orderPage(soDTO, req);
+		aDAO.loginCheck(req);
+		
+		req.setAttribute("contentPage", "camping-stuff/camping-stuff-order.jsp");
+		
+		return "index";
+	}
+	
 	@RequestMapping(value = "/go.stuff.payment", method = RequestMethod.GET)
 	public String goStuffPayment(HttpServletRequest req) {
 		
