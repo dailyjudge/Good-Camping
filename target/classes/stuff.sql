@@ -1,5 +1,4 @@
 create table stuff(
-	
 	s_no number(7) primary key,
 	-- 기본키
 	s_productId number(30) default ON NULL 0,
@@ -17,7 +16,19 @@ create table stuff(
 	s_price number(10)
 );
 
+--
+-- 1번 : 주문 테이블에 데이터 넣기
+insert into stuff_order values(nextval, id, #{ta, 주소들 , 날짜);
+-- 날짜로 뽑자 (1, 3, 5, 10, 22)
+-- list -> list.get(0).getSo_no()
+select * from stuff_order
+where so_userId = #{so_userId}
+order by so_date desc
 
+select max(so_no) from stuff_order
+where so_userId = #{so_userId}
+
+-- 주문 상품 테이블 (pk, 주문 테이블no, 상품  id, 상품 개수)
 select * from stuff
 
 select count(*) from stuff;
@@ -51,6 +62,7 @@ where account.ac_id = stuff_cart.sc_user_id and
 stuff.s_no = stuff_cart.sc_stuff_no and
 account.ac_id = 'test'
 
+<<<<<<< HEAD
 
 
 --주문번호 (PK), 상품번호,사용자 id ,갯수,우편번호, 주소,주문 날짜,
@@ -103,3 +115,49 @@ where s_no = soi_stuff_no and so_no = soi_so_no and so_no = #{so_no}
 
 
 
+=======
+-- 주문
+create table stuff_order(
+   so_no number(7) primary key,
+   so_user_id varchar2(20 char) not null,
+   so_user_zoncode number(5)not null,
+   so_user_addr varchar2(300 char) not null,
+   so_user_detailAddr varchar2(200 char) not null,
+   so_date date not null
+);
+
+create sequence stuff_order_seq;
+
+-- 주문 상품
+create table stuff_order_items(
+   soi_no number(7)primary key,
+   soi_so_no number(7) not null,
+   soi_stuff_no number(7) not null,
+   soi_sc_amount number(2)not null 
+);
+create sequence stuff_order_items_seq;
+
+create table stuff(
+	s_no number(7) primary key,
+	-- 기본키
+	s_productId number(30) default ON NULL 0,
+	-- 소분류
+	s_category varchar2(100 char) default ON NULL '미제공',
+	-- 세분류
+	s_detail_category varchar2(100 char) default ON NULL '미제공',
+	-- 타이틀
+	s_title varchar2(500 char) default ON NULL '캠핑용품 판매',
+	-- 이미지 
+	s_image varchar2(500 char) default ON NULL 'resources/stuff/stuff_default.png',	
+	-- 브랜드
+	s_brand varchar2(100 char) default ON NULL '미제공',
+	-- 가격
+	s_price number(10)
+);
+
+-- 테이블 세개. 상품, 주문, 주문 상품
+-- s_no = soi_stuff_no
+select so_no, s_no, s_title, s_price, soi_sc_amount, so_date, so_user_zonecode, so_user_addr, so_user_detailaddr
+from stuff, stuff_order, stuff_order_items 
+where s_no = soi_stuff_no and so_no = soi_so_no and so_no = #{so_no}
+>>>>>>> fd4b6b28995bdd6e4e8e459a9513b996a08cced4

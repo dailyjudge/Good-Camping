@@ -118,7 +118,10 @@ function searchCampingSite() {
 }
 
 function heartClick(no) {
-	let src = $('.camping-like-img-' + no).attr('src')
+	let src = $('.camping-like-img-' + no).attr('src');
+	
+	console.log("current src : " + src);
+	
 	let userId = $('#camping-login-id-'+ no).val();
 	let siteNo = $('#camping-site-id-' + no).val();
 	
@@ -159,7 +162,7 @@ function heartClick(no) {
 		});
 	} else {
 		// 좋아요 취소
-		$('.camping-like-img').attr('src',
+		$('.camping-like-img-' + no).attr('src',
 				'resources/camping-detail-icon/not-like.png');
 		
 		// 좋아요를 실제 디비에 적용
@@ -171,7 +174,6 @@ function heartClick(no) {
 		}).done(function(res) {
 			console.log(res);
 			console.log("삭제 성공!!");
-			//camping-like-count-${c.c_no }
 			$('.camping-like-count-' + siteNo).text(res); 
 		});
 	}

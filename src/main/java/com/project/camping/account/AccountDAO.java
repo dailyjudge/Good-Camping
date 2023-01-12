@@ -1,10 +1,12 @@
 package com.project.camping.account;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class AccountDAO {
@@ -27,7 +29,7 @@ public class AccountDAO {
 	public void loginCheck(HttpServletRequest request) {
 		// 이건 나중에 한번 봄
 		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
-		
+
 		if(a == null) {
 			request.setAttribute("loginPage", "account/login.jsp");
 		} else {

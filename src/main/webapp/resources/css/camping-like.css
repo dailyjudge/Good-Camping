@@ -1,0 +1,149 @@
+@charset "UTF-8";
+@font-face {
+    font-family: "BMJUA";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hahmlet-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Hahmlet-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Humanbumsuk';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Humanbumsuk.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.user-like-container {
+    width: 90%;
+    margin: 0px auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 0px;
+    background-color: #f8fcfe;
+}
+
+.user-like-title-container {
+    font-family: 'Cafe24Ssurround';
+    font-size: 1.8em;
+    width: 90%;
+    margin: 0px auto;
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #8D8D8D;
+    padding: 10px 0px;
+}
+
+.user-like-title-container {
+	margin-top: 30px;
+}
+.user-like-title-container span {
+    margin-left: 2%;
+}
+.user-like-item {
+	position: relative;
+    width: 20%;
+    height: 300px;
+    margin: 2% 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'GangwonEdu_OTFBoldA';
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 0.8px #8D8D8D;
+}
+
+.user-hidden-item {
+    padding-left: 10px;
+    align-items: flex-start;
+    background-color: #F7F7F7;
+}
+.user-like-item-img {
+    width: 100%;
+    height: 60%;
+    margin-bottom: 5%;
+}
+
+.user-like-item-desc-container {
+    border: 1px solid black;
+}
+
+.user-like-item-like-container {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+.user-like-item-like {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.user-hidden-item-star {
+    font-family: 'Hahmlet-Regular';
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.user-hidden-item span{
+    font-size: 0.8em;
+    font-family: 'Hahmlet-Regular';
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.user-hidden-tag {
+    margin-left: 10px;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.user-hidden-tag button {
+    margin-bottom: 10px;
+    font-family: 'GmarketSansMedium';
+    font-size: 0.7em;
+    padding: 3px 10px;
+    border-radius: 30px;
+    background-color: #fff;
+    border: 2px solid #8EC3B0;
+}
+
+.user-hidden-like-item {
+    display: none;
+}
+
+.user-like-trash {
+	position: absolute;
+	width: 22px;
+	bottom: 2px;
+	right: 2px;
+}

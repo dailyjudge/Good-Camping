@@ -104,3 +104,4 @@ function goPaymentPage() {
 	
 	location.href = "go.stuff.payment?items=" + items;
 }
+

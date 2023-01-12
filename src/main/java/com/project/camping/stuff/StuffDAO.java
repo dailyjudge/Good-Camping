@@ -34,10 +34,12 @@ public class StuffDAO {
 	public void refreshStuffData() {
 		// b13e5282f450344d8407d2f28c9f408e
 		// 바비큐 랜턴 버너 숯 캠핑매트 캠핑테이블 캠핑의자 야전침대 캠핑코펠 핫팩 로프
-		String[] items = { "랜턴", "바비큐", "버너", "핫팩", "캠핑의자", "캠핑테이블", "캠핑코펠", "숯", "캠핑매트", "야전침대", "로프" };
-
+		String[] items = { "랜턴", "바비큐", "버너", "핫팩", "캠핑의자", "캠핑테이블", "캠핑코펠", "숯", "캠핑매트", "야전침대", "로프"};
+		
+		// s_keyword 하나 만들기!
+		// s_keyword
 		for (int i = 0; i < items.length; i++) {
-
+			
 //		String str = "캠핑";
 			String str = items[i];
 
@@ -143,7 +145,12 @@ public class StuffDAO {
 	public void StuffDetail(StuffDTO s, HttpServletRequest req) {
 
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
-		req.setAttribute("stuffs", sm.getDetailStuff(s));
+		StuffDTO sDTO = sm.getDetailStuff(s);
+		
+		// 세분류가 있다면 . s_category에 세분류 값을 넣자!
+		if(!sDTO.getS_detail_category().equals("미제공")) sDTO.setS_category(sDTO.getS_detail_category());
+		
+		req.setAttribute("stuffs", sDTO);
 	}
 
 	public void StuffSearch(StuffSearchDTO sd, HttpServletRequest req) {

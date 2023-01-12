@@ -5,6 +5,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Cafe24SsurroundAir";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
@@ -12,8 +13,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
-
 
 /*************************************************************************************/
 #stuff-detail-div {
@@ -36,6 +35,7 @@
   justify-content: center;
   margin-bottom: 3%;
 }
+
 .stuff-img img {
   /* border: 1px solid blueviolet; */
   width: 60%;
@@ -46,32 +46,32 @@
 .stuff-details {
   margin-right: 30px;
   margin-left: 10px;
-  /* border: 3px solid blue; */
-
   width: 60%;
   height: 100%;
 }
+
 .stuff-details-second {
-  /* border: 7px solid purple; */
   margin: 0px auto;
   height: 100%;
 }
+
 .stuff-title {
-  /* border: 1px solid red; */
- /*  margin-top: 10%; */
- /*  margin-bottom: 5%; */
   padding-bottom: 3%;
   font-size: 30px;
   border-bottom: 0.5px solid rgb(157, 157, 157);
 }
+
 .stuff-brand {
-  /* border: 2px solid yellow; */
   font-size: 17px;
+  font-family: "NanumSquareNeo-Variable";
 }
+
 .stuff-category {
   margin-top: 2%;
   margin-bottom: 5%;
+  font-family: "NanumSquareNeo-Variable";
 }
+
 .stuff-price {
   /* height: 10%; */
   /* border: 2px solid green; */
@@ -84,6 +84,7 @@
   /* border: 3px solid red; */
   margin-top: 30px;
 }
+
 .bg-3 {
   background: #37474f;
   color: #fff;
@@ -118,10 +119,12 @@
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
 }
+
 .button--aylen.button--inverted {
   background: none;
   color: #fff;
 }
+
 .button--aylen::before,
 .button--aylen::after {
   content: "";
@@ -136,20 +139,25 @@
   -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
   transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 }
+
 .button--aylen::before {
   background: #999999;
 }
+
 .button--aylen::after {
   background: #666666;
 }
+
 .button--aylen:hover {
   color: #fff;
 }
+
 .button--aylen:hover::before,
 .button--aylen:hover::after {
   -webkit-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0);
 }
+
 .button--aylen:hover::after {
   -webkit-transition-delay: 0.175s;
   transition-delay: 0.175s;
