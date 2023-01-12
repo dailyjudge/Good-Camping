@@ -8,7 +8,7 @@ public class SiteViewDTO {
 	public SiteViewDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public SiteViewDTO(int cv_no, int cv_siteNo, int cv_viewCount) {
 		super();
 		this.cv_no = cv_no;

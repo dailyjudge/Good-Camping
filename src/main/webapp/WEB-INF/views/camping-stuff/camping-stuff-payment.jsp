@@ -15,14 +15,15 @@
 				<h2>주문 상품</h2>
 			</div>
 			<c:forEach items="${carts2 }" var="c">
-			<div class="stuff-payment-in-cart">
-				<img src="${c.s_image }" />
-				<div class="stuff-in-cart-title">${c.s_title }</div>
-				<div class="stuff-in-cart-price">
-				<fmt:formatNumber value="${c.s_price *c.sc_amount }"
+				<div class="stuff-payment-in-cart">
+					<input class="id_input" type="hidden" value="${c.sc_cart_id }">
+					<img src="${c.s_image }" />
+					<div class="stuff-in-cart-title">${c.s_title }</div>
+					<div class="stuff-in-cart-price">
+					<fmt:formatNumber value="${c.s_price *c.sc_amount }"
 							pattern="#,###" />
 						원</div>
-			</div>
+				</div>
 			</c:forEach>
 
 			<div class="stuff-payment-userinfo">

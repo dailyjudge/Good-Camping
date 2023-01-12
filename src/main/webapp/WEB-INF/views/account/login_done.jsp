@@ -6,7 +6,7 @@
       </div>
       <ul id="top-menu-something">
         <li class="something-icon">
-          <a><img src="resources/home_img/heart.png" /></a>
+          <a href="go.camping.like"><img src="resources/home_img/heart.png" /></a>
         </li>
         <li class="something-icon">
           <a href="go.stuff.cart"><img src="resources/home_img/basket.png" /></a>

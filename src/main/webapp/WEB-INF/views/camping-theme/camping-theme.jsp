@@ -129,7 +129,7 @@
 		</div>
 	</div>
 	<div class="theme-btn-container">
-		<button>테마 검색</button>
+		<button class="theme-btn">테마 검색</button>
 	</div>
 
 </body>
