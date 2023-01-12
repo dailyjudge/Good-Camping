@@ -61,3 +61,48 @@ from stuff, stuff_cart, account
 where account.ac_id = stuff_cart.sc_user_id and
 stuff.s_no = stuff_cart.sc_stuff_no and
 account.ac_id = 'test'
+
+-- 주문
+create table stuff_order(
+   so_no number(7) primary key,
+   so_user_id varchar2(20 char) not null,
+   so_user_zoncode number(5)not null,
+   so_user_addr varchar2(300 char) not null,
+   so_user_detailAddr varchar2(200 char) not null,
+   so_date date not null
+);
+
+create sequence stuff_order_seq;
+
+-- 주문 상품
+create table stuff_order_items(
+   soi_no number(7)primary key,
+   soi_so_no number(7) not null,
+   soi_stuff_no number(7) not null,
+   soi_sc_amount number(2)not null 
+);
+create sequence stuff_order_items_seq;
+
+create table stuff(
+	s_no number(7) primary key,
+	-- 기본키
+	s_productId number(30) default ON NULL 0,
+	-- 소분류
+	s_category varchar2(100 char) default ON NULL '미제공',
+	-- 세분류
+	s_detail_category varchar2(100 char) default ON NULL '미제공',
+	-- 타이틀
+	s_title varchar2(500 char) default ON NULL '캠핑용품 판매',
+	-- 이미지 
+	s_image varchar2(500 char) default ON NULL 'resources/stuff/stuff_default.png',	
+	-- 브랜드
+	s_brand varchar2(100 char) default ON NULL '미제공',
+	-- 가격
+	s_price number(10)
+);
+
+-- 테이블 세개. 상품, 주문, 주문 상품
+-- s_no = soi_stuff_no
+select so_no, s_no, s_title, s_price, soi_sc_amount, so_date, so_user_zonecode, so_user_addr, so_user_detailaddr
+from stuff, stuff_order, stuff_order_items 
+where s_no = soi_stuff_no and so_no = soi_so_no and so_no = #{so_no}
