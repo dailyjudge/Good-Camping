@@ -123,6 +123,12 @@ body {
 	margin: 0px auto;
 }
 
+.camping-datail-list-type-item p{
+	margin-left: 10px;
+	line-height: 30px;
+	font-family: 'NanumSquareNeo-Variable';
+	letter-spacing: 2px;
+}
 .camping-detail-list-type-additional {
 	font-family: 'NanumSquareNeo-Variable';
 	font-size: 1.4em;

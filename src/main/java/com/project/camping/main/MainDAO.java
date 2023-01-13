@@ -419,7 +419,10 @@ public class MainDAO {
 		// 시/도 선택 안할시??
 		if (s.getSido1().equals("시/도 선택"))
 			s.setSido1(s.getSido1().replace("시/도 선택", ""));
-
+		
+		// 구 선택 안할시 ??
+		if (s.getGugun1().equals("전체")) s.setGugun1("");
+		
 		// 검색어만 입력했을 때 -> 관련된 데이터 전부 제공
 		campingSites = ss.getMapper(MainMapper.class).searchCampingSite(s);
 
