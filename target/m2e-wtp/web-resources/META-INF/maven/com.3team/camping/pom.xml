@@ -66,8 +66,12 @@
 			<artifactId>cos</artifactId>
 			<version>26Dec2008</version>
 		</dependency>
-
-
+<!-- SMS SEND-->
+<dependency>
+  <groupId>net.nurigo</groupId>
+  <artifactId>javaSDK</artifactId>
+  <version>2.2</version>
+</dependency>
 
 
 

@@ -72,14 +72,24 @@
 					</div>
 </div>
 					<div class="account_bottom">
-
+<!-- 하단 중에서 휴대폰 번호 -->
+<!--  
 					<div class="account_type">
 						<h4><label for="phone">휴대폰 번호</label></h4>
 							<input id="phone" type="text" name="phone" title="전화번호 입력" oninput="autoHyphen(this)" size="13" maxlength="13" placeholder=" '-' 입력 X" required/>
 							    <button type="button" disabled id="sendMessage" onclick="makeNum()">인증번호 전송</button> <br>
 							    <input id="makeNumCheck" type="text" size="6" maxlength="6">
 					            <button type="button" disabled id="completion" onclick="checkCompletion()">인증확인</button>
-					        </div>
+					</div>
+ -->
+					<div class="account_type">
+						<h4><label for="phone">휴대폰 번호</label></h4>
+							<input id="phone" type="text" name="phone" title="전화번호 입력" oninput="autoHyphen(this)" size="13" maxlength="13" placeholder=" '-' 입력 X" required/>
+							    <button type="button"  id="sendMessage" onclick="sendSMS()">인증번호 전송</button> <br>
+							    <input id="makeNumCheck" type="text" size="6" maxlength="6">
+					            <button type="button"  id="completion" onclick="checkCompletion()">인증확인</button>
+					        
+					</div>
 					
 					<div class="account_type">
 						<h4><label for="ac_postcode">주소</label></h4> <br> 

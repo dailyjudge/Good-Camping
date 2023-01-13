@@ -185,4 +185,12 @@ function checkCompletion(){
 		alert("인증번호가 다릅니다.");
 	}
 }
+    function sendSMS(){
+		let sendToNum = document.getElementById("phone").value;
+		
+  		document.getElementById("completion").disabled = false;
+  		
+  		location.href='sendSms.do?num='+sendToNum;
+    }
+
 	  

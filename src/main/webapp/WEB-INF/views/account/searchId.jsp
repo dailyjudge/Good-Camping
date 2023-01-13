@@ -15,7 +15,7 @@
 					<h2>E-mail 찾기</h2>
 					<div class="account_type">
 						<h4>이름</h4>
-						<input type="text" name="sr_id" id="sr_id" placeholder="성함을 입력하시오">
+						<input type="text" name="sr_name" id="sr_name" placeholder="성함을 입력하시오">
 					</div>
 					<div class="account_type">
 						<h4>생년월일</h4>

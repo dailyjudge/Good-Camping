@@ -1,10 +1,13 @@
 package com.project.camping.account;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Controller
 public class AccountController {
@@ -197,4 +203,46 @@ public class AccountController {
 //	    	return Integer.toString(randomNumber);
 //	    }
 	    
-}
+	    	@RequestMapping(value = "/sendSms.do")
+	    	public String sendSms(HttpServletRequest request) throws Exception {
+	    		
+	    		Random random = new Random();		//랜덤 함수 선언
+	    		int createNum = 0;  			//1자리 난수
+	    		String ranNum = ""; 			//1자리 난수 형변환 변수
+	            int letter    = 6;			//난수 자릿수:6
+	    		String resultNum = "";  		//결과 난수
+	    		
+	    		for (int i=0; i<letter; i++) { 
+	                		
+	    			createNum = random.nextInt(9);		//0부터 9까지 올 수 있는 1자리 난수 생성
+	    			ranNum =  Integer.toString(createNum);  //1자리 난수를 String으로 형변환
+	    			resultNum += ranNum;			//생성된 난수(문자열)을 원하는 수(letter)만큼 더하며 나열
+	    		}
+	    		
+	    	  String api_key = "NCSMH2UDME7WGBSB";
+	    	  String api_secret = "DF0VOHPG4VCEU4LI7PIQQKEDHIKKUTL8";
+	    	  Message coolsms = new Message(api_key, api_secret);
+
+	    	  HashMap<String, String> set = new HashMap<String, String>();
+	    	  set.put("to", "01075885745"); // 수신번호
+
+	          set.put("from", request.getParameter("num") ); // 발신번호, jsp에서 전송한 발신번호를 받아 map에 저장한다.
+	          set.put("text", resultNum);
+	    	  set.put("type", "sms"); // 문자 타입
+	    	  set.put("app_version", "test app 1.2"); 
+
+	    	  System.out.println(set);
+	    	  try {
+	    	  JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+	    	  System.out.println(result.toString());
+	        } catch (CoolsmsException e) {
+	          System.out.println(e.getMessage());
+	          System.out.println(e.getCode());
+	        }
+
+	    	  return "index";
+	    	}
+
+	    }
+	    

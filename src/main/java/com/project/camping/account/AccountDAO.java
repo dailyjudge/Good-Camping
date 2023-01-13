@@ -3,15 +3,11 @@ package com.project.camping.account;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSession;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -19,8 +15,8 @@ import org.springframework.ui.Model;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import net.nurigo.sdk.message.model.Message;
-
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 @Service
 public class AccountDAO {
 	@Autowired
@@ -137,10 +133,12 @@ public class AccountDAO {
 	}
 
 	public void doFindId(HttpServletRequest req) {
-		String sr_id = req.getParameter("sr_id");
+		String sr_name = req.getParameter("sr_name");
 		String sr_birth = req.getParameter("sr_birth");
 		
-		
+		//map 이용해서 
+		HashMap<String, String> findId = new HashMap();
+		findId.put(sr_name, sr_birth);
 	
 	}
 }
