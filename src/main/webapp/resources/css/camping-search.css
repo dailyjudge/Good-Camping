@@ -416,3 +416,7 @@ a.btn {
 .review-hidden-category {
 	display: none;
 }
+
+.camping-item-search-result-container {
+	margin-bottom: 5px;
+}

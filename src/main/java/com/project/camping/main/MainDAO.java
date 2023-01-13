@@ -414,19 +414,146 @@ public class MainDAO {
 		request.setAttribute("searchCount", campingSites.size());
 	}
 
-	public void searchCampingSite(SearchDTO s, HttpServletRequest request) {
+	public void searchCampingSite(SearchDTO sDTO, HttpServletRequest request) {
 
 		// 시/도 선택 안할시??
-		if (s.getSido1().equals("시/도 선택"))
-			s.setSido1(s.getSido1().replace("시/도 선택", ""));
+		if (sDTO.getSido1() == null) {
+			sDTO.setSido1("");
+		} else if(sDTO.getSido1().equals("시/도 선택")) {
+			sDTO.setSido1("");
+		}
+		
+		if(sDTO.getGugun1() == null) sDTO.setGugun1("");
 		
 		// 구 선택 안할시 ??
-		if (s.getGugun1().equals("전체")) s.setGugun1("");
+		if (sDTO.getGugun1().equals("전체")) sDTO.setGugun1("");
 		
 		// 검색어만 입력했을 때 -> 관련된 데이터 전부 제공
-		campingSites = ss.getMapper(MainMapper.class).searchCampingSite(s);
+		campingSites = ss.getMapper(MainMapper.class).searchCampingSite(sDTO);
+		
+		if(campingSites != null) {
+			HashSet<String> hs = new HashSet<String>();
 
+			// 테마 확인하기
+			for (MainDTO mDTO : campingSites) {
+				String tag[] = mDTO.getC_sbrsCl().split(",");
+
+				for (String s : tag)
+					hs.add(s);
+			}
+
+			// 리스트를 돌면서 값 넣기!
+			List<String> facilities = new ArrayList<String>();
+
+			for (String s : hs)
+				if (!s.equals("미제공"))
+					facilities.add(s);
+
+			List<facilityDTO> facilityItems;
+			facilityDTO fDTO;
+
+			for (MainDTO mDTO : campingSites) {
+
+				// default 이미지 처리
+				if (mDTO.getC_firstImageUrl().equals("#"))
+					mDTO.setC_firstImageUrl("resources/facilities-icon/firstImgUrldefault.png");
+				// 값 대체
+				facilityItems = new ArrayList<facilityDTO>();
+
+				String tag[] = mDTO.getC_sbrsCl().split(",");
+
+				for (String s : tag) {
+
+					fDTO = new facilityDTO();
+					if (s.equals("운동장"))
+						fDTO.setImage("resources/facilities-icon/play.png");
+					else if (s.equals("운동시설"))
+						fDTO.setImage("resources/facilities-icon/exercise.png");
+					else if (s.equals("전기"))
+						fDTO.setImage("resources/facilities-icon/electricity.png");
+					else if (s.equals("마트.편의점"))
+						fDTO.setImage("resources/facilities-icon/market.png");
+					else if (s.equals("장작판매"))
+						fDTO.setImage("resources/facilities-icon/firewood.png");
+					else if (s.equals("온수"))
+						fDTO.setImage("resources/facilities-icon/hotwater.png");
+					else if (s.equals("물놀이장"))
+						fDTO.setImage("resources/facilities-icon/waterpark.png");
+					else if (s.equals("무선인터넷"))
+						fDTO.setImage("resources/facilities-icon/wifi.png");
+					else if (s.equals("산책로"))
+						fDTO.setImage("resources/facilities-icon/trail.png");
+					else if (s.equals("트렘폴린"))
+						fDTO.setImage("resources/facilities-icon/trampoline.png");
+					else if (s.equals("놀이터"))
+						fDTO.setImage("resources/facilities-icon/playground.png");
+					else {
+						fDTO.setImage("resources/facilities-icon/facilitydefault.png");
+						fDTO.setDesc("제공되지 않음");
+					}
+
+					if (!s.equals("미제공")) {
+						fDTO.setDesc(s);
+					}
+
+					facilityItems.add(fDTO);
+
+				}
+
+				if (mDTO.getC_lineIntro().equals("미제공"))
+					mDTO.setC_lineIntro("");
+
+				mDTO.setFacilities(facilityItems);
+
+			}
+			
+			LikeDTO lDTO;
+			for (MainDTO mDTO : campingSites) {
+
+				// 사이트 좋아요 개수 처리
+				lDTO = new LikeDTO();
+				lDTO.setCl_siteNo(mDTO.getC_no());
+				mDTO.setSiteLikeCount(ss.getMapper(MainMapper.class).getSiteLikeCount(lDTO));
+
+				// 유저가 좋아요를 눌렀는지 처리
+				// 유저가 로그인 돼있는지?
+				AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
+				if (a != null) {
+					lDTO.setCl_userId(a.getAc_id());
+					if (ss.getMapper(MainMapper.class).checkIsLikedCampingSite(lDTO) == 1) {
+						mDTO.setIsLiked(1);
+					} else {
+						mDTO.setIsLiked(0);
+					}
+				} else {
+					mDTO.setIsLiked(0);
+				}
+
+				// 조회수 처리
+				SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(mDTO);
+				mDTO.setSiteViewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
+				// 리뷰수 처리
+				mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
+
+			}
+
+			Collections.sort(campingSites, new Comparator<MainDTO>() {
+				@Override
+				public int compare(MainDTO m1, MainDTO m2) {
+					if (m1.getSiteViewCount() == m2.getSiteViewCount())
+						if (m1.getSiteLikeCount() == m2.getSiteLikeCount())
+							return m2.getReviewCount() - m2.getReviewCount();
+						else {
+							return m2.getSiteLikeCount() - m1.getSiteLikeCount();
+						}
+					else {
+						return m2.getSiteViewCount() - m1.getSiteViewCount();
+					}
+				}
+			});
+		}
 		request.setAttribute("searchCount", campingSites.size());
+		request.setAttribute("searchValue", sDTO.getSearchValue());
 	}
 
 	public void getCampingDetail(MainDTO m, HttpServletRequest request) {

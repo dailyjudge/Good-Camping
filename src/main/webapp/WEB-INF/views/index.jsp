@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="resources/css/camping-stuff-cart.css" />
 <link rel="stylesheet" href="resources/css/camping-stuff-payment.css">
 <link rel="stylesheet" href="resources/css/camping-stuff-order.css">
+<link rel="stylesheet" href="resources/css/searchInput.css">
 <link rel="stylesheet" href="resources/css/camping-like.css">
   <head>
     <meta charset="UTF-8" />
@@ -55,6 +56,7 @@
 
 <script type="text/javascript" src="resources/js/campingDetailReview.js"></script>
 <script type="text/javascript" src="resources/js/campingLike.js"></script>
+<script type="text/javascript" src="resources/js/searchInput.js"></script>
 
 <style type="text/css">
 .areaDiv {

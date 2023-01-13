@@ -11,8 +11,22 @@
 <body>
 	<div class="camping-container">
         <div class="camping-item-container camping-item-search-count-container">
+        	<c:if test="${searchValue != null }">
+	        	<div class="camping-item-search-result-container">
+	        		<span>'${searchValue }'에 대한 검색 결과입니다.</span>
+	        	</div>
+        	</c:if>
             <span>총 <span class="search-count-span">${searchCount }</span>개의 캠핑장이 검색되었습니다.</span>
+        	 <div class="search-wrapper">
+        <div class="input-holder">
+            <input onkeyup="enterkey();" type="text" class="search-input" placeholder="검색이 필요하신가요?" />
+            <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
         </div>
+        <span class="close" onclick="searchToggle(this, event);"></span>
+    </div>
+    
+        </div>
+        
     </div>
 
 	<div class="camping-container">
