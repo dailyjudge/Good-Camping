@@ -153,13 +153,23 @@ public class MainController {
 	@RequestMapping(value = "/go.camping.like", method = RequestMethod.GET)
 	public String goCampingLike(HttpServletRequest request) {
 		
-		
+		// 이미지 처리
+		request.setAttribute("Click", 1);
 		mDAO.getUserLikeCampingSites(request);
 
 		aDAO.loginCheck(request);
 		
 		request.setAttribute("contentPage", "camping-search/camping-like.jsp");
 
+		return "index";
+	}
+	@RequestMapping(value = "/go.main.test", method = RequestMethod.GET)
+	public String mainTest(HttpServletRequest request) {
+		
+		aDAO.loginCheck(request);
+		
+		request.setAttribute("contentPage", "camping-search/test.jsp");
+		
 		return "index";
 	}
 }
