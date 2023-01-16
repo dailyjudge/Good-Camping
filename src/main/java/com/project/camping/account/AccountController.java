@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,8 @@ public class AccountController {
 		req.setAttribute("contentPage", "account/accountReg.jsp");
 		return "index";
 	}
-
+	
+	// 회원가입 & 로그아웃 (return 수정 필요)
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutDo(HttpServletRequest req) {
 		aDAO.logout(req) ;
@@ -93,34 +95,8 @@ public class AccountController {
 
 		return "account/myPage";
 	}
-	@RequestMapping(value = "/seachpw.go", method = RequestMethod.GET)
-	public String seachpwGo(HttpServletRequest req) {
-		
-		aDAO.loginCheck(req);
-		req.setAttribute("contentPage", "account/searchpw.jsp");
-		return "index";
-	}
 	
-//	 @RequestMapping("/sendpw.do")
-//	    public ModelAndView sendEmailAction (@RequestParam Map<String, Object> paramMap, ModelMap model) throws Exception {
-//	        ModelAndView mav;
-//	        String id=(String) paramMap.get("id");
-//	        String e_mail=(String) paramMap.get("email");
-//	        String pw= mainService.getPw(paramMap);
-//	        System.out.println(pw);
-//	        if(pw!=null) {
-//	            email.setContent("��й�ȣ�� "+pw+" �Դϴ�.");
-//	            email.setReceiver(e_mail);
-//	            email.setSubject(id+"�� ��й�ȣ ã�� �����Դϴ�.");
-//	            emailSender.SendEmail(email);
-//	            mav= new ModelAndView("redirect:/login.do");
-//	            return mav;
-//	        }else {
-//	            mav=new ModelAndView("redirect:/logout.do");
-//	            return mav;
-//	        }
-//	    }
-	 // ���̹� ���� �α���
+	// 네이버 로그인 (return 수정 필요)
 	 @RequestMapping("/naver.do")
 	    public String naver() {
 	        return "account/naver_login";
@@ -156,6 +132,7 @@ public class AccountController {
 	    return result;
 	    
 	    }
+	    
 	    @RequestMapping(value="/check.id", method=RequestMethod.GET)
 	    public String checkId(HttpServletRequest req){
 	    	aDAO.idCheck(req);
@@ -169,21 +146,59 @@ public class AccountController {
 			req.setAttribute("contentPage", "account/searchId.jsp");
 	    	return "index";
 	    }
-	    @RequestMapping(value="/seachPw.go", method=RequestMethod.GET)
-	    public String GoSeachPw(HttpServletRequest req){
-			aDAO.loginCheck(req);
-			req.setAttribute("contentPage", "account/searchpw.jsp");
+	    // 로그인 창에서 처음으로 id/pw 찾는 페이지로
+	    @RequestMapping(value="/searchPW.go", method=RequestMethod.GET)
+	    public String goFindPW(HttpServletRequest req){
+	    	
+	    	aDAO.loginCheck(req);
+	    	req.setAttribute("contentPage", "account/find_Id_Pw.jsp");
 	    	return "index";
 	    }
-	    @RequestMapping(value="/searchID.do", method=RequestMethod.GET)
+	    // 아이디 찾기
+	    @RequestMapping(value="/searchID.do", method=RequestMethod.POST)
 	    public String doFindID(HttpServletRequest req){
 	    	
 	    	aDAO.doFindId(req);
+	    	
 			aDAO.loginCheck(req);
 			req.setAttribute("contentPage", "account/searchIdResult.jsp");
 			
 	    	return "index";
 	    }
+	    //메일로 임시코드 보내기
+	    @RequestMapping(value="/searchPW.do", method=RequestMethod.POST)
+	    public String doFindPW(HttpSession session, HttpServletRequest req, HttpServletResponse response){
+	    	
+	    	//메일 보내기
+	    	aDAO.sendPW_byMail(req,session,response);
+	    	
+	    	aDAO.loginCheck(req);
+	    	req.setAttribute("contentPage", "account/searchPwResult.jsp");
+	    	
+	    	return "index";
+	    }
+	    // 메일 인증코드와 입력한 값 비교 -> 비밀번호 재설정(update) 부분
+	    @RequestMapping(value="/changePw.after.findPw.go", method=RequestMethod.GET)
+	    public String changePwGo(HttpServletRequest req,HttpSession session){
+	    	aDAO.checkMailPw(req,session);
+	    	
+	    	aDAO.loginCheck(req);
+	    	req.setAttribute("contentPage", "account/PwUpdate.jsp");
+	    	
+	    	return "index";
+	    }
+	    //비밀번호 update 후 -> 다시 로그인 화면
+	    @RequestMapping(value="/changePw.after.findPw.do", method=RequestMethod.POST)
+	    public String changePwDo(HttpServletRequest req){
+	    	req.setAttribute("contentPage", "account/loginHead.jsp");
+	    	
+	    	aDAO.resetPw(req);
+	    	aDAO.loginCheck(req);
+	    	
+	    	
+	    	return "index";
+	    }
+	    // 처음 로그인 화면으로 돌아가기
 	    @RequestMapping(value="/accountHome.go", method=RequestMethod.GET)
 	    public String GoAccountHome(HttpServletRequest req){
 	    	
@@ -193,53 +208,14 @@ public class AccountController {
 	    	return "index";
 	    }
 	    
-//	    @RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
-//	    @ResponseBody
-//	    public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // �޴��� ���ں�����
-//	    	int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//���� ����
-//
-//	    	testService.certifiedPhoneNumber(userPhoneNumber,randomNumber);
-//	    	
-//	    	return Integer.toString(randomNumber);
-//	    }
-	    
+	    // 휴대폰 인증 (회원가입)
 	    	@RequestMapping(value = "/sendSms.do")
 	    	public String sendSms(HttpServletRequest request) throws Exception {
 	    		
-	    		Random random = new Random();		//랜덤 함수 선언
-	    		int createNum = 0;  			//1자리 난수
-	    		String ranNum = ""; 			//1자리 난수 형변환 변수
-	            int letter    = 6;			//난수 자릿수:6
-	    		String resultNum = "";  		//결과 난수
+	    		aDAO.sendSms_Do(request);
 	    		
-	    		for (int i=0; i<letter; i++) { 
-	                		
-	    			createNum = random.nextInt(9);		//0부터 9까지 올 수 있는 1자리 난수 생성
-	    			ranNum =  Integer.toString(createNum);  //1자리 난수를 String으로 형변환
-	    			resultNum += ranNum;			//생성된 난수(문자열)을 원하는 수(letter)만큼 더하며 나열
-	    		}
-	    		
-	    	  String api_key = "NCSMH2UDME7WGBSB";
-	    	  String api_secret = "DF0VOHPG4VCEU4LI7PIQQKEDHIKKUTL8";
-	    	  Message coolsms = new Message(api_key, api_secret);
-
-	    	  HashMap<String, String> set = new HashMap<String, String>();
-	    	  set.put("to", "01075885745"); // 수신번호
-
-	          set.put("from", request.getParameter("num") ); // 발신번호, jsp에서 전송한 발신번호를 받아 map에 저장한다.
-	          set.put("text", resultNum);
-	    	  set.put("type", "sms"); // 문자 타입
-	    	  set.put("app_version", "test app 1.2"); 
-
-	    	  System.out.println(set);
-	    	  try {
-	    	  JSONObject result = coolsms.send(set); // 보내기&전송결과받기
-
-	    	  System.out.println(result.toString());
-	        } catch (CoolsmsException e) {
-	          System.out.println(e.getMessage());
-	          System.out.println(e.getCode());
-	        }
+				aDAO.loginCheck(request);
+				request.setAttribute("contentPage", "account/accountReg.jsp");
 
 	    	  return "index";
 	    	}

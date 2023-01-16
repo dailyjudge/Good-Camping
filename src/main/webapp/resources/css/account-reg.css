@@ -1,48 +1,80 @@
 @charset "UTF-8";
+/* Google web font CDN*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
 .wrap3 {
-  margin: 0;
-  padding: 0;
+  margin: auto;
+  padding-top: 30px;
   font-family: "Noto Sans KR", sans-serif;
   box-sizing: border-box;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .accountReg3 a {
   text-decoration: none;
   color: black;
 }
+.filebox_wrap{
+	width : 400px;
+}
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    color: #999999;
+}
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #94b33c;
+    cursor: pointer;
+    margin-left: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 20px;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+.profile{
+	width: 130px;
+	height: 130px;
+	border: 1px solid #dddddd;
+    border-radius: 50%;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+.profile img{
+	width: 100%;
+	overflow: hidden;
+}
 
-.wrap3 {
-  width: 100%;
-  height: 98%;
-  display: flex;
-  
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.1);
-}
-.wrap3 button{
-	border: 0;
-  outline: none;
-  border-radius: 40px;
-  background: linear-gradient(to left, rgb(70, 237, 61), rgb(134, 245, 168));
-  color: white;
-  font-size: 1.2em;
-  letter-spacing: 2px;
-}
 .wrap3 p {
 	margin: 2px;
 }
 
 .accountReg3 {
-  width: 40%;
-  height: 1300px;
+  width: 850px;
+  height: 1200px;
   background: white;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  min-width: 850px;
 }
 
 .accountReg3 h2 {
@@ -50,76 +82,130 @@
   font-size: 3em;
 }
 
-.accountReg3 {
-  margin-top: 20px;
-  width: 85%;
-}
 
 .account_type input {
   height: 50px;
-  border-radius: 30px;
+  border-radius: 50px;
   margin-top: 10px;
   padding: 0px 20px;
   border: 1px solid lightgray;
   outline: none;
 }
+.account_gender{
+	margin-top: 10px;
+}
 .account_gender input{
   border-radius: 30px;
-  margin-top: 10px;
-  padding: 0px 20px;
+  padding: 0px 9px;
   border: 1px solid lightgray;
   outline: none;
 }
 
 .account_submit {
   margin-top: 50px;
-  width: 80%;
+  width: 150px;
 }
 .account_submit input {
-  width: 60%;
-  height: 50px;
+  width: 200px;
+  height: 100px;
   border: 0;
   outline: none;
   border-radius: 40px;
-  background: linear-gradient(to left, rgb(70, 237, 61), rgb(134, 245, 168));
+  background-color: #d6394c;
   color: white;
   font-size: 1.2em;
   letter-spacing: 2px;
   
   position: absolute;
-  bottom: 20px;
 }
 .account_left{
 	position: absolute;
-	left: 250px;
-	top: 300px;
+	left: 100px;
+	top: 410px;
 	display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 .account_right{
 	position: absolute;
-	right: 250px;
-	top: 300px;
+	right: 80px;
+	top: 410px;
 	display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 .account_bottom{
 	position: absolute;
-	bottom: 100px;
+	bottom: 120px;
+	left:100px;
 	display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
+}
+.account_bottom_right{
+	position: absolute;
+	bottom: 210px;
+	right:100px;
 }
 .account_top{
 	position: absolute;
 	top: 20px;
+	left:320px;
 	display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
+#extraAddress {
+	width: 390px;
+}
+[type="radio"] {
+  vertical-align: middle;
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  transition: border 0.5s ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 0.4em solid tomato;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted tomato;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  cursor: pointer;
+}
+.ac_pw{
+    background:url(./images/images2/icon-01.png) no-repeat center right 15px;
+    background-size: 20px;
+    background-color: #fff;
+}
+
+.ac_pw2{
+    background:url(./images/images2/icon-02.png) no-repeat center right 15px;
+    background-size: 20px;
+    background-color: #fff;
+}
+.wrap3 button {
+        width:100px; 
+        height:40px; 
+        border:1px #66bfffe0 solid;
+        border-radius : 40px;
+        margin:15px auto; 
+        background-color:#66bfffe0;  
+        text-align:center; 
+        cursor: pointer;  
+
+        color:#333; 
+        transition:all 0.9s, color 0.3;  
+    }
+.wrap3 button:hover{color:#66eaff;}
+.wrap3 button:hover{
+        box-shadow:200px 0 0 0 rgba(0,0,0,0.5) inset;
+    }

@@ -19,10 +19,9 @@
 		<div class="login2">
 			<h2>Log-in</h2>
 			<div class="login_sns2">
-				<li><a href="javascript:void(0)" onclick="kakaoLogin();"><i
-						class="fab fa-instagram"></i></a></li>
-				<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-				<li><a href=""><i class="fab fa-twitter"></i></a></li>
+				<li><a href="javascript:void(0)" onclick="kakaoLogin();"><img alt="" src="resources/social-img/Kakao_logo.jpg"></a></li>
+				<li><a href=""><i class="fab fa-google"></i></a></li>
+				<li><a href=""><img alt="" src="resources/social-img/naver-image.png"></a></li>
 			</div>
 			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
@@ -39,11 +38,11 @@
 					</div>
 					<div class="login_etc2">
 						<div class="checkbox">
-							<input type="checkbox" name="loginallways" value="on" id="">Remember
+							<input type="checkbox" name="loginallways" value="on" id="loginallways">Remember
 							Me?
 						</div>
 						<div class="forgot_pw2">
-							<a href="seachpw.go">비밀번호 찾기</a>
+							<a href="searchPW.go">비밀번호 찾기</a>
 						</div>
 					</div>
 					<div class="login_etc2">

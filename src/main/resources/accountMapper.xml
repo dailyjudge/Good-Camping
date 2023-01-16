@@ -13,4 +13,13 @@ select * from account where ac_id = #{ac_id}
 <select id="getIdCheck" parameterType="String" resultType="String">
 select ac_id from account where ac_id = #{ac_id2}
 </select>
+
+<select id="GoFindId" parameterType="map" resultType="String">
+select ac_id from account where ac_name = #{ac_name} and ac_phone = #{ac_phone} 
+</select>
+
+<select id="selectAccount" parameterType="String" resultType="com.project.camping.account.AccountDTO">
+select * from account where ac_id = #{ac_id}
+</select>
+
 </mapper>

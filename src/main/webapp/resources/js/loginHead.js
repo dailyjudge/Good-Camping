@@ -192,5 +192,37 @@ function checkCompletion(){
   		
   		location.href='sendSms.do?num='+sendToNum;
     }
-
-	  
+    function checkCompletion(){
+    	let makeNumCheck = document.getElementById("makeNumCheck").value;
+    	var resultNum = document.getElementById( 'completion' ).getAttribute( 'value' );
+    	var check2 = document.getElementById("makeNumCheck");
+    	
+    	if(makeNumCheck != null){
+	    	if(makeNumCheck == resultNum){
+	    		alert("본인인증에 성공하셨습니다");
+	    		document.getElementById("regSubmit").disabled = false;
+	    	}else{
+	    		alert("본인인증 실패");
+	    		check2.focus();
+	    	}
+	    }else{
+	    	alert("인증코드를 입력하시오");
+	    	check2.focus();
+	    }
+    }
+      function changeImg(event) {
+        let reader = new FileReader();
+        
+        reader.onload = function (event) {
+          $("#user-reg-image").remove();
+          let img = document.createElement("img");
+          img.setAttribute("src", event.target.result);
+          img.setAttribute("width", "100%");
+          img.setAttribute("height", "100%");
+          img.setAttribute("id", "user-reg-image");
+          img.setAttribute("style", "border-radius: 50%");
+          $("#user-profile").css("display", "none");
+          document.querySelector("div#profile").appendChild(img);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      }

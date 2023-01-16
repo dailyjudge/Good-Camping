@@ -44,7 +44,10 @@
   list-style: none;
   padding: 0px 15px;
 }
-
+.login_sns2 img {
+	width: 30px;
+	border-radius:50%;
+}
 .login_sns2 a {
   width: 50px;
   height: 50px;

@@ -12,11 +12,14 @@ create table account(
 	ac_file varchar2(200 char) not null
 );
 drop table account;
-drop sequence account_seq
+drop sequence account_seq;
 create sequence account_seq;
 
 insert into account values('test@naver.com','1111','jun','971229','010-1111-1111','a','b','c','d','n','a.jpg');
-insert into account values('test2@naver.com','1111','jun1','971229','010-1111-1111','a','b','c','d','n','a.jpg');
+insert into account values('test2@naver.com','1111','jun1','971229','010-2222-2222','a','b','c','d','n','a.jpg');
+insert into account values('test3@naver.com','1111','jun3','971229','010-3333-3333','a','b','c','d','n','a.jpg');
+insert into account values('jun19973@naver.com','1111','jun4','971229','010-4444-4444','a','b','c','d','n','a.jpg');
 
 
 select * from account;
+select ac_id from account where ac_name = 'jun' and ac_phone ='010-1111-1111';

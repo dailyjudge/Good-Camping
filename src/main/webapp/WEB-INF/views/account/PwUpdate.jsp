@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> 아이디 찾기 결과 화면</h1>
-${userId }
 
+<form action="changePw.after.findPw.do">
+<input type="text" id="re_Pw" name="re_Pw">
+<button>비밀번호 재설정</button>
+</form>
 </body>
 </html>
