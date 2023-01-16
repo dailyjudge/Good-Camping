@@ -14,7 +14,7 @@
 <script>
     var naverLogin = new naver.LoginWithNaverId({
         clientId: "Uh1tF3zF15ZOgjkmBw4K", // 본인걸로 수정, 띄어쓰기 금지.
-        callbackUrl: "http://localhost/modal/callback", // 아무거나 설정
+        callbackUrl: "http://localhost:8080/camping/go.Login.Head", // 아무거나 설정
         isPopup: false,
         callbackHandle: true
     });
@@ -32,16 +32,16 @@
  
         $.ajax({
             type: 'post',
-            url: 'http://localhost/modal',
+            url: 'http://localhost:8080/camping/go.Login.Head',
             data: {'ac_birth':birthday, 'ac_id':email, 'ac_gender':gender, 'ac_name':name},
             dataType: 'text',
             success: function(result) {
                 if(result=='ok') {
                     console.log('성공')
-                    location.replace("http://localhost/modal/callback") 
+                    location.replace("http://localhost:8080/camping/go.Login.Head.callback") 
                 } else if(result=='no') {
                     console.log('실패')
-                    location.replace("http://localhost/modal/callback")
+                    location.replace("http://localhost:8080/camping/go.Login.Head.callback")
                 }
             },
             error: function(result) {

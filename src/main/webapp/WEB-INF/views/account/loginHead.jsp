@@ -8,7 +8,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LoginPage</title>
-
+<!-- 네아로 SDK -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+  
 <link rel="stylesheet" href="resources/css/loginHead.css" />
 <link rel="stylesheet" href="resources/js/kakao-login.js" />
 </head>
@@ -21,8 +23,8 @@
 			<div class="login_sns2">
 				<li><a href="javascript:void(0)" onclick="kakaoLogin();"><img alt="" src="resources/social-img/Kakao_logo.jpg"></a></li>
 				<li><a href=""><i class="fab fa-google"></i></a></li>
-				<li><a href=""><img alt="" src="resources/social-img/naver-image.png"></a></li>
-			</div>
+				<li><div id="naverIdLogin"><img alt="" src="resources/social-img/naver-image.png"></div></li>
+			</div> 
 			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 			<div>
@@ -97,5 +99,19 @@
 			}
 		}
 	</script>
+	<script type="text/javascript">
+    var naverLogin = new naver.LoginWithNaverId(
+        {
+            clientId: "Uh1tF3zF15ZOgjkmBw4K",
+              // 본인의 Client ID로 수정, 띄어쓰기는 사용하지 마세요.
+            callbackUrl: "http://localhost:8080/camping/go.Login.Head.callback",
+              // 본인의 callBack url로 수정하세요.
+            isPopup: false,
+            loginButton: {color: "white", type: 1, height: 40}
+              // 네이버 로그인버튼 디자인 설정. 한번 바꿔보세요:D
+        }
+    );
+naverLogin.init();
+</script>
 </body>
 </html>

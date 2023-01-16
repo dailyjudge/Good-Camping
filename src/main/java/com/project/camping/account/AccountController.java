@@ -62,6 +62,13 @@ public class AccountController {
 		req.setAttribute("contentPage", "account/accountReg.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "/go.Login.Head.callback", method = RequestMethod.GET)
+	public String GoLoginCallback(HttpServletRequest req) {
+		
+		aDAO.loginCheck(req);
+		req.setAttribute("contentPage", "account/callback.jsp");
+		return "index";
+	}
 	
 	// 회원가입 & 로그아웃 (return 수정 필요)
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
