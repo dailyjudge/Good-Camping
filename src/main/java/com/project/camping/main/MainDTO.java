@@ -88,7 +88,7 @@ public class MainDTO {
 	private int reviewCount;
 
 //  조회 수를 담는 변수
-	private int siteViewCount;
+	private int cv_viewCount;
 
 //  사이트에 좋아요 개수
 	private int siteLikeCount;
@@ -113,7 +113,7 @@ public class MainDTO {
 			String c_lineIntro, String c_mapX, String c_mapY, String c_operDeCl, String c_operPdCl,
 			String c_posblFcltyCl, String c_resveCl, String c_resveUrl, String c_sbrsCl, String c_tel,
 			String c_themaEnvrnCl, String c_toiletCo, String c_wtrplCo, String c_tooltip, List<facilityDTO> facilities,
-			int reviewCount, int siteViewCount, int siteLikeCount, int isLiked, String reviewStarAvg,
+			int reviewCount, int cv_viewCount, int siteLikeCount, int isLiked, String reviewStarAvg,
 			List<String> hashtagList) {
 		super();
 		this.c_no = c_no;
@@ -156,7 +156,7 @@ public class MainDTO {
 		this.c_tooltip = c_tooltip;
 		this.facilities = facilities;
 		this.reviewCount = reviewCount;
-		this.siteViewCount = siteViewCount;
+		this.cv_viewCount = cv_viewCount;
 		this.siteLikeCount = siteLikeCount;
 		this.isLiked = isLiked;
 		this.reviewStarAvg = reviewStarAvg;
@@ -483,12 +483,12 @@ public class MainDTO {
 		this.reviewCount = reviewCount;
 	}
 
-	public int getSiteViewCount() {
-		return siteViewCount;
+	public int getCv_viewCount() {
+		return cv_viewCount;
 	}
 
-	public void setSiteViewCount(int siteViewCount) {
-		this.siteViewCount = siteViewCount;
+	public void setCv_viewCount(int cv_viewCount) {
+		this.cv_viewCount = cv_viewCount;
 	}
 
 	public int getSiteLikeCount() {
@@ -538,7 +538,7 @@ public class MainDTO {
 				+ ", c_resveCl=" + c_resveCl + ", c_resveUrl=" + c_resveUrl + ", c_sbrsCl=" + c_sbrsCl + ", c_tel="
 				+ c_tel + ", c_themaEnvrnCl=" + c_themaEnvrnCl + ", c_toiletCo=" + c_toiletCo + ", c_wtrplCo="
 				+ c_wtrplCo + ", c_tooltip=" + c_tooltip + ", facilities=" + facilities + ", reviewCount=" + reviewCount
-				+ ", siteViewCount=" + siteViewCount + ", siteLikeCount=" + siteLikeCount + ", isLiked=" + isLiked
+				+ ", cv_viewCount=" + cv_viewCount + ", siteLikeCount=" + siteLikeCount + ", isLiked=" + isLiked
 				+ ", reviewStarAvg=" + reviewStarAvg + ", hashtagList=" + hashtagList + "]";
 	}
 

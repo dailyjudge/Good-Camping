@@ -130,9 +130,41 @@ where c_no left outer join cv_siteNo
 SELECT * 
 FROM camping_site, campingSite_view ;
 
-select * from camping_site left outer join campingSite_view
-on c_no = cv_siteNo
-order by cv_viewcount desc
+select * from campingSite_view
+
+
+create sequence cv_count_seq
+
+select * from camping_site
+where c_addr1 like '%강원도%'
+
+select c_no, nvl(cv_viewcount, -1) as cv_viewcount
+from ( select c_no, cv_viewcount
+		from camping_site left outer join campingSite_view
+		on c_no = cv_siteNo
+		where cv_viewcount is not null
+		and c_donm like '%제주%'
+		order by cv_viewcount desc
+	 )
+where rownum <= 10;
+
+select count(*) from campingSite_view where cv_siteNo = 17191
+
+-- 데이터 넣기
+insert into campingSite_view values(campingSite_view_seq.nextval, 17152, 8);
+
+-- 19300 17841
+-- 가데이터 조회
+select * from camping_site where c_donm like '%대구%' order by c_no
+-- 16588 16688 16703 16704 16745 16853 16931 16942 16997 17152
+
+-- 에러잡기용
+select count(*) as count, cv_siteno from campingSite_view
+group by cv_siteno
+order by count desc
+
+-- 에러 삭제
+delete campingSite_view where cv_siteno = 18824
 
 -- 유저가 좋아요 누른 사이트 정보 받아오기
 select camping_site.*
@@ -154,8 +186,6 @@ where c_no = cr_campingSiteNo and c_no = 17851
 
 select * from camping_site, campingSite_view
 where c_no = cv_siteNo
-
-
 
 
 

@@ -7,14 +7,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.chainsaw.Main;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -368,7 +371,7 @@ public class MainDAO {
 
 			// 조회수 처리
 			SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(mDTO);
-			mDTO.setSiteViewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
+			mDTO.setCv_viewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
 			// 리뷰수 처리
 			mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
 
@@ -377,14 +380,14 @@ public class MainDAO {
 		Collections.sort(campingSites, new Comparator<MainDTO>() {
 			@Override
 			public int compare(MainDTO m1, MainDTO m2) {
-				if (m1.getSiteViewCount() == m2.getSiteViewCount())
+				if (m1.getCv_viewCount() == m2.getCv_viewCount())
 					if (m1.getSiteLikeCount() == m2.getSiteLikeCount())
 						return m2.getReviewCount() - m2.getReviewCount();
 					else {
 						return m2.getSiteLikeCount() - m1.getSiteLikeCount();
 					}
 				else {
-					return m2.getSiteViewCount() - m1.getSiteViewCount();
+					return m2.getCv_viewCount() - m1.getCv_viewCount();
 				}
 			}
 		});
@@ -531,7 +534,7 @@ public class MainDAO {
 
 				// 조회수 처리
 				SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(mDTO);
-				mDTO.setSiteViewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
+				mDTO.setCv_viewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
 				// 리뷰수 처리
 				mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
 
@@ -540,14 +543,14 @@ public class MainDAO {
 			Collections.sort(campingSites, new Comparator<MainDTO>() {
 				@Override
 				public int compare(MainDTO m1, MainDTO m2) {
-					if (m1.getSiteViewCount() == m2.getSiteViewCount())
+					if (m1.getCv_viewCount() == m2.getCv_viewCount())
 						if (m1.getSiteLikeCount() == m2.getSiteLikeCount())
 							return m2.getReviewCount() - m2.getReviewCount();
 						else {
 							return m2.getSiteLikeCount() - m1.getSiteLikeCount();
 						}
 					else {
-						return m2.getSiteViewCount() - m1.getSiteViewCount();
+						return m2.getCv_viewCount() - m1.getCv_viewCount();
 					}
 				}
 			});
@@ -569,7 +572,7 @@ public class MainDAO {
 
 				for (MainDTO mDTO : campingSites) {
 					if (mDTO.getC_no() == m.getC_no())
-						mDTO.setSiteViewCount(1);
+						mDTO.setCv_viewCount(1);
 				}
 			}
 		} else {
@@ -579,7 +582,7 @@ public class MainDAO {
 
 				for (MainDTO mDTO : campingSites) {
 					if (mDTO.getC_no() == m.getC_no())
-						mDTO.setSiteViewCount(mDTO.getSiteViewCount() + 1);
+						mDTO.setCv_viewCount(mDTO.getCv_viewCount() + 1);
 				}
 			}
 		}
@@ -782,7 +785,7 @@ public class MainDAO {
 
 			// 조회수 처리
 			SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(mDTO);
-			mDTO.setSiteViewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
+			mDTO.setCv_viewCount(svDTO == null ? 0 : svDTO.getCv_viewCount());
 			// 리뷰수 처리
 			mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
 
@@ -791,14 +794,14 @@ public class MainDAO {
 		Collections.sort(campingSites, new Comparator<MainDTO>() {
 			@Override
 			public int compare(MainDTO m1, MainDTO m2) {
-				if (m1.getSiteViewCount() == m2.getSiteViewCount())
+				if (m1.getCv_viewCount() == m2.getCv_viewCount())
 					if (m1.getSiteLikeCount() == m2.getSiteLikeCount())
 						return m2.getReviewCount() - m2.getReviewCount();
 					else {
 						return m2.getSiteLikeCount() - m1.getSiteLikeCount();
 					}
 				else {
-					return m2.getSiteViewCount() - m1.getSiteViewCount();
+					return m2.getCv_viewCount() - m1.getCv_viewCount();
 				}
 			}
 		});
@@ -828,7 +831,7 @@ public class MainDAO {
 
 			// 조회수
 			SiteViewDTO svDTO = ss.getMapper(MainMapper.class).getSiteViewCount(m);
-			m.setSiteViewCount(svDTO != null ? svDTO.getCv_viewCount() : 0);
+			m.setCv_viewCount(svDTO != null ? svDTO.getCv_viewCount() : 0);
 			
 			List<String> tags = new ArrayList<String>();
 			
@@ -873,5 +876,16 @@ public class MainDAO {
 	public void deleteUserLike(LikeDTO lDTO) {
 		
 		
+	}
+
+	public void getCampingSiteByArea(String area) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("area", area);
+		List<MainDTO> campingSite = ss.getMapper(ThemeMapper.class).getCampingSitesByArea(map);
+		
+		for (MainDTO m : campingSite) {
+			System.out.println(m.toString());
+		}
 	}
 }

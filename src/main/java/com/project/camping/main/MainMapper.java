@@ -50,5 +50,6 @@ public interface MainMapper {
 	List<MainDTO> getAllUserLikes(String userId);
 
 	String getSiteReviewAvg(MainDTO m);
+
 	
 }

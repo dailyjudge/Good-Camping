@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="resources/css/camping-stuff-order.css">
 <link rel="stylesheet" href="resources/css/searchInput.css">
 <link rel="stylesheet" href="resources/css/camping-like.css">
+<link rel="stylesheet" href="resources/css/choiceButton.css">
   <head>
     <meta charset="UTF-8" />
     <title>Good Camping</title>
@@ -38,7 +39,10 @@
     <link rel="stylesheet" href="resources/css/camping-stuff-cart.css" />
     <link rel="stylesheet" href="resources/css/camping-theme.css" />
     <link rel="stylesheet" href="resources/css/modalcss.css" />
-    
+
+<script>
+        var sca = '01';
+</script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript" src="resources/js/campingSearch.js"></script>
@@ -57,6 +61,10 @@
 <script type="text/javascript" src="resources/js/campingDetailReview.js"></script>
 <script type="text/javascript" src="resources/js/campingLike.js"></script>
 <script type="text/javascript" src="resources/js/searchInput.js"></script>
+<script type="text/javascript" src="resources/js/raphael_min.js"></script>
+<script type="text/javascript" src="resources/js/raphael_path_s.korea.js"></script>
+<script type="text/javascript" src="resources/js/raphael.js"></script>
+<script type="text/javascript" src="resources/js/choiceButton.js"></script>
 
 <style type="text/css">
 .areaDiv {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.camping.account.AccountDAO;
 import com.project.camping.main.MainDAO;
+import com.project.camping.main.MainDTO;
 
 @Controller
 public class ThemeController {
@@ -35,6 +36,19 @@ public class ThemeController {
 		mDAO.getSearchCampingSiteByTheme(t, request);
 		mDAO.getCampingSite(1, request);
 
+		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/do.map.search", method = RequestMethod.GET)
+	public String searchCampingSiteByArea(HttpServletRequest request) {
+		
+		aDAO.loginCheck(request);
+		
+		String area = request.getParameter("area");
+		System.out.println("넘어온 데이터 : " + area);
+		mDAO.getCampingSiteByArea(area);
+		
 		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
 		return "index";
 	}

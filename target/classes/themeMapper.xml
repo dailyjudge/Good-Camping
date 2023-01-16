@@ -57,4 +57,15 @@
 	c_sbrscl like '%'||#{t_hotWater}||'%' or	
 	c_sbrscl like '%'||#{t_waterPlay}||'%'	
 </select>
+<select id="getCampingSitesByArea" parameterType="map" resultType="com.project.camping.main.MainDTO">
+	select c_no, NVL(cv_viewcount, -1) as cv_viewcount
+	from ( select c_no, cv_viewcount
+		from camping_site left outer join campingSite_view
+		on c_no = cv_siteNo
+		where cv_viewcount is not null
+		and c_donm like '%'||#{area}||'%'
+		order by cv_viewcount DESC
+	 )
+	where ROWNUM &lt;= 10
+</select>
 </mapper>

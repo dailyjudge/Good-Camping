@@ -1,0 +1,86 @@
+@charset "UTF-8";
+:root {
+    --accent: #04da97;
+    --border-width: 6px;
+    --border-radius: 55px;
+    --font-size: 30px;
+}
+
+.camping-choice-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: #fff;
+    font-family: sans-serif;
+    margin: 20px 0;
+}
+
+.container {
+    perspective: 800px;
+}
+
+.camping-choice-toggle {
+    position: relative;
+    border: solid 6px #3CB371;
+    border-radius: 55px;
+    transition: transform cubic-bezier(0, 0, 0.30, 2) .4s;
+    transform-style: preserve-3d;
+}
+
+.camping-choice-toggle>input[type="radio"] {
+    display: none;
+}
+
+.camping-choice-toggle>#choice1:checked~#flap {
+    transform: rotateY(-180deg);
+}
+
+.camping-choice-toggle>#choice1:checked~#flap>.camping-choice-content {
+    transform: rotateY(-180deg);
+}
+
+.camping-choice-toggle>#choice2:checked~#flap {
+    transform: rotateY(0deg);
+}
+
+.camping-choice-toggle>label {
+    display: inline-block;
+    min-width: 160px;
+    padding: 30px;
+    font-size: 30px;
+    text-align: center;
+    color: #3CB371;
+    cursor: pointer;
+}
+
+.camping-choice-toggle>label,
+.camping-choice-toggle>#flap {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.camping-choice-toggle>#flap {
+    position: absolute;
+    top: calc( 0px - var(--border-width));
+    left: 50%;
+    height: calc(100% + var(--border-width) * 2);
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background-color: #3CB371;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform cubic-bezier(0.4, 0, 0.2, 1) .5s;
+}
+
+.camping-choice-toggle>#flap>.camping-choice-content {
+    color: #333;
+    transition: transform 0s linear .25s;
+    transform-style: preserve-3d;
+}
+

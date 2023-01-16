@@ -38,7 +38,7 @@
 					<span class="camping-item-desc-item camping-item-desc-item1">관광사업자
 						등록업체</span> <span class="camping-item-desc-item camping-item-desc-item2">리뷰수
 						${c.reviewCount }</span> <span class="camping-item-desc-item camping-item-desc-item3">조회수
-						${c.siteViewCount }</span> 
+						${c.cv_viewCount }</span> 
 						<span class="camping-item-desc-item camping-item-desc-item4">
 								<img class="camping-like-img-tag" alt="" src="resources/camping-detail-icon/like.png">
 								<span class="camping-like-count camping-like-count-${c.c_no }">${c.siteLikeCount }</span>
