@@ -47,6 +47,6 @@ public class ThemeController {
 	@RequestMapping(value = "/do.map.search", method = RequestMethod.GET,
 			produces="application/json; charset=utf-8")
 	public CampingSitesDTO searchCampingSiteByArea(HttpServletRequest request) {
-		return mDAO.getCampingSiteByArea(request.getParameter("area"));
+		return mDAO.getCampingSiteByArea(request, request.getParameter("area"));
 	}
 }

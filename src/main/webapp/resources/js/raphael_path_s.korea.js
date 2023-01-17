@@ -267,7 +267,6 @@ window.onload = function () {
 								'</div>' +
 							'</div>' +
 							'<div class="camping-item-facilities camping-item-facilities-' + c_no + '">' +
-								'<div class="camping-item-facilities-items">' + 
 							'</div>' + 
 						'</div>'
 						);

@@ -13,9 +13,9 @@
 				<form class="camping-choice-toggle">
 					
 					<input type="radio" id="choice1" name="choice" value="creative">
-					<label for="choice1">테마로 검색</label> <input type="radio"
+					<label for="choice1">지도로 검색</label> <input type="radio"
 						id="choice2" name="choice" value="productive"> <label
-						for="choice2">지도로 검색</label>
+						for="choice2">테마로 검색</label>
 
 					<div id="camping-choice-flap">
 						<span class="camping-choice-content"></span>

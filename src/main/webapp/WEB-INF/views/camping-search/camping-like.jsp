@@ -38,7 +38,7 @@
 					<img class="user-like-item-like"
 						src="resources/camping-like/star.png" alt=""> <span>${c.reviewStarAvg }</span>
 				</div>
-				<span class="user-hidden-like-item user-hidden-like-item-${c.c_no }">${c.siteViewCount }명이
+				<span class="user-hidden-like-item user-hidden-like-item-${c.c_no }">${c.cv_viewCount }명이
 					이 캠핑장을 찾아봤어요</span>
 				<div
 					class="user-hidden-tag user-hidden-like-item user-hidden-like-item-${c.c_no }">

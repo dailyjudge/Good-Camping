@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,15 +17,14 @@
 	        	</div>
         	</c:if>
             <span>총 <span class="search-count-span">${searchCount }</span>개의 캠핑장이 검색되었습니다.</span>
-        	 <div class="search-wrapper">
-        <div class="input-holder">
-            <input onkeyup="enterkey();" type="text" class="search-input" placeholder="검색이 필요하신가요?" />
-            <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
-        </div>
-        <span class="close" onclick="searchToggle(this, event);"></span>
-    </div>
-    
-        </div>
+        	<div class="search-wrapper">
+	       		<div class="input-holder">
+    	    		<input onkeyup="enterkey();" type="text" class="search-input" placeholder="검색이 필요하신가요?" />
+        		    <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+        		</div>
+        		<span class="close" onclick="searchToggle(this, event);"></span>
+    		</div>
+       </div>
         
     </div>
 
@@ -92,7 +91,7 @@
 		<c:if test="${curPage != 1 }">
 			<button class="custom-btn btn-16" onclick="location.href='do.camping.change?p=${curPage - 1}'">이전 페이지</button>
 		</c:if>
-		<c:if test="${curPage != pageCount }">
+		<c:if test="${curPage != pageCount && fn:length(campingSites) != 0}">
 			<button class="custom-btn btn-15" onclick="location.href='do.camping.change?p=${curPage + 1}'">다음 페이지</button>
 		</c:if>
 	</div>

@@ -51,5 +51,7 @@ public interface MainMapper {
 
 	String getSiteReviewAvg(MainDTO m);
 
+	List<MainDTO> getAllCampingSite2();
+
 	
 }
