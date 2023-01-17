@@ -58,8 +58,8 @@
 	c_sbrscl like '%'||#{t_waterPlay}||'%'	
 </select>
 <select id="getCampingSitesByArea" parameterType="map" resultType="com.project.camping.main.MainDTO">
-	select c_no, NVL(cv_viewcount, -1) as cv_viewcount
-	from ( select c_no, cv_viewcount
+	select * 
+	from ( select *
 		from camping_site left outer join campingSite_view
 		on c_no = cv_siteNo
 		where cv_viewcount is not null

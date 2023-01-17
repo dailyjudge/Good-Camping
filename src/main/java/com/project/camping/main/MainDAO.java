@@ -878,14 +878,86 @@ public class MainDAO {
 		
 	}
 
-	public void getCampingSiteByArea(String area) {
+	public CampingSitesDTO getCampingSiteByArea(String area) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("area", area);
+		
 		List<MainDTO> campingSite = ss.getMapper(ThemeMapper.class).getCampingSitesByArea(map);
 		
-		for (MainDTO m : campingSite) {
-			System.out.println(m.toString());
+		List<facilityDTO> facilityItems;
+		facilityDTO fDTO;
+
+		for (MainDTO mDTO : campingSite) {
+
+			// default 이미지 처리
+			if (mDTO.getC_firstImageUrl().equals("#"))
+				mDTO.setC_firstImageUrl("resources/facilities-icon/firstImgUrldefault.png");
+			// 값 대체
+			facilityItems = new ArrayList<facilityDTO>();
+
+			String tag[] = mDTO.getC_sbrsCl().split(",");
+
+			for (String s : tag) {
+
+				fDTO = new facilityDTO();
+				if (s.equals("운동장"))
+					fDTO.setImage("resources/facilities-icon/play.png");
+				else if (s.equals("운동시설"))
+					fDTO.setImage("resources/facilities-icon/exercise.png");
+				else if (s.equals("전기"))
+					fDTO.setImage("resources/facilities-icon/electricity.png");
+				else if (s.equals("마트.편의점"))
+					fDTO.setImage("resources/facilities-icon/market.png");
+				else if (s.equals("장작판매"))
+					fDTO.setImage("resources/facilities-icon/firewood.png");
+				else if (s.equals("온수"))
+					fDTO.setImage("resources/facilities-icon/hotwater.png");
+				else if (s.equals("물놀이장"))
+					fDTO.setImage("resources/facilities-icon/waterpark.png");
+				else if (s.equals("무선인터넷"))
+					fDTO.setImage("resources/facilities-icon/wifi.png");
+				else if (s.equals("산책로"))
+					fDTO.setImage("resources/facilities-icon/trail.png");
+				else if (s.equals("트렘폴린"))
+					fDTO.setImage("resources/facilities-icon/trampoline.png");
+				else if (s.equals("놀이터"))
+					fDTO.setImage("resources/facilities-icon/playground.png");
+				else {
+					fDTO.setImage("resources/facilities-icon/facilitydefault.png");
+					fDTO.setDesc("제공되지 않음");
+				}
+
+				if (!s.equals("미제공")) {
+					fDTO.setDesc(s);
+				}
+
+				facilityItems.add(fDTO);
+
+			}
+
+			if (mDTO.getC_lineIntro().equals("미제공"))
+				mDTO.setC_lineIntro("");
+
+			mDTO.setFacilities(facilityItems);
+
 		}
+		
+		LikeDTO lDTO;
+
+		for (MainDTO mDTO : campingSite) {
+
+			// 사이트 좋아요 개수 처리
+			lDTO = new LikeDTO();
+			lDTO.setCl_siteNo(mDTO.getC_no());
+			mDTO.setSiteLikeCount(ss.getMapper(MainMapper.class).getSiteLikeCount(lDTO));
+
+			// 리뷰수 처리
+			mDTO.setReviewCount(ss.getMapper(MainMapper.class).getReviewCount(mDTO));
+		}
+		
+		// 리스트를 받아줄 객체 생성
+		return new CampingSitesDTO(campingSite);
+		
 	}
 }

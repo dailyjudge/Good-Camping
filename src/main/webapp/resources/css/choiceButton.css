@@ -32,35 +32,34 @@
     display: none;
 }
 
-.camping-choice-toggle>#choice1:checked~#flap {
+.camping-choice-toggle>#choice1:checked~#camping-choice-flap {
     transform: rotateY(-180deg);
 }
 
-.camping-choice-toggle>#choice1:checked~#flap>.camping-choice-content {
+.camping-choice-toggle>#choice1:checked~#camping-choice-flap>.camping-choice-content {
     transform: rotateY(-180deg);
 }
 
-.camping-choice-toggle>#choice2:checked~#flap {
+.camping-choice-toggle>#choice2:checked~#camping-choice-flap {
     transform: rotateY(0deg);
 }
 
 .camping-choice-toggle>label {
     display: inline-block;
-    min-width: 160px;
+    min-width: 112px;
     padding: 30px;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
     color: #3CB371;
     cursor: pointer;
 }
 
 .camping-choice-toggle>label,
-.camping-choice-toggle>#flap {
-    font-weight: bold;
+.camping-choice-toggle>#camping-choice-flap {
     text-transform: capitalize;
 }
 
-.camping-choice-toggle>#flap {
+.camping-choice-toggle>#camping-choice-flap {
     position: absolute;
     top: calc( 0px - var(--border-width));
     left: 50%;
@@ -78,7 +77,7 @@
     transition: transform cubic-bezier(0.4, 0, 0.2, 1) .5s;
 }
 
-.camping-choice-toggle>#flap>.camping-choice-content {
+.camping-choice-toggle>#camping-choice-flap>.camping-choice-content {
     color: #333;
     transition: transform 0s linear .25s;
     transform-style: preserve-3d;

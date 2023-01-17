@@ -4,10 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.camping.account.AccountDAO;
+import com.project.camping.main.CampingSitesDTO;
 import com.project.camping.main.MainDAO;
 import com.project.camping.main.MainDTO;
 
@@ -40,16 +43,10 @@ public class ThemeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/do.map.search", method = RequestMethod.GET)
-	public String searchCampingSiteByArea(HttpServletRequest request) {
-		
-		aDAO.loginCheck(request);
-		
-		String area = request.getParameter("area");
-		System.out.println("넘어온 데이터 : " + area);
-		mDAO.getCampingSiteByArea(area);
-		
-		request.setAttribute("contentPage", "camping-search/camping-search.jsp");
-		return "index";
+	@ResponseBody
+	@RequestMapping(value = "/do.map.search", method = RequestMethod.GET,
+			produces="application/json; charset=utf-8")
+	public CampingSitesDTO searchCampingSiteByArea(HttpServletRequest request) {
+		return mDAO.getCampingSiteByArea(request.getParameter("area"));
 	}
 }

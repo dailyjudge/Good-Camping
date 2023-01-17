@@ -138,8 +138,8 @@ create sequence cv_count_seq
 select * from camping_site
 where c_addr1 like '%강원도%'
 
-select c_no, nvl(cv_viewcount, -1) as cv_viewcount
-from ( select c_no, cv_viewcount
+select * 
+from ( select *
 		from camping_site left outer join campingSite_view
 		on c_no = cv_siteNo
 		where cv_viewcount is not null

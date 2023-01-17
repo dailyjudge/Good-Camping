@@ -212,8 +212,78 @@ window.onload = function () {
 				$.ajax({
 					url: 'do.map.search',
 					data: {"area": area}
-				}).done(function(data) {
-					console.log(data);
+				}).done(function(obj) {
+					let campingSites = obj.campingSites;
+					// 가장 외부 div 비워주기
+					$('.camping-container').empty();
+					// 요소 하나하나 추가해주기.
+					
+					console.log(campingSites);
+					let count = 0;
+					
+					let reviewCount, c_no, siteLikeCount, cv_viewCount, c_firstImageUrl, c_doNm, c_sigunguNm, c_facltNm, c_lineIntro, c_addr1, c_tel, facilities;
+					for(let i = 0; i < campingSites.length; i++) {
+						let cv_viewCount = campingSites[i].cv_viewCount;
+						let reviewCount = campingSites[i].reviewCount;
+						let c_no = campingSites[i].c_no;
+						let siteLikeCount = campingSites[i].siteLikeCount;
+						let c_firstImageUrl = campingSites[i].c_firstImageUrl;
+						let c_doNm = campingSites[i].c_doNm;
+						let c_sigunguNm = campingSites[i].c_sigunguNm;
+						let c_facltNm = campingSites[i].c_facltNm;
+						let c_lineIntro = campingSites[i].c_lineIntro;
+						let c_addr1 = campingSites[i].c_addr1;
+						let c_tel = campingSites[i].c_tel;
+						let facilities = campingSites[i].facilities;
+						
+						$('.camping-container').append(
+						'<div class="camping-item-container">' +
+							'<div class="camping-item-desc">' + 
+								'<span class="camping-item-desc-item camping-item-desc-item1">관광사업자 등록업체</span>' +
+								'<span class="camping-item-desc-item camping-item-desc-item2">리뷰수' + reviewCount +'</span>' +
+								'<span class="camping-item-desc-item camping-item-desc-item3">조회수' + cv_viewCount + '</span>' +
+								'<span class="camping-item-desc-item camping-item-desc-item4">' +
+									'<img class="camping-like-img-tag" alt="" src="resources/camping-detail-icon/like.png">' +
+									'<span class="camping-like-count camping-like-count-' + c_no + '">' + siteLikeCount + '</span>' +
+								'</span>' +
+							'</div>' +
+							'<div class="camping-item-box-container">' +
+								'<div class="camping-item-img-container">' +
+									'<img src="' + c_firstImageUrl + '" onerror="this.src="resources/camping-search-img/campingSiteDefaultImg.png" alt = "">' +  
+								'</div>' +
+								'<div class="camping-item-desc2">' + 
+									'<div class="camping-item-desc2-title camping-item-desc2-header">' +
+										'<a href="go.camping.detail?c_no=' + c_no +'">[' + c_doNm + ' ' + c_sigunguNm + '] ' + c_facltNm + '</a>' +
+									'</div>' + 
+									'<div class="camping-item-desc2-title camping-item-desc2-content">' +
+										'<a href="go.camping.detail?c_no=' + c_no + '">' + c_lineIntro + '</a>' +
+									'</div>' +
+									'<div class="camping-item-desc2-title camping-item-desc2-info">' +
+										'<img class="camping-item-desc2-title-icon-position" src="resources/facilities-icon/position.png" alt="">' +
+										'<span>' + c_addr1 + '</span>' +
+										'<img class="camping-item-desc2-title-icon-phone" src="resources/facilities-icon/phoneCall.png" alt="">' +
+										'<span>' + c_tel + '</span>' + 
+									'</div>' + 
+								'</div>' +
+							'</div>' +
+							'<div class="camping-item-facilities camping-item-facilities-' + c_no + '">' +
+								'<div class="camping-item-facilities-items">' + 
+							'</div>' + 
+						'</div>'
+						);
+						
+						// 사진 처리
+						for(let i = 0; i < facilities.length; i++) {
+							$('.camping-item-facilities-' + c_no).append(
+								'<div class="camping-item-facilities-items">' +
+									'<img class="camping-item-facilities-icon" src="' + facilities[i].image + '" alt="">' + 
+									'<span>' + facilities[i].desc + '</span>' +
+								'</div>'
+							);
+						}
+						
+					}
+					
 				})
 			};
 
