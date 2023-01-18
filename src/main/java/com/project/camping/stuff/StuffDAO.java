@@ -244,16 +244,17 @@ public class StuffDAO {
 		s.setS_no(Integer.parseInt(req.getParameter("items")));
 		System.out.println(Integer.parseInt(req.getParameter("items")));
 		StuffDTO sDTO = ss.getMapper(StuffMapper.class).getStuff(s);
-
+		req.setAttribute("sDTO", sDTO);
 		c.setSc_amount(1);
 		c.setSc_stuff_no(sDTO.getS_no());
 		c.setS_price(Integer.parseInt(sDTO.getS_price()));
 		c.setS_title(sDTO.getS_title());
 		c.setS_image(sDTO.getS_image());
-
+		
 		List<CartDTO> carts = new ArrayList<CartDTO>();
 		carts.add(c);
 
+			
 		req.setAttribute("carts2", carts);
 	}
 
@@ -372,7 +373,7 @@ public class StuffDAO {
 			String stuffname = ""; // 상품이름
 			String itemName = ""; // 결제창에 보일 이름
 			int totalprice = 0; // 총액
-			int stuffamount = 0; // 상품개수
+			int stuffamount =1; // 상품개수
 			String userid = ""; // 사용자 id
 			String item = req.getParameter("items");
 			// ,
@@ -415,6 +416,11 @@ public class StuffDAO {
 				StuffDTO s = new StuffDTO();
 				s.setS_no(Integer.parseInt(item));
 				goBuyNow(s, req);
+				StuffDTO sDTO =  (StuffDTO) req.getAttribute("sDTO");
+				itemName = sDTO.getS_title();
+				totalprice = Integer.parseInt(sDTO.getS_price());
+				stuffamount = 1;
+				
 			}
 			
 			
@@ -595,7 +601,10 @@ public class StuffDAO {
 			// 결제 승인 됐으니 넘겼었던 100,200 번 상품들 주문 완료 테이블에 인서트 하고
 			// 주문 완료 페이지에서 써야되니까 바로 그거 다 꺼내서 list에 담기
 			String num = (String) req.getSession().getAttribute("cartNumbers");
-			String nums[] = num.split(",");
+			if(num != null) {
+				String nums[] = num.split(",");
+			}
+			
 			
 		/*	for (String s : nums) {
 						ss.getMapper(StuffMapper.class).
