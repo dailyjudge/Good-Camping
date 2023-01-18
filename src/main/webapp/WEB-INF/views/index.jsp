@@ -55,6 +55,11 @@
 
 <script type="text/javascript" src="resources/js/campingDetailReview.js"></script>
 
+<script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+  
 <style type="text/css">
 .areaDiv {
 	margin: 0;

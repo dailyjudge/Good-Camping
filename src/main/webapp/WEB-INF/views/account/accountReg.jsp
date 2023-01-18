@@ -43,6 +43,7 @@ $("#ac_file").on('change',function(){
 						<span class="placehold-text"><input name="ac_id" id="ac_id" type="email"
 							placeholder="ex) asd@naver.com"></span> 
 							<button type="button" onclick="checkidsame()">중복 확인</button>
+							<br><span id="check-id-result"></span>
 					</div>
 
 					<div class="account_type">

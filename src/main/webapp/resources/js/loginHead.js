@@ -156,14 +156,43 @@ function signUpCheck(){
 	
 function checkidsame(){
 	var id = document.getElementById('ac_id');
-	let idValue = document.getElementById("ac_id").value;
+	let idValue = id.value;
 	   
 	if(idValue == ""){
       alert("아이디를 입력하시오."); 
       id.focus();
- 	}
-  else{
-	location.href='check.id?ac_id2='+idValue;
+ 	} else{
+ 	
+	//location.href='check.id?ac_id2='+idValue;
+	
+	// ajax : 비동기 통신 기술
+	// url : 어디로 보낼지?
+	// data : parameter로 뭘 보낼지?
+	// dataType : 어떤걸 받을지?
+	// contentType : 어떤걸 보낼지?
+	// success : 성공했을 때 실행할 콜백 (함수)
+	// onError : 실패했을 때 
+	
+	$.ajax({
+		url: "check.id",
+		data: {
+			"ac_id2" : idValue
+			}
+	}).done(function(res){
+	//0 or 1
+			if(res == 0) {
+				//check-id-result
+				// 현재 텍스트 :$('#check-id-result').text();
+				// 값 세팅 $('#check-id-result').text(값);
+				$('#check-id-result').css('color', 'green');
+				$('#check-id-result').text('가능합니다');
+				console.log('가능합니다.');
+			} else {
+				console.log('불가합니다.');
+				$('#check-id-result').css('color', 'red');
+				$('#check-id-result').text('불가합니다');
+			}
+		})
 	}
 }
 

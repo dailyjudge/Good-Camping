@@ -62,6 +62,6 @@
 </tr>
 
 </table>
-
+<button onclick="location.href='delete_account?this_id=' + ${sessionScope.loginAccount.ac_id }">회원 탈퇴</button>
 </body>
 </html>
