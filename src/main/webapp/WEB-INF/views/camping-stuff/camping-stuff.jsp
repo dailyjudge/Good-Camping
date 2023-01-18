@@ -49,9 +49,7 @@
 
 			</c:if>
 			<c:if test="${sp != stuffCount }">
-
 				<button  class="custom-btn btn-15" onclick="location.href='do.stuff.change?sp=${sp +1}'">다음 페이지</button>
-
 			</c:if>
 		</div>
 
