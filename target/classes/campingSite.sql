@@ -113,11 +113,14 @@ create table campingSite_like(
 	cl_siteNo number(7) not null
 );
 
+select * from account, camping
 create sequence campingSite_like_seq;
+
+delete campingSite_like
 
 select * from campingSite_like;
 
-insert into campingSite_like values(campingSite_like_seq.nextval, 'test', 13268);
+insert into campingSite_like values(campingSite_like_seq.nextval, 'test2', 17371);
 
 -- 사이트 정보를 조회수 순으로 나오게끔!
 select *
@@ -130,5 +133,30 @@ FROM camping_site, campingSite_view ;
 select * from camping_site left outer join campingSite_view
 on c_no = cv_siteNo
 order by cv_viewcount desc
+
+-- 유저가 좋아요 누른 사이트 정보 받아오기
+select camping_site.*
+from account, camping_site, campingSite_like
+where ac_id = cl_userId and cl_siteNo = c_no
+and ac_id = 'test'
+
+select * from campingSite_like
+
+-- 사이트 정보에 따른 리뷰 체크
+select avg(cr_star) 
+from camping_site, campingSite_review
+where c_no = cr_campingSiteNo and c_no = 17362
+
+select round(avg(cr_star), 2)
+from camping_site, campingSite_review
+where c_no = cr_campingSiteNo and c_no = 17851
+
+
+select * from camping_site, campingSite_view
+where c_no = cv_siteNo
+
+
+
+
 
 

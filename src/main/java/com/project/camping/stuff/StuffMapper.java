@@ -28,4 +28,15 @@ public interface StuffMapper {
 
 	StuffDTO getStuff(StuffDTO s);
 
+	CartDTO getOrderItem(CartDTO cDTO);
+
+	int insertOrderStuff(StuffOrderDTO soDTO);
+
+	int insertOrderList(CartDTO ctDto);
+
+	int deleteCart(CartDTO ctDto);
+
+	List<StuffOrderDTO> getOrderNum(AccountDTO a);
+
+
 }

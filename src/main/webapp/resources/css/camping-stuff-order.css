@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+
+#order-div {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+.stuff-order-no {
+  margin-top: 30px;
+  /* border: 1px solid blue; */
+  border-bottom: 0.5px solid rgb(157, 157, 157);
+}
+
+.stuff-in-order {
+  border-bottom: 0.5px solid #cecece;
+  /* border: 1px solid pink; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.stuff-order-list {
+  width: 60%;
+}
+
+.stuff-in-order img {
+  width: 100px;
+  height: 100px;
+  /* border: 1px solid green; */
+  margin: 10px;
+}
+
+.stuff-in-order-title {
+  /* border: 1px solid pink; */
+  margin: auto 0px;
+}
+
+.stuff-in-order-price {
+  /* border: 1px solid blueviolet; */
+  min-width: fit-content;
+  margin: auto 0px;
+}
+
+.stuff-order-paymentdiv {
+  /* border: 1px solid brown; */
+  border-bottom: 0.5px solid rgb(157, 157, 157);
+  margin-top: 60px;
+}
+
+.stuff-order-price {
+  border: 1px solid green;
+  display: flex;
+}
+
+.stuff-order-totalPrice span,
+.stuff-order-paymenttool span,
+.stuff-order-date span,
+.stuff-order-number span,
+.stuff-order-tel span,
+.stuff-order-addrress span,
+.stuff-order-username span {
+  font-size: 15px;
+  color: rgb(157, 157, 157);
+  font-weight: 900;
+}
+
+.stuff-order-totalPrice,
+.stuff-order-paymenttool,
+.stuff-order-number,
+.stuff-order-username,
+.stuff-order-date,
+.stuff-order-tel,
+.stuff-order-addrress {
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid green; */
+  margin-top: 20px;
+}
+
+.stuff-order-info {
+  border-bottom: 0.5px solid rgb(157, 157, 157);
+  margin-top: 60px;
+}
+
+.stuff-order-addrinfo {
+  border-bottom: 0.5px solid rgb(157, 157, 157);
+  margin-top: 60px;
+}

@@ -78,13 +78,8 @@ public class StuffController {
 	public String stuffCart(HttpServletRequest req) {
 
 		sDAO.getAllCart(req);
-		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
-
-		if (a == null) {
-			req.setAttribute("loginPage", "account/login.jsp");
-		} else {
-			req.setAttribute("loginPage", "account/login_done.jsp");
-		}
+		
+		aDAO.loginCheck(req);
 		req.setAttribute("contentPage", "camping-stuff/camping-stuff-cart.jsp");
 		return "index";
 	}
@@ -94,6 +89,7 @@ public class StuffController {
 	public int deleteCartItem(CartDTO c, HttpServletRequest req) {
 		return sDAO.deleteCartItem(c);
 	}
+	
 	@RequestMapping(value = "/do.insert.cart", method = RequestMethod.GET)
 	@ResponseBody
 	public int insertCart(StuffDTO s, HttpServletRequest req) {
@@ -106,6 +102,17 @@ public class StuffController {
 		aDAO.loginCheck(req);
 		
 		req.setAttribute("contentPage", "camping-stuff/camping-stuff-payment.jsp");
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/go.stuff.buy", method = RequestMethod.POST)
+	public String goBuyNow(StuffOrderDTO soDTO, HttpServletRequest req) {
+		
+		sDAO.orderPage(soDTO, req);
+		aDAO.loginCheck(req);
+		
+		req.setAttribute("contentPage", "camping-stuff/camping-stuff-order.jsp");
 		
 		return "index";
 	}

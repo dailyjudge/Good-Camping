@@ -83,7 +83,7 @@ public class MainDTO {
 	
 //  이미지 정보를 담을 배열
 	private List<facilityDTO> facilities;
-
+	
 //  리뷰 수를 담는 변수
 	private int reviewCount;
 
@@ -94,6 +94,12 @@ public class MainDTO {
 	private int siteLikeCount;
 //  유저가 좋아요를 눌렀는지 확인할 수 있는 변수 (1 : 좋아요, 2: x)
 	private int isLiked;
+	
+//	사이트 리뷰 별점 평점 - default 처리 위해 String(제공되지 않음)
+	private String reviewStarAvg;
+
+//	해시 태그를 담을 리스트
+	private List<String> hashtagList;
 	
 	public MainDTO() {
 		// TODO Auto-generated constructor stub
@@ -107,7 +113,8 @@ public class MainDTO {
 			String c_lineIntro, String c_mapX, String c_mapY, String c_operDeCl, String c_operPdCl,
 			String c_posblFcltyCl, String c_resveCl, String c_resveUrl, String c_sbrsCl, String c_tel,
 			String c_themaEnvrnCl, String c_toiletCo, String c_wtrplCo, String c_tooltip, List<facilityDTO> facilities,
-			int reviewCount, int siteViewCount, int siteLikeCount, int isLiked) {
+			int reviewCount, int siteViewCount, int siteLikeCount, int isLiked, String reviewStarAvg,
+			List<String> hashtagList) {
 		super();
 		this.c_no = c_no;
 		this.c_zipcode = c_zipcode;
@@ -152,6 +159,8 @@ public class MainDTO {
 		this.siteViewCount = siteViewCount;
 		this.siteLikeCount = siteLikeCount;
 		this.isLiked = isLiked;
+		this.reviewStarAvg = reviewStarAvg;
+		this.hashtagList = hashtagList;
 	}
 
 	public int getC_no() {
@@ -498,6 +507,22 @@ public class MainDTO {
 		this.isLiked = isLiked;
 	}
 
+	public String getReviewStarAvg() {
+		return reviewStarAvg;
+	}
+
+	public void setReviewStarAvg(String reviewStarAvg) {
+		this.reviewStarAvg = reviewStarAvg;
+	}
+
+	public List<String> getHashtagList() {
+		return hashtagList;
+	}
+
+	public void setHashtagList(List<String> hashtagList) {
+		this.hashtagList = hashtagList;
+	}
+
 	@Override
 	public String toString() {
 		return "MainDTO [c_no=" + c_no + ", c_zipcode=" + c_zipcode + ", c_addr1=" + c_addr1 + ", c_animalCmgCl="
@@ -514,8 +539,8 @@ public class MainDTO {
 				+ c_tel + ", c_themaEnvrnCl=" + c_themaEnvrnCl + ", c_toiletCo=" + c_toiletCo + ", c_wtrplCo="
 				+ c_wtrplCo + ", c_tooltip=" + c_tooltip + ", facilities=" + facilities + ", reviewCount=" + reviewCount
 				+ ", siteViewCount=" + siteViewCount + ", siteLikeCount=" + siteLikeCount + ", isLiked=" + isLiked
-				+ "]";
+				+ ", reviewStarAvg=" + reviewStarAvg + ", hashtagList=" + hashtagList + "]";
 	}
-	
+
 	
 }

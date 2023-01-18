@@ -8,6 +8,19 @@
 	delete camping_site
 </delete>
 <select id="getAllCampingSite" resultType="com.project.camping.main.MainDTO">
+<!-- 	select * from camping_site c, view v, like l
+	where c.like = l.no and v.no = c.siteno
+	order by 
+	<if test="like" != null>
+	view desc
+	</if>
+	<if test="like" != null>
+	like desc
+	</if>
+	<if test="like" != null>
+	review desc
+	</if>
+	offset #{start} rows fetch first 10 row only; -->
 	select * from camping_site
 </select>
 <select id="searchCampingSite" parameterType="com.project.camping.main.SearchDTO" resultType="com.project.camping.main.MainDTO">
@@ -79,4 +92,18 @@
 <delete id="deleteCampingSiteLike" parameterType="com.project.camping.main.LikeDTO">
 	delete campingSite_like where cl_userId = #{cl_userId} and cl_siteNo = #{cl_siteNo}
 </delete>
+<select id="getCampingSiteCount" resultType="int">
+	select count(*) from camping_site
+</select>
+<select id="getAllUserLikes" parameterType="String" resultType="com.project.camping.main.MainDTO">
+	select camping_site.* 
+	from account, camping_site, campingSite_like 
+	where ac_id = cl_userId and cl_siteNo = c_no 
+	and ac_id = #{userId}
+</select>
+<select id="getSiteReviewAvg" parameterType="com.project.camping.main.MainDTO" resultType="String">
+	select round(avg(cr_star), 2) 
+	from camping_site, campingSite_review 
+	where c_no = cr_campingSiteNo and c_no = #{c_no}
+</select>
 </mapper>

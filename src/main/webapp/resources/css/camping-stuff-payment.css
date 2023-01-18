@@ -1,116 +1,148 @@
 @charset "UTF-8";
 
 .stuff-payment-page {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
+
 .stuff-payment-list {
-  width: 60%;
-  margin: auto 0;
-  /* border: 2px solid orangered; */
-  margin-top: 10px;
+	width: 60%;
+	margin: auto 0;
+	/* border: 2px solid orangered; */
+	margin-top: 10px;
 }
+
 .stuff-payment-orderstuff {
-  width: 100%;
-  /* border: 1px solid pink; */
-  margin: auto 0px;
-  border-bottom: 1px solid rgb(157, 157, 157);
+	width: 100%;
+	/* border: 1px solid pink; */
+	margin: auto 0px;
+	border-bottom: 1px solid rgb(157, 157, 157);
 }
+
 .stuff-in-cart-title {
-  margin: auto 0px;
-  /* border: 2px solid red; */
-  font-weight: 500;
-  width: 50%;
-  align-items: center;
-  font-size: 15px;
+	margin: auto 0px;
+	/* border: 2px solid red; */
+	font-weight: 500;
+	width: 50%;
+	align-items: center;
+	font-size: 15px;
 }
+
 .stuff-in-cart-price {
-  margin: auto 0px;
-  margin-left: 10px;
-  /* border: 1px solid orange; */
-  font-weight: 500;
-  height: fit-content;
-  width: 20%;
-  min-width: fit-content;
+	margin: auto 0px;
+	margin-left: 10px;
+	/* border: 1px solid orange; */
+	font-weight: 500;
+	height: fit-content;
+	width: 20%;
+	min-width: fit-content;
 }
+
 .stuff-payment-userinfo {
-  /* border: 1px solid purple; */
-  border-bottom: 1px solid rgb(157, 157, 157);
+	/* border: 1px solid purple; */
+	border-bottom: 1px solid rgb(157, 157, 157);
 }
 
 .stuff-payment-addrinfo {
-  /* border: 1px solid red; */
-  border-bottom: 1px solid rgb(157, 157, 157);
-  margin-top: 60px;
+	/* border: 1px solid red; */
+	border-bottom: 1px solid rgb(157, 157, 157);
+	margin-top: 60px;
 }
-.stuff-payment-user-addr {
-  background-color: #3cb371;
-  color: #fff;
-  border: none;
-  /* height: 29px; */
-  padding: 2px 0;
-  width: 25%;
-  border-radius: 3px;
 
-  padding: 12px 0;
+.stuff-payment-user-addr {
+	background-color: #3cb371;
+	color: #fff;
+	border: none;
+	/* height: 29px; */
+	padding: 2px 0;
+	width: 25%;
+	border-radius: 3px;
+	padding: 12px 0;
 }
+
 .stuff-payment-addr-daum {
-  /* border: 1px solid blue; */
-  display: block;
-  margin-top: 20px;
+	/* border: 1px solid blue; */
+	display: block;
+	margin-top: 20px;
 }
+
 .stuff-payment-addr-daum input {
-  width: 40%;
-  height: 40px;
+	width: 40%;
+	height: 40px;
 }
 
 .stuff-payment-btn {
-  background-color: #3cb371;
-  color: white;
-  font-size: 20px;
-  padding: 10px;
-  width: 300px;
-  border-radius: 3px;
-  text-align: center;
-  cursor: pointer;
+	background-color: #3cb371;
+	font-size: 20px;
+	padding: 10px;
+	width: 300px;
+	border-radius: 3px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.stuff-payment-btn:hover {
+	background-color: #38A66C;
+}
+
+.stuff-payment-btn:hover .stuff-payment-btn-btn{
+	background-color: #38A66C;
+}
+
+.stuff-payment-btn button {
+	color: white;
+	border: none;
+	background-color: #3cb371;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	font-size: 1.1em;
+	text-align: center;
 }
 
 .stuff-payment-in-cart {
-  /* border: 1px solid brown; */
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 60px;
+	/* border: 1px solid brown; */
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 60px;
 }
 
 .stuff-payment-in-cart img {
-  width: 150px;
-  height: 150px;
-  /* border: 1px solid green; */
-  margin: 10px;
+	width: 150px;
+	height: 150px;
+	/* border: 1px solid green; */
+	margin: 10px;
 }
-.stuff-payment-user-name span,
-.stuff-payment-user-tel span {
-  margin-right: 100px;
-  margin-left: 20px;
-  font-weight: bold;
+
+.stuff-payment-user-name span, .stuff-payment-user-tel span {
+	margin-right: 100px;
+	margin-left: 20px;
+	font-weight: bold;
 }
+
 .stuff-payment-user-name {
-  padding: 12px 0;
+	padding: 12px 0;
 }
+
 .stuff-payment-user-tel {
-  padding: 12px 0;
+	padding: 12px 0;
 }
+
 .stuff-payment-addr-daum {
-  border-bottom: 1px solid rgb(157, 157, 157);
-  padding-bottom: 60px;
-  padding-top: 15px;
+	border-bottom: 1px solid rgb(157, 157, 157);
+	padding-bottom: 60px;
+	padding-top: 15px;
 }
+
 .stuff-payment-gobuy {
-  text-align: center;
-  /* border: 1px solid #006e51; */
-  display: flex;
-  justify-content: center;
-  margin-top: 60px;
-  margin-bottom: 60px;
+	text-align: center;
+	/* border: 1px solid #006e51; */
+	display: flex;
+	justify-content: center;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+#stuff-Address{
+ width: 40%;
 }
