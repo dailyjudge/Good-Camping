@@ -1,5 +1,6 @@
 package com.project.camping.stuff;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.camping.account.AccountDAO;
-import com.project.camping.account.AccountDTO;
 
 @Controller
 public class StuffController {
@@ -106,35 +106,129 @@ public class StuffController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/go.stuff.buy", method = RequestMethod.POST)
-	public String goBuyNow(StuffOrderDTO soDTO, HttpServletRequest req) {
-		
-		sDAO.orderPage(soDTO, req);
-		aDAO.loginCheck(req);
-		
-		req.setAttribute("contentPage", "camping-stuff/camping-stuff-order.jsp");
-		
-		return "index";
-	}
 	
 	@RequestMapping(value = "/go.stuff.payment", method = RequestMethod.GET)
 	public String goStuffPayment(HttpServletRequest req) {
 		
 		
 		sDAO.getPaymentItem(req);
-//		System.out.println("들어옴!!");
-//		System.out.println("a: " + aa);
-		
-//		String arr[] = aa.split(",");
-		
-//		System.out.println(arr.length);
-		
-//		System.out.println("내용들 뽑아보기");
-//		for (String s : arr) {
-//			// DB찌르기
-//		}
+
 		aDAO.loginCheck(req);
 		req.setAttribute("contentPage", "camping-stuff/camping-stuff-payment.jsp");
 		return "index";
 	}
+	
+/*
+	@RequestMapping("kakaopay")
+	@ResponseBody
+	public String kakaopay() {
+		
+		
+		URL address;
+		try {
+			address = new URL("https://kapi.kakao.com/v1/payment/ready");
+			HttpURLConnection conn =  (HttpURLConnection)address.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "KakaoAK 9f00a6c37ca4dae0706159881b447cec");
+			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+			conn.setDoOutput(true);
+
+			String parameter = "cid=TC0ONETIME"
+					+  "&partner_order_id=partner_order_id"
+					+ "&partner_user_id=partner_user_id"
+					+"&pg_token=pg_token"
+					+"&item_name=초코파이"
+					+ "&quantity=1"
+					+ "&total_amount=5000" 
+					+ "&vat_amount=200"
+					+ "&tax_free_amount=0" 
+					+"&approval_url=/go.stuff.buy"
+					+"&fail_url=http://localhost:8080/"
+					+"&cancel_url=http://localhost:8080/";
+			
+			
+			
+			OutputStream send  =  conn.getOutputStream();
+			DataOutputStream dataSend =  new DataOutputStream(send);
+			dataSend.writeByte(parameter);
+			dataSend.close();
+			
+			
+			
+			int result = conn.getResponseCode();
+			InputStream receive;
+			
+			if (result == 200) {
+				
+				receive = conn.getInputStream();
+				
+			}else {
+				
+				receive =  conn.getErrorStream();
+			}
+			
+			InputStreamReader read =  new InputStreamReader(receive);
+			
+			BufferedReader change =  new BufferedReader(read);
+			
+			return change.readLine();
+
+
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+
+	}
+	
+	*/
+	
+	@ResponseBody
+	@RequestMapping(value = "/kakao.ready.popup", method = RequestMethod.POST, produces="application/json")
+	public String goKakaopayBuy(StuffOrderDTO soDTO, HttpServletRequest req) {
+		return sDAO.kakaoPopup(soDTO,req);
+	}
+
+	@RequestMapping(value = "/go.stuff.buy.popup", method = RequestMethod.GET)
+	public String goStuffBuyPopup(StuffOrderDTO soDTO, HttpServletRequest req) {
+		//sDAO.kakaoPay2(req);
+		return "camping-stuff/kakaoSuccess";
+	}
+
+	@RequestMapping(value = "/do.stuff.buy.popup", method = RequestMethod.GET)
+	public String doStuffBuyPopup(StuffOrderDTO soDTO, HttpServletRequest req) {
+		sDAO.kakaoPay2(req);
+		aDAO.loginCheck(req);
+		req.setAttribute("contentPage", "camping-stuff/camping-stuff-order.jsp");
+		return "index";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "go.kakao.ready", method = RequestMethod.POST, produces="application/json")
+	public String goKakaopayReady(StuffOrderDTO soDTO, HttpServletRequest req) {
+//		sDAO.paymentconfirm(sDAO.kakaoPayReady(soDTO,req));
+		return "redirect:"+sDAO.kakaoPayReady(soDTO,req);
+	}
+	
+	
+	
+	@RequestMapping(value = "/go.stuff.buy", method = RequestMethod.GET)
+	public String goBuyNow(StuffOrderDTO soDTO, HttpServletRequest req) {
+		
+//		sDAO.orderPage(soDTO, req);
+		aDAO.loginCheck(req);
+		sDAO.kakaoPay2(req);
+		req.setAttribute("contentPage", "camping-stuff/camping-stuff-order.jsp");
+		
+		return "index";
+	}
+	
+	
+	
+	
+	
 }

@@ -60,6 +60,8 @@ public class StuffOrderItemDTO {
 	public void setSoi_sc_amount(int soi_sc_amount) {
 		this.soi_sc_amount = soi_sc_amount;
 	}
+
+
 	
 	
 	

@@ -11,13 +11,14 @@ public class StuffOrderDTO {
 	private String so_user_detailAddr;
 	private Date so_date;
 	private String so_data;
+	private int ordertotalmoney;
 	
 	public StuffOrderDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public StuffOrderDTO(int so_no, String so_user_id, int so_user_zoncode, String so_user_addr,
-			String so_user_detailAddr, Date so_date, String so_data) {
+			String so_user_detailAddr, Date so_date, String so_data, int ordertotalmoney) {
 		super();
 		this.so_no = so_no;
 		this.so_user_id = so_user_id;
@@ -26,6 +27,7 @@ public class StuffOrderDTO {
 		this.so_user_detailAddr = so_user_detailAddr;
 		this.so_date = so_date;
 		this.so_data = so_data;
+		this.ordertotalmoney = ordertotalmoney;
 	}
 
 	public int getSo_no() {
@@ -84,11 +86,20 @@ public class StuffOrderDTO {
 		this.so_data = so_data;
 	}
 
+	public int getOrdertotalmoney() {
+		return ordertotalmoney;
+	}
+
+	public void setOrdertotalmoney(int ordertotalmoney) {
+		this.ordertotalmoney = ordertotalmoney;
+	}
+
 	@Override
 	public String toString() {
 		return "StuffOrderDTO [so_no=" + so_no + ", so_user_id=" + so_user_id + ", so_user_zoncode=" + so_user_zoncode
 				+ ", so_user_addr=" + so_user_addr + ", so_user_detailAddr=" + so_user_detailAddr + ", so_date="
-				+ so_date + ", so_data=" + so_data + "]";
+				+ so_date + ", so_data=" + so_data + ", ordertotalmoney=" + ordertotalmoney + "]";
 	}
-	
+
+
 }
