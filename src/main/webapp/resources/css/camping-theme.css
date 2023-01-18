@@ -81,3 +81,8 @@
     background-color: #38A66C;
 }
 
+
+/* 지도로 검색 */
+.camping-search-map-main-container {
+	display: none;
+}

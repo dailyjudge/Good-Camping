@@ -214,15 +214,56 @@ function checkCompletion(){
 		alert("인증번호가 다릅니다.");
 	}
 }
-    function sendSMS(){
-		let sendToNum = document.getElementById("phone").value;
+
+function sendSMS(){
+	let sendToNum = document.getElementById("phone").value;
+		
+		
+		var phone = document.getElementById('phone');
+		let sendto = document.getElementById('phone').value;
+		
+		if(sendto == ""){
+			alert("휴대폰 번호를 입력하시오."); 
+			phone.focus();
+			return;
+		}
 		
   		document.getElementById("completion").disabled = false;
   		
-  		location.href='sendSms.do?num='+sendToNum;
+  		$.ajax({
+  			url: "sendSms.do",
+  			data: {
+  				"num" : sendToNum
+  				}
+  		}).done(function(res) {
+			$('#Random-num-input').val(res);
+			alert(res);
+		})
     }
     function checkCompletion(){
-    	let makeNumCheck = document.getElementById("makeNumCheck").value;
+    	
+    	let ranNum = $('#Random-num-input').val();
+    	let userNum = $('#makeNumCheck').val();
+    	
+    	console.log(typeof ranNum);
+    	console.log(typeof userNum);
+    	
+    	console.log(ranNum == userNum);
+    	
+    	if(userNum == '') {
+    		alert("인증번호를 입력하세요.");
+    		return;
+    	}
+    	
+    	if(ranNum == userNum) {
+    		alert("본인 인증에 성공하였습니다.");
+    		$('#regSubmit').attr("disabled", 'false');
+    	} else {
+    		alert("본인 인증에 실패하였습니다.");
+    		$("#makeNumCheck").focus();
+    	}
+    	
+    /*	let makeNumCheck = document.getElementById("makeNumCheck").value;
     	var resultNum = document.getElementById( 'completion' ).getAttribute( 'value' );
     	var check2 = document.getElementById("makeNumCheck");
     	
@@ -237,7 +278,7 @@ function checkCompletion(){
 	    }else{
 	    	alert("인증코드를 입력하시오");
 	    	check2.focus();
-	    }
+	    }*/
     }
       function changeImg(event) {
         let reader = new FileReader();
@@ -255,3 +296,50 @@ function checkCompletion(){
         };
         reader.readAsDataURL(event.target.files[0]);
       }
+      
+      
+      
+function findPw2(){
+	//pwFind_id 이메일 
+    //pwFind_name 이름
+    
+	let pwFind_id = $('#pwFind_id').val();
+    let pwFind_name = $('#pwFind_name').val();	  
+    
+    // 예외처리 부분
+    
+    
+    $.ajax({
+    	url: "searchPW.do",
+    	type: "POST",
+    	data: {
+    		"pwFind_id" : pwFind_id,
+    		"pwFind_name" : pwFind_name
+    	}
+    }).done(function(res) {
+		alert(res);
+		
+		if(res != 0) {
+			$('.account-auth').css('display','block');
+			$('#pwFind-auth-hidden').val(res);
+		}
+	});
+}
+
+function goChangePw2() {
+	// 이름, 아이디, 인증번호 받기
+//	$('#pwFind_auth').val()
+	//pwFind-auth-hidden
+	
+	let originNum = $('#pwFind-auth-hidden').val();
+	let userNum = $('#pwFind_auth').val();
+	
+	if(originNum == userNum) {
+		//이름과 id 받기
+		
+		let ac_id = $('#pwFind_id').val();
+	    
+	    location.href = 'changePw.after.findPw.go?ac_id=' + ac_id; 
+	}
+	
+}

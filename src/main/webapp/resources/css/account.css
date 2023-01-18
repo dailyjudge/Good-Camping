@@ -209,3 +209,10 @@ a {
     justify-content: center;
   }
 }
+
+
+/* 비밀번호 찾기 */
+
+.account-auth {
+	display: none;
+}

@@ -120,8 +120,12 @@ delete campingSite_like
 
 select * from campingSite_like;
 
-insert into campingSite_like values(campingSite_like_seq.nextval, 'test2', 17371);
+insert into campingSite_like values(campingSite_like_seq.nextval, 'test3', 17191);
 
+select * from campingSite_like
+where cl_siteno = 17191
+
+delete campingSite_like where cl_siteno = 17191
 -- 사이트 정보를 조회수 순으로 나오게끔!
 select *
 from camping_site, campingSite_view
@@ -130,9 +134,109 @@ where c_no left outer join cv_siteNo
 SELECT * 
 FROM camping_site, campingSite_view ;
 
-select * from camping_site left outer join campingSite_view
-on c_no = cv_siteNo
-order by cv_viewcount desc
+select * from campingSite_view
+
+
+create sequence cv_count_seq
+
+select * from camping_site
+where c_addr1 like '%강원도%'
+
+select * 
+from ( select *
+		from camping_site left outer join campingSite_view
+		on c_no = cv_siteNo
+		where cv_viewcount is not null
+		and c_donm like '%제주%'
+		order by cv_viewcount desc
+	 )
+where rownum <= 10;
+
+-- dailyjudge
+-- 
+
+select count(*)
+from
+(select camping_site.*, nvl(cv_viewcount, 0) as cv_viewcount, nvl(likecount, 0) as likecount
+	from (camping_site left outer join campingSite_view
+	on c_no = cv_siteNo) left outer join (select cl_siteno, count(cl_siteno) as likecount
+							from campingSite_like
+							group by cl_siteno)
+						on c_no = cl_siteno
+	
+order by cv_viewcount desc, likecount desc)
+
+-- campingSite_view > cv_no, cv_siteNo, cv_viewCount
+-- campingSite_like > cl_no, cl_userId, cl_siteNo
+-- campingSite_review > cr_no, cr_campingSiteNo, cr_author, cr_title, cr_star, cr_content, cr_date
+
+select camping_site.*, nvl(cv_viewcount, 0) as cv_viewcount, nvl(siteLikeCount, 0) as siteLikeCount, nvl(reviewcount, 0) as reviewcount
+from (camping_site left outer join campingSite_view
+	  on c_no = cv_siteNo) 
+	  left outer join 
+	  (select cl_siteno, count(cl_siteno) as siteLikeCount
+	   from campingSite_like
+	   group by cl_siteno)
+	   on c_no = cl_siteno
+	   left outer join
+	  (select cr_campingSiteno, count(cr_campingSiteno) as reviewcount
+	   from campingSite_review
+	   group by cr_campingSiteNo
+		)
+	  on cl_siteno = cr_campingSiteno
+order by cv_viewcount desc, siteLikeCount desc, reviewcount desc
+
+
+select cl_siteno, count(cl_siteno)
+from campingSite_like
+group by cl_siteno
+
+select count(*), cl_userid, cl_siteno from campingSite_like
+group by cl_userid, cl_siteno
+order by count(*) desc
+
+select * from campingSite_like
+where cl_userid = 'test' and cl_siteno = 17371
+
+select * from campingSite_like
+delete campingSite_like where cl_no = 325
+
+select count(c_no), c_no from camping_Site
+
+select count(*)
+	from (camping_site left outer join campingSite_view
+	on c_no = cv_siteNo), (select count(*) as likeCount
+					from camping_site left outer join campingSite_like
+					on c_no = cl_siteno
+					group by c_no)
+order by cv_viewcount desc, likecount desc
+
+select * 
+from (camping_site left outer join campingSite_view on c_no = cv_siteNo)
+
+
+
+
+
+
+
+select count(*) from campingSite_view where cv_siteNo = 17191
+
+-- 데이터 넣기
+insert into campingSite_view values(campingSite_view_seq.nextval, 17152, 8);
+
+-- 19300 17841
+-- 가데이터 조회
+select * from camping_site where c_donm like '%대구%' order by c_no
+-- 16588 16688 16703 16704 16745 16853 16931 16942 16997 17152
+
+-- 에러잡기용
+select count(*) as count, cv_siteno from campingSite_view
+group by cv_siteno
+order by count desc
+
+-- 에러 삭제
+delete campingSite_view where cv_siteno = 18824
 
 -- 유저가 좋아요 누른 사이트 정보 받아오기
 select camping_site.*
@@ -157,6 +261,17 @@ where c_no = cv_siteNo
 
 
 
-
-
-
+select camping_site.*, NVL(cv_viewcount, 0) as cv_viewcount, NVL(siteLikeCount, 0) as siteLikeCount, NVL(reviewCount, 0) as reviewCount
+	from (camping_site left outer join campingSite_view
+	 	  on c_no = cv_siteNo) 
+	  	left outer join 
+	  (select cl_siteno, count(cl_siteno) as siteLikeCount
+	   from campingSite_like
+	   group by cl_siteno)
+	   on c_no = cl_siteno
+	   left outer join
+	  (select cr_campingSiteno, count(cr_campingSiteno) as reviewCount
+	   from campingSite_review
+	   group by cr_campingSiteNo)
+	  on cl_siteno = cr_campingSiteno
+where c_donm like '%충청북도%' and ROWNUM <= 10
