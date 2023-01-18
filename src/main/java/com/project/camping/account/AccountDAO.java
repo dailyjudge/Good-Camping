@@ -1,29 +1,80 @@
 package com.project.camping.account;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.context.request.SessionScope;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 
 @Service
 public class AccountDAO {
 	@Autowired
 	SqlSession ss;
-
-	public void login(HttpServletRequest request) {
-		// 추후에 변경해야 함. 자동 로그인
-		String ac_id = "test";
-		String ac_pw = "1111";
-		String ac_name = "민규";
-		String ac_img = "aa.jpg";
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
+	
+	public void login(HttpServletRequest req, AccountDTO ac) {
+		//post input
+		String id2 = req.getParameter("ac_id");
+		String pw2 = req.getParameter("ac_pw");
+		String loginallways = "";
+		loginallways = req.getParameter("loginallways");
 		
-		AccountDTO a = new AccountDTO(ac_id, ac_pw, ac_name, ac_img);
+		ac.setAc_id(id2);
+		ac.setAc_pw(pw2);
 		
-		request.getSession().setAttribute("loginAccount", a);
-		request.getSession().setMaxInactiveInterval(60 * 10);
+		AccountDTO a2 = ss.getMapper(AccountMapper.class).getAccountById(ac);
+		
+		if(a2 != null) {
+			if(ac.getAc_pw().equals(a2.getAc_pw())) {
+				req.getSession().setAttribute("loginAccount", a2);
+				if(loginallways == null) {
+					req.getSession().setMaxInactiveInterval(60*10);
+				}else if(loginallways.equals("on")) {
+					req.getSession().setMaxInactiveInterval(60*200);
+				}
+			}else {
+				req.setAttribute("r", "로그인 실패 -> pw오류");
+			}
+		}else {
+			req.setAttribute("r", "로그인 실패 -> 미가입 id");
+		}
+		
 	}
 
 	public void loginCheck(HttpServletRequest request) {
@@ -36,6 +87,273 @@ public class AccountDAO {
 			request.setAttribute("loginPage", "account/login_done.jsp");
 		}
 	}
-	
-	
+	public void logout(HttpServletRequest req) {
+		req.getSession().setAttribute("loginAccount", null);
+	}
+	public int idCheck(HttpServletRequest req) {
+		String ac_id2 = req.getParameter("ac_id2");
+		System.out.println(ac_id2);
+		
+		// check : 1이면 x, 0이면 o				
+		return ss.getMapper(AccountMapper.class).getIdCheck(ac_id2);
+//		if(check.equals(ac_id2)) {
+//			req.setAttribute("idCheckResult", "no");
+//		}else {
+//			req.setAttribute("idCheckResult", "ok");
+//		}
+//		req.setAttribute("ac_id2", ac_id2);
+	}
+	public void alertAndBack(HttpServletResponse response, String msg) {
+	    try {
+	        response.setContentType("text/html; charset=utf-8");
+	        PrintWriter w = response.getWriter();
+	        w.write("<script>alert('"+msg+"');history.go(-1);</script>");
+	        w.flush();
+	        w.close();
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	public void accoutRegDo(HttpServletRequest req, Model m, AccountDTO ac){
+		String path = req.getSession().getServletContext().getRealPath("resources/profilePic");
+		MultipartRequest mr = null;
+		try {
+			mr = new MultipartRequest(req, path, 31457200, "utf-8", new DefaultFileRenamePolicy());
+			
+			ac.setAc_id(mr.getParameter("ac_id"));
+			ac.setAc_pw(mr.getParameter("ac_pw"));
+			ac.setAc_name(mr.getParameter("ac_name"));
+			ac.setAc_birth(mr.getParameter("ac_birth"));
+			ac.setAc_phone(mr.getParameter("ac_phone"));
+			ac.setAc_postcode(mr.getParameter("ac_postcode"));
+			
+			ac.setAc_address(mr.getParameter("ac_address"));
+			ac.setAc_detailAddress(mr.getParameter("ac_detailAddress"));
+			ac.setAc_extraAddress(mr.getParameter("ac_extraAddress"));
+			ac.setAc_gender(mr.getParameter("ac_gender"));
+			
+			String ac_file = mr.getFilesystemName("ac_file");
+			ac.setAc_file(ac_file);
+			req.setAttribute("accountInfo", ac);
+			
+			AccountMapper mm = ss.getMapper(AccountMapper.class);
+			if(mm.accountRegDoIt(ac)==1) {
+				req.setAttribute("r", "등록 성공");
+			} else {
+				req.setAttribute("r", "등록 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			String fileName = mr.getFilesystemName("ac_file");
+			new File(path+"/"+fileName).delete();
+			req.setAttribute("r", "가입 실패");
+			
+		}
+		
+		
+	}
+
+	public void doFindId(HttpServletRequest req) {
+		String sr_name = req.getParameter("sr_name");
+		String sr_phone = req.getParameter("sr_phone");
+		
+		//map 이용해서 
+		Map<String, String> findId = new HashMap<String, String>();
+		findId.put("ac_name", sr_name);
+		findId.put("ac_phone", sr_phone);
+		
+		AccountMapper mm = ss.getMapper(AccountMapper.class);
+		String userId = mm.GoFindId(findId);
+		if(userId.equals(null)) {
+			req.setAttribute("userId", "해당 회원은 존재하지 않습니다.");
+		}else {
+			req.setAttribute("userId", userId);
+		}
+		
+	}
+	public int sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
+			String ac_id = (String)req.getParameter("pwFind_id");
+			String name = (String)req.getParameter("pwFind_name");
+			
+			AccountMapper mm = ss.getMapper(AccountMapper.class);
+			AccountDTO vo = mm.selectAccount(ac_id);
+			
+			// 실제로 아이디가 존재한다면.
+			if(vo != null) {
+				Random r = new Random();
+				int num = r.nextInt(9999); // 랜덤난수설정
+			  
+//				session.setAttribute("num", num);
+//				session.setAttribute("the_id", ac_id);
+				
+			if (vo.getAc_name().equals(name)) {
+//				 session.setAttribute("email", vo.getAc_id());
+
+				 String setfrom = "jun19975@naver.com"; // naver 
+				 String tomail = ac_id; //받는사람
+				 String title = "[삼삼하개] 비밀번호변경 인증 이메일 입니다"; 
+				 String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+						+ "삼삼하개 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+				try {
+					MimeMessage message = mailSender.createMimeMessage();
+					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+					messageHelper.setFrom(setfrom); 
+					messageHelper.setTo(tomail); 
+					messageHelper.setSubject(title);
+					messageHelper.setText(content); 
+
+					mailSender.send(message);
+					System.out.println("전송 완료");
+					
+					return num;
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			
+			return 0;
+	}
+			return 0;
 }
+	public void checkMailPw(HttpServletRequest req,HttpSession session) {
+		String pw1 = req.getParameter("pw1");
+		String pw2 = req.getParameter("pw2");
+		String pw3 = req.getParameter("pw3");
+		String pw4 = req.getParameter("pw4");
+		String sum = pw1+pw2+pw3+pw4;
+		
+		String num = (String) session.getAttribute("num");
+		
+		//sum의 값과 인증코드가 맞으면 비밀번호 update 페이지로
+		if(num.equals(sum)) {
+			req.setAttribute("contentPage", "account/PwUpdate.jsp");
+		}else {
+			// 실패했을 때 (서로 안 맞는 경우) -> 실패 페이지 보내주기
+			req.setAttribute("contentPage", "account/find_Id_pw.jsp");
+		}
+	}
+
+	public void resetPw(HttpServletRequest req, AccountDTO a) {
+		AccountMapper mm = ss.getMapper(AccountMapper.class);
+		
+		if(mm.updatePw(a) ==1) {
+			req.setAttribute("r", "비밀번호 재설정 성공");
+		}else {
+			req.setAttribute("r", "비밀번호 재설정 실패");
+		}
+	}
+
+	public String sendSms_Do(HttpServletRequest request) {
+			System.out.println("들어옴!!");
+			System.out.println(request.getAttribute("num"));
+			
+			Random random = new Random();		//랜덤 함수 선언
+			int createNum = 0;  			//1자리 난수
+			String ranNum = ""; 			//1자리 난수 형변환 변수
+	        int letter    = 6;			//난수 자릿수:6
+			String resultNum = "";  		//결과 난수
+			
+			for (int i=0; i<letter; i++) { 
+				createNum = random.nextInt(9);		//0부터 9까지 올 수 있는 1자리 난수 생성
+				ranNum =  Integer.toString(createNum);  //1자리 난수를 String으로 형변환
+				resultNum += ranNum;			//생성된 난수(문자열)을 원하는 수(letter)만큼 더하며 나열
+			}
+			
+//			request.setAttribute("resultNum", resultNum);
+			
+		  String api_key = "NCSMH2UDME7WGBSB";
+		  String api_secret = "DF0VOHPG4VCEU4LI7PIQQKEDHIKKUTL8";
+		  Message coolsms = new Message(api_key, api_secret);
+	
+		  HashMap<String, String> set = new HashMap<String, String>();
+		  set.put("to", request.getParameter("num")); // 수신번호
+		  
+	      set.put("from","01075042792"); // 발신번호, jsp에서 전송한 발신번호를 받아 map에 저장한다.
+	      set.put("text", resultNum);
+		  set.put("type", "sms"); // 문자 타입
+		  set.put("app_version", "test app 1.2"); 
+		  
+		  System.out.println(set);
+		  try {
+		  JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+		  
+		  return resultNum;
+	    } catch (CoolsmsException e) {
+	      System.out.println(e.getMessage());
+	      System.out.println(e.getCode());
+	    }
+		  return null;
+	}
+
+	public void makeNaverUrl(HttpServletRequest request, Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		
+		//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+		//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		System.out.println("네이버:" + naverAuthUrl);
+		
+		//네이버 
+		model.addAttribute("url", naverAuthUrl);
+		
+	}
+	public void naver_reg(HttpServletRequest req, HttpSession session, AccountDTO ac){
+			String ac_id = (String) session.getAttribute("reg_id");
+			String ac_gender = (String) session.getAttribute("reg_gender");
+			String ac_email = (String) session.getAttribute("reg_email");
+			String ac_name = (String) session.getAttribute("reg_name");
+			
+			String ac_birthyear = (String) session.getAttribute("reg_birthyear");
+			ac_birthyear = ac_birthyear.substring(2); 
+			String ac_birthday = (String) session.getAttribute("reg_birthday");
+			ac_birthday = ac_birthday.replace("-", "");
+			String ac_birth = ac_birthyear + ac_birthday;
+			
+			String ac_profile = (String) session.getAttribute("reg_profile");
+			String ac_phone = (String) session.getAttribute("reg_phone");
+			
+			ac.setAc_id(ac_email);
+			ac.setAc_gender(ac_gender);
+			ac.setAc_pw(req.getParameter("ac_pw"));
+			ac.setAc_name(ac_name);
+			ac.setAc_birth(ac_birth);
+			ac.setAc_phone(ac_phone);
+			
+			ac.setAc_postcode(req.getParameter("ac_postcode"));
+			ac.setAc_address(req.getParameter("ac_address"));
+			ac.setAc_detailAddress(req.getParameter("ac_detailAddress"));
+			ac.setAc_extraAddress(req.getParameter("ac_extraAddress"));
+			
+			ac.setAc_gender(ac_gender);
+			
+			ac.setAc_file(ac_profile);
+			
+			req.setAttribute("accountInfo", ac);
+			
+			AccountMapper mm = ss.getMapper(AccountMapper.class);
+			if(mm.accountRegDoIt(ac)==1) {
+				req.setAttribute("r", "등록 성공");
+				req.getSession().setAttribute("loginAccount", ac);
+			} else {
+				req.setAttribute("r", "등록 실패");
+			}
+			
+
+}
+
+//	public void deleteAccount(HttpServletRequest req, HttpSession session, AccountDTO ac) {
+//		String ac_id = req.getParameter("this_id");
+//		
+//		AccountMapper mm = ss.getMapper(AccountMapper.class);
+//		
+//		if(mm.GoDeleteAccount(ac_id)==1) {
+//			req.setAttribute("r", "탈퇴 성공");
+//		} else {
+//			req.setAttribute("r", "탈퇴 실패");
+//		}
+//		
+//	}
+
+}
+	

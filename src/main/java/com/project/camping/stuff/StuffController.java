@@ -76,7 +76,8 @@ public class StuffController {
 
 	@RequestMapping(value = "/go.stuff.cart", method = RequestMethod.GET)
 	public String stuffCart(HttpServletRequest req) {
-
+		
+		req.setAttribute("Click", 2);
 		sDAO.getAllCart(req);
 		
 		aDAO.loginCheck(req);

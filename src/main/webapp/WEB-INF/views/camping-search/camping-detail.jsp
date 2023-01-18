@@ -80,9 +80,9 @@
     </div>
 
     <div class="camping-datail-list-type-item">
-      <span>
+      <p>
         ${m.c_intro }
-      </span>
+      </p>
     </div>
 
     <div class="camping-datail-list-type-item camping-detail-list-type-additional">

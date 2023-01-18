@@ -162,17 +162,15 @@ create table stuff(
 
 -- 테이블 세개. 상품, 주문, 주문 상품
 -- s_no = soi_stuff_no
-select so_no, s_no, s_title, s_price, soi_sc_amount, so_date, so_user_zonecode, so_user_addr, so_user_detailaddr
-from stuff, stuff_order, stuff_order_items 
-where s_no = soi_stuff_no and so_no = soi_so_no and so_no = #{so_no}
->>>>>>> fd4b6b28995bdd6e4e8e459a9513b996a08cced4
 
-select sc_cart_id, sc_stuff_no, so_user_id, sc_amount, s_title, s_image, s_price
-from stuff, stuff_cart 
-where sc_stuff_no = s_no
-
-so_user_id = 'test' order by so_date desc
-
-
+select * from stuff_order order by so_date desc
+select * from stuff_cart
+select * from stuff_order_items
+delete stuff_order_items
+delete stuff_order
+select sc_stuff_no, sc_amount, s_title, s_image, s_price
+from stuff, stuff_cart
+where s_no = sc_stuff_no
+and sc_cart_id = 67 
 
 

@@ -79,4 +79,16 @@ $(function(){
 		})
 		location.href = data;
 	});
+    
+    $('.convert').click(function() {
+		let val = $('.camping-search-theme-main-container').css('display');
+		
+		if(val == 'none') {
+			$('.camping-search-map-main-container').css('display', 'none');
+			$('.camping-search-theme-main-container').css('display', 'block');
+		} else {
+			$('.camping-search-map-main-container').css('display', 'block');
+			$('.camping-search-theme-main-container').css('display', 'none');
+		}
+	})
 });
