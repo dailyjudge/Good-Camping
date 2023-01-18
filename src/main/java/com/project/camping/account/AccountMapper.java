@@ -14,7 +14,7 @@ public interface AccountMapper {
 
 	AccountDTO selectAccount(String ac_id);
 
-	int updatePw(Map<String, String> findPw);
+	int updatePw(AccountDTO a);
 
 	AccountDTO getAccountByEmail(String email);
 

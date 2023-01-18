@@ -4,27 +4,42 @@
 <insert id="insertCampingData" parameterType="com.project.camping.main.MainDTO">
 	insert into camping_site values(camping_site_seq.nextval, #{c_zipcode}, #{c_addr1}, #{c_animalCmgCl}, #{c_bizrno}, #{c_brazierCl}, #{c_caravAcmpnyAt}, #{c_caravInnerFclty}, #{c_caravSiteCo}, #{c_clturEventAt}, #{c_trlerAcmpnyAt}, #{c_exprnProgrmAt}, #{c_clturEvent}, #{c_doNm}, #{c_sigunguNm}, #{c_exprnProgrm}, #{c_facltNm}, #{c_firstImageUrl}, #{c_glampInnerFclty}, #{c_glampSiteCo}, #{c_gnrlSiteCo}, #{c_homepage}, #{c_insrncAt}, #{c_intro}, #{c_lineIntro}, #{c_mapX}, #{c_mapY}, #{c_operDeCl}, #{c_operPdCl}, #{c_posblFcltyCl}, #{c_resveCl}, #{c_resveUrl}, #{c_sbrsCl}, #{c_tel}, #{c_themaEnvrnCl}, #{c_toiletCo}, #{c_wtrplCo}, #{c_tooltip})
 </insert>
+
 <delete id="deleteAlldata">
 	delete camping_site
 </delete>
-<select id="getAllCampingSite" resultType="com.project.camping.main.MainDTO">
-<!-- 	select * from camping_site c, view v, like l
-	where c.like = l.no and v.no = c.siteno
-	order by 
-	<if test="like" != null>
-	view desc
-	</if>
-	<if test="like" != null>
-	like desc
-	</if>
-	<if test="like" != null>
-	review desc
-	</if>
-	offset #{start} rows fetch first 10 row only; -->
-	select * from camping_site
+
+<select id="getAllCampingSite2" resultType="com.project.camping.main.MainDTO">
+	select camping_site.*, NVL(cv_viewcount, 0) as cv_viewcount, NVL(siteLikeCount, 0) as siteLikeCount, NVL(reviewCount, 0) as reviewCount
+	from (camping_site left outer join campingSite_view
+	 	  on c_no = cv_siteNo) 
+	  	left outer join 
+	  (select cl_siteno, count(cl_siteno) as siteLikeCount
+	   from campingSite_like
+	   group by cl_siteno)
+	   on c_no = cl_siteno
+	   left outer join
+	  (select cr_campingSiteno, count(cr_campingSiteno) as reviewCount
+	   from campingSite_review
+	   group by cr_campingSiteNo)
+	  on cl_siteno = cr_campingSiteno
+	  order by cv_viewcount DESC, siteLikeCount DESC, reviewCount DESC
 </select>
+
 <select id="searchCampingSite" parameterType="com.project.camping.main.SearchDTO" resultType="com.project.camping.main.MainDTO">
-	select * from camping_site 
+	select camping_site.*, NVL(cv_viewcount, 0) as cv_viewcount, NVL(siteLikeCount, 0) as siteLikeCount, NVL(reviewCount, 0) as reviewCount
+	from (camping_site left outer join campingSite_view
+	 	  on c_no = cv_siteNo) 
+	  	left outer join 
+	  (select cl_siteno, count(cl_siteno) as siteLikeCount
+	   from campingSite_like
+	   group by cl_siteno)
+	   on c_no = cl_siteno
+	   left outer join
+	  (select cr_campingSiteno, count(cr_campingSiteno) as reviewCount
+	   from campingSite_review
+	   group by cr_campingSiteNo)
+	  on cl_siteno = cr_campingSiteno
 	where (c_doNm like '%'||#{sido1}||'%' and c_sigunguNm like '%'||#{gugun1}||'%') 
 	and
 	(c_addr1 like '%'||#{searchValue}||'%' or
@@ -41,6 +56,7 @@
 	c_sbrscl like '%'||#{searchValue}||'%' or
 	c_themaenvrncl like '%'||#{searchValue}||'%' or
 	c_tooltip like '%'||#{searchValue}||'%')
+	order by cv_viewcount DESC, siteLikeCount DESC, reviewCount DESC 
 </select>
 <select id="getCampingSite" resultType="com.project.camping.main.MainDTO">
 	select * from camping_site where c_no = #{c_no}

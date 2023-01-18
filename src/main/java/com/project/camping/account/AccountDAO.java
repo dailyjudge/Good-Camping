@@ -172,23 +172,25 @@ public class AccountDAO {
 		}
 		
 	}
-	public void sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
+	public int sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
 			String ac_id = (String)req.getParameter("pwFind_id");
 			String name = (String)req.getParameter("pwFind_name");
-
+			
 			AccountMapper mm = ss.getMapper(AccountMapper.class);
 			AccountDTO vo = mm.selectAccount(ac_id);
-				
-			if(vo != null) {
-			Random r = new Random();
-			int num = r.nextInt(9999); // 랜덤난수설정
-			session.setAttribute("num", num);
-			session.setAttribute("the_id", ac_id);
 			
+			// 실제로 아이디가 존재한다면.
+			if(vo != null) {
+				Random r = new Random();
+				int num = r.nextInt(9999); // 랜덤난수설정
+			  
+//				session.setAttribute("num", num);
+//				session.setAttribute("the_id", ac_id);
+				
 			if (vo.getAc_name().equals(name)) {
-				session.setAttribute("email", vo.getAc_id());
+//				 session.setAttribute("email", vo.getAc_id());
 
-				 String setfrom = "jun19975"; // naver 
+				 String setfrom = "jun19975@naver.com"; // naver 
 				 String tomail = ac_id; //받는사람
 				 String title = "[삼삼하개] 비밀번호변경 인증 이메일 입니다"; 
 				 String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
@@ -203,11 +205,17 @@ public class AccountDAO {
 					messageHelper.setText(content); 
 
 					mailSender.send(message);
+					System.out.println("전송 완료");
+					
+					return num;
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
 			}
+			
+			return 0;
 	}
+			return 0;
 }
 	public void checkMailPw(HttpServletRequest req,HttpSession session) {
 		String pw1 = req.getParameter("pw1");
@@ -227,24 +235,20 @@ public class AccountDAO {
 		}
 	}
 
-	public void resetPw(HttpServletRequest req, AccountDTO a, HttpSession session) {
-		String ac_pw = (String)req.getParameter("re_Pw");
-		String the_id = (String) session.getAttribute("the_id");
-		
-		//map 이용해서 
-		Map<String, String> findPw = new HashMap<String, String>();
-		findPw.put("ac_pw", ac_pw);
-		findPw.put("ac_id", the_id);
-		
+	public void resetPw(HttpServletRequest req, AccountDTO a) {
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
-		if(mm.updatePw(findPw) ==1) {
+		
+		if(mm.updatePw(a) ==1) {
 			req.setAttribute("r", "비밀번호 재설정 성공");
 		}else {
 			req.setAttribute("r", "비밀번호 재설정 실패");
 		}
 	}
 
-	public void sendSms_Do(HttpServletRequest request) {
+	public String sendSms_Do(HttpServletRequest request) {
+			System.out.println("들어옴!!");
+			System.out.println(request.getAttribute("num"));
+			
 			Random random = new Random();		//랜덤 함수 선언
 			int createNum = 0;  			//1자리 난수
 			String ranNum = ""; 			//1자리 난수 형변환 변수
@@ -252,19 +256,19 @@ public class AccountDAO {
 			String resultNum = "";  		//결과 난수
 			
 			for (int i=0; i<letter; i++) { 
-	            		
 				createNum = random.nextInt(9);		//0부터 9까지 올 수 있는 1자리 난수 생성
 				ranNum =  Integer.toString(createNum);  //1자리 난수를 String으로 형변환
 				resultNum += ranNum;			//생성된 난수(문자열)을 원하는 수(letter)만큼 더하며 나열
 			}
-			request.setAttribute("resultNum", resultNum);
+			
+//			request.setAttribute("resultNum", resultNum);
 			
 		  String api_key = "NCSMH2UDME7WGBSB";
 		  String api_secret = "DF0VOHPG4VCEU4LI7PIQQKEDHIKKUTL8";
 		  Message coolsms = new Message(api_key, api_secret);
 	
 		  HashMap<String, String> set = new HashMap<String, String>();
-		  set.put("to", request.getParameter("phone_num")); // 수신번호
+		  set.put("to", request.getParameter("num")); // 수신번호
 		  
 	      set.put("from","01075042792"); // 발신번호, jsp에서 전송한 발신번호를 받아 map에 저장한다.
 	      set.put("text", resultNum);
@@ -274,12 +278,13 @@ public class AccountDAO {
 		  System.out.println(set);
 		  try {
 		  JSONObject result = coolsms.send(set); // 보내기&전송결과받기
-	
-		  System.out.println(result.toString());
+		  
+		  return resultNum;
 	    } catch (CoolsmsException e) {
 	      System.out.println(e.getMessage());
 	      System.out.println(e.getCode());
 	    }
+		  return null;
 	}
 
 	public void makeNaverUrl(HttpServletRequest request, Model model, HttpSession session) {

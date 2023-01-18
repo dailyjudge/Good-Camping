@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="resources/js/loginHead.js" />
 <link rel="stylesheet" href="resources/css/account-reg.css" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){
 $("#ac_file").on('change',function(){
@@ -82,8 +83,9 @@ $("#ac_file").on('change',function(){
 						<h4><label for="phone">휴대폰 번호</label></h4>
 							<input id="phone" type="text" name="phone" title="전화번호 입력" oninput="autoHyphen(this)" size="13" maxlength="13" placeholder=" '-' 입력 X" required/>
 							    <button type="button"  id="sendMessage" onclick="sendSMS()">인증번호 전송</button> <br>
+							    <input id="Random-num-input" type="hidden" value="123456	">
 							    <input id="makeNumCheck" type="text" size="13" maxlength="6">
-					            <button type="button" value="${resultNum}" id="completion" onclick="checkCompletion()">인증확인</button>
+					            <button type="button"  id="completion" onclick="checkCompletion()">인증확인</button>
 					</div>
 
 </div>
@@ -116,7 +118,7 @@ $("#ac_file").on('change',function(){
 		</div>
 	</div>
 
-  <script>
+<!--   <script>
     function sendSMS(){
     	var phone = document.getElementById('phone');
     	let sendto = document.getElementById('phone').value;
@@ -127,7 +129,7 @@ $("#ac_file").on('change',function(){
 		location.href="sendSms.do?phone_num="+sendto;
 		}
     }
-  </script>
+  </script> -->
   
 </body>
 </html>

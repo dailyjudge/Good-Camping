@@ -128,14 +128,15 @@ public class StuffDAO {
 		int count = 12;
 		int start = (sp - 1) * count + 1;
 		int end = start + (count - 1);
-
+		
+		end = stuffs.size() < end ? stuffs.size() : end;
+		
 		List<StuffDTO> stuffs2 = new ArrayList<StuffDTO>();
-
+		
 		for (int i = start - 1; i < end; i++) {
 			stuffs2.add(stuffs.get(i));
-
 		}
-
+		
 		int stuffCount = (int) Math.ceil(stuffs.size() / (double) count);
 
 		req.setAttribute("stuffCount", stuffCount);

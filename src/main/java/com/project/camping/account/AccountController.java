@@ -112,9 +112,12 @@ public class AccountController {
 
 	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
 	public String myPageGo(HttpServletRequest req, Model m, AccountDTO a) {
-		AccountDTO b = (AccountDTO) req.getSession().getAttribute("loginAccount");
-
-		return "account/myPage";
+		aDAO.loginCheck(req);
+		
+		req.setAttribute("Click", 3);
+		req.setAttribute("contentPage", "account/myPage.jsp");
+		
+		return "index";
 	}
 	
 	    //
@@ -154,20 +157,18 @@ public class AccountController {
 	    }
 	    //메일로 임시코드 보내기
 	    @RequestMapping(value="/searchPW.do", method=RequestMethod.POST)
-	    public String doFindPW(HttpSession session, HttpServletRequest req, HttpServletResponse response){
+	    @ResponseBody
+	    public int doFindPW(HttpSession session, HttpServletRequest req, HttpServletResponse response){
 	    	
-	    	//메일 보내기
-	    	aDAO.sendPW_byMail(req,session,response);
-	    	
-	    	aDAO.loginCheck(req);
-	    	req.setAttribute("contentPage", "account/searchPwResult.jsp");
-	    	
-	    	return "index";
+	    	return aDAO.sendPW_byMail(req,session,response);
 	    }
-	    // 메일 인증코드와 입력한 값 비교 -> 비밀번호 재설정(update) 부분
+	    // 비밀번호 재설정
 	    @RequestMapping(value="/changePw.after.findPw.go", method=RequestMethod.GET)
-	    public String changePwGo(HttpServletRequest req,HttpSession session){
-	    	aDAO.checkMailPw(req,session);
+	    public String changePwGo(AccountDTO aDTO, HttpServletRequest req,HttpSession session){
+//	    	aDAO.checkMailPw(req,session);
+	    	
+	    	// 비밀번호 바꾸게 하고 재로그인하게 유도
+	    	req.setAttribute("ac_id", aDTO.getAc_id());
 	    	
 	    	aDAO.loginCheck(req);
 	    	req.setAttribute("contentPage", "account/PwUpdate.jsp");
@@ -176,12 +177,13 @@ public class AccountController {
 	    }
 	    //비밀번호 update 후 -> 다시 로그인 화면
 	    @RequestMapping(value="/changePw.after.findPw.do", method=RequestMethod.POST)
-	    public String changePwDo(HttpSession session, HttpServletRequest req , AccountDTO a){
-	    	req.setAttribute("contentPage", "account/loginHead.jsp");
+	    public String changePwDo(HttpServletRequest req , AccountDTO a){
 	    	
-	    	aDAO.resetPw(req,a,session);
+	    	aDAO.resetPw(req, a);
+	    	
 	    	aDAO.loginCheck(req);
 	    	
+	    	req.setAttribute("contentPage", "account/loginHead.jsp");
 	    	return "index";
 	    }
 	    // 처음 로그인 화면으로 돌아가기
@@ -196,14 +198,9 @@ public class AccountController {
 	    
 	    // 휴대폰 인증 (회원가입)
 	    	@RequestMapping(value = "/sendSms.do")
+	    	@ResponseBody
 	    	public String sendSms(HttpServletRequest request) throws Exception {
-	    		
-	    		aDAO.sendSms_Do(request);
-	    		
-				aDAO.loginCheck(request);
-				request.setAttribute("contentPage", "account/accountReg.jsp");
-
-	    	  return "index";
+	    	  return aDAO.sendSms_Do(request);
 	    	}
 	    	
 //네아로
@@ -295,17 +292,17 @@ public class AccountController {
 		    	return "index";
 		    }
 	    	
-	    	@RequestMapping(value="/delete_account", method=RequestMethod.GET)
-		    public String delete_account(HttpSession session, HttpServletRequest req, AccountDTO ac){
-		    	
-	    		aDAO.deleteAccount(req, session,ac);
-	    		
-				aDAO.loginCheck(req);
-				req.setAttribute("contentPage", "home.jsp");
-				
-		    	return "index";
-		    }
-	    	
+//	    	@RequestMapping(value="/delete_account", method=RequestMethod.GET)
+//		    public String delete_account(HttpSession session, HttpServletRequest req, AccountDTO ac){
+//		    	
+//	    		aDAO.deleteAccount(req, session,ac);
+//	    		
+//				aDAO.loginCheck(req);
+//				req.setAttribute("contentPage", "home.jsp");
+//				
+//		    	return "index";
+//		    }
+//	    	
 	    	
 	    	
 }

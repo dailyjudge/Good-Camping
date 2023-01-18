@@ -70,9 +70,9 @@ function findWay() {
 		// 총 소요시간(s)
 		let duration = Math.floor(routes_data.summary.duration / 3600) + "시간" + Math.floor((routes_data.summary.duration % 3600) / 60) + "분"; 
 		// 택시 요금 (원)
-		let feeOfTaxi = routes_data.summary.fare.taxi + "원";
+		let feeOfTaxi = routes_data.summary.fare.taxi.toLocaleString() + "원";
 		// 톨게이트비(원)
-		let feeOfTollGate = routes_data.summary.fare.toll + "원";
+		let feeOfTollGate = routes_data.summary.fare.toll.toLocaleString() + "원";
 		
 		console.log("distance : " + distance);
 		console.log("duration : " + duration);
