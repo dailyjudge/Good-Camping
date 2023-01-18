@@ -9,8 +9,8 @@
 <body>
 
 <form action="changePw.after.findPw.do">
-<input type="text" id="re_Pw" name="re_Pw">
-<button>비밀번호 재설정</button>
+	<input type="text" id="re_Pw" name="re_Pw">
+	<button>비밀번호 재설정</button>
 </form>
 </body>
 </html>

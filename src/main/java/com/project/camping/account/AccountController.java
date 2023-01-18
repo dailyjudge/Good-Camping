@@ -1,14 +1,15 @@
 package com.project.camping.account;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
-
+import com.github.scribejava.core.model.OAuth2AccessToken;
 @Controller
 public class AccountController {
+	
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
+	@Autowired
+	SqlSession ss;
 	
 	@Autowired
 	private AccountDAO aDAO;
@@ -44,8 +54,10 @@ public class AccountController {
 		request.setAttribute("contentPage", "home.jsp");
 		return "index";
 	}
-	@RequestMapping(value = "/go.Login.Head", method = RequestMethod.GET)
-	public String goLoginHead(HttpServletRequest request) {
+	@RequestMapping(value = "/go.Login.Head", method = {RequestMethod.GET, RequestMethod.POST })
+	public String goLoginHead(HttpServletRequest request,Model model, HttpSession session) {
+		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		aDAO.makeNaverUrl(request,model,session);
 		
 		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "account/loginHead.jsp");
@@ -84,8 +96,10 @@ public class AccountController {
 	public String accountRegDo(HttpServletRequest req, Model m, AccountDTO a) throws IOException {
 
 		aDAO.accoutRegDo(req, m, a);
-
-		return "account/loginHead";
+		
+		aDAO.loginCheck(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "index";
 	}
 
 //	@RequestMapping(value = "/login.go", method = RequestMethod.POST)
@@ -103,48 +117,14 @@ public class AccountController {
 		return "account/myPage";
 	}
 	
-	// 네이버 로그인 (return 수정 필요)
-	 @RequestMapping("/naver.do")
-	    public String naver() {
-	        return "account/naver_login";
-	    }
-	    
-	    
-	    @RequestMapping(value="/callback", method=RequestMethod.GET)
-	    public String callBack(){
-	        return "account/callback";
-	    }
-	    
-	    @RequestMapping(value="naverSave", method=RequestMethod.POST)
-	    public @ResponseBody String naverSave(@RequestParam("ac_birth") String ac_birth, @RequestParam("ac_email") String ac_email, @RequestParam("ac_gender") String ac_gender,@RequestParam("ac_name") String ac_name) {
-	    System.out.println("#############################################");
-	    System.out.println(ac_birth);
-	    System.out.println(ac_email);
-	    System.out.println(ac_gender);
-	    System.out.println(ac_name);
-	    System.out.println("#############################################");
-	 
-	    AccountDTO naver = new AccountDTO();
-	    naver.setAc_birth(ac_birth);
-	    naver.setAc_id(ac_email);
-	    naver.setAc_gender(ac_gender);
-	    naver.setAc_name(ac_name);
-	    
-	    String result = "no";
-	    
-	    if(naver!=null) {
-	        result = "ok";
-	    }
-	 
-	    return result;
-	    
-	    }
-	    
+	    //
 	    @RequestMapping(value="/check.id", method=RequestMethod.GET)
-	    public String checkId(HttpServletRequest req){
-	    	aDAO.idCheck(req);
+	    @ResponseBody
+	    public int checkId(HttpServletRequest req){
+	    	//aDAO.idCheck(req);
 	    	
-	    	return "account/idCheck";
+//	    	return "account/idCheck";
+	    	return aDAO.idCheck(req);
 	    }
 	    // 아이디 or 비번 찾기
 	    @RequestMapping(value="/searchID.go", method=RequestMethod.GET)
@@ -196,12 +176,11 @@ public class AccountController {
 	    }
 	    //비밀번호 update 후 -> 다시 로그인 화면
 	    @RequestMapping(value="/changePw.after.findPw.do", method=RequestMethod.POST)
-	    public String changePwDo(HttpServletRequest req){
+	    public String changePwDo(HttpSession session, HttpServletRequest req , AccountDTO a){
 	    	req.setAttribute("contentPage", "account/loginHead.jsp");
 	    	
-	    	aDAO.resetPw(req);
+	    	aDAO.resetPw(req,a,session);
 	    	aDAO.loginCheck(req);
-	    	
 	    	
 	    	return "index";
 	    }
@@ -226,6 +205,108 @@ public class AccountController {
 
 	    	  return "index";
 	    	}
+	    	
+//네아로
+	    	//네이버 로그인 성공시 callback호출 메소드
+	    	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
+	    	public String callback(HttpServletRequest request,Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
+	    		
+	    		System.out.println("여기는 callback");
+	    		OAuth2AccessToken oauthToken;
+	            oauthToken = naverLoginBO.getAccessToken(session, code, state);
+	     
+	            //1. 로그인 사용자 정보를 읽어온다.
+	    		apiResult = naverLoginBO.getUserProfile(oauthToken);  //String형식의 json데이터
+	    		
+	    		/** apiResult json 구조
+	    		{"resultcode":"00",
+	    		 "message":"success",
+	    		 "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+	    		**/
+	    		
+	    		//2. String형식인 apiResult를 json형태로 바꿈
+	    		JSONParser parser = new JSONParser();
+	    		Object obj = parser.parse(apiResult);
+	    		JSONObject jsonObj = (JSONObject) obj;
+	    		
+	    		//3. 데이터 파싱 
+	    		//Top레벨 단계 _response 파싱
+	    		JSONObject response_obj = (JSONObject)jsonObj.get("response");
+	    		//response의 nickname값 파싱
+	    		String id = (String)response_obj.get("id");
+	    		String gender = (String)response_obj.get("gender");
+	    		String email = (String)response_obj.get("email");
+	    		String name = (String)response_obj.get("name");
+	    		String birthyear = (String)response_obj.get("birthyear");
+	    		String birthday = (String)response_obj.get("birthday");
+	    		String profile = (String)response_obj.get("profile_image");
+	    		String phone = (String)response_obj.get("mobile");
+	    		
+	    // db에 id가 있으면 -> 바로 로그인
+	    //네이버로 받은 값 출력 -> db에 저장
+	    //db에 id가 없으면 추가 정보 받고 로그인 -> db에 저장 
+	    //필요 정보 id/pw/name/birth/phone/주소들/gender/file
+	    		//if(email == 이미 존재) -> 해당account = setAttribute / content -> home.jsp
+	    		//id가 이미 있는지 확인
+	    		AccountDTO a2 = ss.getMapper(AccountMapper.class).getAccountByEmail(email);
+	    		
+	    		if(a2 != null) {
+	    			request.getSession().setAttribute("loginAccount", a2);
+	    			
+					aDAO.loginCheck(request);
+					request.setAttribute("contentPage", "home.jsp");
+					
+		    		return "index";
+	    		}else {
+		    		session.setAttribute("reg_id", id);
+		    		session.setAttribute("reg_gender", gender);
+		    		session.setAttribute("reg_email", email);
+		    		session.setAttribute("reg_name", name);
+		    		session.setAttribute("reg_birthyear", birthyear);
+		    		session.setAttribute("reg_birthday", birthday);
+		    		session.setAttribute("reg_profile", profile);
+		    		session.setAttribute("reg_phone", phone);
+		    		
 
-	    }
+		    		//request.getSession().setAttribute("loginAccount", a2);
+		    		
+		    		//4.파싱 닉네임 세션으로 저장
+		    		//session.setAttribute("loginAccount",ac_id); //세션 생성
+		    		session.setAttribute("sessionId",id);
+		    		model.addAttribute("result", apiResult);
+		    		
+					aDAO.loginCheck(request);
+					request.setAttribute("contentPage", "account/addMoreInfo.jsp");
+					
+		    		return "index";
+	    		}
+
+	    	}    	
+	    	
+	    	
+	    	@RequestMapping(value="/naver.addMoreInfo.do", method=RequestMethod.POST)
+		    public String naver_addmore(HttpSession session, HttpServletRequest req, AccountDTO ac){
+		    	
+	    		aDAO.naver_reg(req, session,ac);
+	    		
+				aDAO.loginCheck(req);
+				req.setAttribute("contentPage", "home.jsp");
+				
+		    	return "index";
+		    }
+	    	
+	    	@RequestMapping(value="/delete_account", method=RequestMethod.GET)
+		    public String delete_account(HttpSession session, HttpServletRequest req, AccountDTO ac){
+		    	
+	    		aDAO.deleteAccount(req, session,ac);
+	    		
+				aDAO.loginCheck(req);
+				req.setAttribute("contentPage", "home.jsp");
+				
+		    	return "index";
+		    }
+	    	
+	    	
+	    	
+}
 	    

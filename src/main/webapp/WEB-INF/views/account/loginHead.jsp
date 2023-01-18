@@ -8,8 +8,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LoginPage</title>
-<!-- 네아로 SDK -->
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
   
 <link rel="stylesheet" href="resources/css/loginHead.css" />
 <link rel="stylesheet" href="resources/js/kakao-login.js" />
@@ -23,7 +21,7 @@
 			<div class="login_sns2">
 				<li><a href="javascript:void(0)" onclick="kakaoLogin();"><img alt="" src="resources/social-img/Kakao_logo.jpg"></a></li>
 				<li><a href=""><i class="fab fa-google"></i></a></li>
-				<li><div id="naverIdLogin"><img alt="" src="resources/social-img/naver-image.png"></div></li>
+				<li><div id="naver_id_login"><a href="${url}"><img alt="" src="resources/social-img/naver-image.png"></a></div></li>
 			</div> 
 			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
@@ -42,6 +40,7 @@
 						<div class="checkbox">
 							<input type="checkbox" name="loginallways" value="on" id="loginallways">Remember
 							Me?
+							<label for="loginallways"></label>
 						</div>
 						<div class="forgot_pw2">
 							<a href="searchPW.go">비밀번호 찾기</a>

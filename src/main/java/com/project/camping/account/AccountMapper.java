@@ -1,6 +1,5 @@
 package com.project.camping.account;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public interface AccountMapper {
@@ -9,11 +8,15 @@ public interface AccountMapper {
 
 	AccountDTO getAccountById(AccountDTO a);
 
-	String getIdCheck(String ac_id2);
+	int getIdCheck(String ac_id2);
 
 	String GoFindId(Map<String, String> findId);
 
 	AccountDTO selectAccount(String ac_id);
+
+	int updatePw(Map<String, String> findPw);
+
+	AccountDTO getAccountByEmail(String email);
 
 
 }

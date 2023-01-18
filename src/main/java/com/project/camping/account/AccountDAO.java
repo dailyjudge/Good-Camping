@@ -37,6 +37,15 @@ public class AccountDAO {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
+	
 	public void login(HttpServletRequest req, AccountDTO ac) {
 		//post input
 		String id2 = req.getParameter("ac_id");
@@ -79,18 +88,18 @@ public class AccountDAO {
 	public void logout(HttpServletRequest req) {
 		req.getSession().setAttribute("loginAccount", null);
 	}
-	public void idCheck(HttpServletRequest req) {
+	public int idCheck(HttpServletRequest req) {
 		String ac_id2 = req.getParameter("ac_id2");
 		System.out.println(ac_id2);
 		
-		String check = ss.getMapper(AccountMapper.class).getIdCheck(ac_id2);
-		
-		if(check.equals(ac_id2)) {
-			req.setAttribute("idCheckResult", "no");
-		}else {
-			req.setAttribute("idCheckResult", "ok");
-		}
-		req.setAttribute("ac_id2", ac_id2);
+		// check : 1이면 x, 0이면 o				
+		return ss.getMapper(AccountMapper.class).getIdCheck(ac_id2);
+//		if(check.equals(ac_id2)) {
+//			req.setAttribute("idCheckResult", "no");
+//		}else {
+//			req.setAttribute("idCheckResult", "ok");
+//		}
+//		req.setAttribute("ac_id2", ac_id2);
 	}
 	public void alertAndBack(HttpServletResponse response, String msg) {
 	    try {
@@ -172,11 +181,12 @@ public class AccountDAO {
 			Random r = new Random();
 			int num = r.nextInt(9999); // 랜덤난수설정
 			session.setAttribute("num", num);
+			session.setAttribute("the_id", ac_id);
 			
 			if (vo.getAc_name().equals(name)) {
 				session.setAttribute("email", vo.getAc_id());
 
-				 String setfrom = "arizona19973@gmail.com"; // naver 
+				 String setfrom = "jun19975"; // naver 
 				 String tomail = ac_id; //받는사람
 				 String title = "[삼삼하개] 비밀번호변경 인증 이메일 입니다"; 
 				 String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
@@ -215,11 +225,21 @@ public class AccountDAO {
 		}
 	}
 
-	public void resetPw(HttpServletRequest req) {
+	public void resetPw(HttpServletRequest req, AccountDTO a, HttpSession session) {
 		String ac_pw = (String)req.getParameter("re_Pw");
-
+		String the_id = (String) session.getAttribute("the_id");
+		
+		//map 이용해서 
+		Map<String, String> findPw = new HashMap<String, String>();
+		findPw.put("ac_pw", ac_pw);
+		findPw.put("ac_id", the_id);
+		
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
-		//mm.
+		if(mm.updatePw(findPw) ==1) {
+			req.setAttribute("r", "비밀번호 재설정 성공");
+		}else {
+			req.setAttribute("r", "비밀번호 재설정 실패");
+		}
 	}
 
 	public void sendSms_Do(HttpServletRequest request) {
@@ -259,6 +279,74 @@ public class AccountDAO {
 	      System.out.println(e.getCode());
 	    }
 	}
+
+	public void makeNaverUrl(HttpServletRequest request, Model model, HttpSession session) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		
+		//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+		//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		System.out.println("네이버:" + naverAuthUrl);
+		
+		//네이버 
+		model.addAttribute("url", naverAuthUrl);
+		
+	}
+	public void naver_reg(HttpServletRequest req, HttpSession session, AccountDTO ac){
+			String ac_id = (String) session.getAttribute("reg_id");
+			String ac_gender = (String) session.getAttribute("reg_gender");
+			String ac_email = (String) session.getAttribute("reg_email");
+			String ac_name = (String) session.getAttribute("reg_name");
+			
+			String ac_birthyear = (String) session.getAttribute("reg_birthyear");
+			ac_birthyear = ac_birthyear.substring(2); 
+			String ac_birthday = (String) session.getAttribute("reg_birthday");
+			ac_birthday = ac_birthday.replace("-", "");
+			String ac_birth = ac_birthyear + ac_birthday;
+			
+			String ac_profile = (String) session.getAttribute("reg_profile");
+			String ac_phone = (String) session.getAttribute("reg_phone");
+			
+			ac.setAc_id(ac_email);
+			ac.setAc_gender(ac_gender);
+			ac.setAc_pw(req.getParameter("ac_pw"));
+			ac.setAc_name(ac_name);
+			ac.setAc_birth(ac_birth);
+			ac.setAc_phone(ac_phone);
+			
+			ac.setAc_postcode(req.getParameter("ac_postcode"));
+			ac.setAc_address(req.getParameter("ac_address"));
+			ac.setAc_detailAddress(req.getParameter("ac_detailAddress"));
+			ac.setAc_extraAddress(req.getParameter("ac_extraAddress"));
+			
+			ac.setAc_gender(ac_gender);
+			
+			ac.setAc_file(ac_profile);
+			
+			req.setAttribute("accountInfo", ac);
+			
+			AccountMapper mm = ss.getMapper(AccountMapper.class);
+			if(mm.accountRegDoIt(ac)==1) {
+				req.setAttribute("r", "등록 성공");
+				req.getSession().setAttribute("loginAccount", ac);
+			} else {
+				req.setAttribute("r", "등록 실패");
+			}
+			
+
+}
+
+//	public void deleteAccount(HttpServletRequest req, HttpSession session, AccountDTO ac) {
+//		String ac_id = req.getParameter("this_id");
+//		
+//		AccountMapper mm = ss.getMapper(AccountMapper.class);
+//		
+//		if(mm.GoDeleteAccount(ac_id)==1) {
+//			req.setAttribute("r", "탈퇴 성공");
+//		} else {
+//			req.setAttribute("r", "탈퇴 실패");
+//		}
+//		
+//	}
 
 }
 	

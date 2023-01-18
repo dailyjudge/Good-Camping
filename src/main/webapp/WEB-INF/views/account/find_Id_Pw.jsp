@@ -5,15 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<script type="text/javascript">
-const autoHyphen = (target) => {
-	target.value = target.value
-	.replace(/[^0-9]/g, '')
-	.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-	}
-</script>
 <link rel="stylesheet" href="resources/css/email-find.css" />
+<link rel="stylesheet" href="resources/js/email-find.js" />
 
 </head>
 <body>
@@ -21,7 +14,7 @@ const autoHyphen = (target) => {
 <div class="left_id">
 <div class="wrap3">
 <!-- 유효성 검사 추가하기 -->
-		<form action="searchID.do" name="IdSearch" method="post">
+		<form action="searchID.do" id ="IdSearch" name="IdSearch" method="post" onsubmit="return searchId()">
 				<div class="find">
 					<h2>E-mail 찾기</h2>
 					<div class="account_type">
@@ -33,7 +26,7 @@ const autoHyphen = (target) => {
 						<input type="text" name="sr_phone" id="sr_phone" oninput="autoHyphen(this)" maxlength="13"  placeholder=" (-) 자동입력">
 					</div>
 					<div class="submit">
-						<button>아이디 찾기</button> 
+						<button id="searchId" >아이디 찾기</button> 
 					</div>
 				</div>
 					<p align="center">
@@ -47,19 +40,19 @@ const autoHyphen = (target) => {
 <!-- pw 찾기 -->
 <div class="right_pw">
 		<div class="wrap3">
-		<form action="searchPW.do" name="PwSearch" method="post">
+		<form action="searchPW.do" name="PwSearch" id="PwSearch" method="post" onsubmit="return searchPw()">
 				<div class="find">
 					<h2>비밀번호 찾기</h2>
 					<div class="account_type">
 						<h4>이름</h4>
-						<input type="text" name="pwFind_name">
+						<input type="text" id="pwFind_name" name="pwFind_name">
 					</div>
 					<div class="account_type">
 						<h4>E-mail</h4>
-						<input type="email" name="pwFind_id" placeholder="이메일 형식">
+						<input type="email" id="pwFind_id" name="pwFind_id" placeholder="이메일 형식">
 					</div>
 					<div class="submit">
-						<button onclick="search()">비밀번호 찾기</button>
+						<button id="searchPw" >비밀번호 찾기</button>
 					</div>
 				</div>
 					<p align="center">

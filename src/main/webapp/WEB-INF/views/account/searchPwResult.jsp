@@ -63,6 +63,7 @@
 		  }, 50);
 		};
 </script>
+<link rel="stylesheet" href="resources/css/searchPwResult.css" />
 </head>
 <body>
 	${email }으로 보안 숫자가 발송되었습니다.
@@ -72,10 +73,10 @@
 	<!-- 유효성 검사 -->
 	<!-- 시간 3분 표시될 수 있게 토큰 이용 -->
 	<form action="changePw.after.findPw.go">
-		<input type="text" id="pw1" name="pw1" oninput="changeNum1()">
-		<input type="text" id="pw2" name="pw2" oninput="changeNum2()">
-		<input type="text" id="pw3" name="pw3" oninput="changeNum3()">
-		<input type="text" id="pw4" name="pw4" oninput="changeNum4()"> <br>
+		<input type="number" id="pw1" name="pw1" size="1" oninput="changeNum1()">
+		<input type="number" id="pw2" name="pw2" size="1" oninput="changeNum2()">
+		<input type="number" id="pw3" name="pw3" size="1" oninput="changeNum3()">
+		<input type="number" id="pw4" name="pw4" size="1" oninput="changeNum4()"> <br>
 		<button id="sendPw">인증</button>
 	</form>
 </body>

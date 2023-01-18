@@ -54,5 +54,8 @@
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</beans:bean>
-
+	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean class="com.project.camping.account.NaverLoginBO" id="naverLoginBO"/>
+	
 </beans:beans>
