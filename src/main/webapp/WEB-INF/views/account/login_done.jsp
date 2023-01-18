@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <nav id="top-menu-nav">
       <div id="top-menu-log">
         <a href="http://localhost:8080/camping/"> <img id="logo-img" src="resources/home_img/logo.png"/></a>
@@ -30,11 +28,21 @@
           
         </li>
         <li class="something-icon">
-          <a href="myPage.go" ><img src="resources/home_img/login.png" /></a>
+        
+          <c:choose>
+          	<c:when test="${Click == 3 }">
+ 	         <a href="myPage.go"><img src="resources/home_img/login_click.png" /></a>
+          	</c:when>
+			<c:otherwise>
+	          <a href="myPage.go"><img src="resources/home_img/login.png" /></a>
+			</c:otherwise>          
+          </c:choose>
         </li>
+        
         <li class="something-icon">
-          <button onclick="location.href='logout.do'">로그아웃(임시)</button>
+	          <img onclick="doLogout()" id="unlock-img" src="resources/home_img/unlock.png" />
         </li>
+        
       </ul>
       <ul id="top-menu-something2-ul">
         <li id="something-icon2">

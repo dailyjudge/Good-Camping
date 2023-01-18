@@ -1,5 +1,12 @@
 $(function () {
 	
+  $('#unlock-img').hover(function() {
+	$('#unlock-img').attr("src", "resources/home_img/unlock_click.png");
+  }, function() {
+	  $('#unlock-img').attr("src", "resources/home_img/unlock.png");
+  })
+	
+	
 	
   var slideIndex = 0;
 
@@ -327,3 +334,10 @@ $(function () {
 
       
 });
+
+
+function doLogout() {
+	if(confirm("로그아웃 하시겠습니까?")) {
+		location.href="logout.do";
+	}
+}
