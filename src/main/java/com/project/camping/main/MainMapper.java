@@ -44,5 +44,11 @@ public interface MainMapper {
 	int createCampingSiteLike(LikeDTO l);
 
 	int deleteCampingSiteLike(LikeDTO l);
+
+	int getCampingSiteCount();
+
+	List<MainDTO> getAllUserLikes(String userId);
+
+	String getSiteReviewAvg(MainDTO m);
 	
 }

@@ -40,7 +40,7 @@
 								<a href="go.camping.detail?c_no=${c.c_no }">[${c.c_doNm } ${c.c_sigunguNm }] ${c.c_facltNm }</a>
 								<c:choose>
 									<c:when test="${c.isLiked == 1 }">
-										<img onclick="heartClick('${c.c_no }')" class="camping-like-img" alt="" src="resources/camping-detail-icon/like.png">
+										<img onclick="heartClick('${c.c_no }')" class="camping-like-img camping-like-img-${c.c_no }" alt="" src="resources/camping-detail-icon/like.png">
 									</c:when>
 									<c:otherwise>
 										<img onclick="heartClick('${c.c_no}')" class="camping-like-img camping-like-img-${c.c_no }" alt="" src="resources/camping-detail-icon/not-like.png">

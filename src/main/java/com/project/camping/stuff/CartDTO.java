@@ -1,22 +1,30 @@
 package com.project.camping.stuff;
 
 public class CartDTO {
-
+	
+	// 기본키
 	private int sc_cart_id;
+	// 유저 id
 	private String sc_user_id;
+	// 상품 번호
 	private int sc_stuff_no;
+	// 상품 개수
 	private int sc_amount;
+	// 상품 이름
 	private String s_title;
+	// 상품 사진
 	private String s_image;
+	// 상품 가격
 	private int s_price;
 	private int money;
+	private int order_no;
 	
 	public CartDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public CartDTO(int sc_cart_id, String sc_user_id, int sc_stuff_no, int sc_amount, String s_title, String s_image,
-			int s_price, int money) {
+			int s_price, int money, int order_no) {
 		super();
 		this.sc_cart_id = sc_cart_id;
 		this.sc_user_id = sc_user_id;
@@ -26,6 +34,7 @@ public class CartDTO {
 		this.s_image = s_image;
 		this.s_price = s_price;
 		this.money = money;
+		this.order_no = order_no;
 	}
 
 	public int getSc_cart_id() {
@@ -92,12 +101,24 @@ public class CartDTO {
 		this.money = money;
 	}
 
+	public int getOrder_no() {
+		return order_no;
+	}
+
+	public void setOrder_no(int order_no) {
+		this.order_no = order_no;
+	}
+
 	@Override
 	public String toString() {
 		return "CartDTO [sc_cart_id=" + sc_cart_id + ", sc_user_id=" + sc_user_id + ", sc_stuff_no=" + sc_stuff_no
 				+ ", sc_amount=" + sc_amount + ", s_title=" + s_title + ", s_image=" + s_image + ", s_price=" + s_price
-				+ ", money=" + money + "]";
+				+ ", money=" + money + ", order_no=" + order_no + "]";
 	}
+
+	
+	
+	
 	
 	
 }

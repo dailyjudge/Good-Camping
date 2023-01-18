@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,6 +29,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+
 
 @Service
 public class AccountDAO {
@@ -78,7 +80,7 @@ public class AccountDAO {
 	public void loginCheck(HttpServletRequest request) {
 		// 이건 나중에 한번 봄
 		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
-		
+
 		if(a == null) {
 			request.setAttribute("loginPage", "account/login.jsp");
 		} else {
