@@ -10,7 +10,6 @@
 $(function() {
 	let pg_token = $("#pg_token").val();
 	
-	
 	opener.document.getElementById("pInput").value = document.getElementById("pg_token").value;
 	opener.document.getElementById("approveForm").submit();
 	window.close();
