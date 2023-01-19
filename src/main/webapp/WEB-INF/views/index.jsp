@@ -67,6 +67,7 @@
 <script type="text/javascript" src="resources/js/raphael_path_s.korea.js"></script>
 <script type="text/javascript" src="resources/js/raphael.js"></script>
 <script type="text/javascript" src="resources/js/choiceButton.js"></script>
+<script type="text/javascript" src="resources/js/campingStuffCart.js"></script>
 
 <script
   src="https://code.jquery.com/jquery-3.6.3.js"

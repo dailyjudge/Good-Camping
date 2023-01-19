@@ -50,8 +50,10 @@ $(function(){
     	// 처음 삽입되는 데이터일 경우 & 생략
     	let flag = false;
     	
+    	// 예외처리를 위한 변수(선택하지 않은 경우)
+    	let count = 0;
+    	
     	$('.theme-item-container').each(function(i, element) {
-    		console.log('클릭3');
 			// span 색상으로 확인!
     		let span = $(element).children('span');
     		
@@ -61,6 +63,7 @@ $(function(){
 			if(spanColor != 'rgb(0, 0, 0)') {
 				// 보낼 데이터의 이름에 따라 속성 이름 다르게
 				// ThemeDTO
+				count++;
 				if(!flag) {
 					data += paramName[i] + "=" + paramData[i];
 					flag = true;
@@ -77,6 +80,12 @@ $(function(){
 			}
 			
 		})
+    	
+		if(count == 0) {
+			alert('테마를 선택해주세요.');
+			return;
+		}
+    	
 		location.href = data;
 	});
     

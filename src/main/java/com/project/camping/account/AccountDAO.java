@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
@@ -83,6 +84,13 @@ public class AccountDAO {
 
 		if(a == null) {
 			request.setAttribute("loginPage", "account/login.jsp");
+			
+			String page = request.getRequestURL().toString();
+			String params = request.getQueryString();
+			
+			if(params != null) page += "?" + params;
+			System.out.println("갱신 ! : " + page );
+			if(!page.contains("go.Login.Head")) request.getSession().setAttribute("prevPage", page);
 		} else {
 			request.setAttribute("loginPage", "account/login_done.jsp");
 		}

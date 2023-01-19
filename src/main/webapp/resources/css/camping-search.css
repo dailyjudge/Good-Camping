@@ -421,3 +421,15 @@ a.btn {
 .camping-item-search-result-container {
 	margin-bottom: 5px;
 }
+
+.search-warn {
+	display: none;
+	position: absolute;
+	top: 94%;
+	left: 50%;
+	color: #c23616;
+}
+.search-warn span {
+  font-family: "NanumSquareNeo-Variable";
+  font-size: 0.8em;
+}

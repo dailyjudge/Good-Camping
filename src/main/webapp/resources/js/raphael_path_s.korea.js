@@ -217,8 +217,9 @@ window.onload = function () {
 					// 가장 외부 div 비워주기
 					$('.camping-container').empty();
 					// 요소 하나하나 추가해주기.
+					$('.camping-theme-search-result').css('display', 'block');
+					$('.camping-theme-search-result span').text("'" + area + "'에 관련된 정보");
 					
-					console.log(campingSites);
 					let count = 0;
 					
 					let reviewCount, c_no, siteLikeCount, cv_viewCount, c_firstImageUrl, c_doNm, c_sigunguNm, c_facltNm, c_lineIntro, c_addr1, c_tel, facilities;

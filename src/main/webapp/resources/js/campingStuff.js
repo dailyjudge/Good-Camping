@@ -31,30 +31,11 @@ function deleteCheckedItem() {
 			}).done(function(response) {
 				console.log(response);
 				if(response == 1) {
-					console.log(cart_id + "번 데이터 삭제");
-					//stuff-in-cart-${carts.sc_cart_id }
-					$('.stuff-in-cart-' + cart_id).remove();
-					
-					// 여기서 모든 값들을 저장
-					let money = 0;
-					
-					$('.stuff-hidden-price-input').each(function(index, element) {
-						console.log($(element).val());
-						money += parseInt($(element).val());
-					})
-					console.log(money);
-					money = money.toLocaleString();
-					//10000 => 10,000
-					
-					let spanText =  "결제예정금액   " + money + "원  ";
-					console.log("spanText : " + spanText);
-					if(money == 0) {
-						$('.stuff-total-price').css("display", "none");
-					}
-					$('.stuff-total-price-span').text(spanText);
+					$('#stuff-total-span').text(0);
 				} else {
 					console.log("장바구니 아이템 삭제 에러!!");
 				}
+				$('.stuff-in-cart-' + cart_id).remove();
 			})
 		}
 	});
@@ -67,9 +48,27 @@ $(function() {
 		let isChecked = $(this).is(':checked');
 		console.log(isChecked);
 		
-		$('.stuff-in-cart-check').each(function(index, element) {
-			$(element).prop('checked',isChecked);
-		});
+		if(isChecked) {
+			let total = 0;
+			$('.stuff-in-cart-check').each(function(index, element) {
+				$(element).prop('checked',isChecked);
+				
+				// 수량
+				let amount = $(this).next().next().next().text();
+				// 가격
+				let price = $(this).next().next().next().next().val();
+				total += amount * price;
+			});
+			$('#stuff-total-span').text(total.toLocaleString());
+		} else {
+			
+			$('.stuff-in-cart-check').each(function(index, element) {
+				$(element).prop('checked', false);
+			});
+			
+			$('#stuff-total-span').text(0);
+		}
+		
 	});
 });
 

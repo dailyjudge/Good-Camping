@@ -47,12 +47,13 @@ public class AccountController {
 	
 	//do.account.login
 	@RequestMapping(value = "/do.account.login", method = RequestMethod.POST)
-	public String refreshCampingData(HttpServletRequest request, AccountDTO a) {
+	public String refreshCampingData(HttpServletRequest request, HttpServletResponse response, AccountDTO a) {
 		
-		aDAO.login(request,a);
+		aDAO.login(request, a);
 		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "home.jsp");
-		return "index";
+		
+		return "redirect:" + request.getSession().getAttribute("prevPage").toString();
 	}
 	@RequestMapping(value = "/go.Login.Head", method = {RequestMethod.GET, RequestMethod.POST })
 	public String goLoginHead(HttpServletRequest request,Model model, HttpSession session) {
