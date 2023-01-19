@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #cart-div {
- font-family: "S-CoreDream-3Light";
+	font-family: "S-CoreDream-3Light";
 	width: 100%;
 	/* border: 2px solid navy; */
 	display: flex;
@@ -27,7 +27,12 @@
 	/* border: 1px solid brown; */
 	font-size: 18px;
 	border-bottom: 0.5px solid rgb(157, 157, 157);
-	padding-bottom: 20px;	
+	padding-bottom: 20px;
+}
+
+.stuff-cart-top span {
+
+cursor: pointer;
 }
 
 .stuff-cart-top a {
@@ -97,7 +102,7 @@
 	border: none;
 	background-color: #3cb371;
 	color: #fff;
-	 font-family: "S-CoreDream-3Light";
+	font-family: "S-CoreDream-3Light";
 	cursor: pointer;
 }
 
@@ -107,45 +112,43 @@
 	margin-left: 10px;
 }
 
-
 /* ****************cart empty******************* */
 .stuff-is-empty-div {
-  /* border: 3px solid navy; */
-  height: 200px;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 0.5px solid rgb(157, 157, 157);
+	/* border: 3px solid navy; */
+	height: 200px;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 0.5px solid rgb(157, 157, 157);
 }
+
 .stuff-is-empty {
-	font-size:18px;
-  margin-top: 80px;
-  /* border: 1px solid orange; */
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  color: rgb(157, 157, 157);
+	font-size: 18px;
+	margin-top: 80px;
+	/* border: 1px solid orange; */
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	color: rgb(157, 157, 157);
 }
 
 .stuff-is-empty-btn {
-  margin-top: 40px;
-  /* border: 1px solid green; */
-  width: 100%;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
+	margin-top: 40px;
+	/* border: 1px solid green; */
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	justify-content: center;
 }
 
 .stuff-is-empty-btn button {
-	 font-family: "S-CoreDream-3Light";
-  background-color: #3cb371;
-  color: #fff;
-  border: none;
-  height: 50px;
-  width: 40%;
-  cursor: pointer;
-  border-radius: 3px;
-  font-size: 15px;
+	font-family: "S-CoreDream-3Light";
+	background-color: #3cb371;
+	color: #fff;
+	border: none;
+	height: 50px;
+	width: 40%;
+	cursor: pointer;
+	border-radius: 3px;
+	font-size: 15px;
 }
-
-

@@ -35,7 +35,7 @@
 					<button onclick="insertCart('${sessionScope.loginAccount.ac_id}')" id="insertCart-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						ADD TO CART</button>
-					<button onclick="location.href='go.buynow?s_no=${stuffs.s_no}'" id="goBuyNow-btn" value="${stuffs.s_no }"
+					<button onclick="location.href='go.buynow?items=${stuffs.s_no}'" id="goBuyNow-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						BUY NOW</button>
 				</div>

@@ -11,9 +11,13 @@ create table account(
 	ac_gender varchar2(1 char) not null,
 	ac_file varchar2(200 char) not null
 );
-drop table account;
+drop table account CASCADE CONSTRAINTS 
 drop sequence account_seq;
 create sequence account_seq;
+
+select * from all_constraints
+where table_name like '%stuff'
+
 
 insert into account values('test@naver.com','1111','jun','971229','010-1111-1111','a','b','c','d','n','a.jpg');
 insert into account values('test2@naver.com','1111','jun1','971229','010-2222-2222','a','b','c','d','n','a.jpg');

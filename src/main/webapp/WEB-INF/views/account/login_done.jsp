@@ -40,7 +40,7 @@
         </li>
         
         <li class="something-icon">
-	          <img onclick="doLogout()" id="unlock-img" src="resources/home_img/unlock.png" />
+	          <a><img onclick="doLogout()" id="unlock-img" src="resources/home_img/unlock.png" /></a>
         </li>
         
       </ul>
