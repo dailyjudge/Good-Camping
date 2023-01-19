@@ -118,74 +118,7 @@ public class StuffController {
 		req.setAttribute("contentPage", "camping-stuff/camping-stuff-payment.jsp");
 		return "index";
 	}
-	
-/*
-	@RequestMapping("kakaopay")
-	@ResponseBody
-	public String kakaopay() {
-		
-		
-		URL address;
-		try {
-			address = new URL("https://kapi.kakao.com/v1/payment/ready");
-			HttpURLConnection conn =  (HttpURLConnection)address.openConnection();
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Authorization", "KakaoAK 9f00a6c37ca4dae0706159881b447cec");
-			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-			conn.setDoOutput(true);
 
-			String parameter = "cid=TC0ONETIME"
-					+  "&partner_order_id=partner_order_id"
-					+ "&partner_user_id=partner_user_id"
-					+"&pg_token=pg_token"
-					+"&item_name=초코파이"
-					+ "&quantity=1"
-					+ "&total_amount=5000" 
-					+ "&vat_amount=200"
-					+ "&tax_free_amount=0" 
-					+"&approval_url=/go.stuff.buy"
-					+"&fail_url=http://localhost:8080/"
-					+"&cancel_url=http://localhost:8080/";
-			
-			
-			
-			OutputStream send  =  conn.getOutputStream();
-			DataOutputStream dataSend =  new DataOutputStream(send);
-			dataSend.writeByte(parameter);
-			dataSend.close();
-			
-			
-			
-			int result = conn.getResponseCode();
-			InputStream receive;
-			
-			if (result == 200) {
-				
-				receive = conn.getInputStream();
-				
-			}else {
-				
-				receive =  conn.getErrorStream();
-			}
-			
-			InputStreamReader read =  new InputStreamReader(receive);
-			
-			BufferedReader change =  new BufferedReader(read);
-			
-			return change.readLine();
-
-
-		
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "";
-
-	}
-	
-	*/
-	
 	@ResponseBody
 	@RequestMapping(value = "/kakao.ready.popup", method = RequestMethod.POST, produces="application/json")
 	public String goKakaopayBuy(StuffOrderDTO soDTO, HttpServletRequest req) {
