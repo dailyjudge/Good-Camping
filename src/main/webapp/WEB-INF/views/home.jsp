@@ -38,5 +38,4 @@
         </div>
       </form>
     </div>
-    <button onclick="location.href='go.main.test'">지도 확인</button>
     
