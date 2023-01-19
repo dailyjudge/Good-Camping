@@ -250,11 +250,10 @@ public class StuffDAO {
 		c.setS_price(Integer.parseInt(sDTO.getS_price()));
 		c.setS_title(sDTO.getS_title());
 		c.setS_image(sDTO.getS_image());
-		
+
 		List<CartDTO> carts = new ArrayList<CartDTO>();
 		carts.add(c);
 
-			
 		req.setAttribute("carts2", carts);
 	}
 
@@ -361,12 +360,12 @@ public class StuffDAO {
 	public String kakaoPopup(StuffOrderDTO soDTO, HttpServletRequest req) {
 		try {
 			AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
-			
+
 			// 유저의 주소를 session으로
 			System.out.println("카카오페이 팝업 이전!!");
 			System.out.println(soDTO.toString());
-			
-			if(a != null) {
+
+			if (a != null) {
 				req.getSession().setAttribute("addr", soDTO);
 				System.out.println("세선 설정 완료 !!");
 				System.out.println("세션 이름 : addr-" + a.getAc_id());
@@ -383,15 +382,15 @@ public class StuffDAO {
 			String stuffname = ""; // 상품이름
 			String itemName = ""; // 결제창에 보일 이름
 			int totalprice = 0; // 총액
-			int stuffamount =1; // 상품개수
+			int stuffamount = 1; // 상품개수
 			String userid = ""; // 사용자 id
 			String item = req.getParameter("items");
 			req.getSession().setAttribute("cartNumbers", item);
 			// ,
-			if(item.contains(",")) {
+			if (item.contains(",")) {
 				// 장바구니
 				String cartNumbers[] = item.split(",");
-			
+
 				CartDTO cDTO;
 
 				for (int i = 0; i < cartNumbers.length; i++) {
@@ -399,50 +398,43 @@ public class StuffDAO {
 
 					int cart_id = Integer.parseInt(cartNumbers[i]);
 					cDTO.setSc_cart_id(cart_id);
-					
+
 					// 실제 Cart 객체
 					CartDTO targetDTO = ss.getMapper(StuffMapper.class).getOrderItem(cDTO);
 
 					totalprice += targetDTO.getS_price() * targetDTO.getSc_amount();
 					stuffamount += targetDTO.getSc_amount();
-					
 
 					if (i == 0) {
 						targetDTO.setS_title(targetDTO.getS_title().replace("<b>", "").replace("</b>", ""));
 						itemName = targetDTO.getS_title();
-						
+
 					}
 
 				}
-				if ((cartNumbers.length-1)>0) {
+				if ((cartNumbers.length - 1) > 0) {
 					itemName += " 외 " + (cartNumbers.length - 1) + "개";
-					
+
 				}
-			
-			
-			
-			
-			}else {
+
+			} else {
 				// 바로구매
 				StuffDTO s = new StuffDTO();
 				s.setS_no(Integer.parseInt(item));
 				goBuyNow(s, req);
-				StuffDTO sDTO =  (StuffDTO) req.getAttribute("sDTO");
+				StuffDTO sDTO = (StuffDTO) req.getAttribute("sDTO");
 				itemName = sDTO.getS_title();
 				totalprice = Integer.parseInt(sDTO.getS_price());
 				stuffamount = 1;
-				
-			}
-			
-			
 
-			
-			
+			}
+
 			itemName = URLEncoder.encode(itemName, "utf-8");
 
 			PaymentDTO paymentDTO = new PaymentDTO("TC0ONETIME", "partner_order_id", a.getAc_id(), itemName,
 					String.valueOf(stuffamount), String.valueOf(totalprice), "0",
-					"http://localhost:8080/camping/go.stuff.buy.popup", "http://localhost:8080/camping/go.stuff.payment.popup",
+					"http://localhost:8080/camping/go.stuff.buy.popup",
+					"http://localhost:8080/camping/go.stuff.payment.popup",
 					"http://localhost:8080/camping/go.stuff.payment.popup");
 
 			OutputStream send = conn.getOutputStream();
@@ -519,17 +511,16 @@ public class StuffDAO {
 				if (i == 0) {
 					targetDTO.setS_title(targetDTO.getS_title().replace("<b>", "").replace("</b>", ""));
 					itemName = targetDTO.getS_title();
-					
+
 				}
 
 			}
-			if ((cartNumbers.length-1)>0) {
+			if ((cartNumbers.length - 1) > 0) {
 				itemName += " 외 " + (cartNumbers.length - 1) + "개";
-				
+
 			}
-			
+
 			itemName = URLEncoder.encode(itemName, "utf-8");
-			
 
 			PaymentDTO paymentDTO = new PaymentDTO("TC0ONETIME", "partner_order_id", a.getAc_id(), itemName,
 					String.valueOf(stuffamount), String.valueOf(totalprice), "0",
@@ -620,46 +611,49 @@ public class StuffDAO {
 			AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
 			
 			if(num != null) {
-				
-				// Cart_no 리스트
-				String cartNumbers[] = num.split(",");
-				// 101, 102
-				
-				System.out.println("장바구니 리스트 출력");
-				for (String ss : cartNumbers) {
-					System.out.print(ss + " ");
-				}
-				
-				// Cart 객체 가져오기.
+				String cartNumbers[];
+
 				CartDTO cDTO;
 				List<CartDTO> carts = new ArrayList<CartDTO>();
 				
-				for (int i = 0; i < cartNumbers.length; i++) {
+				// Cart_no 리스트
+				if(num.indexOf(",") == -1) {
+					cartNumbers = new String[1];
+					cartNumbers[0] = num;
+
+					StuffDTO s = new StuffDTO();
+					s.setS_no(Integer.parseInt(num));
+					
+					s = ss.getMapper(StuffMapper.class).getDetailStuff(s);
+					
 					cDTO = new CartDTO();
-
-					int cart_id = Integer.parseInt(cartNumbers[i]);
-					cDTO.setSc_cart_id(cart_id);
-
-					// 실제 Cart 객체
-					CartDTO targetDTO = ss.getMapper(StuffMapper.class).getOrderItem(cDTO);
-					targetDTO.setSc_cart_id(cart_id);
-					carts.add(targetDTO);
-				}
-				
-				// 실제 장바구니 DTO 확인
-				for (CartDTO cartDTO : carts) {
-					System.out.println(cartDTO.toString());
+					cDTO.setSc_user_id(a.getAc_id());
+					cDTO.setSc_amount(1);
+					cDTO.setS_title(s.getS_title());
+					cDTO.setS_image(s.getS_image());
+					cDTO.setS_price(Integer.parseInt(s.getS_price()));
+					
+					carts.add(cDTO);
+				} else {
+					cartNumbers = num.split(",");
+					
+					for (int i = 0; i < cartNumbers.length; i++) {
+						cDTO = new CartDTO();
+						
+						int cart_id = Integer.parseInt(cartNumbers[i]);
+						cDTO.setSc_cart_id(cart_id);
+						
+						CartDTO targetDTO = ss.getMapper(StuffMapper.class).getOrderItem(cDTO);
+						targetDTO.setSc_cart_id(cart_id);
+						carts.add(targetDTO);
+					}
 				}
 				
 				StuffOrderDTO soDTO = (StuffOrderDTO) req.getSession().getAttribute("addr");
 				
 				soDTO.setSo_user_id(a.getAc_id());
 				
-				System.out.println("soDTO 출력 확인");
-				System.out.println(soDTO.toString());
-				
 				if(ss.getMapper(StuffMapper.class).insertOrderStuff(soDTO) == 1) {
-					System.out.println("주문 테이블에 삽입 완료");
 					// 주문 번호 가져오기
 					// userId + date desc 방식
 					List<StuffOrderDTO> userOrders = ss.getMapper(StuffMapper.class).getOrderNum(a);
@@ -671,40 +665,32 @@ public class StuffDAO {
 					for (int i = 0; i < carts.size(); i++) {
 						CartDTO ctDto = carts.get(i);
 						ctDto.setOrder_no(OrderNum);
-
+						
 						// <b>태그 정제
 						ctDto.setS_title(ctDto.getS_title().replace("<b>", "").replace("</b>", ""));
 
 						if (ss.getMapper(StuffMapper.class).insertOrderList(ctDto) == 1) {
 							System.out.println(i + 1 + "번 째 주문 상품 삽입 완료");
-						} else {
-							System.out.println(i + 1 + "번 째 주문 상품 삽입 실패");
-							break;
+							if(num.indexOf(",") != -1) {
+								if (ss.getMapper(StuffMapper.class).deleteCart(ctDto) == 1) {
+									System.out.println(i + 1 + "번 상품 장바구니 삭제 완료");
+								} else {
+									System.out.println(i + 1 + "번 상품 장바구니 삭제 실패");
+								}
+							} else {
+								System.out.println(i + 1 + "번 째 주문 상품 삽입 실패");
 						}
 
-						if (ss.getMapper(StuffMapper.class).deleteCart(ctDto) == 1) {
-							System.out.println(i + 1 + "번 상품 장바구니 삭제 완료");
-						} else {
-							System.out.println(i + 1 + "번 상품 장바구니 삭제 실패");
-
-						}
+						
 
 					}
 					
-					// 여기부터
-//					
-//					// cartDTO List -> carts
-//					for (CartDTO c : carts) {
-//						System.out.println(c.toString());
-//					}
-					req.setAttribute("carts", carts);
-					// StuffOrderDTO -> 주문 내역 리스트(userOrders) 중 가장 첫 번째 값
-					// 날짜 정제가 필요한걸 꺠달음
-					req.getSession().setAttribute("userOrder", userOrders.get(0));
-					// 총 결제 금액 (for문 이용해서 각각의 값을 계산해주자)
-					// for문에서 이미 처리 !! (totalMoney)
 					SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy.MM.dd a H:mm:ss", Locale.KOREA);
 					String formattedDate = timeFormat.format(userOrders.get(0).getSo_date());
+
+					req.setAttribute("carts", carts);
+					req.getSession().setAttribute("userOrder", userOrders.get(0));
+					
 					
 					req.getSession().setAttribute("formattedDate", formattedDate);
 				}
@@ -718,6 +704,7 @@ public class StuffDAO {
 				// 장바구니 : 기본키, user id, 상품 no, 상품 수량
 				// 주문 : 기본키, user id, 주소1, 주소2, 주소3, 주문 시각
 				
+				}
 			}
 			System.out.println("---------------------------");
 			
