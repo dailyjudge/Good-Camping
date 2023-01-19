@@ -24,6 +24,7 @@
         		</div>
         		<span class="close" onclick="searchToggle(this, event);"></span>
     		</div>
+    		<div class="search-warn"><span>이잉</span></div>
        </div>
         
     </div>

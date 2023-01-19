@@ -680,9 +680,6 @@ public class StuffDAO {
 							} else {
 								System.out.println(i + 1 + "번 째 주문 상품 삽입 실패");
 						}
-
-						
-
 					}
 					
 					SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy.MM.dd a H:mm:ss", Locale.KOREA);
