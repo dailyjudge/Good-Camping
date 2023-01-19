@@ -66,7 +66,7 @@
 			</div>
 		</div>
 	</form>
-	<%-- <form action="do.stuff.buy.popup" id="approveForm">
+	 <form action="do.stuff.buy.popup" id="approveForm">
 		<input id="pInput" name="pg_token" value="">
 	</form>
 	<form action="go.kakao.ready" method="post">
@@ -76,6 +76,6 @@
 		$("#pInput").on("propertychange change paste input", function() {
 			console.log($(this).val());
 		})
-	</script> --%>
+	</script>
 </body>
 </html>

@@ -10,10 +10,6 @@
 
 </head>
 <body>
-	${sessionScope.result }
-
-
-
 	<div id="order-div">
 		<div class="stuff-order-list">
 			<div class="stuff-order-no">
@@ -40,7 +36,7 @@
 				<h2>결제 정보</h2>
 			</div>
 			<div class="stuff-order-totalPrice">
-				<span>결제 금액</span> <span id="totalPrice">원</span> 
+				<span>결제 금액</span> <span id="totalPrice"><fmt:formatNumber value="${sessionScope.total }" pattern="#,###" />원</span> 
 			</div>
 			<div class="stuff-order-paymenttool">
 				<span>결제 수단</span> 카카오페이

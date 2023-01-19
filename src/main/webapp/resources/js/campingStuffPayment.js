@@ -72,12 +72,22 @@ function kakao_pay(items) {
 	console.log('k1');
 	console.log(items);
 	
+	let so_user_zoncode = $('#stuff-postcode').val();
+	let stuffAddress = $('#stuff-Address').val();
+	let stuffDetailAddress = $('#stuff-detailAddress').val();
 	
-	
+	/*private int so_user_zoncode;
+	private String so_user_addr;
+	private String so_user_detailAddr;
+	*/
 	$.ajax({
 		url : 'kakao.ready.popup',
 		type: 'post',	
-		data : {'items' : items},
+		data : {'items' : items,
+				'so_user_zoncode': so_user_zoncode,
+				'so_user_addr' : stuffAddress,
+				'so_user_detailAddr' : stuffDetailAddress
+			},
 		dataType : 'json',
 		success : function(data) {
 			console.log(data);
@@ -91,7 +101,7 @@ function kakao_pay(items) {
 			console.log('팝업 열리고 나서?');
 			
 			
-
+			
 		},
 		error : function(error) {
 			alert('결제실패');
