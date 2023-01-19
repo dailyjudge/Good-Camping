@@ -39,7 +39,7 @@
 					<span>주문자 성함</span>${sessionScope.loginAccount.ac_name }
 				</div>
 				<div class="stuff-payment-user-tel">
-					<span> 핸드폰 번호</span>010-1234-2345
+					<span> 핸드폰 번호</span>${sessionScope.loginAccount.ac_phone}
 				</div>
 
 				<div class="stuff-payment-addrinfo">
@@ -66,7 +66,7 @@
 			</div>
 		</div>
 	</form>
-	<form action="do.stuff.buy.popup" id="approveForm">
+	<%-- <form action="do.stuff.buy.popup" id="approveForm">
 		<input id="pInput" name="pg_token" value="">
 	</form>
 	<form action="go.kakao.ready" method="post">
@@ -76,6 +76,6 @@
 		$("#pInput").on("propertychange change paste input", function() {
 			console.log($(this).val());
 		})
-	</script>
+	</script> --%>
 </body>
 </html>

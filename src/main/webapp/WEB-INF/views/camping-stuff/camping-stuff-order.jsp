@@ -62,7 +62,7 @@
 				<h2>배송 정보</h2>
 			</div>
 			<div class="stuff-order-tel">
-				<span>연락처</span>010-0000-0000
+				<span>연락처</span>${sessionScope.loginAccount.ac_phone}
 			</div>
 			<div class="stuff-order-addrress">
 				<span>주소</span><span>${userOrder.so_user_addr } (${userOrder.so_user_detailAddr })</span>

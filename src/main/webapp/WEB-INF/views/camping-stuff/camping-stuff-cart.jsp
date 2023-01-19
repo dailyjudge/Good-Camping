@@ -12,7 +12,7 @@
 	<div id="cart-div">
 		<div id="stuff-cart-list">
 			<div class="stuff-cart-top">
-				<input id="stuff-in-cart-allcheck" type="checkbox" />전체선택&nbsp;&nbsp;|&nbsp;&nbsp;<span
+				<input id="stuff-in-cart-allcheck" type="checkbox" /><span>전체선택&nbsp;&nbsp;</span>|&nbsp;&nbsp;<span
 					onclick="deleteCheckedItem()">선택삭제</span>
 			</div>
 			<c:forEach var="c" items="${carts }">

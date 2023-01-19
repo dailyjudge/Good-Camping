@@ -107,14 +107,20 @@ function goPaymentPage() {
 
 	let items = "";
 
-
+	// 0개일 때 처리
+	let count = 0;
 		
 	$('.stuff-in-cart-check').each(function(index, element) {
 		if ($(element).is(':checked')) {
 			items += $(element).val() + "," // id
+			count++;
 		}
 	});
-
+	
+	if(count == 0) {
+		alert('선택된 상품이 없습니다.');
+		return;
+	}
 	console.log(items);
 
 	if (value = "") {
