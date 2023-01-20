@@ -40,6 +40,8 @@ delete stuff
 
 select * from stuff_cart;
 
+select  *from stuff_cart  where  sc_user_id='test' and  sc_stuff_no=8339;
+
 create table stuff_cart(
 	
 sc_cart_id number not null primary key,

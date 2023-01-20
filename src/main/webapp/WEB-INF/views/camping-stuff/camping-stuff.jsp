@@ -24,8 +24,9 @@
 		
 		
 	<div id="top-div">
+	<div>
+			<c:if test="${ not empty stuffs }">
 		<div class="wrap-second">
-			
 			<c:forEach var="stuffs" items="${stuffs }">
 				<div class="second-div">
 					<div class="product-img">
@@ -42,6 +43,7 @@
 			</c:forEach>
 
 		</div>
+		
 		<div id="shop-paging-btn">
 			<c:if test="${sp != 1 }">
 
@@ -52,8 +54,15 @@
 				<button  class="custom-btn btn-15" onclick="location.href='do.stuff.change?sp=${sp +1}'">다음 페이지</button>
 			</c:if>
 		</div>
-
+		</c:if>
 	</div>
+		
+		<c:if test="${empty stuffs }">
+		<div class="search-empty-div">
+		 <div class="search-result-none">검색 결과가 없습니다</div>
+		</div>
+		</c:if>
+</div>
 
 </body>
 </html>
