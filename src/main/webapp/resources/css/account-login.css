@@ -6,6 +6,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 .camping-login-wave{
 	position: fixed;
 	bottom: 0;
@@ -243,3 +250,32 @@
 	  justify-content: center;
 	}
   }
+  
+.camping-login-find-category-container {
+	display: flex;
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+.camping-login-find-category-container div {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	font-size: 1.1em;
+	padding: 5px 10px;
+	margin-right: 1px;
+	font-family: 'GothicA1-Light';
+	border-radius: 5px;
+	color: #999;
+}
+
+.camping-login-find-category-container div span {
+    font-family: 'LINESeedKR-Bd';
+    cursor: pointer;
+}
+.camping-login-find-category-id span{
+	color: #32be8f;
+}
+#camping-login-category-find-pw-container {
+	display : none;
+}

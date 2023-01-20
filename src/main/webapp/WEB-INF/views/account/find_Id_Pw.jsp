@@ -5,16 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/email-find.css" />
-<link rel="stylesheet" href="resources/js/email-find.js" />
-
 
 </head>
 <body>
-<div class="top_wrap">
+ <!-- <div class="top_wrap">
 <div class="left_id">
 <div class="wrap3">
-<!-- 유효성 검사 추가하기 -->
+유효성 검사 추가하기
 		<form action="searchID.do" id ="IdSearch" name="IdSearch" method="post" onsubmit="return searchId()">
 				<div class="find">
 					<h2>E-mail 찾기</h2>
@@ -38,10 +35,10 @@
 	 </div>
 	
 	
-<!-- pw 찾기 -->
+pw 찾기
 <div class="right_pw">
 		<div class="wrap3">
-		<!-- <form action="searchPW.do" name="PwSearch" id="PwSearch" method="post" onsubmit="return searchPw()"> -->
+		<form action="searchPW.do" name="PwSearch" id="PwSearch" method="post" onsubmit="return searchPw()">
 				<div class="find">
 					<h2>비밀번호 찾기</h2>
 					<div class="account_type">
@@ -65,9 +62,70 @@
 					<p align="center">
 						로그인 페이지로 가시려면 <button type="button" onclick="location.href='accountHome.go'">로그인페이지</button>를 클릭하세요.
 					</p>
-		<!-- </form> -->
+		</form>
 	</div>
 	</div>
-</div>
+</div>  -->
+	 <img class="camping-login-wave" src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/wave.png">
+  <div class="camping-login-container">
+    <div class="camping-login-img">
+      <img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/bg.svg">
+    </div>
+    <div class="camping-login-content">
+      <form action="do.account.login" method="post" class="camping-login-form">
+        <img src="resources/home_img/logo.png">
+        	<div class="camping-login-find-category-container">
+        		<div class="camping-login-find-category-id"><span >아이디 찾기</span></div>
+        		<div class="camping-login-find-category-pw"><span >비밀번호 찾기</span></div>
+        	</div>
+        	
+              <div id="camping-login-category-find-id-container">
+              <div class="camping-login-input-div one">
+                 <div class="i">
+                    <i class="fas fa-user"></i>
+                 </div>
+                 <div class="camping-login-input-div2">
+                    <h5>UserName</h5>
+                    <input placeholder="이름을 입력하세요." type="email" name="ac_id" class="input">
+                 </div>
+              </div>
+              <div class="camping-login-input-div pass">
+                 <div class="i"> 
+                    <i class="fas fa-phone"></i>
+                 </div>
+                 <div class="camping-login-input-div2">
+                    <h5>Phone</h5>
+                    <input placeholder="휴대폰 번호를 입력하세요." type="password" name="ac_pw" class="input">
+                 </div>
+              </div>
+              <button class="camping-login-button">ID 찾기</button>
+              	<a href="go.Login.Head" class="camping-login-remember camping-login-sign-up">로그인 페이지로 돌아가기</a>
+              </div>	
+              
+              <div id="camping-login-category-find-pw-container">
+               <div class="camping-login-input-div one">
+                 <div class="i">
+                    <i class="fas fa-user"></i>
+                 </div>
+                 <div class="camping-login-input-div2">
+                    <h5>UserName</h5>
+                    <input placeholder="이름을 입력하세요." type="email" name="ac_id" class="input">
+                 </div>
+              </div>
+              <div class="camping-login-input-div pass">
+                 <div class="i"> 
+                    <i class="fas fa-envelope"></i>
+                 </div>
+                 <div class="camping-login-input-div2">
+                    <h5>UserEmail</h5>
+                    <input placeholder="이메일을 입력하세요." type="password" name="ac_pw" class="input">
+                 </div>
+              </div>
+              <button class="camping-login-button">PW 찾기</button>
+              <a href="go.Login.Head" class="camping-login-remember camping-login-sign-up">로그인 페이지로 돌아가기</a>
+              </div>
+            </form>
+        </div>
+    </div> 
 </body>
 </html>
