@@ -75,6 +75,12 @@ $(function() {
 
 function insertCart(id) {
 	
+	let amount = document.getElementById("stuff-amount-result").innerText;
+	
+	console.log(amount);
+
+	
+	
 	if(id == '') {
 		alert('로그인이 필요한 서비스입니다.');
 		return;
