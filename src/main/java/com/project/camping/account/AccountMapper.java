@@ -18,5 +18,9 @@ public interface AccountMapper {
 
 	AccountDTO getAccountByEmail(String email);
 
+	int addUserSession(AccountDTO a2);
+
+	AccountDTO getAccountByCookie(AccountDTO loginDTO);
+
 
 }

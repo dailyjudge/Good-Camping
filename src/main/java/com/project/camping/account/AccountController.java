@@ -40,6 +40,7 @@ public class AccountController {
 	@RequestMapping(value = "/go.to.Main", method = RequestMethod.GET)
 	public String goToMain(HttpServletRequest request) {
 		
+		aDAO.autoLogin(request);
 		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "home.jsp");
 		return "index";
@@ -49,7 +50,7 @@ public class AccountController {
 	@RequestMapping(value = "/do.account.login", method = RequestMethod.POST)
 	public String refreshCampingData(HttpServletRequest request, HttpServletResponse response, AccountDTO a) {
 		
-		aDAO.login(request, a);
+		aDAO.login(request, response, a);
 		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "home.jsp");
 		
@@ -85,8 +86,8 @@ public class AccountController {
 	
 	// 회원가입 & 로그아웃 (return 수정 필요)
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-	public String logoutDo(HttpServletRequest req) {
-		aDAO.logout(req) ;
+	public String logoutDo(HttpServletRequest req, HttpServletResponse response) {
+		aDAO.logout(req, response) ;
 		aDAO.loginCheck(req);
 		
 		req.setAttribute("contentPage", "home.jsp");
