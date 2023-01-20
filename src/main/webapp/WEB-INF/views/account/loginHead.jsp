@@ -15,7 +15,7 @@
 
 <body>
 
-	<div class="wrap2">
+	<%-- <div class="wrap2">
 		<div class="login2">
 			<h2>Log-in</h2>
 			<div class="login_sns2">
@@ -37,11 +37,13 @@
 							placeholder="Password">
 					</div>
 					<div class="login_etc2">
-						<div class="checkbox">
+						<!-- <div class="checkbox">
 							<input type="checkbox" name="loginallways" value="on" id="loginallways">Remember
 							Me?
 							<label for="loginallways"></label>
-						</div>
+						</div> -->
+						<input type="checkbox" name="loginallways" value="on" id="">Remember
+							Me?
 						<div class="forgot_pw2">
 							<a href="searchPW.go">비밀번호 찾기</a>
 						</div>
@@ -52,12 +54,59 @@
 					<div class="submit2">
 						<input type="submit" value="submit">
 					</div>
+					
+					 <div class="checkbox">
+							<input type="checkbox" name="loginallways" value="on" id="loginallways">Remember
+							Me?
+							<label for="loginallways"></label>
+						</div>
 				</form>
 			</div>
 
 		</div>
-	</div>
+	</div> --%>
 	
+	<img class="camping-login-wave" src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/wave.png">
+  <div class="camping-login-container">
+    <div class="camping-login-img">
+      <img src="https://raw.githubusercontent.com/sefyudem/Responsive-Login-Form/master/img/bg.svg">
+    </div>
+    <div class="camping-login-content">
+      <form action="do.account.login" method="post" class="camping-login-form">
+        <img src="resources/home_img/logo.png">
+              <div class="camping-login-input-div one">
+                 <div class="i">
+                    <i class="fas fa-user"></i>
+                 </div>
+                 <div class="camping-login-input-div2">
+                    <h5>UserEmail</h5>
+                    <input placeholder="Email" type="email" name="ac_id" class="input">
+                 </div>
+              </div>
+              <div class="camping-login-input-div pass">
+                 <div class="i"> 
+                    <i class="fas fa-lock"></i>
+                 </div>
+                 <div class="camping-login-input-div2">
+                    <h5>Password</h5>
+                    <input placeholder="Password" type="password" name="ac_pw" class="input">
+                 </div>
+              </div>
+              <div>
+                <div class="camping-login-option-container">
+                  <div class="camping-auto-login-container">
+                    <input type="checkbox" name="loginallways" value="on">
+                    <span>자동 로그인</span>
+                  </div>
+                  <a href="searchPW.go" class="camping-login-remember">ID/PW를 잊었나요?</a>
+                </div>
+              </div>
+              <button class="camping-login-button">로그인</button>
+              <a href="accountReg.go" class="camping-login-remember camping-login-sign-up">회원이 아닌가요?</a>
+            </form>
+        </div>
+    </div>
+    
 		<script>
 		window.Kakao.init('8d3fc53af9696b2b55fc63b67784a525'); //발급받은 키 중 javascript키를 사용해준다.
 		console.log(Kakao.isInitialized()); // sdk초기화여부판단

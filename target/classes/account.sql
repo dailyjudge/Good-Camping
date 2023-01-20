@@ -11,6 +11,19 @@ create table account(
 	ac_gender varchar2(1 char) not null,
 	ac_file varchar2(200 char) not null
 );
+select * from account
+-- 자동로그인 위한 컬럼 추가 설정
+-- 고유 세션키 
+alter table account add ac_sessionkey varchar(50) default 'none' not null;
+-- 세션 유효기간
+alter table account add ac_sessionlimit timestamp;
+
+-- 세션 테스트
+select * from account and ac_sessionlimit > systimestamp
+select * from account where ac_sessionkey = '6D6FDA1F96413C09419DEFA151AAB587'
+select * from account
+select * from account;
+
 drop table account CASCADE CONSTRAINTS 
 drop sequence account_seq;
 create sequence account_seq;

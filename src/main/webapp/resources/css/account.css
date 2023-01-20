@@ -144,6 +144,10 @@ a {
   margin: 10px;
   cursor: pointer;
 }
+
+.something-icon .top-menu-login-img {
+	margin-left: 100px;
+}
 #something-icon2 img {
   width: 23px;
   height: 23px;

@@ -21,7 +21,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(HttpServletRequest request) {
-		
+		aDAO.autoLogin(request);
 		aDAO.loginCheck(request);
 		
 		request.setAttribute("contentPage", "home.jsp");

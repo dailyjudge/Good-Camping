@@ -1,5 +1,7 @@
 package com.project.camping.account;
 
+import java.sql.Date;
+
 public class AccountDTO {
 	private String ac_id;
 	private String ac_pw;
@@ -14,9 +16,30 @@ public class AccountDTO {
 	
 	private String ac_gender;
 	private String ac_file;
+	private String ac_sessionkey;
+	private Date ac_sessionlimit;
 	
 	public AccountDTO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public AccountDTO(String ac_id, String ac_pw, String ac_name, String ac_birth, String ac_phone, String ac_postcode,
+			String ac_address, String ac_detailAddress, String ac_extraAddress, String ac_gender, String ac_file,
+			String ac_sessionkey, Date ac_sessionlimit) {
+		super();
+		this.ac_id = ac_id;
+		this.ac_pw = ac_pw;
+		this.ac_name = ac_name;
+		this.ac_birth = ac_birth;
+		this.ac_phone = ac_phone;
+		this.ac_postcode = ac_postcode;
+		this.ac_address = ac_address;
+		this.ac_detailAddress = ac_detailAddress;
+		this.ac_extraAddress = ac_extraAddress;
+		this.ac_gender = ac_gender;
+		this.ac_file = ac_file;
+		this.ac_sessionkey = ac_sessionkey;
+		this.ac_sessionlimit = ac_sessionlimit;
 	}
 
 	public String getAc_id() {
@@ -107,20 +130,30 @@ public class AccountDTO {
 		this.ac_file = ac_file;
 	}
 
-	public AccountDTO(String ac_id, String ac_pw, String ac_name, String ac_birth, String ac_phone, String ac_postcode,
-			String ac_address, String ac_detailAddress, String ac_extraAddress, String ac_gender, String ac_file) {
-		super();
-		this.ac_id = ac_id;
-		this.ac_pw = ac_pw;
-		this.ac_name = ac_name;
-		this.ac_birth = ac_birth;
-		this.ac_phone = ac_phone;
-		this.ac_postcode = ac_postcode;
-		this.ac_address = ac_address;
-		this.ac_detailAddress = ac_detailAddress;
-		this.ac_extraAddress = ac_extraAddress;
-		this.ac_gender = ac_gender;
-		this.ac_file = ac_file;
+	public String getAc_sessionkey() {
+		return ac_sessionkey;
 	}
 
+	public void setAc_sessionkey(String ac_sessionkey) {
+		this.ac_sessionkey = ac_sessionkey;
+	}
+
+	public Date getAc_sessionlimit() {
+		return ac_sessionlimit;
+	}
+
+	public void setAc_sessionlimit(Date ac_sessionlimit) {
+		this.ac_sessionlimit = ac_sessionlimit;
+	}
+
+	@Override
+	public String toString() {
+		return "AccountDTO [ac_id=" + ac_id + ", ac_pw=" + ac_pw + ", ac_name=" + ac_name + ", ac_birth=" + ac_birth
+				+ ", ac_phone=" + ac_phone + ", ac_postcode=" + ac_postcode + ", ac_address=" + ac_address
+				+ ", ac_detailAddress=" + ac_detailAddress + ", ac_extraAddress=" + ac_extraAddress + ", ac_gender="
+				+ ac_gender + ", ac_file=" + ac_file + ", ac_sessionkey=" + ac_sessionkey + ", ac_sessionlimit="
+				+ ac_sessionlimit + "]";
+	}
+	
+	
 }
