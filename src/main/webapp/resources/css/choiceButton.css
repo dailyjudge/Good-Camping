@@ -83,3 +83,14 @@
     transform-style: preserve-3d;
 }
 
+.sticky-container {
+	display: flex;
+	align-items: flex-end;
+}
+
+.camping-theme-search-result {
+	display: none;
+	margin-left: 36%;
+	font-family: "NanumSquareNeo-Variable";
+	font-size: 1.5em;
+}

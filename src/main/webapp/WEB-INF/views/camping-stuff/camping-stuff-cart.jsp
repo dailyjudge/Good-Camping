@@ -19,14 +19,16 @@
 				<div class="stuff-in-cart stuff-in-cart-${c.sc_cart_id }">
 					<input class="stuff-in-cart-check" type="checkbox"
 						value="${c.sc_cart_id }" />
-					<div class="stuff-in-cart-img">
+ 					<div class="stuff-in-cart-img">
 						<img src="${c.s_image }" />
 					</div>
 					<div class="stuff-in-cart-title">${c.s_title }</div>
 					<div class="stuff-in-cart-amount">${c.sc_amount }</div>
+					<input class="stuff-in-cart-price2" value="${c.s_price }" type="hidden">
 					<div class="stuff-in-cart-price">
 						<input class="stuff-hidden-price-input" type="hidden"
 							value="${c.s_price *c.sc_amount }">
+						
 						<fmt:formatNumber value="${c.s_price *c.sc_amount }"
 							pattern="#,###" />
 						원
@@ -35,8 +37,7 @@
 			</c:forEach>
 			<c:if test="${ !empty  carts}">
 				<div class="stuff-total-price">
-					<span class="stuff-total-price-span"> 결제예정금액&nbsp;&nbsp; <fmt:formatNumber
-							value="${money }" pattern="#,###" />원 &nbsp;&nbsp;
+					<span class="stuff-total-price-span"> 결제예정금액&nbsp;&nbsp; <span id="stuff-total-span">0</span>원 &nbsp;&nbsp;
 					</span>
 					<button class="stuff-buy-btn" onclick="goPaymentPage()">구매하기</button>
 				</div>

@@ -174,6 +174,7 @@
 				</div>
 			</div>
 		</div>
+			<div class="camping-theme-search-result"><span>'강원도'에 관련된 캠핑장 정보</span></div>
 		<div class="camping-search-map-container">
 			<div class="map-canvas-container">
 				<div id="canvas">

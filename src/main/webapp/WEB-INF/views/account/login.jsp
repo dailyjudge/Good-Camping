@@ -5,7 +5,7 @@
         <a href="http://localhost:8080/camping/"> <img id="logo-img" src="resources/home_img/logo.png"/></a>
       </div>
       <div class="top-menu-login">
-			<button onclick="location.href='go.Login.Head'">로그인<small>/회원가입</small></button>
+			<button onclick="location.href='go.Login.Head'">로그인</button>
       </div>
       <ul id="top-menu-something2-ul">
         <li id="something-icon2">
