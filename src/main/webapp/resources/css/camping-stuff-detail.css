@@ -162,3 +162,18 @@
   -webkit-transition-delay: 0.175s;
   transition-delay: 0.175s;
 }
+
+
+#amount-div {
+  /* border: 1px solid blue; */
+  margin-top: 10px;
+}
+
+#amount-div input {
+  width: 30px;
+}
+#stuff-amount-result {
+  /* border: 2px solid navy; */
+  font-size: 20px;
+}
+

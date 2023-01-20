@@ -34,7 +34,8 @@ public class StuffDAO {
 	List<StuffDTO> stuffs;
 
 	public static StringBuilder sb;
-
+	
+	
 	public void refreshStuffData() {
 		// b13e5282f450344d8407d2f28c9f408e
 		// 바비큐 랜턴 버너 숯 캠핑매트 캠핑테이블 캠핑의자 야전침대 캠핑코펠 핫팩 로프
@@ -130,7 +131,9 @@ public class StuffDAO {
 		int count = 12;
 		int start = (sp - 1) * count + 1;
 		int end = start + (count - 1);
-
+		
+		end = stuffs.size() < end ? stuffs.size() : end;
+		
 		List<StuffDTO> stuffs2 = new ArrayList<StuffDTO>();
 
 		for (int i = start - 1; i < end; i++) {
@@ -172,8 +175,8 @@ public class StuffDAO {
 
 //			stuffDTO.setS_title(stuffDTO.getS_title().replace("<b>", "").replace("</b>", ""));
 		}
-
-		req.setAttribute("stuffs", stuffs);
+		
+//		req.setAttribute("stuffs", stuffs);
 
 	}
 
@@ -215,15 +218,19 @@ public class StuffDAO {
 
 	}
 
-	public int insertCart(StuffDTO s, HttpServletRequest req) {
-
+	public int insertCart(CartDTO c, StuffDTO s, HttpServletRequest req) {
+		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
+		
 		// cartDTO!!
-		CartDTO c = new CartDTO();
-		c.setSc_amount(1);
-		c.setSc_stuff_no(s.getS_no());
-		c.setSc_user_id(a.getAc_id());
-		return ss.getMapper(StuffMapper.class).insertCart(c);
+		CartDTO c2 = new CartDTO();
+		c2.setSc_amount(1);
+		c2.setSc_stuff_no(s.getS_no());
+		c2.setSc_user_id(a.getAc_id());
+		
+		
+		return ss.getMapper(StuffMapper.class).insertCart(c2);
+		
 	}
 
 	public void goBuyNow(StuffDTO s, HttpServletRequest req) {

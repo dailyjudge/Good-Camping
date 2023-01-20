@@ -93,8 +93,8 @@ public class StuffController {
 	
 	@RequestMapping(value = "/do.insert.cart", method = RequestMethod.GET)
 	@ResponseBody
-	public int insertCart(StuffDTO s, HttpServletRequest req) {
-		return sDAO.insertCart(s,req);
+	public int insertCart(CartDTO c,StuffDTO s, HttpServletRequest req) {
+		return sDAO.insertCart(c,s,req);
 	}
 	
 	@RequestMapping(value = "/go.buynow", method = RequestMethod.GET)

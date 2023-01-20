@@ -133,3 +133,18 @@ $speed: 0.5s;
   right: 9px;
   cursor: pointer;
 }
+
+.search-empty-div {
+  width: 100%;
+}
+.search-result-none {
+  border: 1px solid #006e51;
+  padding: 100px;
+  font-size: 20px;
+  color: rgb(157, 157, 157);
+  display: flex;
+  justify-content: center;
+}
+
+
+
