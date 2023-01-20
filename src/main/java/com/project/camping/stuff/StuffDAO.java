@@ -218,19 +218,21 @@ public class StuffDAO {
 
 	}
 
-	public int insertCart(CartDTO c, StuffDTO s, HttpServletRequest req) {
+	public int insertCart(CartDTO c, HttpServletRequest req) {
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
+		// 첫번째. 상품이 ? 이면서 유저id가 ?인 Row가 있나요?
+		c.setSc_user_id(a.getAc_id());
 		
-		// cartDTO!!
-		CartDTO c2 = new CartDTO();
-		c2.setSc_amount(1);
-		c2.setSc_stuff_no(s.getS_no());
-		c2.setSc_user_id(a.getAc_id());
-		
-		
-		return ss.getMapper(StuffMapper.class).insertCart(c2);
-		
+		// 0아니면 1
+		if(ss.getMapper(StuffMapper.class).getCartCount(c) == 1) {
+			// 두번째. 있다면 update (수량만 더해주기)
+			return ss.getMapper(StuffMapper.class).updateCart(c);
+		} else {
+			// 세번째. 없다면 새로운 컬럼 추가.
+			return ss.getMapper(StuffMapper.class).insertCart(c);
+		}
+
 	}
 
 	public void goBuyNow(StuffDTO s, HttpServletRequest req) {
@@ -669,6 +671,9 @@ public class StuffDAO {
 
 						if (ss.getMapper(StuffMapper.class).insertOrderList(ctDto) == 1) {
 							System.out.println(i + 1 + "번 째 주문 상품 삽입 완료");
+							// 판매량 디비 접근!!
+							// pk, 상품 번호, 카테고리 이름, 판매량
+							// 
 							if(num.indexOf(",") != -1) {
 								if (ss.getMapper(StuffMapper.class).deleteCart(ctDto) == 1) {
 									System.out.println(i + 1 + "번 상품 장바구니 삭제 완료");

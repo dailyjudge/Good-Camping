@@ -42,5 +42,7 @@ public interface StuffMapper {
 
 	int updateCart(CartDTO c);
 
+	int getCartCount(CartDTO c);
+
 
 }
