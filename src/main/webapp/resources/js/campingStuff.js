@@ -75,6 +75,8 @@ $(function() {
 
 function insertCart(id) {
 	
+	let amount = document.getElementById('stuff-amount-result').innerText;
+	
 	if(id == '') {
 		alert('로그인이 필요한 서비스입니다.');
 		return;
@@ -84,12 +86,13 @@ function insertCart(id) {
 	$.ajax({
 		url:"do.insert.cart",
 		data:{
-			"s_no": $("#insertCart-btn").val()
+			"sc_stuff_no": $("#insertCart-btn").val(),
+			"sc_amount": amount
 			}
 	}).done(function(data) {
 		console.log(data)
 		if(data == 1) {
-			alert($("#insertCart-btn").val()+"장바구니 담기 성공!");
+			alert("상품을 장바구니에 담았습니다.");
 		} else {
 			alert("장바구니 담기 실패");
 		}

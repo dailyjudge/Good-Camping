@@ -16,7 +16,14 @@ create table stuff(
 	s_price number(10)
 );
 
---
+select * from stuff
+where s_category not in('캠핑가구', '등산장비', '취사용품', '제습/방향/탈취', '캠핑매트')
+
+
+
+select count(*), s_category, s_detail_category from stuff
+group by s_category, s_detail_category
+
 -- 1번 : 주문 테이블에 데이터 넣기
 insert into stuff_order values(nextval, id, #{ta, 주소들 , 날짜);
 -- 날짜로 뽑자 (1, 3, 5, 10, 22)
@@ -175,4 +182,29 @@ from stuff, stuff_cart
 where s_no = sc_stuff_no
 and sc_cart_id = 67 
 
+-- 등산장비 - 핫팩, 로프
+-- 취사용품 - 코펠, 바비큐그릴/화로대, 버너
+-- 제습/방향/탈취 - 숯
+-- 캠핑매트 - 미제공 ( 캠핑매트)
+-- 캠핑가구 - 야전침대, 캠핑테이블, 캠핑의자
+-- 랜턴 - 겁나 많음
 
+-- 판매량 DB, why? 상품 추천 해주기 위함. (카테고리 별로 상품 추천)
+-- 판매량 DB pk
+-- 상품 번호
+-- category 이름 (s_category)
+-- 판매량
+
+create table stuff_sale (
+	ss_no number(7) primary key,
+	ss_stuff_no number(7),
+	ss_category varchar2(100 char),
+	ss_count number(7)
+);
+create sequence stuff_sale_seq
+
+insert into stuff_sale values(stuff_sale_seq.nextval, 11070, '캠핑가구', 3);
+
+select count(*)
+from stuff, stuff_sale
+where s_no = ss_stuff_no and s_no = #{sc_stuff_no}
