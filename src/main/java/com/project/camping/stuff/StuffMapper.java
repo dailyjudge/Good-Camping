@@ -38,5 +38,9 @@ public interface StuffMapper {
 
 	List<StuffOrderDTO> getOrderNum(AccountDTO a);
 
+	int getCart(CartDTO c);
+
+	int updateCart(CartDTO c);
+
 
 }
