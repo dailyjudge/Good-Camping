@@ -343,3 +343,31 @@ function goChangePw2() {
 	}
 	
 }
+function searchID(){
+	let idFind_name = $('#idFind_name').val();
+    let idFind_phone = $('#idFind_phone').val();	  
+    
+    // 예외처리 부분
+    
+    $.ajax({
+    	url: "searchID.do",
+    	
+    	data: {
+    		"ac_name" : idFind_name,
+    		"ac_phone" : idFind_phone
+    	}
+    }).done(function(res) {
+		alert(res);
+		
+		if(res != 0) {
+			$("#modal").fadeIn(300);
+			$(".modal1").fadeIn(300);
+			$('#idFind-auth-hidden').val(res);
+		}
+	});
+	
+}
+$("#modal, .close").on('click',function(){
+	  $("#modal").fadeOut(300);
+	  $(".modal-con").fadeOut(300);
+	});

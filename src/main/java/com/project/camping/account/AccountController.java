@@ -139,24 +139,29 @@ public class AccountController {
 	    	return "index";
 	    }
 	    // 로그인 창에서 처음으로 id/pw 찾는 페이지로
-	    @RequestMapping(value="/searchPW.go", method=RequestMethod.GET)
+	    @RequestMapping(value="/searchTheId.go", method = {RequestMethod.GET, RequestMethod.POST })
+	    public String goFindId(HttpServletRequest req){
+	    	
+	    	aDAO.loginCheck(req);
+	    	req.setAttribute("contentPage", "account/find_Id_Page.jsp");
+	    	return "index";
+	    }
+	    // 로그인 창에서 처음으로 id/pw 찾는 페이지로
+	    @RequestMapping(value="/searchThePw.go", method = {RequestMethod.GET, RequestMethod.POST })
 	    public String goFindPW(HttpServletRequest req){
 	    	
 	    	aDAO.loginCheck(req);
-	    	req.setAttribute("contentPage", "account/find_Id_Pw.jsp");
+	    	req.setAttribute("contentPage", "account/find_Pw_page.jsp");
 	    	return "index";
 	    }
 	    // 아이디 찾기
-	    @RequestMapping(value="/searchID.do", method=RequestMethod.POST)
+	    @RequestMapping(value="/searchID.do", method = {RequestMethod.GET, RequestMethod.POST })
+	    @ResponseBody
 	    public String doFindID(HttpServletRequest req){
 	    	
-	    	aDAO.doFindId(req);
-	    	
-			aDAO.loginCheck(req);
-			req.setAttribute("contentPage", "account/searchIdResult.jsp");
-			
-	    	return "index";
+	    	return aDAO.doFindId(req);
 	    }
+	    
 	    //메일로 임시코드 보내기
 	    @RequestMapping(value="/searchPW.do", method=RequestMethod.POST)
 	    @ResponseBody

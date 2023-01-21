@@ -200,9 +200,9 @@ public class AccountDAO {
 
 	}
 
-	public void doFindId(HttpServletRequest req) {
-		String sr_name = req.getParameter("sr_name");
-		String sr_phone = req.getParameter("sr_phone");
+	public String doFindId(HttpServletRequest req) {
+		String sr_name = req.getParameter("ac_name");
+		String sr_phone = req.getParameter("ac_phone");
 
 		// map 이용해서
 		Map<String, String> findId = new HashMap<String, String>();
@@ -211,10 +211,11 @@ public class AccountDAO {
 
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
 		String userId = mm.GoFindId(findId);
+		
 		if (userId.equals(null)) {
-			req.setAttribute("userId", "해당 회원은 존재하지 않습니다.");
+			return null;
 		} else {
-			req.setAttribute("userId", userId);
+			return userId;
 		}
 
 	}

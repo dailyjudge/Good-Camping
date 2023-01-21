@@ -276,6 +276,9 @@
 .camping-login-find-category-id span{
 	color: #32be8f;
 }
+.camping-login-find-category-pw2 span{
+	color: #32be8f;
+}
 #camping-login-category-find-pw-container {
 	display : none;
 }
