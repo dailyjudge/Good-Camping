@@ -363,6 +363,7 @@ function searchID(){
 			$("#modal").fadeIn(300);
 			$(".modal1").fadeIn(300);
 			$('#idFind-auth-hidden').val(res);
+			$('.findId_span').text(res);
 		}
 	});
 	

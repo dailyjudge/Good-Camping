@@ -123,7 +123,8 @@ pw 찾기
 		<div class="modal-con modal1">
 		<a href="javascript:;" class="close">X</a>
 			<p class="title">제목</p>
-			<div class="con">찾으시는 아이디는 </div>
+			<div class="con">찾으시는 아이디는 <span class="findId_span"></span>입니다</div>
+			<br> <a href="accountHome.go">로그인</a>하러 가기
 		</div>
 	</div>
 </body>

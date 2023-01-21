@@ -215,6 +215,7 @@ public class AccountDAO {
 		if (userId.equals(null)) {
 			return null;
 		} else {
+			req.setAttribute("userId", userId);
 			return userId;
 		}
 
