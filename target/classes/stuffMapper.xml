@@ -88,4 +88,9 @@
 	<select id="getCartCount" parameterType="com.project.camping.stuff.CartDTO" resultType="int">
 		select count(*) from stuff_cart where sc_user_id = #{sc_user_id} and sc_stuff_no = #{sc_stuff_no}
 	</select>
+	
+	
+	<insert id="insertSales" parameterType="StuffDTO">
+	insert into  stuff_sale values(stuff_sale_seq.nextval, #{ss_stuff_no}, #{ss_category}, 1);
+	</insert>
 		</mapper>

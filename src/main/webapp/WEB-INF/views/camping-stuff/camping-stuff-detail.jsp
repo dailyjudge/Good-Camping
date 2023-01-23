@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body>    
+<div class="stuff-detail-pg">
 	<div id="stuff-detail-div">
 		<div class="stuff-img">
 			<img src="${stuffs.s_image }" />
@@ -31,14 +32,18 @@
 				<div id="amount-div">
 					<input type="button" value="-" onclick="count('minus')"
 						name="minus" /> <span id="stuff-amount-result"
-						type="text" name="amount" value="1" size="2" max="99">
+						name="amount" value="1" size="2" max="99">
 						1 </span> <input type="button" value="+" onclick="count('plus')"
 						name="add" />
-					<div type="text" id="sum"></div>
 				</div>
-				<div class="stuff-price">
-					<b><fmt:formatNumber value="${stuffs.s_price }" pattern="#,###" />
+				<div class="stuff-price" style="display: flex;">
+					<div style="width: 50%;">
+					<b>
+					<input id="stuff-price" type="hidden" value="${stuffs.s_price }">
+					<fmt:formatNumber  value="${stuffs.s_price }" pattern="#,###" />
 						원</b>
+					</div>
+					<div id="sum"></div>
 				</div>
 				<div class="box bg-3">
 					<button onclick="insertCart('${sessionScope.loginAccount.ac_id}')"
@@ -52,6 +57,32 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	  <div class="recommend-div">
+        <div class="recommend-title"><span>추천 상품</span></div>
+        <div class="stuff-recommend">
+          <div class="recommend-items">
+            <img
+              src="https://shopping-phinf.pstatic.net/main_3196097/31960975621.20221013164849.jpg"
+            />
+          </div>
+          <div class="recommend-items">
+            <img
+              src="https://shopping-phinf.pstatic.net/main_3196097/31960975621.20221013164849.jpg"
+            />
+          </div>
+          <div class="recommend-items">
+            <img
+              src="https://shopping-phinf.pstatic.net/main_3196097/31960975621.20221013164849.jpg"
+            />
+          </div>
+          <div class="recommend-items">
+            <img
+              src="https://shopping-phinf.pstatic.net/main_3196097/31960975621.20221013164849.jpg"
+            />
+          </div>
+        </div>
+      </div>
 	</div>
 </body>
 </html>

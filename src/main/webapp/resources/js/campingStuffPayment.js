@@ -95,7 +95,7 @@ function kakao_pay(items) {
 
 			
 			console.log(data.tid);
-			var win = window.open(data.next_redirect_pc_url, "PopupWin", "width=500,height=600,left=500");
+			var win = window.open(data.next_redirect_pc_url, "PopupWin", "width=500,height=700,left=500");
 			
 			
 			console.log('팝업 열리고 나서?');

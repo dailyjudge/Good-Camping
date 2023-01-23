@@ -9,10 +9,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -183,6 +181,7 @@ public class StuffDAO {
 	public void getAllCart(HttpServletRequest req) {
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
+		System.out.println("syso가 왜 안찍힐가여?");
 		System.out.println(a.getAc_id());
 		List<CartDTO> carts = sm.getALlCartstuff(a);
 
@@ -190,6 +189,7 @@ public class StuffDAO {
 
 		for (CartDTO c : carts) {
 			money += c.getSc_amount() * c.getS_price();
+			
 		}
 
 		req.setAttribute("money", money);
@@ -227,6 +227,7 @@ public class StuffDAO {
 		// 0아니면 1
 		if(ss.getMapper(StuffMapper.class).getCartCount(c) == 1) {
 			// 두번째. 있다면 update (수량만 더해주기)
+	
 			return ss.getMapper(StuffMapper.class).updateCart(c);
 		} else {
 			// 세번째. 없다면 새로운 컬럼 추가.
@@ -257,7 +258,7 @@ public class StuffDAO {
 		req.setAttribute("carts2", carts);
 	}
 
-	public void orderPage(StuffOrderDTO soDTO, HttpServletRequest req) {
+/*	public void orderPage(StuffOrderDTO soDTO, HttpServletRequest req) {
 
 		// soDTO : 주소 목록 3가지 + data(장바구니 no 리스트)
 
@@ -356,7 +357,7 @@ public class StuffDAO {
 
 		}
 	}
-
+*/
 	public String kakaoPopup(StuffOrderDTO soDTO, HttpServletRequest req) {
 		try {
 			AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
@@ -563,7 +564,7 @@ public class StuffDAO {
 		}
 	}
 
-	public void kakaoPay2(HttpServletRequest req) {
+	/*public void kakaoPay2(HttpServletRequest req) {
 		try {
 			System.out.println("레디 지나고 접근 !!");
 			// 아이템들 안받았따.
@@ -670,7 +671,7 @@ public class StuffDAO {
 						ctDto.setS_title(ctDto.getS_title().replace("<b>", "").replace("</b>", ""));
 
 						if (ss.getMapper(StuffMapper.class).insertOrderList(ctDto) == 1) {
-							System.out.println(i + 1 + "번 째 주문 상품 삽입 완료");
+							System.out.println(i + 1 + "번  주문 상품 삽입 완료");
 							// 판매량 디비 접근!!
 							// pk, 상품 번호, 카테고리 이름, 판매량
 							// 
@@ -680,9 +681,9 @@ public class StuffDAO {
 								} else {
 									System.out.println(i + 1 + "번 상품 장바구니 삭제 실패");
 								}
-							} else {
-								System.out.println(i + 1 + "번 째 주문 상품 삽입 실패");
-						}
+							} 
+						}else {
+							System.out.println(i + 1 + "번 째 주문 상품 삽입 실패");
 					}
 					
 					SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy.MM.dd a H:mm:ss", Locale.KOREA);
@@ -720,7 +721,7 @@ public class StuffDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public void paymentconfirm(String kakaoPayReady) {
 		System.out.println("*************");
@@ -771,7 +772,7 @@ public class StuffDAO {
 	 * ""));
 	 * 
 	 * if (ss.getMapper(StuffMapper.class).insertOrderList(ctDto) == 1) {
-	 * System.out.println(i + 1 + "번 째 주문 상품 삽입 완료"); } else { System.out.println(i
+	 * System.out.println(i + 1 + "번  주문 상품 삽입 완료"); } else { System.out.println(i
 	 * + 1 + "번 째 주문 상품 삽입 실패"); break; }
 	 * 
 	 * 
@@ -874,7 +875,7 @@ public class StuffDAO {
 	 * 
 	 * return paymentDTO;
 	 * 
-	 * } catch (IOException e) { // TODO Auto-generated catch block
+	 * } catch (IOException e) {
 	 * e.printStackTrace(); return null; }
 	 * 
 	 * }

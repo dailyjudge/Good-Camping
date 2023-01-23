@@ -16,14 +16,7 @@ create table stuff(
 	s_price number(10)
 );
 
-select * from stuff
-where s_category not in('캠핑가구', '등산장비', '취사용품', '제습/방향/탈취', '캠핑매트')
-
-
-
-select count(*), s_category, s_detail_category from stuff
-group by s_category, s_detail_category
-
+--
 -- 1번 : 주문 테이블에 데이터 넣기
 insert into stuff_order values(nextval, id, #{ta, 주소들 , 날짜);
 -- 날짜로 뽑자 (1, 3, 5, 10, 22)
@@ -47,7 +40,7 @@ delete stuff
 
 select * from stuff_cart;
 
-select  *from stuff_cart  where  sc_user_id='test' and  sc_stuff_no=8339;
+select  *from stuff_cart  where  sc_user_id='test' and  sc_stuff_no=8380;
 
 create table stuff_cart(
 	
@@ -71,7 +64,6 @@ where account.ac_id = stuff_cart.sc_user_id and
 stuff.s_no = stuff_cart.sc_stuff_no and
 account.ac_id = 'test'
 
-<<<<<<< HEAD
 
 
 --주문번호 (PK), 상품번호,사용자 id ,갯수,우편번호, 주소,주문 날짜,
@@ -124,7 +116,6 @@ where s_no = soi_stuff_no and so_no = soi_so_no and so_no = #{so_no}
 
 
 
-=======
 -- 주문
 create table stuff_order(
    so_no number(7) primary key,
@@ -177,6 +168,7 @@ select * from stuff_cart
 select * from stuff_order_items
 delete stuff_order_items
 delete stuff_order
+select * from stuff_order;
 select sc_stuff_no, sc_amount, s_title, s_image, s_price
 from stuff, stuff_cart
 where s_no = sc_stuff_no
@@ -196,15 +188,23 @@ and sc_cart_id = 67
 -- 판매량
 
 create table stuff_sale (
-	ss_no number(7) primary key,
-	ss_stuff_no number(7),
-	ss_category varchar2(100 char),
-	ss_count number(7)
+   ss_no number(7) primary key,
+   ss_stuff_no number(7),
+   ss_category varchar2(100 char),
+   ss_count number(7)
 );
 create sequence stuff_sale_seq
 
+select * from stuff_sale;
+
 insert into stuff_sale values(stuff_sale_seq.nextval, 11070, '캠핑가구', 3);
 
+select s_no,s_category from stuff;
+
+insert into stuff_sale (ss_stuff_no,ss_category)select s_no,s_category from stuff ;
+
+
+delete stuff_sale;
 select count(*)
 from stuff, stuff_sale
 where s_no = ss_stuff_no and s_no = #{sc_stuff_no}

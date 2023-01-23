@@ -44,5 +44,7 @@ public interface StuffMapper {
 
 	int getCartCount(CartDTO c);
 
+	int insertSales(StuffSaleDTO saleDTO);
+
 
 }

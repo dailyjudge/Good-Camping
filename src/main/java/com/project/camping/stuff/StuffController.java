@@ -125,20 +125,20 @@ public class StuffController {
 		return sDAO.kakaoPopup(soDTO,req);
 	}
 
-	@RequestMapping(value = "/go.stuff.buy.popup", method = RequestMethod.GET)
-	public String goStuffBuyPopup(StuffOrderDTO soDTO, HttpServletRequest req) {
-		//sDAO.kakaoPay2(req);
-		return "camping-stuff/kakaoSuccess";
-	}
+//	@RequestMapping(value = "/go.stuff.buy.popup", method = RequestMethod.GET)
+//	public String goStuffBuyPopup(StuffOrderDTO soDTO, HttpServletRequest req) {
+//		//sDAO.kakaoPay2(req);
+//		return "camping-stuff/kakaoSuccess";
+//	}
 
 	@RequestMapping(value = "/do.stuff.buy.popup", method = RequestMethod.GET)
-	public String doStuffBuyPopup(StuffOrderDTO soDTO, HttpServletRequest req) {
+	public String doStuffBuyPopup(StuffDTO s,StuffOrderDTO soDTO, HttpServletRequest req) {
 		sDAO.kakaoPay2(req);
 		aDAO.loginCheck(req);
 		req.setAttribute("contentPage", "camping-stuff/camping-stuff-order.jsp");
 		return "index";
 	}
-	
+//	
 	
 	
 	
@@ -150,17 +150,17 @@ public class StuffController {
 	
 	
 	
-	@RequestMapping(value = "/go.stuff.buy", method = RequestMethod.GET)
-	public String goBuyNow(StuffOrderDTO soDTO, HttpServletRequest req) {
-		
+//	@RequestMapping(value = "/go.stuff.buy", method = RequestMethod.GET)
+//	public String goBuyNow(StuffOrderDTO soDTO, HttpServletRequest req) {
+//		
 //		sDAO.orderPage(soDTO, req);
-		aDAO.loginCheck(req);
-		sDAO.kakaoPay2(req);
-		req.setAttribute("contentPage", "camping-stuff/camping-stuff-order.jsp");
-		
-		return "index";
-	}
-	
+//		aDAO.loginCheck(req);
+//		sDAO.kakaoPay2(req);
+//		req.setAttribute("contentPage", "camping-stuff/camping-stuff-order.jsp");
+//		
+//		return "index";
+//	}
+//	
 	
 	
 	

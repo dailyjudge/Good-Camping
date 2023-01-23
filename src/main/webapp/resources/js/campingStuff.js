@@ -124,7 +124,8 @@ $(function () {
 function count(type) {
   // 결과를 표시할 element
   const resultElement = document.getElementById("stuff-amount-result");
-
+  //const sumDIV = document.getElementById('sum');
+  const stuffPrice = document.getElementById('stuff-price');
   // 현재 화면에 표시된 값
   let number = resultElement.innerText;
 
@@ -140,5 +141,10 @@ function count(type) {
   }
 
   // 결과 출력
+  if(number != 1){
+  sum.innerHTML = "<b>총 금액   " + (stuffPrice.value * number) + "</b>";
+  }else{
+	  sum.innerHTML = "";
+  }
   resultElement.innerText = number;
 }
