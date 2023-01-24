@@ -173,8 +173,16 @@
   width: 90%;
 }
 .recommend-div {
-  /* border: 1px solid navy; */
+ /*  border: 1px solid navy; */
   margin-top: 10px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+.recommend-div span{
+	/* border: 1px solid blue; */
+	margin-left: 20px;
 }
 .recommend-title {
   /* border: 1px solid black; */
@@ -191,12 +199,11 @@
   margin-left: 8%;
   margin-right: 10%;
   display: inline-flex;
-  justify-content: space-between;
   margin-top: 20px;
 }
 
 .recommend-items {
-  border: 0.5px solid rgb(157, 157, 157);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   width: 20%;
   height: 250px;
   margin: 3%;

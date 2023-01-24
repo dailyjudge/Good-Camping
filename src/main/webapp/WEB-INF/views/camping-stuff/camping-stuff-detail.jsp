@@ -61,26 +61,12 @@
 	  <div class="recommend-div">
         <div class="recommend-title"><span>추천 상품</span></div>
         <div class="stuff-recommend">
+        <c:forEach var="topItems" items="${topItems }">
           <div class="recommend-items">
-            <img
-              src="https://shopping-phinf.pstatic.net/main_3196097/31960975621.20221013164849.jpg"
-            />
+            <img onclick="location.href='go.stuff.detail?s_no=${topItems.ss_stuff_no}'"src="${topItems.s_image }">
           </div>
-          <div class="recommend-items">
-            <img
-              src="https://shopping-phinf.pstatic.net/main_3196097/31960975621.20221013164849.jpg"
-            />
-          </div>
-          <div class="recommend-items">
-            <img
-              src="https://shopping-phinf.pstatic.net/main_3196097/31960975621.20221013164849.jpg"
-            />
-          </div>
-          <div class="recommend-items">
-            <img
-              src="https://shopping-phinf.pstatic.net/main_3196097/31960975621.20221013164849.jpg"
-            />
-          </div>
+         
+        </c:forEach>
         </div>
       </div>
 	</div>

@@ -23,7 +23,7 @@
 					<div class="stuff-in-order-title">
 						<span>${c.s_title }</span>
 					</div>
-					<div>
+					<div class="stuff-in-order-amount">
 						<span>${c.sc_amount }개</span>
 					</div>
 					<div class="stuff-in-order-price">

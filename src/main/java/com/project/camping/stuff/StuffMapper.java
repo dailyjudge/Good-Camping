@@ -46,5 +46,8 @@ public interface StuffMapper {
 
 	int insertSales(StuffSaleDTO saleDTO);
 
+	List<StuffSaleDTO> getTopItems(StuffSaleDTO saleDTO);
+
+
 
 }

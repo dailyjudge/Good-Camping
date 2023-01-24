@@ -138,6 +138,7 @@ create table stuff_order_items(
    soi_sc_amount number(2)not null 
 );
 
+select * from stuff_order_items where soi_so_no = 462;
 select * from stuff_order_items
 delete from stuff_order_items
 create sequence stuff_order_items_seq;
@@ -196,6 +197,17 @@ create table stuff_sale (
 create sequence stuff_sale_seq
 
 select * from stuff_sale;
+
+select * from stuff_sale where ss_category='랜턴'
+select * from (select * from stuff_sale where ss_category='랜턴' order by ss_count desc) where rownum<=4;
+--조인 stuff,stuff_sale
+--select so_no, s_no, s_title, s_price, soi_sc_amount, so_date, so_user_zonecode, so_user_addr, so_user_detailaddr
+from stuff, stuff_order, stuff_order_items 
+where s_no = soi_stuff_no and so_no = soi_so_no and so_no = #{so_no}
+
+
+select s_image,s_title,s_price,s_no,ss_no,ss_stuff_no,ss_category,ss_count
+from stuff,(select * from stuff_sale where ss_category='랜턴' order by ss_count desc) where rownum<=4 and s_no = ss_stuff_no;
 
 insert into stuff_sale values(stuff_sale_seq.nextval, 11070, '캠핑가구', 3);
 

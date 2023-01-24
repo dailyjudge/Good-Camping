@@ -42,6 +42,19 @@ function deleteCheckedItem() {
   alert("삭제가 완료되었습니다!");
 }
 
+function StuffSearch(){
+	
+		var keyword =  $('#stuff-search-input').val();
+		
+	
+		if(keyword == null || keyword == ''){
+			alert('검색어를 입력하세요');
+			return false;
+		}
+	
+	
+}
+
 $(function () {
   $("#stuff-in-cart-allcheck").click(function () {
     let isChecked = $(this).is(":checked");
@@ -148,3 +161,6 @@ function count(type) {
   }
   resultElement.innerText = number;
 }
+
+
+

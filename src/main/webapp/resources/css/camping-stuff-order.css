@@ -32,7 +32,12 @@
   /* border: 1px solid green; */
   margin: 10px;
 }
+.stuff-in-order-amount {
+  /* border: 1px solid red; */
 
+  margin: auto 0px;
+
+}
 .stuff-in-order-title {
   /* border: 1px solid pink; */
   margin: auto 0px;
