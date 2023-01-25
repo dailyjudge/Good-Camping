@@ -214,3 +214,6 @@ html {
   cursor: pointer;
 }
 
+#deleteUserId{
+	margin-left: 100px;
+}

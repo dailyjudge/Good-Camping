@@ -103,7 +103,26 @@ public class AccountController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "/accountUpdate.do", method = RequestMethod.POST)
+	public String accountUpdateDo(HttpServletRequest req, AccountDTO ac) throws IOException {
+		
+		aDAO.accoutUpateDo(req,ac);
+		
+		aDAO.loginCheck(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "index";
+	}
 
+	@RequestMapping(value = "/deleteUser.do", method = RequestMethod.GET)
+	public String deleteUserDo(HttpServletRequest req) {
+		
+		aDAO.deleteUser(req);
+		
+		aDAO.loginCheck(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "index";
+	}
+	
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String loginGo(HttpServletRequest req) {
 
@@ -129,13 +148,9 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "/myPage.do", method = RequestMethod.GET)
-	public String myPageDo(HttpServletRequest req, Model m, AccountDTO a) {
-		aDAO.loginCheck(req);
+	public String myPageDo(HttpServletRequest req, AccountDTO a) {
 		
-		req.setAttribute("Click", 3);
-		req.setAttribute("contentPage", "account/myPage.jsp");
-		
-		return "index";
+		return "account/myPageN";
 	}
 	
 	    //

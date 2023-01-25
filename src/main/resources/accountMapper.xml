@@ -30,6 +30,16 @@ select * from account where ac_id = #{ac_id}
 	update account set ac_pw = #{ac_pw} where ac_id = #{ac_id}
 </update>
 
+<update id="accountUpdateProfile" parameterType="com.project.camping.account.AccountDTO">
+	update account 
+	set ac_pw = #{ac_pw}, ac_name = #{ac_name}, 
+	ac_birth = #{ac_birth}, ac_phone = #{ac_phone}, 
+	ac_postcode = #{ac_postcode}, ac_address = #{ac_address}, 
+	ac_detailAddress = #{ac_detailAddress}, ac_extraAddress = #{ac_extraAddress},
+	ac_gender = #{ac_gender}, ac_file = #{ac_file}
+	where ac_id = #{ac_id}
+</update>
+
 <select id="getAccountByEmail" parameterType="String" resultType="com.project.camping.account.AccountDTO">
 select * from account where ac_id = #{email}
 </select>
@@ -42,4 +52,9 @@ select * from account where ac_id = #{email}
 <select id="getAccountByCookie" resultType="com.project.camping.account.AccountDTO">
 	select * from account where ac_sessionkey = #{ac_sessionkey}
 </select>
+
+<delete id="deleteUserDoIt" parameterType="String">
+	delete account where ac_id = #{ac_id} 
+</delete>
+
 </mapper>

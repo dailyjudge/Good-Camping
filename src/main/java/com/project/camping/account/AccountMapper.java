@@ -24,6 +24,10 @@ public interface AccountMapper {
 
 	String doubleCheckPw(String ac_id);
 
+	int accountUpdateProfile(AccountDTO ac);
+
+	int deleteUserDoIt(String ac_id);
+
 
 
 }

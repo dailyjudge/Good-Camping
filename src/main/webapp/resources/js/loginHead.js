@@ -384,4 +384,13 @@ function double_check_pw(){
 
 	
 }
+function deleteUser(user_id) {
+	
+	if(confirm("정말 탈퇴하시겠습니까?")){
+		location.href='deleteUser.do?ac_id'+user_id; //페이지 이동
+	}else{
+		return;
+	}
+	
+}
 
