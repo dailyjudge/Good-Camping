@@ -10,6 +10,10 @@ insert into account values(#{ac_id},#{ac_pw},#{ac_name},#{ac_birth},#{ac_phone},
 select * from account where ac_id = #{ac_id}
 </select>
 
+<select id="doubleCheckPw" parameterType="String" resultType="String">
+select ac_pw from account where ac_id = #{ac_id}
+</select>
+
 <select id="getIdCheck" parameterType="String" resultType="int">
 select count(*) from account where ac_id = #{ac_id2}
 </select>

@@ -73,8 +73,8 @@ public class AccountController {
 	public String accountReg(HttpServletRequest req) {
 		
 		aDAO.loginCheck(req);
-		req.setAttribute("contentPage", "account/accountReg.jsp");
-		return "index";
+		req.setAttribute("contentPage", "account/accountRegN.jsp");
+		return "account/accountRegN";
 	}
 	@RequestMapping(value = "/go.Login.Head.callback", method = RequestMethod.GET)
 	public String GoLoginCallback(HttpServletRequest req) {
@@ -104,9 +104,35 @@ public class AccountController {
 		return "index";
 	}
 
+<<<<<<< HEAD
+	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
+	public String loginGo(HttpServletRequest req) {
+=======
+>>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 
+		aDAO.loginCheck(req);
+		req.setAttribute("contentPage", "account/loginHead.jsp");
+		return "index";
+	}
+
+	@RequestMapping(value = "/doubleCheckPw.go", method = RequestMethod.POST)
+	@ResponseBody
+	public int doubleCheckPw(HttpServletRequest req, Model m, AccountDTO a) {
+		
+		return aDAO.doubleCheckPw(req,a);
+	}
 	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
 	public String myPageGo(HttpServletRequest req, Model m, AccountDTO a) {
+		aDAO.loginCheck(req);
+		
+		req.setAttribute("Click", 3);
+		req.setAttribute("contentPage", "account/ask_pw_page.jsp");
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/myPage.do", method = RequestMethod.GET)
+	public String myPageDo(HttpServletRequest req, Model m, AccountDTO a) {
 		aDAO.loginCheck(req);
 		
 		req.setAttribute("Click", 3);
@@ -134,20 +160,36 @@ public class AccountController {
 	    }
 	    
 	    // 로그인 창에서 처음으로 id/pw 찾는 페이지로
-	    @RequestMapping(value="/searchPW.go", method=RequestMethod.GET)
+	    @RequestMapping(value="/searchTheId.go", method = {RequestMethod.GET, RequestMethod.POST })
+	    public String goFindId(HttpServletRequest req){
+	    	
+	    	aDAO.loginCheck(req);
+	    	req.setAttribute("contentPage", "account/find_Id_Page.jsp");
+	    	return "index";
+	    }
+	    // 로그인 창에서 처음으로 id/pw 찾는 페이지로
+	    @RequestMapping(value="/searchThePw.go", method = {RequestMethod.GET, RequestMethod.POST })
 	    public String goFindPW(HttpServletRequest req){
 	    	
 	    	aDAO.loginCheck(req);
-	    	req.setAttribute("contentPage", "account/find_Id_Pw.jsp");
+	    	req.setAttribute("contentPage", "account/find_Pw_page.jsp");
 	    	return "index";
 	    }
 	    
 	    // 아이디 찾기
+<<<<<<< HEAD
+	    @RequestMapping(value="/searchID.do", method = {RequestMethod.GET, RequestMethod.POST })
+	    @ResponseBody
+	    public String doFindID(HttpServletRequest req){
+	    	
+=======
 	    @RequestMapping(value="/searchID.do", method=RequestMethod.POST)
 	    @ResponseBody
 	    public String doFindID(HttpServletRequest req){
+>>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 	    	return aDAO.doFindId(req);
 	    }
+	    
 	    //메일로 임시코드 보내기
 	    @RequestMapping(value="/searchPW.do", method=RequestMethod.POST)
 	    @ResponseBody
@@ -286,7 +328,6 @@ public class AccountController {
 				
 		    	return "index";
 		    }
-	    	
 //	    	@RequestMapping(value="/delete_account", method=RequestMethod.GET)
 //		    public String delete_account(HttpSession session, HttpServletRequest req, AccountDTO ac){
 //		    	
