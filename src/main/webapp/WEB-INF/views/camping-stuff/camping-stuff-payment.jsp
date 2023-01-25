@@ -23,6 +23,7 @@
 						<input class="id_input" type="hidden" value="${c.sc_cart_id }">
 						<img src="${c.s_image }" />
 						<div class="stuff-in-cart-title" name="title">${c.s_title }</div>
+						<div class="stuff-in-cart-amount" name="amount">${c.sc_amount }</div>
 						<div class="stuff-in-cart-price">
 							<fmt:formatNumber value="${c.s_price * c.sc_amount }"
 								pattern="#,###" />
@@ -31,6 +32,14 @@
 						</div>
 					</div>
 				</c:forEach>
+				<div style="display: flex;">
+					<div
+						style="height: 88px; width: 80%; text-align: right; font-weight: bold;">총
+						금액</div>
+					<div id="totalPrice"
+						style="width: 20%; text-align: center; font-weight: bold;"></div>
+				</div>
+
 
 				<div class="stuff-payment-userinfo">
 					<h2>주문자 정보</h2>
@@ -69,15 +78,24 @@
 
 	<form action="do.stuff.buy.popup" id="approveForm">
 
-		<input id="pInput" name="pg_token" value="">
+		<input id="pInput" name="pg_token" type="hidden" value="">
 	</form>
+	<%--
 	<form action="go.kakao.ready" method="post">
 		<button name="items" value="${param.items}">결제하러가기</button>
-	</form>
+	</form> 
+ --%>
+
 	<script type="text/javascript">
 		$("#pInput").on("propertychange change paste input", function() {
 			console.log($(this).val());
-		})
+		});
+		
+		let totalPrice = 0;
+		$(".price_input").each(function(i, input) {
+			totalPrice += input.value * 1;
+		});
+		$("#totalPrice").text(totalPrice + ' 원');
 	</script>
 </body>
 </html>

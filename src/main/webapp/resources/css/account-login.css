@@ -47,7 +47,7 @@
 	width: 500px;
   }
   
-  .camping-login-form{
+  .camping-login-form-container{
 	width: 360px;
   }
   
@@ -219,7 +219,7 @@
   }
   
   @media screen and (max-width: 1000px){
-	form{
+	.camping-login-form-container{
 	  width: 290px;
 	}
   
@@ -281,4 +281,20 @@
 }
 #camping-login-category-find-pw-container {
 	display : none;
+}
+
+#camping-login-category-pw {
+	display: none;
+}
+
+#find-id-button span{
+	color: #32be8f;
+}
+
+#camping-login-category-phone {
+	display: none;
+}
+
+#camping-login-category-pw-email {
+	display: none;
 }

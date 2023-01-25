@@ -104,8 +104,11 @@ public class AccountController {
 		return "index";
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String loginGo(HttpServletRequest req) {
+=======
+>>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 
 		aDAO.loginCheck(req);
 		req.setAttribute("contentPage", "account/loginHead.jsp");
@@ -147,6 +150,7 @@ public class AccountController {
 //	    	return "account/idCheck";
 	    	return aDAO.idCheck(req);
 	    }
+	    
 	    // 아이디 or 비번 찾기
 	    @RequestMapping(value="/searchID.go", method=RequestMethod.GET)
 	    public String goFindID(HttpServletRequest req){
@@ -154,6 +158,7 @@ public class AccountController {
 			req.setAttribute("contentPage", "account/searchId.jsp");
 	    	return "index";
 	    }
+	    
 	    // 로그인 창에서 처음으로 id/pw 찾는 페이지로
 	    @RequestMapping(value="/searchTheId.go", method = {RequestMethod.GET, RequestMethod.POST })
 	    public String goFindId(HttpServletRequest req){
@@ -170,11 +175,18 @@ public class AccountController {
 	    	req.setAttribute("contentPage", "account/find_Pw_page.jsp");
 	    	return "index";
 	    }
+	    
 	    // 아이디 찾기
+<<<<<<< HEAD
 	    @RequestMapping(value="/searchID.do", method = {RequestMethod.GET, RequestMethod.POST })
 	    @ResponseBody
 	    public String doFindID(HttpServletRequest req){
 	    	
+=======
+	    @RequestMapping(value="/searchID.do", method=RequestMethod.POST)
+	    @ResponseBody
+	    public String doFindID(HttpServletRequest req){
+>>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 	    	return aDAO.doFindId(req);
 	    }
 	    
@@ -185,6 +197,7 @@ public class AccountController {
 	    	
 	    	return aDAO.sendPW_byMail(req,session,response);
 	    }
+	    
 	    // 비밀번호 재설정
 	    @RequestMapping(value="/changePw.after.findPw.go", method=RequestMethod.GET)
 	    public String changePwGo(AccountDTO aDTO, HttpServletRequest req,HttpSession session){
@@ -198,6 +211,7 @@ public class AccountController {
 	    	
 	    	return "index";
 	    }
+	    
 	    //비밀번호 update 후 -> 다시 로그인 화면
 	    @RequestMapping(value="/changePw.after.findPw.do", method=RequestMethod.POST)
 	    public String changePwDo(HttpServletRequest req , AccountDTO a){
@@ -206,7 +220,7 @@ public class AccountController {
 	    	
 	    	aDAO.loginCheck(req);
 	    	
-	    	req.setAttribute("contentPage", "account/loginHead.jsp");
+	    	req.setAttribute("contentPage", "home.jsp");
 	    	return "index";
 	    }
 	    // 처음 로그인 화면으로 돌아가기

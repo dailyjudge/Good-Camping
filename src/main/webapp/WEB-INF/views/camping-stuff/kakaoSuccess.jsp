@@ -18,8 +18,8 @@ $(function() {
 </script>
 </head>
 <body>
-
-<input id="pg_token" name="pg_token" value="${param.pg_token }">
+<h2>결제 처리중..</h2>
+<input id="pg_token" type="hidden" name="pg_token"  value="${param.pg_token }">
 
 </body>
 </html>

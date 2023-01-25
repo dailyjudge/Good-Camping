@@ -8,7 +8,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<script>
+	function goPayment3() {
+		let no = $('#goBuyNow-btn').val();
+		let count = $('#stuff-amount-result').text();
+		
+		location.href='go.buynow?items=' + no + '&amount=' + count;
+	}
+</script>
+<body>    
+<div class="stuff-detail-pg">
 	<div id="stuff-detail-div">
 		<div class="stuff-img">
 			<img src="${stuffs.s_image }" />
@@ -22,36 +31,51 @@
 				<div class="stuff-category">
 					<b>Category: </b><span>${stuffs.s_category }</span>
 				</div>
-
-				<c:if test="${stuffs.s_brand eq '미제공'}">
-					<div class="stuff-brand">
-						<b>Brand: </b><span>${stuffs.s_brand }</span>
-					</div>
-				</c:if>
+				
+				<div class="stuff-brand">
+					<b>Brand: </b><span>${stuffs.s_brand }</span>
+				</div>
+				
 				<div id="amount-div">
 					<input type="button" value="-" onclick="count('minus')"
 						name="minus" /> <span id="stuff-amount-result"
-						type="text" name="amount" value="1" size="2" max="99">
+						name="amount" value="1" size="2" max="99">
 						1 </span> <input type="button" value="+" onclick="count('plus')"
 						name="add" />
-					<div type="text" id="sum"></div>
 				</div>
-				<div class="stuff-price">
-					<b><fmt:formatNumber value="${stuffs.s_price }" pattern="#,###" />
+				<div class="stuff-price" style="display: flex;">
+					<div style="width: 50%;">
+					<b>
+					<input id="stuff-price" type="hidden" value="${stuffs.s_price }">
+					<fmt:formatNumber  value="${stuffs.s_price }" pattern="#,###" />
 						원</b>
+					</div>
+					<div id="sum"></div>
 				</div>
 				<div class="box bg-3">
 					<button onclick="insertCart('${sessionScope.loginAccount.ac_id}')"
 						id="insertCart-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						ADD TO CART</button>
-					<button onclick="location.href='go.buynow?items=${stuffs.s_no}'"
+					<button onclick="goPayment3()"
 						id="goBuyNow-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						BUY NOW</button>
 				</div>
 			</div>
 		</div>
+	</div>
+	  <div class="recommend-div">
+        <div class="recommend-title"><span>추천 상품</span></div>
+        <div class="stuff-recommend">
+        <c:forEach var="topItems" items="${topItems }">
+          <div class="recommend-items">
+            <img onclick="location.href='go.stuff.detail?s_no=${topItems.ss_stuff_no}'"src="${topItems.s_image }">
+          </div>
+         
+        </c:forEach>
+        </div>
+      </div>
 	</div>
 </body>
 </html>

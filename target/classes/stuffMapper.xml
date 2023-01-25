@@ -22,70 +22,141 @@
 	<select id="getSearchStuff"
 		parameterType="com.project.camping.stuff.StuffSearchDTO"
 		resultType="com.project.camping.stuff.StuffDTO">
-		select * from stuff where s_category like '%'||#{stuffs}||'%' or s_title
-		like '%'||#{stuffs}||'%'or s_detail_category like '%'||#{stuffs}||'%'
+		select * from stuff where s_category like
+		'%'||#{stuffs}||'%' or s_title
+		like '%'||#{stuffs}||'%'or
+		s_detail_category like '%'||#{stuffs}||'%'
 	</select>
 
 	<select id="getALlCartstuff"
 		parameterType="com.project.camping.account.AccountDTO"
 		resultType="com.project.camping.stuff.CartDTO">
 		select sc_cart_id, s_title,s_price,s_image, sc_amount
-		from stuff, stuff_cart, account
-		where account.ac_id = stuff_cart.sc_user_id and
+		from
+		stuff, stuff_cart, account
+		where account.ac_id = stuff_cart.sc_user_id
+		and
 		stuff.s_no = stuff_cart.sc_stuff_no and
-		account.ac_id = #{ac_id} 
+		account.ac_id = #{ac_id}
 	</select>
-	<delete id="deleteCartItem" parameterType="com.project.camping.stuff.CartDTO">
+	<delete id="deleteCartItem"
+		parameterType="com.project.camping.stuff.CartDTO">
 		delete stuff_cart where sc_cart_id = #{sc_cart_id}
 	</delete>
-	
-	<select id="getCartsPayment" parameterType="String" resultType="com.project.camping.stuff.CartDTO">
+
+	<select id="getCartsPayment" parameterType="String"
+		resultType="com.project.camping.stuff.CartDTO">
 		select sc_cart_id, s_title,s_price,s_image, sc_amount
-		from stuff, stuff_cart, account
-		where account.ac_id = stuff_cart.sc_user_id and
+		from
+		stuff, stuff_cart, account
+		where account.ac_id = stuff_cart.sc_user_id
+		and
 		stuff.s_no = stuff_cart.sc_stuff_no and
 		sc_cart_id = #{sc_cart_id}
 	</select>
-	
-	<insert id="insertCart" parameterType="com.project.camping.stuff.CartDTO" >
-	insert into stuff_cart values(stuff_cart_seq.nextval,#{sc_user_id},#{sc_stuff_no},#{sc_amount})
-		
+
+	<insert id="insertCart"
+		parameterType="com.project.camping.stuff.CartDTO">
+		insert into stuff_cart
+		values(stuff_cart_seq.nextval,#{sc_user_id},#{sc_stuff_no},#{sc_amount})
+
 	</insert>
-	<select id="getCart" parameterType="com.project.camping.stuff.CartDTO">
-		select * from stuff_cart  where  sc_user_id=#{sc_user_id} and  sc_stuff_no=#{sc_stuff_no}
+	<select id="getCart"
+		parameterType="com.project.camping.stuff.CartDTO">
+		select * from stuff_cart where sc_user_id=#{sc_user_id}
+		and sc_stuff_no=#{sc_stuff_no}
 	</select>
-	<update id="updateCart" parameterType="com.project.camping.stuff.CartDTO">
- 		update stuff_cart set sc_amount = sc_amount + #{sc_amount} where sc_user_id = #{sc_user_id} and sc_stuff_no = #{sc_stuff_no}
+	<update id="updateCart"
+		parameterType="com.project.camping.stuff.CartDTO">
+		update stuff_cart set sc_amount = sc_amount + #{sc_amount} where sc_user_id
+		= #{sc_user_id} and sc_stuff_no = #{sc_stuff_no}
 	</update>
 
-	<select id="getStuff" parameterType="com.project.camping.stuff.StuffDTO" resultType="com.project.camping.stuff.StuffDTO">
+	<select id="getStuff"
+		parameterType="com.project.camping.stuff.StuffDTO"
+		resultType="com.project.camping.stuff.StuffDTO">
 		select * from stuff where s_no = #{s_no}
 	</select>
-	
-	<select id="getOrderItem" parameterType="com.project.camping.stuff.CartDTO" resultType="com.project.camping.stuff.CartDTO">
-		select sc_cart_id, sc_user_id, sc_stuff_no, sc_amount, s_title, s_image, s_price 
-		from stuff, stuff_cart 
-		where s_no = sc_stuff_no 
-		and sc_cart_id = #{sc_cart_id} 
+
+	<select id="getOrderItem"
+		parameterType="com.project.camping.stuff.CartDTO"
+		resultType="com.project.camping.stuff.CartDTO">
+		select sc_cart_id, sc_user_id, sc_stuff_no, sc_amount,
+		s_title, s_image, s_price
+		from stuff, stuff_cart
+		where s_no = sc_stuff_no
+		and sc_cart_id = #{sc_cart_id}
 	</select>
-	
-	<insert id="insertOrderStuff" parameterType="com.project.camping.stuff.StuffOrderDTO">
-		insert into stuff_order values(stuff_order_seq.nextval,#{so_user_id},#{so_user_zoncode},#{so_user_addr},#{so_user_detailAddr},sysdate)
+
+	<insert id="insertOrderStuff"
+		parameterType="com.project.camping.stuff.StuffOrderDTO">
+		insert into stuff_order
+		values(stuff_order_seq.nextval,#{so_user_id},#{so_user_zoncode},#{so_user_addr},#{so_user_detailAddr},sysdate)
 	</insert>
-	
-	<select id="getOrderNum" parameterType="com.project.camping.account.AccountDTO" resultType="com.project.camping.stuff.StuffOrderDTO">
-		select * from stuff_order where so_user_id = #{ac_id} order by so_date desc
+
+	<select id="getOrderNum"
+		parameterType="com.project.camping.account.AccountDTO"
+		resultType="com.project.camping.stuff.StuffOrderDTO">
+		select * from stuff_order where so_user_id = #{ac_id} order
+		by so_date desc
 	</select>
-	
-	<insert id="insertOrderList" parameterType="com.project.camping.stuff.CartDTO">
-		insert into stuff_order_items values(stuff_order_items_seq.nextval, #{order_no},#{sc_stuff_no},#{sc_amount})
+	<!-- <select id="getItems" parameterType="com.project.camping.stuff.StuffOrderItemDTO" 
+		resultType="int"> select * from stuff_order_items where soi_so_no = #{soi_so_no} 
+		</select> -->
+	<insert id="insertOrderList"
+		parameterType="com.project.camping.stuff.CartDTO">
+		insert into stuff_order_items
+		values(stuff_order_items_seq.nextval,
+		#{order_no},#{sc_stuff_no},#{sc_amount})
 	</insert>
-	
-	<delete id="deleteCart" parameterType="com.project.camping.stuff.CartDTO">
+
+	<delete id="deleteCart"
+		parameterType="com.project.camping.stuff.CartDTO">
 		delete stuff_cart where sc_cart_id = #{sc_cart_id}
 	</delete>
-	
-	<select id="getCartCount" parameterType="com.project.camping.stuff.CartDTO" resultType="int">
-		select count(*) from stuff_cart where sc_user_id = #{sc_user_id} and sc_stuff_no = #{sc_stuff_no}
+
+	<select id="getCartCount"
+		parameterType="com.project.camping.stuff.CartDTO" resultType="int">
+		select
+		count(*) from stuff_cart where sc_user_id = #{sc_user_id} and
+		sc_stuff_no = #{sc_stuff_no}
 	</select>
-		</mapper>
+
+
+	<insert id="insertSales" parameterType="com.project.camping.stuff.StuffSaleDTO">
+		insert into stuff_sale values(stuff_sale_seq.nextval, #{ss_stuff_no}, #{ss_category}, #{ss_count})
+	</insert>
+
+
+	<select id="getTopItems" parameterType="com.project.camping.stuff.StuffSaleDTO" resultType="com.project.camping.stuff.StuffSaleDTO">
+		select s_image, s_title, s_price, s_no, ss_no, ss_stuff_no, ss_category, ss_count
+		from stuff, (
+				select * from stuff_sale 
+				where ss_category = #{ss_category} 
+				order by ss_count DESC
+				) 
+		where ROWNUM &lt; 5 and s_no = ss_stuff_no and s_no != #{ss_stuff_no}
+		</select>
+		
+		<select id="getSalesitem" parameterType="com.project.camping.stuff.StuffSaleDTO" resultType="int">
+		select count(*) from stuff_sale where ss_stuff_no= #{ss_stuff_no}
+		</select>
+		
+		<update id="updateSalesitem" parameterType="com.project.camping.stuff.StuffSaleDTO">
+		update stuff_sale 
+		set ss_count = ss_count + #{ss_count} 
+		where ss_stuff_no = #{ss_stuff_no}
+		</update>
+		
+		<select id="getUserOrderList" parameterType="com.project.camping.account.AccountDTO" resultType="com.project.camping.stuff.StuffOrderDTO">
+			select * from stuff_order 
+			where so_user_id = #{ac_id} 
+			order by so_date DESC 
+		</select>
+		
+		<select id="getOrderItems" parameterType="com.project.camping.stuff.StuffOrderDTO" resultType="com.project.camping.stuff.StuffUserOrderDTO">
+			select so_no, s_image, s_title, s_price, soi_sc_amount, so_user_zoncode, so_user_addr, so_user_detailAddr, so_date 
+			from stuff, stuff_order, stuff_order_items
+			where s_no = so_stuff_no and so_no = soi_so_no and so_no = #{so_no} 
+		</select>
+</mapper>
