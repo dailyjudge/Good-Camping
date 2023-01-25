@@ -154,15 +154,34 @@ public class StuffDAO {
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		StuffDTO sDTO = sm.getDetailStuff(s);
 
+		
 		// 세분류가 있다면 . s_category에 세분류 값을 넣자!
 //		if (!sDTO.getS_detail_category().equals("미제공")) {
 //			sDTO.setS_category(sDTO.getS_detail_category());
 //			req.setAttribute("stuffs", sDTO);
 //		}else {
+		
+		String category = "";
+		String targetCategory = sDTO.getS_category();
+		String targetDetailCategory = sDTO.getS_detail_category();
+		
+		// 카테고리 세분류 정제
+		if(targetCategory.equals("랜턴")) {
+			category = "랜턴";
+		} else if(targetDetailCategory.equals("미제공")) {
+			category = "캠핑매트";
+		} else {
+			category = targetDetailCategory;
+		}
+		
+		sDTO.setS_category(category);
 		req.setAttribute("stuffs", sDTO);
 		StuffSaleDTO saleDTO = new StuffSaleDTO();
 		System.out.println("카테고리" + sDTO.getS_category());
+		
 		saleDTO.setSs_category(sDTO.getS_category());
+		saleDTO.setSs_stuff_no(sDTO.getS_no());
+
 		List<StuffSaleDTO> topItems = ss.getMapper(StuffMapper.class).getTopItems(saleDTO); // 조인해야함!!!!!!
 		req.setAttribute("topItems", topItems);
 
@@ -192,17 +211,18 @@ public class StuffDAO {
 	public void getAllCart(HttpServletRequest req) {
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
-		System.out.println("syso가 왜 안찍힐가여?");
+
 		System.out.println(a.getAc_id());
 		List<CartDTO> carts = sm.getALlCartstuff(a);
-
+		
 		int money = 0;
 
 		for (CartDTO c : carts) {
 			money += c.getSc_amount() * c.getS_price();
-
+			
+			c.setS_title(c.getS_title().replace("<b>", "").replace("</b>", ""));
 		}
-
+		
 		req.setAttribute("money", money);
 		req.setAttribute("carts", carts);
 
@@ -257,10 +277,17 @@ public class StuffDAO {
 		System.out.println(Integer.parseInt(req.getParameter("items")));
 		StuffDTO sDTO = ss.getMapper(StuffMapper.class).getStuff(s);
 		req.setAttribute("sDTO", sDTO);
-		c.setSc_amount(1);
+		System.out.println("수량 값 받기 !!");
+		
+		
+		if(req.getSession().getAttribute("amount") == null && req.getParameter("amount") != null) {
+			req.getSession().setAttribute("amount", Integer.parseInt(req.getParameter("amount")));
+		} 
+		
+		c.setSc_amount(Integer.parseInt(req.getSession().getAttribute("amount").toString()));
 		c.setSc_stuff_no(sDTO.getS_no());
 		c.setS_price(Integer.parseInt(sDTO.getS_price()));
-		c.setS_title(sDTO.getS_title());
+		c.setS_title(sDTO.getS_title().replace("<b>", "").replace("</b>", ""));
 		c.setS_image(sDTO.getS_image());
 
 		List<CartDTO> carts = new ArrayList<CartDTO>();
@@ -344,7 +371,7 @@ public class StuffDAO {
 	public String kakaoPopup(StuffOrderDTO soDTO, HttpServletRequest req) {
 		try {
 			AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount");
-
+			
 			// 유저의 주소를 session으로
 			System.out.println("카카오페이 팝업 이전!!");
 			System.out.println(soDTO.toString());
@@ -352,8 +379,8 @@ public class StuffDAO {
 			if (a != null) {
 				req.getSession().setAttribute("addr", soDTO);
 				System.out.println("세선 설정 완료 !!");
-				System.out.println("세션 이름 : addr-" + a.getAc_id());
 			}
+			
 			URL address;
 			address = new URL("https://kapi.kakao.com/v1/payment/ready");
 			HttpURLConnection conn = (HttpURLConnection) address.openConnection();
@@ -362,13 +389,16 @@ public class StuffDAO {
 			conn.setDoOutput(true);
 			// 보내줘야할것
 			// 상품이름,사용자 아이디, 상품 갯수, 총 결제 금액, 승인 url, 취소 url, 실패 url
-
+			
 			String stuffname = ""; // 상품이름
 			String itemName = ""; // 결제창에 보일 이름
 			int totalprice = 0; // 총액
-			int stuffamount = 1; // 상품개수
+			
+			int stuffamount = req.getSession().getAttribute("amount") == null ? 1 : Integer.parseInt(req.getSession().getAttribute("amount").toString()); // 상품개수
 			String userid = ""; // 사용자 id
+			
 			String item = req.getParameter("items");
+			System.out.println("items : " + item);
 			req.getSession().setAttribute("cartNumbers", item);
 			// ,
 			if (item.contains(",")) {
@@ -392,25 +422,25 @@ public class StuffDAO {
 					if (i == 0) {
 						targetDTO.setS_title(targetDTO.getS_title().replace("<b>", "").replace("</b>", ""));
 						itemName = targetDTO.getS_title();
-
 					}
 
 				}
+				
 				if ((cartNumbers.length - 1) > 0) {
 					itemName += " 외 " + (cartNumbers.length - 1) + "개";
-
 				}
 
 			} else {
 				// 바로구매
 				StuffDTO s = new StuffDTO();
 				s.setS_no(Integer.parseInt(item));
+				
 				goBuyNow(s, req);
+				
 				StuffDTO sDTO = (StuffDTO) req.getAttribute("sDTO");
-				itemName = sDTO.getS_title();
+				itemName = sDTO.getS_title().replace("<b>", "").replace("</b>", "");
 				totalprice = Integer.parseInt(sDTO.getS_price());
 				stuffamount = 1;
-
 			}
 
 			itemName = URLEncoder.encode(itemName, "utf-8");
@@ -609,15 +639,21 @@ public class StuffDAO {
 						s.setS_no(Integer.parseInt(num));
 
 						s = ss.getMapper(StuffMapper.class).getDetailStuff(s);
-
+						
 						cDTO = new CartDTO();
+						cDTO.setSc_stuff_no(s.getS_no());
 						cDTO.setSc_user_id(a.getAc_id());
-						cDTO.setSc_amount(1);
+						
+						cDTO.setSc_amount(Integer.parseInt(req.getSession().getAttribute("amount").toString()));
+						
 						cDTO.setS_title(s.getS_title());
 						cDTO.setS_image(s.getS_image());
 						cDTO.setS_price(Integer.parseInt(s.getS_price()));
 
 						carts.add(cDTO);
+						
+						System.out.println("리스트에 삽입 단계");
+						System.out.println(carts.get(0).toString());
 					} else {
 						cartNumbers = num.split(",");
 
@@ -646,6 +682,10 @@ public class StuffDAO {
 
 						// 주문 상품 테이블에 상품 정보 넣고, 장바구니에 해당 상품 지우기
 						// 여기에서 총 결제 금액 생각하자.
+						
+						System.out.println("개수가 1개일 때 --> 크기 : " + carts.size());
+						System.out.println(carts.get(0).toString());
+						
 						for (int i = 0; i < carts.size(); i++) {
 							CartDTO ctDto = carts.get(i);
 							ctDto.setOrder_no(OrderNum);
@@ -660,22 +700,41 @@ public class StuffDAO {
 								// pk, 상품 번호, 카테고리 이름, 판매량
 
 								StuffSaleDTO saleDTO = new StuffSaleDTO();
-								System.out.println("이거이거" + ctDto.getSc_stuff_no());
-								System.out.println("개수" + ctDto.getSc_amount());
+								
+								System.out.println("상품번호 : " + ctDto.getSc_stuff_no());
+								System.out.println("개수 : " + ctDto.getSc_amount());
+								
 								StuffDTO s = new StuffDTO();
 								s.setS_no(ctDto.getSc_stuff_no());
 								
 								s = ss.getMapper(StuffMapper.class).getDetailStuff(s);
 								System.out.println("카테고리" + s.getS_category());
-								saleDTO.setSs_category(s.getS_category());
+								
+								
+								String targetCategory = s.getS_category();
+								String targetDetailCategory = s.getS_detail_category();
+								
+								String category = "";
+								
+								// 카테고리 세분류 정제
+								if(targetCategory.equals("랜턴")) {
+									category = "랜턴";
+								} else if(targetDetailCategory.equals("미제공")) {
+									category = "캠핑매트";
+								} else {
+									category = targetDetailCategory;
+								}
+								
+								saleDTO.setSs_category(category);
 								saleDTO.setSs_stuff_no(ctDto.getSc_stuff_no());
 								saleDTO.setSs_count(ctDto.getSc_amount());
 
 								// 0아니면 1
 								if (ss.getMapper(StuffMapper.class).getSalesitem(saleDTO) == 1) {
+									System.out.println("수량 올려주기!");
 									// 두번째. 있다면 update (수량만 더해주기)
-									if (ss.getMapper(StuffMapper.class).updateSalesitem(saleDTO) > 1) {
-										System.out.println("업데이트성공");
+									if (ss.getMapper(StuffMapper.class).updateSalesitem(saleDTO) == 1) {
+										System.out.println("업데이트 성공");
 									} else {
 										System.out.println("업데이트 실패");
 									}
@@ -688,6 +747,8 @@ public class StuffDAO {
 
 									}
 								}
+								
+								
 								if (num.indexOf(",") != -1) {
 									if (ss.getMapper(StuffMapper.class).deleteCart(ctDto) == 1) {
 										System.out.println(i + 1 + "번 상품 장바구니 삭제 완료");
@@ -695,8 +756,6 @@ public class StuffDAO {
 										System.out.println(i + 1 + "번 상품 장바구니 삭제 실패");
 									}
 								}
-							} else {
-								System.out.println(i + 1 + "번 째 주문 상품 삽입 실패");
 							}
 
 							SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy.MM.dd a H:mm:ss", Locale.KOREA);
@@ -706,6 +765,7 @@ public class StuffDAO {
 							req.getSession().setAttribute("userOrder", userOrders.get(0));
 
 							req.getSession().setAttribute("formattedDate", formattedDate);
+							
 						}
 
 						// nums = 장바구니의 pk 목록들
@@ -727,7 +787,8 @@ public class StuffDAO {
 			} else {
 				req.getSession().setAttribute("cartNumbers", null);
 			}
-
+			
+			req.getSession().removeAttribute("amount");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -738,156 +799,62 @@ public class StuffDAO {
 		System.out.println(kakaoPayReady);
 
 	}
-
-	/*
-	 * public PaymentDTO kakaoPay2(StuffOrderDTO soDTO, HttpServletRequest req) {
-	 * 
-	 * AccountDTO a = (AccountDTO) req.getSession().getAttribute("loginAccount"); //
-	 * 보내줘야할것 // 상품이름,사용자 아이디, 상품 갯수, 총 결제 금액, 승인 url, 취소 url, 실패 url
-	 * 
-	 * String stuffname = ""; //상품이름 String itemName=""; //결제창에 보일 이름 int
-	 * totalprice=0; //총액 int stuffamount =0; //상품개수 String userid=""; // 사용자 id
-	 * 
-	 * String partner_order_id = "";
-	 * 
-	 * 
-	 * String cartNumbers[] = req.getParameter("items").split(",");
-	 * 
-	 * CartDTO cDTO; List<CartDTO> carts = new ArrayList<CartDTO>();
-	 * 
-	 * for (int i = 0; i < cartNumbers.length; i++) { cDTO = new CartDTO();
-	 * 
-	 * int cart_id = Integer.parseInt(cartNumbers[i]); cDTO.setSc_cart_id(cart_id);
-	 * 
-	 * 
-	 * // 실제 Cart 객체 CartDTO targetDTO =
-	 * ss.getMapper(StuffMapper.class).getOrderItem(cDTO); carts.add(targetDTO); }
-	 * 
-	 * for (CartDTO asd : carts) { System.out.println(asd.toString()); } PaymentDTO
-	 * paymentDTO = new PaymentDTO("TC0ONETIME", partner_order_id, userid, itemName,
-	 * String.valueOf(stuffamount), String.valueOf(totalprice), "0",
-	 * "http://localhost:8080/go.stuff.buy",
-	 * "http://localhost:8080/go.stuff.payment",
-	 * "http://localhost:8080/go.stuff.payment");
-	 * 
-	 * 
-	 * CartDTO ctDto = carts.get(i); ctDto.setOrder_no(OrderNum);
-	 * 
-	 * 
-	 * // 총 결제 금액 처리 totalMoney += ctDto.getS_price() * ctDto.getSc_amount();
-	 * totalprice += ctDto.getS_price()* ctDto.getSc_amount(); stuffname =
-	 * ctDto.getS_title(); stuffamount += ctDto.getSc_amount(); userid =
-	 * ctDto.getSc_user_id(); // <b>태그 정제
-	 * /*ctDto.setS_title(ctDto.getS_title().replace("<b>", "").replace("</b>",
-	 * ""));
-	 * 
-	 * if (ss.getMapper(StuffMapper.class).insertOrderList(ctDto) == 1) {
-	 * System.out.println(i + 1 + "번  주문 상품 삽입 완료"); } else { System.out.println(i +
-	 * 1 + "번 째 주문 상품 삽입 실패"); break; }
-	 * 
-	 * 
-	 * if (ss.getMapper(StuffMapper.class).deleteCart(ctDto) == 1) {
-	 * System.out.println(i + 1 + "번 상품 장바구니 삭제 완료"); } else { System.out.println(i
-	 * + 1 + "번 상품 장바구니 삭제 실패");
-	 * 
-	 * }
-	 */
-
-	/*
-	 * 
-	 * if (ss.getMapper(StuffMapper.class).insertOrderStuff(soDTO) == 1) {
-	 * System.out.println("주문 테이블에 주문 데이터 넣기 성공!");
-	 * 
-	 * // 주문 번호 가져오기 // userId + date desc 방식 List<StuffOrderDTO> userOrders =
-	 * ss.getMapper(StuffMapper.class).getOrderNum(a); int OrderNum =
-	 * userOrders.get(0).getSo_no();
-	 * 
-	 * // 주문 상품 테이블에 상품 정보 넣고, 장바구니에 해당 상품 지우기 // 여기에서 총 결제 금액 생각하자. int totalMoney
-	 * = 0; for (int i = 0; i < carts.size(); i++) {
-	 * 
-	 * itemName = stuffname+"그 외" +(carts.size()-1);
-	 * 
-	 * // 주문 상품 테이블 삽입 + 장바구니 내용 삭제가 완료.
-	 * 
-	 * // 보내줘야할 거. // 상품 no, 상품 이름, 상품 사진, 상품 가격, 상품 개수 cartDTO (리스트) // 총 결제 금액
-	 * (계산해서 보내주기) // 주문 번호 // 주문 시각 // 주소 3종 // 즉 - cartDTO List + 총 결제 금액 +
-	 * StuffOrderDTO 1개
-	 * 
-	 * // cartDTO List -> carts for (CartDTO c : carts) {
-	 * System.out.println(c.toString()); } req.setAttribute("carts", carts); //
-	 * StuffOrderDTO -> 주문 내역 리스트(userOrders) 중 가장 첫 번째 값 // 날짜 정제가 필요한걸 꺠달음
-	 * req.setAttribute("userOrder", userOrders.get(0)); // 총 결제 금액 (for문 이용해서 각각의
-	 * 값을 계산해주자) // for문에서 이미 처리 !! (totalMoney) SimpleDateFormat timeFormat = new
-	 * SimpleDateFormat("yyyy.MM.dd a H:mm:ss", Locale.KOREA); String formattedDate
-	 * = timeFormat.format(userOrders.get(0).getSo_date());
-	 * 
-	 * req.setAttribute("formattedDate", formattedDate);
-	 * req.setAttribute("totalMoney", totalMoney); } } else {
-	 * System.out.println("주문 테이블에 주문 데이터 넣기 실패!"); }
-	 * 
-	 * URL address; try { address = new
-	 * URL("https://kapi.kakao.com/v1/payment/ready"); HttpURLConnection conn =
-	 * (HttpURLConnection)address.openConnection(); conn.setRequestMethod("POST");
-	 * conn.setRequestProperty("Authorization",
-	 * "KakaoAK 9f00a6c37ca4dae0706159881b447cec");
-	 * conn.setRequestProperty("Content-type",
-	 * "application/x-www-form-urlencoded;charset=utf-8"); conn.setDoOutput(true);
-	 */
-
-	/*
-	 * Map<String,String> parameters = new HashMap<String, String>();
-	 * 
-	 * parameters.put("cid","TC0ONETIME");
-	 * parameters.put("partner_order_id",partner_order_id);
-	 * parameters.put("partner_user_id",userid);
-	 * parameters.put("item_name",itemName);
-	 * parameters.put("quantity",String.valueOf(stuffamount));
-	 * parameters.put("total_amount",String.valueOf(totalprice));
-	 * parameters.put("tax_free_amount", "0"); parameters.put("approval_url",
-	 * "http://localhost:8080/go.stuff.buy"); parameters.put("cancel_url",
-	 * "http://localhost:8080/go.stuff.payment"); parameters.put("fail_url",
-	 * "http://localhost:8080/go.stuff.payment");
-	 */
-
-	/*
-	 * String parameter = "cid=TC0ONETIME" + "&partner_order_id=partner_order_id" +
-	 * "&partner_user_id=userid" +"&item_name=itemName" + "&quantity=stuffamount" +
-	 * "&total_amount=totalprice" + "&tax_free_amount=0"
-	 * +"&approval_url=http://localhost:8080/go.stuff.buy"
-	 * +"&fail_url=http://localhost:8080/go.stuff.payment"
-	 * +"&cancel_url=http://localhost:8080/go.stuff.payment";
-	 */
-
-//		System.out.println("파트너주문아이디:"+ parameter.get("partner_order_id"));
-
-	/*
-	 * OutputStream send = conn.getOutputStream(); DataOutputStream dataSend = new
-	 * DataOutputStream(send); OutputStreamWriter osw = new
-	 * OutputStreamWriter(send); osw.write(parameters); dataSend.close();
-	 * 
-	 * 
-	 * 
-	 * int result = conn.getResponseCode(); InputStream receive;
-	 * 
-	 * if (result == 200) {
-	 * 
-	 * receive = conn.getInputStream();
-	 * 
-	 * }else {
-	 * 
-	 * receive = conn.getErrorStream(); }
-	 * 
-	 * InputStreamReader read = new InputStreamReader(receive);
-	 * 
-	 * BufferedReader change = new BufferedReader(read);
-	 * 
-	 * return change.readLine();
-	 * 
-	 * return paymentDTO;
-	 * 
-	 * } catch (IOException e) { e.printStackTrace(); return null; }
-	 * 
-	 * }
-	 * 
-	 */
+	
+	public void showAllUserOrderList(HttpServletRequest request) {
+		
+		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
+		
+		if(a != null) {
+			
+			// Attribute로 실을 리스트
+			List<StuffUserOrderDTO> userOrders = new ArrayList<StuffUserOrderDTO>();
+			
+			// 해당 유저가 주문한 내역을 먼저 가져오기. (주문 테이블에만 접근)
+			List<StuffOrderDTO> orders = ss.getMapper(StuffMapper.class).getUserOrderList(a);
+			
+			// 주문 번호에 해당하는 품목 전부를 가져와서 리스트화.
+			for(int i = 0; i < orders.size(); i++) {
+				// 주문 번호 1개
+				StuffOrderDTO order = orders.get(i);
+				
+				// 주문 번호에 해당하는 상품 리스트
+				List<StuffUserOrderDTO> orderItems = ss.getMapper(StuffMapper.class).getOrderItems(order);
+				
+				// 주문 번호, 상품 번호, 상품 이미지, 상품 제목, 상품 가격, 상품 수량, 주소, 주문 시각
+				
+				// 실질적으로 실을 데이터
+				StuffUserOrderDTO suo = new StuffUserOrderDTO();
+				
+				// 필요한 내용
+				// 키 설정
+				suo.setSo_no(orderItems.get(0).getSo_no());
+				
+				// 1. 이미지
+				// 첫번째 이미지 사용
+				suo.setS_image(orderItems.get(0).getS_image());
+				
+				// 2. 이름 : ~ 외 ~ 개
+				// 1개일 때? 그 이상일 떄?
+				String title = orderItems.get(0).getS_title();
+				
+				suo.setS_title(orderItems.size() == 1 ? title : title + "외 " + (orderItems.size() - 1) + "개");
+				
+				// 3. 가격
+				int total = 0;
+				
+				for (StuffUserOrderDTO suoDTO : orderItems) total += suoDTO.getS_price() * suoDTO.getSoi_sc_amount();
+				suo.setS_price(total);
+				
+				// 4. 주소
+				suo.setSo_user_zoncode(orderItems.get(0).getSo_user_zoncode());
+				suo.setSo_user_addr(orderItems.get(0).getSo_user_addr());
+				suo.setSo_user_detailAddr(orderItems.get(0).getSo_user_detailAddr());
+				// 5. 주문 시각
+				suo.setSo_date(orderItems.get(0).getSo_date());
+				userOrders.add(suo);
+			}
+			
+			request.setAttribute("orders", userOrders);
+		}
+	}
 }

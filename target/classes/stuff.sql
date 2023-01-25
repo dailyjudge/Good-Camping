@@ -16,7 +16,10 @@ create table stuff(
 	s_price number(10)
 );
 
---
+select * from stuff
+
+update stuff set s_brand = 'GoodCamping' where s_brand = '미제공'
+
 -- 1번 : 주문 테이블에 데이터 넣기
 insert into stuff_order values(nextval, id, #{ta, 주소들 , 날짜);
 -- 날짜로 뽑자 (1, 3, 5, 10, 22)
@@ -165,8 +168,9 @@ create table stuff(
 -- s_no = soi_stuff_no
 
 select * from stuff_order order by so_date desc
+
 select * from stuff_cart
-select * from stuff_order_items
+select * from stuff_order_items where soi_so_no = 181
 delete stuff_order_items
 delete stuff_order
 select * from stuff_order;
@@ -194,6 +198,7 @@ create table stuff_sale (
    ss_category varchar2(100 char),
    ss_count number(7)
 );
+
 create sequence stuff_sale_seq
 
 select * from stuff_sale;
@@ -220,3 +225,16 @@ delete stuff_sale;
 select count(*)
 from stuff, stuff_sale
 where s_no = ss_stuff_no and s_no = #{sc_stuff_no}
+
+
+--
+select * from stuff_sale
+
+select s_image, s_title, s_price, s_no, ss_no, ss_stuff_no, ss_category, ss_count
+		from stuff, (
+				select * from stuff_sale 
+				where ss_category = '버너' 
+				order by ss_count DESC
+				) 
+where ROWNUM <= 5 and s_no = ss_stuff_no 
+

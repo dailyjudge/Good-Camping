@@ -52,6 +52,10 @@ public interface StuffMapper {
 
 	int updateSalesitem(StuffSaleDTO saleDTO);
 
+	List<StuffOrderDTO> getUserOrderList(AccountDTO a);
+
+	List<StuffUserOrderDTO> getOrderItems(StuffOrderDTO order);
+
 
 
 }
