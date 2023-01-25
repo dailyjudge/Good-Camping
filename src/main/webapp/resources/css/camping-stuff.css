@@ -109,10 +109,12 @@ $speed: 0.5s;
 /* search */
 
 .stuff-search-container {
+
   position: relative;
   width: 400px;
   height: 50px;
   margin: 30px auto;
+ 
 }
 
 #stuff-search-input {
