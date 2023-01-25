@@ -153,8 +153,7 @@ public class StuffDAO {
 
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		StuffDTO sDTO = sm.getDetailStuff(s);
-		
-		
+
 		// 세분류가 있다면 . s_category에 세분류 값을 넣자!
 //		if (!sDTO.getS_detail_category().equals("미제공")) {
 //			sDTO.setS_category(sDTO.getS_detail_category());
@@ -162,13 +161,13 @@ public class StuffDAO {
 //		}else {
 		req.setAttribute("stuffs", sDTO);
 		StuffSaleDTO saleDTO = new StuffSaleDTO();
-		System.out.println("카테고리"+sDTO.getS_category());
+		System.out.println("카테고리" + sDTO.getS_category());
 		saleDTO.setSs_category(sDTO.getS_category());
-		List<StuffSaleDTO> topItems = ss.getMapper(StuffMapper.class).getTopItems(saleDTO); //조인해야함!!!!!!
+		List<StuffSaleDTO> topItems = ss.getMapper(StuffMapper.class).getTopItems(saleDTO); // 조인해야함!!!!!!
 		req.setAttribute("topItems", topItems);
-		
+
 //		}
-		
+
 	}
 
 	public void StuffSearch(StuffSearchDTO sd, HttpServletRequest req) {
@@ -644,7 +643,6 @@ public class StuffDAO {
 						List<StuffOrderDTO> userOrders = ss.getMapper(StuffMapper.class).getOrderNum(a);
 						int OrderNum = userOrders.get(0).getSo_no();
 						System.out.println("해당 주문 테이블 주문 번호 :  " + OrderNum);
-						
 
 						// 주문 상품 테이블에 상품 정보 넣고, 장바구니에 해당 상품 지우기
 						// 여기에서 총 결제 금액 생각하자.
@@ -663,19 +661,32 @@ public class StuffDAO {
 
 								StuffSaleDTO saleDTO = new StuffSaleDTO();
 								System.out.println("이거이거" + ctDto.getSc_stuff_no());
-								System.out.println("개수"+ctDto.getSc_amount());
-								StuffDTO s=  new StuffDTO();
+								System.out.println("개수" + ctDto.getSc_amount());
+								StuffDTO s = new StuffDTO();
 								s.setS_no(ctDto.getSc_stuff_no());
+								
 								s = ss.getMapper(StuffMapper.class).getDetailStuff(s);
 								System.out.println("카테고리" + s.getS_category());
 								saleDTO.setSs_category(s.getS_category());
 								saleDTO.setSs_stuff_no(ctDto.getSc_stuff_no());
 								saleDTO.setSs_count(ctDto.getSc_amount());
-								if (ss.getMapper(StuffMapper.class).insertSales(saleDTO) == 1) {
-									System.out.println("상품 판매량 입력 성공");
-								} else {
-									System.out.println("상품 판매량 입력 실패");
 
+								// 0아니면 1
+								if (ss.getMapper(StuffMapper.class).getSalesitem(saleDTO) == 1) {
+									// 두번째. 있다면 update (수량만 더해주기)
+									if (ss.getMapper(StuffMapper.class).updateSalesitem(saleDTO) > 1) {
+										System.out.println("업데이트성공");
+									} else {
+										System.out.println("업데이트 실패");
+									}
+								} else {
+									// 세번째. 없다면 새로운 컬럼 추가.
+									if (ss.getMapper(StuffMapper.class).insertSales(saleDTO) == 1) {
+										System.out.println("상품 판매량 입력 성공");
+									} else {
+										System.out.println("상품 판매량 입력 실패");
+
+									}
 								}
 								if (num.indexOf(",") != -1) {
 									if (ss.getMapper(StuffMapper.class).deleteCart(ctDto) == 1) {

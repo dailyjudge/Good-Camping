@@ -123,7 +123,7 @@
 	</select>
 
 
-	<insert id="insertSales" parameterType="StuffDTO">
+	<insert id="insertSales" parameterType="com.project.camping.stuff.StuffSaleDTO">
 		insert into stuff_sale values(stuff_sale_seq.nextval, #{ss_stuff_no},
 		#{ss_category}, #{ss_count})
 	</insert>
@@ -134,4 +134,13 @@
 		from stuff,(select * from stuff_sale where ss_category=#{ss_category} order by
 		ss_count desc) where rownum &lt; 5 and s_no = ss_stuff_no
 		</select>
+		
+		<select id="getSalesitem" parameterType="com.project.camping.stuff.StuffSaleDTO" resultType="int">
+		select * from stuff_sale where ss_stuff_no= #{ss_stuff_no}
+		</select>
+		
+		<update id="updateSalesitem" parameterType="com.project.camping.stuff.StuffSaleDTO">
+		update stuff_sale set ss_count = ss_count + #{ss_count} where ss_stuff_no
+		= #{ss_stuff_no}
+		</update>
 </mapper>

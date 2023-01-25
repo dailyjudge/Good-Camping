@@ -44,11 +44,12 @@ function deleteCheckedItem() {
 
 function StuffSearch(){
 	
-		var keyword =  $('#stuff-search-input').val();
+		var keyword =  $('#stuff-search-input').val().trim();
 		
 	
 		if(keyword == null || keyword == ''){
 			alert('검색어를 입력하세요');
+			$('#stuff-search-input').focus();
 			return false;
 		}
 	

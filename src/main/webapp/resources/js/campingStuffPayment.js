@@ -74,10 +74,11 @@ function kakao_pay(items) {
 	
 	let so_user_zoncode = $('#stuff-postcode').val();
 	let stuffAddress = $('#stuff-Address').val();
-	let stuffDetailAddress = $('#stuff-detailAddress').val();
+	let stuffDetailAddress = $('#stuff-detailAddress').val().trim();
 	
-	if(stuffDetailAddress ==''||stuffDetailAddress == null){
+	if(stuffDetailAddress == null||stuffDetailAddress == ''){
 		alert('상세주소를 입력해주세요');
+		$('#stuff-detailAddress').focus();
 		return false;
 	}
 	/*private int so_user_zoncode;

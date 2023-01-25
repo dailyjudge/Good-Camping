@@ -48,6 +48,10 @@ public interface StuffMapper {
 
 	List<StuffSaleDTO> getTopItems(StuffSaleDTO saleDTO);
 
+	int getSalesitem(StuffSaleDTO saleDTO);
+
+	int updateSalesitem(StuffSaleDTO saleDTO);
+
 
 
 }
