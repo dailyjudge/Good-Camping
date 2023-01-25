@@ -58,6 +58,8 @@ create sequence stuff_cart_seq;
 drop sequence stuff_cart_seq;
 delete stuff_cart
 
+
+select * from stuff_sale;
 insert  into stuff_cart values(stuff_cart_seq.nextval,'test',8075,4);
 
 -- 상품, 유저, 장바구니
@@ -203,7 +205,11 @@ create sequence stuff_sale_seq
 
 select * from stuff_sale;
 
-select * from stuff_sale where ss_category='랜턴'
+select * from stuff_sale where ss_category='취사용품'
+
+select * from stuff_sale where ss_stuff_no= 8127;
+delete from stuff_sale where ss_no=50;
+
 select * from (select * from stuff_sale where ss_category='랜턴' order by ss_count desc) where rownum<=4;
 --조인 stuff,stuff_sale
 --select so_no, s_no, s_title, s_price, soi_sc_amount, so_date, so_user_zonecode, so_user_addr, so_user_detailaddr
@@ -220,6 +226,7 @@ select s_no,s_category from stuff;
 
 insert into stuff_sale (ss_stuff_no,ss_category)select s_no,s_category from stuff ;
 
+update stuff_sale set ss_count=ss_count + 5 where ss_stuff_no = 8127
 
 delete stuff_sale;
 select count(*)
