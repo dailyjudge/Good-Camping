@@ -73,8 +73,8 @@ public class AccountController {
 	public String accountReg(HttpServletRequest req) {
 		
 		aDAO.loginCheck(req);
-		req.setAttribute("contentPage", "account/accountReg.jsp");
-		return "index";
+		req.setAttribute("contentPage", "account/accountRegN.jsp");
+		return "account/accountRegN";
 	}
 	@RequestMapping(value = "/go.Login.Head.callback", method = RequestMethod.GET)
 	public String GoLoginCallback(HttpServletRequest req) {
@@ -104,16 +104,32 @@ public class AccountController {
 		return "index";
 	}
 
-//	@RequestMapping(value = "/login.go", method = RequestMethod.POST)
-//	public String loginGo(HttpServletRequest req, Model m, AccountDTO a) {
-//
-//		aDAO.login(req, a);
-//
-//		return "account/loginHead";
-//	}
+	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
+	public String loginGo(HttpServletRequest req) {
 
+		aDAO.loginCheck(req);
+		req.setAttribute("contentPage", "account/loginHead.jsp");
+		return "index";
+	}
+
+	@RequestMapping(value = "/doubleCheckPw.go", method = RequestMethod.POST)
+	@ResponseBody
+	public int doubleCheckPw(HttpServletRequest req, Model m, AccountDTO a) {
+		
+		return aDAO.doubleCheckPw(req,a);
+	}
 	@RequestMapping(value = "/myPage.go", method = RequestMethod.GET)
 	public String myPageGo(HttpServletRequest req, Model m, AccountDTO a) {
+		aDAO.loginCheck(req);
+		
+		req.setAttribute("Click", 3);
+		req.setAttribute("contentPage", "account/ask_pw_page.jsp");
+		
+		return "index";
+	}
+	
+	@RequestMapping(value = "/myPage.do", method = RequestMethod.GET)
+	public String myPageDo(HttpServletRequest req, Model m, AccountDTO a) {
 		aDAO.loginCheck(req);
 		
 		req.setAttribute("Click", 3);
@@ -298,7 +314,6 @@ public class AccountController {
 				
 		    	return "index";
 		    }
-	    	
 //	    	@RequestMapping(value="/delete_account", method=RequestMethod.GET)
 //		    public String delete_account(HttpSession session, HttpServletRequest req, AccountDTO ac){
 //		    	

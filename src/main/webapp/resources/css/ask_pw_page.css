@@ -1,0 +1,61 @@
+body{
+	background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
+}
+
+.ask-pw-con{
+	background-color : white;
+    border: 3px solid #fdfcfb;
+    text-align: center;
+    margin-top: 100px;
+    margin-left : auto;
+    margin-right: auto;
+      width: 700px;
+	  height: 700px;
+	  box-shadow: 1px 1px 2px 6px grey;
+	  border-radius: 10px;
+}
+
+.lock-img-con{
+	margin-top: 50px;
+}
+
+
+.lock-img{
+    width: 100px;
+}
+
+input{
+    height: 5rem;
+    width: 40rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+    font-size: 20px;
+}
+input:focus{
+    outline: none;
+    border-color: blueviolet;
+}
+input:focus + .placeholder-text .text, :not(input[value=""]) + .placeholder-text .text{
+    background-color: white;
+    font-size: 1.1rem;
+    color: black;
+    transform: translate(0, 0);
+}
+input:focus + .placeholder-text .text{
+    border-color: blueviolet;
+    color: blueviolet;
+}
+.go_main:link {
+  color: blueviolet;
+}
+.go_main:visited {
+  color: blueviolet;
+}
+.go_main:hover {
+  color: blueviolet;
+}
+.go_main:active {
+  color: blueviolet;
+}
+
+

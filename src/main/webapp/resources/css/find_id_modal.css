@@ -18,7 +18,8 @@
 .modal-con .title{
   font-size:20px; 
   padding: 20px; 
-  background : gold;
+  background : #34C6BE;
+  text-align: center;
 }
 .modal-con .con{
   font-size:15px; line-height:1.3;
@@ -33,5 +34,20 @@
   text-align:center; line-height: 30px;
   text-decoration:none;
   color:#000; font-size:20px; font-weight: bold;
-  right:10px; top:10px;
+  right:10px; top:20px;
+}
+#backToHome{
+	text-align: center;
+}
+#backToHome a:link {
+  color: #46B4B4;
+}
+#backToHome a:visited {
+  color: #46B4B4;
+}
+#backToHome a:hover {
+  color: #46B4B4;
+}
+#backToHome a:active {
+  color: #46B4B4;
 }

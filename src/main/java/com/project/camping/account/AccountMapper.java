@@ -22,5 +22,8 @@ public interface AccountMapper {
 
 	AccountDTO getAccountByCookie(AccountDTO loginDTO);
 
+	String doubleCheckPw(String ac_id);
+
+
 
 }

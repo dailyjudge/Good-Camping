@@ -80,7 +80,7 @@
                  </div>
                  <div class="camping-login-input-div2">
                     <h5>UserEmail</h5>
-                    <input placeholder="Email" type="email" name="ac_id" class="input">
+                    <input placeholder="Email" type="email" name="ac_id2" class="input">
                  </div>
               </div>
               <div class="camping-login-input-div pass">
@@ -89,7 +89,7 @@
                  </div>
                  <div class="camping-login-input-div2">
                     <h5>Password</h5>
-                    <input placeholder="Password" type="password" name="ac_pw" class="input">
+                    <input placeholder="Password" type="password" name="ac_pw2" class="input">
                  </div>
               </div>
               <div>

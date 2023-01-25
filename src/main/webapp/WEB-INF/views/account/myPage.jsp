@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <h1> 마이페이지 </h1>
 <table border="1">
 
@@ -61,7 +62,9 @@
 <td><img alt="" src="resources/filse/${sessionScope.loginAccount.ac_file }">  </td>
 </tr>
 
-</table>
+</table> 
+
 <button onclick="location.href='delete_account?this_id=' + ${sessionScope.loginAccount.ac_id }">회원 탈퇴</button>
+
 </body>
 </html>

@@ -29,6 +29,10 @@ html {
     display: table;
     margin: auto;
 }
+
+.top-wrap{
+	margin-top: 100px;
+}
 .camping-login-container{
     width: 100vw;
     height: 100vh;
@@ -56,7 +60,6 @@ html {
     margin-top: 50px;
     width: 350px;
 }
-
 
 .medium-small {
     font-size: 0.9rem;
@@ -95,7 +98,6 @@ html {
     width: 300px;
 
 }
-
 
 .input-field div.error{
     position: relative;
@@ -162,10 +164,8 @@ html {
 .img_div {
     display: flex;
 }
-.img_div  img{
-    padding: 2px 4px;
+.img_div img{
     color: #fff;
-    background-color: #edf3ed3a;
     cursor: pointer;
     border: 1px solid #dddddd;
     border-radius: 20px;
@@ -173,5 +173,44 @@ html {
     height: 30px;
     margin-top: 18px;
     margin-left: 10px;
+}
+#makeNumCheck{
+	width: 177px;
+	margin-left: 51px; 
+}
+
+#completion{
+	display: inline-block;
+	background-color: yellow;
+}
+
+.account_gender input{
+  border-radius: 30px;
+  padding: 0px 9px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+[type="radio"] {
+  vertical-align: middle;
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  transition: border 0.5s ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 0.4em solid tomato;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted tomato;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  cursor: pointer;
 }
 

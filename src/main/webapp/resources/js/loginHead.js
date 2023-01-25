@@ -1,17 +1,3 @@
-// 휴대폰 번호 입력 부분
-const autoHyphen = (target) => {
-target.value = target.value
-.replace(/[^0-9]/g, '')
-.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-
-    const phone = document.getElementById("phone").value // 010
-    if(phone.length === 13){
-      document.getElementById("sendMessage").focus();
-      document.getElementById("sendMessage").setAttribute("style","background-color:yellow;")
-      document.getElementById("sendMessage").disabled = false;
-    }
-}
-
 function daumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -218,17 +204,16 @@ function checkCompletion(){
 function sendSMS(){
 	let sendToNum = document.getElementById("phone").value;
 		
-		
 		var phone = document.getElementById('phone');
-		let sendto = document.getElementById('phone').value;
 		
-		if(sendto == ""){
+		if(sendToNum == ""){
 			alert("휴대폰 번호를 입력하시오."); 
 			phone.focus();
 			return;
 		}
 		
   		document.getElementById("completion").disabled = false;
+  		document.getElementById("check-id-result").style.display = "block";
   		
   		$.ajax({
   			url: "sendSms.do",
@@ -257,7 +242,7 @@ function sendSMS(){
     	
     	if(ranNum == userNum) {
     		alert("본인 인증에 성공하였습니다.");
-    		$('#regSubmit').attr("disabled", 'false');
+    		 /*	$('#regSubmit').attr("disabled", 'false'); */
     	} else {
     		alert("본인 인증에 실패하였습니다.");
     		$("#makeNumCheck").focus();
@@ -303,6 +288,7 @@ function findPw2(){
 	//pwFind_id 이메일 
     //pwFind_name 이름
     
+	let pwFind_id2 = $('#pwFind_id');
 	let pwFind_id = $('#pwFind_id').val();
     let pwFind_name = $('#pwFind_name').val();	  
     
@@ -320,8 +306,14 @@ function findPw2(){
 		alert(res);
 		
 		if(res != 0) {
-			$('.account-auth').css('display','block');
+			$('#isPwEx').css('display','block');
+			$('.camping-login-button').css('display','none');
+			$('.camping-login-button2').css('display','block');
 			$('#pwFind-auth-hidden').val(res);
+		}else{
+			alert("이름/이메일 주소를 다시 확인해주세요");
+			pwFind_id2.focus();
+			return;
 		}
 	});
 }
@@ -357,7 +349,6 @@ function searchID(){
     		"ac_phone" : idFind_phone
     	}
     }).done(function(res) {
-		alert(res);
 		
 		if(res != 0) {
 			$("#modal").fadeIn(300);
@@ -366,9 +357,31 @@ function searchID(){
 			$('.findId_span').text(res);
 		}
 	});
+}
+function double_check_pw(){
+	let pw_check = $('#ask_pw_check').val();
+	let real_id = $('.ask_pw_check3').val();
+    
+    // 예외처리 부분
+    
+	//
+    $.ajax({
+    	type: 'post',
+    	url: "doubleCheckPw.go",
+    	data: {
+    		"ac_pw4" : pw_check,
+    		"ac_id4" : real_id
+    	}
+    }).done(function(res) {
+		
+		if(res != 1) {
+			 $('#ask_pw_check2').show();
+			
+		}else{
+			location.href='myPage.do'; //페이지 이동
+		}
+	});
+
 	
 }
-$("#modal, .close").on('click',function(){
-	  $("#modal").fadeOut(300);
-	  $(".modal-con").fadeOut(300);
-	});
+

@@ -104,7 +104,7 @@ pw 찾기
 						<div class="camping-login-input-div2">
 							<h5>Phone</h5>
 							<input placeholder="휴대폰 번호를 입력하세요." type="password"
-								name="ac_phone" id="idFind_phone" class="input">
+								name="ac_phone" id="idFind_phone" maxlength="13" class="input">
 						</div>
 					</div>
 					<button class="camping-login-button" onclick="searchID();">ID
@@ -122,10 +122,17 @@ pw 찾기
 		<input type="hidden" id="idFind-auth-hidden">
 		<div class="modal-con modal1">
 		<a href="javascript:;" class="close">X</a>
-			<p class="title">제목</p>
-			<div class="con">찾으시는 아이디는 <span class="findId_span"></span>입니다</div>
-			<br> <a href="accountHome.go">로그인</a>하러 가기
+			<p class="title">찾았습니다!!</p>
+			<div class="con">회원님 아이디는 <span class="findId_span"></span>입니다</div>
+			<br> <div id="backToHome"><a href="accountHome.go">로그인</a>하러 가기</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	$("#modal, .close").on('click',function(){
+		  $("#modal").fadeOut(300);
+		  $(".modal-con").fadeOut(300);
+		});
+	</script>
 </body>
 </html>
