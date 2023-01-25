@@ -69,7 +69,7 @@
 <script type="text/javascript" src="resources/js/raphael.js"></script>
 <script type="text/javascript" src="resources/js/choiceButton.js"></script>
 <script type="text/javascript" src="resources/js/campingStuffCart.js"></script>
-<script type="text/javascript" src="resources/js/accountLogin.js"></script>
+<script type="text/javascript" src="resources/js/accontLogin.js"></script>
 
 <script
   src="https://code.jquery.com/jquery-3.6.3.js"
