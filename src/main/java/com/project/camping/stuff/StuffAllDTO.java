@@ -3,7 +3,6 @@ package com.project.camping.stuff;
 import java.util.Date;
 
 public class StuffAllDTO {
-
 	private int so_no;
 	private int s_no;
 	private String s_title;
@@ -14,13 +13,9 @@ public class StuffAllDTO {
 	private String so_user_addr;
 	private String so_user_detailaddr;
 	
-	
-	
 	public StuffAllDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public StuffAllDTO(int so_no, int s_no, String s_title, int s_price, int soi_sc_amount, Date so_date,
 			int so_user_zoncode, String so_user_addr, String so_user_detailaddr) {

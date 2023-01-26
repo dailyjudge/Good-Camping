@@ -9,14 +9,14 @@
 <link rel="stylesheet" href="resources/css/account-reg.css" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
 $("#ac_file").on('change',function(){
 	  var fileName = $("#ac_file").val();
 	  $(".upload-name").val(fileName);
 	});
 });
-</script>
+</script> -->
 </head>
 <body>
 <div class="wrap3">
@@ -83,7 +83,7 @@ $("#ac_file").on('change',function(){
 						<h4><label for="phone">휴대폰 번호</label></h4>
 							<input id="phone" type="text" name="phone" title="전화번호 입력" oninput="autoHyphen(this)" size="13" maxlength="13" placeholder=" '-' 입력 X" required/>
 							    <button type="button"  id="sendMessage" onclick="sendSMS()">인증번호 전송</button> <br>
-							    <input id="Random-num-input" type="hidden" value="123456	">
+							    <input id="Random-num-input" type="hidden" value="123456">
 							    <input id="makeNumCheck" type="text" size="13" maxlength="6">
 					            <button type="button"  id="completion" onclick="checkCompletion()">인증확인</button>
 					</div>

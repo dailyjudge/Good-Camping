@@ -23,7 +23,6 @@ import org.springframework.ui.Model;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.project.camping.main.MainMapper;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -47,8 +46,8 @@ public class AccountDAO {
 
 	public void login(HttpServletRequest req, HttpServletResponse response, AccountDTO ac) {
 		// post input
-		String id2 = req.getParameter("ac_id");
-		String pw2 = req.getParameter("ac_pw");
+		String id2 = req.getParameter("ac_id2");
+		String pw2 = req.getParameter("ac_pw2");
 		String loginallways = "";
 		loginallways = req.getParameter("loginallways");
 
@@ -201,15 +200,33 @@ public class AccountDAO {
 	}
 
 	public String doFindId(HttpServletRequest req) {
+<<<<<<< HEAD
+		String sr_name = req.getParameter("ac_name");
+		String sr_phone = req.getParameter("ac_phone");
+
+=======
 		String sr_name = req.getParameter("sr_name");
 		String sr_phone = req.getParameter("sr_phone");
 		
+>>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 		// map 이용해서
 		Map<String, String> findId = new HashMap<String, String>();
 		findId.put("ac_name", sr_name);
 		findId.put("ac_phone", sr_phone);
 
+<<<<<<< HEAD
+		AccountMapper mm = ss.getMapper(AccountMapper.class);
+		String userId = mm.GoFindId(findId);
+		
+		if (userId.equals(null)) {
+			return null;
+		} else {
+			req.setAttribute("userId", userId);
+			return userId;
+		}
+=======
 		return ss.getMapper(AccountMapper.class).GoFindId(findId);
+>>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 
 	}
 
@@ -223,8 +240,11 @@ public class AccountDAO {
 		// 실제로 아이디가 존재한다면.
 		if (vo != null) {
 			Random r = new Random();
-			int num = r.nextInt(9999); // 랜덤난수설정
-
+			int num = 0;
+			while(num >= 1000) {
+				num = r.nextInt(9999); // 랜덤난수설정
+			}
+			
 //				session.setAttribute("num", num);
 //				session.setAttribute("the_id", ac_id);
 
@@ -406,6 +426,19 @@ public class AccountDAO {
 		}
 
 	}
+
+	public int doubleCheckPw(HttpServletRequest req, AccountDTO a) {
+		String ac_id = req.getParameter("ac_id4"); 
+		String ac_pw = req.getParameter("ac_pw4"); 
+		
+		AccountMapper mm = ss.getMapper(AccountMapper.class);
+		if(mm.doubleCheckPw(ac_id).equals(ac_pw)) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+
 
 //	public void deleteAccount(HttpServletRequest req, HttpSession session, AccountDTO ac) {
 //		String ac_id = req.getParameter("this_id");

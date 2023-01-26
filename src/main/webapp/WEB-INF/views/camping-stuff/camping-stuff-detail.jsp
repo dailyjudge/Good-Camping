@@ -8,6 +8,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script>
+	function goPayment3() {
+		let no = $('#goBuyNow-btn').val();
+		let count = $('#stuff-amount-result').text();
+		
+		location.href='go.buynow?items=' + no + '&amount=' + count;
+	}
+</script>
 <body>    
 <div class="stuff-detail-pg">
 	<div id="stuff-detail-div">
@@ -23,12 +31,11 @@
 				<div class="stuff-category">
 					<b>Category: </b><span>${stuffs.s_category }</span>
 				</div>
-
-				<c:if test="${stuffs.s_brand eq '미제공'}">
-					<div class="stuff-brand">
-						<b>Brand: </b><span>${stuffs.s_brand }</span>
-					</div>
-				</c:if>
+				
+				<div class="stuff-brand">
+					<b>Brand: </b><span>${stuffs.s_brand }</span>
+				</div>
+				
 				<div id="amount-div">
 					<input type="button" value="-" onclick="count('minus')"
 						name="minus" /> <span id="stuff-amount-result"
@@ -50,7 +57,7 @@
 						id="insertCart-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						ADD TO CART</button>
-					<button onclick="location.href='go.buynow?items=${stuffs.s_no}'"
+					<button onclick="goPayment3()"
 						id="goBuyNow-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						BUY NOW</button>

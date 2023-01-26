@@ -1,0 +1,216 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'GothicA1-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GothicA1-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+.camping-login-wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 70%;
+	z-index: -1;
+  }
+body{
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #efebeb79 !important;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+.top-wrap{
+	margin-top: 100px;
+}
+.camping-login-container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap :7rem;
+    padding: 0 2rem;
+}
+.camping-login-img2{
+	position: fixed;
+	top: 100px;
+	right: -400px;
+	height: 10px;
+	z-index: -1;
+  }
+
+.main-wrap{
+    position: relative;
+    width: 700px;
+}
+.login-form{
+ margin-left: 20px;
+}
+#login-page{
+    margin-top: 50px;
+    width: 350px;
+}
+
+.medium-small {
+    font-size: 0.9rem;
+    margin: 0;
+    padding: 0;
+}
+
+.login-form {
+    width: 280px;
+}
+
+.login-form-text {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+.login-text {
+    margin-top: -6px;
+    margin-left: -6px !important;
+}
+
+.margin {
+    margin: 0 !important;
+}
+
+.pointer-events {
+  pointer-events: auto !important;
+}
+
+.input-field >.material-icons  {
+  padding-top:10px;
+}
+.input-field img{
+    margin-top: 30px;
+    width: 300px;
+
+}
+
+.input-field div.error{
+    position: relative;
+    top: -1rem;
+    left: 3rem;
+    font-size: 0.8rem;
+    color:#FF4081;
+    -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+}
+
+.filebox_wrap{
+	width : 400px;
+    display: flex;
+}
+.filebox .upload-name {
+    display: inline-block;
+    width: 170px;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    color: #999999;
+}
+.filebox label {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #94b33c;
+    cursor: pointer;
+    margin-left: -100px;
+    margin-top: 110px;
+    border: 1px solid #dddddd;
+    border-radius: 20px;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+.profile{
+	width: 130px;
+	height: 130px;
+	border: 1px solid #dddddd;
+    border-radius: 50%;
+    margin-left: 80px;
+    margin-bottom: 10px;
+}
+.profile img{
+	width: 20%;
+	overflow: hidden;
+}
+
+.filebox_wrap{
+    margin-top: -20px;
+}
+
+.img_div {
+    display: flex;
+}
+.img_div img{
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #dddddd;
+    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    margin-top: 18px;
+    margin-left: 10px;
+}
+#makeNumCheck{
+	width: 177px;
+	margin-left: 51px; 
+}
+
+#completion{
+	display: inline-block;
+	background-color: yellow;
+}
+
+.account_gender input{
+  border-radius: 30px;
+  padding: 0px 9px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+[type="radio"] {
+  vertical-align: middle;
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  transition: border 0.5s ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 0.4em solid tomato;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted tomato;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  cursor: pointer;
+}
+

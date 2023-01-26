@@ -80,7 +80,7 @@
                  </div>
                  <div class="camping-login-input-div2">
                     <h5>UserEmail</h5>
-                    <input placeholder="Email" type="email" name="ac_id" class="input">
+                    <input placeholder="Email" type="email" name="ac_id2" class="input">
                  </div>
               </div>
               <div class="camping-login-input-div pass">
@@ -89,7 +89,7 @@
                  </div>
                  <div class="camping-login-input-div2">
                     <h5>Password</h5>
-                    <input placeholder="Password" type="password" name="ac_pw" class="input">
+                    <input placeholder="Password" type="password" name="ac_pw2" class="input">
                  </div>
               </div>
               <div>
@@ -98,7 +98,7 @@
                     <input type="checkbox" name="loginallways" value="on">
                     <span>자동 로그인</span>
                   </div>
-                  <a href="searchPW.go" class="camping-login-remember">ID/PW를 잊었나요?</a>
+                  <a href="searchTheId.go" class="camping-login-remember">ID/PW를 잊었나요?</a>
                 </div>
               </div>
               <button class="camping-login-button">로그인</button>
@@ -107,7 +107,7 @@
         </div>
     </div>
     
-		<script>
+<!-- 		<script>
 		window.Kakao.init('8d3fc53af9696b2b55fc63b67784a525'); //발급받은 키 중 javascript키를 사용해준다.
 		console.log(Kakao.isInitialized()); // sdk초기화여부판단
 
@@ -160,6 +160,6 @@
         }
     );
 naverLogin.init();
-</script>
+</script> -->
 </body>
 </html>
