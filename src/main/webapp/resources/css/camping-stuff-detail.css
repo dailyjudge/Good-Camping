@@ -1,218 +1,250 @@
 @font-face {
-  font-family: "S-CoreDream-3Light";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Cafe24SsurroundAir";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
+	font-family: "S-CoreDream-3Light";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
+@font-face {
+	font-family: "Cafe24SsurroundAir";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
 
 #stuff-detail-div {
-  /* border: 2px solid black; */
-  margin-top: 4%;
-  width: 100%;
-
-  height: 500px;
-  display: flex;
-  justify-content: center;
+	/* border: 2px solid black; */
+	margin-top: 4%;
+	width: 100%;
+	height: 500px;
+	display: flex;
+	justify-content: center;
 }
 
 .stuff-img {
-  /* border: 3px solid pink; */
-  /* poition: relative; */
-  width: 80%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
+	/* border: 3px solid pink; */
+	/* poition: relative; */
+	width: 80%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
 }
+
 .stuff-img img {
-  /* border: 1px solid blueviolet; */
-  width: 70%;
-  height: 100%;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	/* border: 1px solid blueviolet; */
+	width: 70%;
+	height: 100%;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
 }
 
 .stuff-details {
-  margin-right: 30px;
-  margin-left: 10px;
-  /* border: 3px solid blue; */
+	margin-right: 30px;
+	margin-left: 10px;
+	/* border: 3px solid blue; */
+	width: 60%;
+	height: 100%;
+}
 
-  width: 60%;
-  height: 100%;
-}
 .stuff-details-second {
-  /* border: 7px solid purple; */
-  margin: 0px auto;
-  height: 100%;
+	/* border: 7px solid purple; */
+	margin: 0px auto;
+	height: 100%;
 }
+
 .stuff-title {
-  /* border: 1px solid red; */
-  /*  margin-top: 10%; */
-  /*  margin-bottom: 5%; */
-  padding-bottom: 3%;
-  font-size: 30px;
-  border-bottom: 0.5px solid rgb(157, 157, 157);
+	/* border: 1px solid red; */
+	/*  margin-top: 10%; */
+	/*  margin-bottom: 5%; */
+	padding-bottom: 3%;
+	font-size: 30px;
+	border-bottom: 0.5px solid rgb(157, 157, 157);
 }
+
 .stuff-brand {
-  /* border: 2px solid yellow; */
-  font-size: 17px;
+	/* border: 2px solid yellow; */
+	font-size: 17px;
 }
+
 .stuff-category {
-  margin-top: 2%;
-  margin-bottom: 5%;
+	margin-top: 2%;
+	margin-bottom: 5%;
 }
+
 .stuff-price {
-  /* height: 10%; */
-  /* border: 2px solid green; */
-  font-size: 22px;
-  margin-top: 5%;
+	/* height: 10%; */
+	/* border: 2px solid green; */
+	font-size: 22px;
+	margin-top: 5%;
 }
 
 .box {
-  width: 100%;
-  /* border: 3px solid red; */
-  margin-top: 30px;
+	width: 100%;
+	/* border: 3px solid red; */
+	margin-top: 30px;
 }
+
 .bg-3 {
-  background: #37474f;
-  color: #fff;
+	background: #37474f;
+	color: #fff;
 }
 
 /* Common button styles */
 .button {
-  padding: 2.5em 1.2em;
-  border: none;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  cursor: pointer;
-  font-size: 1.1em;
+	padding: 2.5em 1.2em;
+	border: none;
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	cursor: pointer;
+	font-size: 1.1em;
 }
 
 /* Typography and Roundedness */
 .button--text-upper {
-  letter-spacing: 2px;
-  text-transform: uppercase;
+	letter-spacing: 2px;
+	text-transform: uppercase;
 }
 
 .button--border-thick {
-  border: 3px solid;
+	border: 3px solid;
 }
 
 /* Aylen */
 .button.button--aylen {
-  background: #fff;
-  color: #37474f;
-  overflow: hidden;
-  -webkit-transition: color 0.3s;
-  transition: color 0.3s;
+	background: #fff;
+	color: #37474f;
+	overflow: hidden;
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
 }
+
 .button--aylen.button--inverted {
-  background: none;
-  color: #fff;
+	background: none;
+	color: #fff;
 }
-.button--aylen::before,
-.button--aylen::after {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  bottom: 100%;
-  left: 0;
-  z-index: -1;
-  -webkit-transition: -webkit-transform 0.3s;
-  transition: transform 0.3s;
-  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
-  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+
+.button--aylen::before, .button--aylen::after {
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 100%;
+	left: 0;
+	z-index: -1;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 }
+
 .button--aylen::before {
-  background: #999999;
+	background: #999999;
 }
+
 .button--aylen::after {
-  background: #666666;
+	background: #666666;
 }
+
 .button--aylen:hover {
-  color: #fff;
+	color: #fff;
 }
-.button--aylen:hover::before,
-.button--aylen:hover::after {
-  -webkit-transform: translate3d(0, 100%, 0);
-  transform: translate3d(0, 100%, 0);
+
+.button--aylen:hover::before, .button--aylen:hover::after {
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
 }
+
 .button--aylen:hover::after {
-  -webkit-transition-delay: 0.175s;
-  transition-delay: 0.175s;
+	-webkit-transition-delay: 0.175s;
+	transition-delay: 0.175s;
 }
 
 #amount-div {
-  /* border: 1px solid blue; */
-  margin-top: 10px;
+	border: 1px solid grey;
+	margin-top: 10px;
+	width: fit-content;
+	height: fit-content;
+	background-color: white;
 }
 
 #amount-div input {
-  width: 30px;
+	width: 30px;
+	height: 30px;
+	font-size: 15px;
+	/* border-radius: 20%; */
+	color: white;
+	background: grey;
+	border: none;
+	font-weight: 600;
 }
+
 #stuff-amount-result {
-  /* border: 2px solid navy; */
-  font-size: 20px;
+	/* border: 2px solid navy; */
+	font-size: 20px;
+	font-weight: 600;
+	color: grey;
 }
 
 /***********************상품추천************************/
 .stuff-detail-pg {
-  /* border: 1px solid blue; */
-  display: inline-block;
-  align-items: center;
-  margin: 5%;
-  width: 90%;
+	/* border: 1px solid blue; */
+	display: inline-block;
+	align-items: center;
+	margin: 5%;
+	width: 90%;
 }
+
 .recommend-div {
- /*  border: 1px solid navy; */
-  margin-top: 10px;
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
-  
+	/*  border: 1px solid navy; */
+	margin-top: 10px;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
 }
-.recommend-div span{
+
+.recommend-div span {
 	/* border: 1px solid blue; */
 	margin-left: 20px;
 }
+
 .recommend-title {
-  /* border: 1px solid black; */
-  border-bottom: 0.5px solid rgb(157, 157, 157);
-  color: black;
-  font-weight: 700;
-  font-size: 25px;
-  margin-top: 30px;
-  padding-bottom:20px;
+	/* border: 1px solid black; */
+	border-bottom: 0.5px solid rgb(157, 157, 157);
+	color: black;
+	font-weight: 700;
+	font-size: 25px;
+	margin-top: 30px;
+	padding-bottom: 20px;
 }
+
 .stuff-recommend {
-  /* border: 1px solid brown; */
-  width: 87%;
-  margin-left: 8%;
-  margin-right: 10%;
-  display: inline-flex;
-  margin-top: 20px;
+	/* border: 1px solid brown; */
+	width: 87%;
+	margin-left: 8%;
+	margin-right: 10%;
+	display: inline-flex;
+	margin-top: 20px;
 }
 
 .recommend-items {
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  width: 20%;
-  height: 250px;
-  margin: 3%;
-  cursor: pointer;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	width: 20%;
+	height: 250px;
+	margin: 3%;
+	cursor: pointer;
 }
+
 .recommend-items:hover {
-  opacity: 0.5;
+	opacity: 0.5;
 }
+
 .recommend-items img {
-  width: 100%;
-  height: 250px;
+	width: 100%;
+	height: 250px;
 }

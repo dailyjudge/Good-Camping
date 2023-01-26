@@ -39,7 +39,7 @@
 				<div id="amount-div">
 					<input type="button" value="-" onclick="count('minus')"
 						name="minus" /> <span id="stuff-amount-result"
-						name="amount" value="1" size="2" max="99">
+						name="amount">
 						1 </span> <input type="button" value="+" onclick="count('plus')"
 						name="add" />
 				</div>
