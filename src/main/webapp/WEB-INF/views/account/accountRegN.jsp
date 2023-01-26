@@ -26,7 +26,7 @@
 <div class="top-wrap"> 
     <div id="login-page" class="row">
         <div class="main-wrap col s12 z-depth-4 card-panel">
-            <form action="accountReg.do" method="post" class="login-form" enctype="multipart/form-data">
+            <form action="accountReg.do" name="join_form" method="post" class="login-form" enctype="multipart/form-data">
 
                 <div class="row first_row">
                     <div class="input-field col s12 center">
@@ -78,8 +78,12 @@
             <div class="input-field col s12">
                 <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                 <i class="material-icons prefix">vpn_key</i>
-                <input id="ac_pw" name="ac_pw" type="password" disabled/>
+                <input id="ac_pw" name="ac_pw" type="password" onKeyup="safetyPasswordPattern(this);" disabled/>
                 <label for="ac_pw">Password</label>
+                <br>
+                <div class="set_center">
+                <span id="makyText">:: id 중복 검사 먼저해주세요 ::</span>
+                </div>
             </div>
             </div>
     
@@ -101,7 +105,7 @@
 	                <img id="sendMessage" src="resources/account-img/searchimg2.png" onclick="sendSMS()">
 	            </div>
 	        </div>
-		            	<div id="check-id-result" > <!-- style="display: none" -->
+		            	<div id="check-id-result2" > <!-- style="display: none" -->
 				          	<input id="Random-num-input" type="hidden">
 		                	<input id="makeNumCheck" type="text" size="13" maxlength="6" placeholder="인증코드 6자리">
 		                	<button type="button" id="completion" class="w-btn2 w-btn-gra1" onclick="checkCompletion()">인증</button>

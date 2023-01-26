@@ -68,99 +68,97 @@ function signUpCheck(){
 	  var mobile = document.getElementById("phone");
 	  let birth = document.getElementById("ac_birth");
 	  //주소
-	  let area = document.getElementById("postcode");
+	  let postcode = document.getElementById("postcode");
+	  let address = document.getElementById("address");
+	  let detailAddress = document.getElementById("detailAddress");
+	  let extraAddress = document.getElementById("extraAddress");
 	  
+	  //값 입력 확인
+		  if (email == "") { 
+			    alert("아이디를 입력하세요.");
+			    user_email.focus(); 
+			    return false; 
+			  };
+		  if (pwd.value == "") {
+		    alert("비밀번호를 입력하세요.");
+		    pwd.focus();
+		    return false;
+		  };
+		  if (uname.value == "") {
+			  alert("이름을 입력하세요.");
+			  uname.focus();
+			  return false;
+		  };
+		  if (files.value == "") {
+			  alert("파일을 업로드해주세요.");
+			  files.focus();
+			  return false;
+		  };
+		  if (gender.value == "") {
+			  alert("성별을 입력하세요.");
+			  gender.focus();
+			  return false;
+		  };
+		  if (mobile.value == "") {
+			  alert("휴대폰 번호를 입력하세요.");
+			  mobile.focus();
+			  return false;
+		  };
+		  if (birth.value == "") {
+			  alert("생년월일을 입력하세요.");
+			  birth.focus();
+			  return false;
+		  };
+		  if (postcode.value == "") {
+			  alert("우편번호를 입력하세요.");
+			  postcode.focus();
+			  return false;
+		  };
+		  if (address.value == "") {
+			  alert("주소를 입력하세요.");
+			  address.focus();
+			  return false;
+		  };
+		  if (detailAddress.value == "") {
+			  alert("상세주소를 입력하세요.");
+			  detailAddress.focus();
+			  return false;
+		  };
+		  if (extraAddress.value == "") {
+			  alert("참고항목을 입력하세요.");
+			  extraAddress.focus();
+			  return false;
+		  };
+		  //비밀번호 재확인
+		  if (repwd.value !== pwd.value) {
+			    alert("비밀번호가 일치하지 않습니다..");
+			    repwd.focus();
+			    return false;
+			  };			  
 	  // 이메일확인
-	  if(email.includes('@')){
-	    let emailId = email.split('@')[0]
-	    let emailServer = email.split('@')[1]
-	    if(emailId === "" || emailServer === ""){
-	      document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-	    }
-	    else{
-	      document.getElementById("emailError").innerHTML=""
-	    }
-	  }else{
-	    document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-	  }
+		var idCheck = /@./;
+
+		if (!idCheck.test(email)) {
+		    alert("이메일 형식으로 입력해주세요.");
+		    user_email.focus();
+		    return;
+		};
 
 
+		  //입력 값 전송
+		  document.join_form.submit(); //유효성 검사의 포인트   
 
-
-
-	}
-function joinform_check() {
-	  //변수에 담아주기
-	  var uid = document.getElementById("uid");
-	  var pwd = document.getElementById("pwd");
-	  var repwd = document.getElementById("repwd");
-	  var uname = document.getElementById("uname");
-	  var female = document.getElementById("female");
-	  var male = document.getElementById("male");
-	  var mobile = document.getElementById("mobile");
-	  var email_id = document.getElementById("email_id");
-	  var agree = document.getElementById("agree");
-
-	  if (uid.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
-	    alert("아이디를 입력하세요.");
-	    uid.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
-	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
-	  };
-
-	  if (pwd.value == "") {
-	    alert("비밀번호를 입력하세요.");
-	    pwd.focus();
-	    return false;
-	  };
-
-	  //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
-	  var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-
-	  if (!pwdCheck.test(pwd.value)) {
-	    alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
-	    pwd.focus();
-	    return false;
-	  };
-
-	  if (repwd.value !== pwd.value) {
-	    alert("비밀번호가 일치하지 않습니다..");
-	    repwd.focus();
-	    return false;
-	  };
-
-	  if (uname.value == "") {
-	    alert("이름을 입력하세요.");
-	    uname.focus();
-	    return false;
-	  };
-
-	  if (!female.checked && !male.checked) { //둘다 미체크시
-	    alert("성별을 선택해 주세요.");
-	    female.focus();
-	    return false;
-	  }
-
-	  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
-
-	  if (!reg.test(mobile.value)) {
-	    alert("전화번호는 숫자만 입력할 수 있습니다.");
-	    mobile.focus();
-	    return false;
-	  }
-
-	  if (email_id.value == "") {
-	    alert("이메일 주소를 입력하세요.");
-	    email_id.focus();
-	    return false;
-	  }
-
-	  //입력 값 전송
-	  document.join_form.submit(); //유효성 검사의 포인트   
 	}
 function checkidsame(){
 	var id = document.getElementById('ac_id');
 	let idValue = id.value;
-	   
+	var idCheck = /@./;
+
+	if (!idCheck.test(idValue)) {
+	    alert("이메일 형식으로 입력해주세요.");
+	    id.focus();
+	    return;
+	};
 	if(idValue == ""){
       alert("아이디를 입력하시오."); 
       id.focus();
@@ -412,3 +410,70 @@ function deleteUser(user_id) {
 	
 }
 
+function safetyPasswordPattern(str) {
+
+    var pass = str.value;
+    var message = "";
+    var color = "";
+    var checkPoint = 0;
+
+    // 입력값이 있을경우에만 실행
+    if(pass.length) {
+
+        // 최대 입력 글자수를 제한한다.
+        if(pass.length < 8 || pass.length > 16) {
+            message = ":: 최소 8자 이상, 최대 16자 이하 ::";
+            color = "#A23E48";
+        }
+
+        // 문자열의 길이가 8 ~ 16 인경우
+        else {
+
+            // 비밀번호 문자열에 숫자 존재 여부 검사
+            var pattern1 = /[0-9]/;  // 숫자
+            if(pattern1.test(pass) == false) {
+                checkPoint = checkPoint + 1;
+            }
+
+            // 비밀번호 문자열에 영문 소문자 존재 여부 검사
+            var pattern2 = /[a-z]/;
+            if(pattern2.test(pass) == false) {
+                checkPoint = checkPoint + 1;
+            }
+
+            // 비밀번호 문자열에 영문 대문자 존재 여부 검사
+            var pattern3 = /[A-Z]/;
+            if(pattern3.test(pass) == false) {
+                checkPoint = checkPoint + 1;
+            }
+
+            // 비밀번호 문자열에 특수문자 존재 여부 검사
+            var pattern4 = /[~!@#$%^&*()_+|<>?:{}]/;  // 특수문자
+            if(pattern4.test(pass) == false) {
+                checkPoint = checkPoint + 1;
+            }
+
+            if(checkPoint >= 3) {
+                message = ":: 보안성이 취약한 비밀번호 ::";
+                color = "#A23E48";
+            } else if(checkPoint == 2) {
+                message = ":: 보안성이 낮은 비밀번호 ::";
+                color = "#FF8C42";
+            } else if(checkPoint == 1) {
+                message = ":: 보안성이 보통인 비밀번호 ::";
+                color = "#FF8C42";
+            } else {
+                message = ":: 보안성이 강력한 비밀번호 ::";
+                color = "#0000CD";
+            }
+        }
+    }
+
+    else {
+        message = ":: 비밀번호를 입력해 주세요 ::";
+        color = "#000000";
+    }
+
+    document.getElementById("makyText").innerHTML = message;
+    document.getElementById("makyText").style.color = color;
+}
