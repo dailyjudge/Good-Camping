@@ -108,18 +108,12 @@ public class StuffDAO {
 		StuffMapper sm = ss.getMapper(StuffMapper.class);
 		stuffs = sm.getAllStuff(s);
 
-		// <b></b> 이게 싫음 => 없애자
-		// replace
-		// <b>글자가 들어가있음</b>
-
 		for (StuffDTO stuffDTO : stuffs) {
 			String title = stuffDTO.getS_title();
 			title = title.replace("<b>", "");
 			title = title.replace("</b>", "");
 
 			stuffDTO.setS_title(title);
-
-//			stuffDTO.setS_title(stuffDTO.getS_title().replace("<b>", "").replace("</b>", ""));
 		}
 
 		req.setAttribute("stuffs", stuffs);
