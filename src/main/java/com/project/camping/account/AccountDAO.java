@@ -200,33 +200,15 @@ public class AccountDAO {
 	}
 
 	public String doFindId(HttpServletRequest req) {
-<<<<<<< HEAD
-		String sr_name = req.getParameter("ac_name");
-		String sr_phone = req.getParameter("ac_phone");
-
-=======
 		String sr_name = req.getParameter("sr_name");
 		String sr_phone = req.getParameter("sr_phone");
 		
->>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 		// map 이용해서
 		Map<String, String> findId = new HashMap<String, String>();
 		findId.put("ac_name", sr_name);
 		findId.put("ac_phone", sr_phone);
 
-<<<<<<< HEAD
-		AccountMapper mm = ss.getMapper(AccountMapper.class);
-		String userId = mm.GoFindId(findId);
-		
-		if (userId.equals(null)) {
-			return null;
-		} else {
-			req.setAttribute("userId", userId);
-			return userId;
-		}
-=======
 		return ss.getMapper(AccountMapper.class).GoFindId(findId);
->>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 
 	}
 

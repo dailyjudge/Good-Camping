@@ -5,18 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/js/loginHead.js" />
+<script type="text/javascript" src="../resources/js/loginHead.js"></script>
 <link rel="stylesheet" href="resources/css/account-reg.css" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<!-- <script type="text/javascript">
-$(document).ready(function(){
-$("#ac_file").on('change',function(){
-	  var fileName = $("#ac_file").val();
-	  $(".upload-name").val(fileName);
-	});
-});
-</script> -->
+<script>
+function changeImg(event) {
+	let reader = new FileReader();
+
+	reader.onload = function(event) {
+		$("#user-reg-image").remove();
+		let img = document.createElement("img");
+		img.setAttribute("src", event.target.result);
+		img.setAttribute("width", "100%");
+		img.setAttribute("height", "100%");
+		img.setAttribute("id", "user-reg-image");
+		img.setAttribute("style", "border-radius: 50%");
+		$("#user-profile").css("display", "none");
+		document.querySelector("div#profile").appendChild(img);
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
+</script>
 </head>
 <body>
 <div class="wrap3">
@@ -31,8 +41,8 @@ $("#ac_file").on('change',function(){
 						<div class="profile"><img id="user-profile" src="https://cdn-icons-png.flaticon.com/128/7571/7571051.png"></div>
 						<div class="filebox">
 						    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
-   							<label for="ac_file">파일찾기</label>
-							<input type="file" onchange="changeImg(event);" name="ac_file" id="ac_file" multiple="multiple">
+   							<label for="ac_file">파일찾기11</label>
+							<input type="file" onchange="changeImg(event)" name="ac_file" id="ac_file">
 						</div>
 					</div>
 				</div>

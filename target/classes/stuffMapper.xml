@@ -10,7 +10,7 @@
 
 	<select id="getAllStuff"
 		resultType="com.project.camping.stuff.StuffDTO">
-		select * from stuff order by s_image
+		select * from stuff order by s_brand
 	</select>
 
 	<select id="getDetailStuff"

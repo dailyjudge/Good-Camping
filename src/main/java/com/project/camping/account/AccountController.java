@@ -71,9 +71,6 @@ public class AccountController {
 	//
 	@RequestMapping(value = "/accountReg.go", method = RequestMethod.GET)
 	public String accountReg(HttpServletRequest req) {
-		
-		aDAO.loginCheck(req);
-		req.setAttribute("contentPage", "account/accountRegN.jsp");
 		return "account/accountRegN";
 	}
 	@RequestMapping(value = "/go.Login.Head.callback", method = RequestMethod.GET)
@@ -104,11 +101,8 @@ public class AccountController {
 		return "index";
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String loginGo(HttpServletRequest req) {
-=======
->>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 
 		aDAO.loginCheck(req);
 		req.setAttribute("contentPage", "account/loginHead.jsp");
@@ -177,16 +171,10 @@ public class AccountController {
 	    }
 	    
 	    // 아이디 찾기
-<<<<<<< HEAD
-	    @RequestMapping(value="/searchID.do", method = {RequestMethod.GET, RequestMethod.POST })
-	    @ResponseBody
-	    public String doFindID(HttpServletRequest req){
-	    	
-=======
+
 	    @RequestMapping(value="/searchID.do", method=RequestMethod.POST)
 	    @ResponseBody
 	    public String doFindID(HttpServletRequest req){
->>>>>>> 5646c5b0f99269b6c791939f1b3c66df5a707e14
 	    	return aDAO.doFindId(req);
 	    }
 	    
