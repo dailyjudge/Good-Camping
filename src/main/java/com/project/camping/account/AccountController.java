@@ -153,13 +153,11 @@ public class AccountController {
 		return "account/myPageN";
 	}
 	
-	    //
+	    //아이디 중복 검사
 	    @RequestMapping(value="/check.id", method=RequestMethod.GET)
 	    @ResponseBody
 	    public int checkId(HttpServletRequest req){
-	    	//aDAO.idCheck(req);
 	    	
-//	    	return "account/idCheck";
 	    	return aDAO.idCheck(req);
 	    }
 	    // 아이디 or 비번 찾기

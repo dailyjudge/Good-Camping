@@ -170,7 +170,11 @@ public class AccountDAO {
 			ac.setAc_pw(mr.getParameter("ac_pw"));
 			ac.setAc_name(mr.getParameter("ac_name"));
 			ac.setAc_birth(mr.getParameter("ac_birth"));
-			ac.setAc_phone(mr.getParameter("ac_phone"));
+			
+			String ac_phone = mr.getParameter("ac_phone");
+			ac_phone = ac_phone.replace("-", "");
+			
+			ac.setAc_phone(ac_phone);
 			ac.setAc_postcode(mr.getParameter("ac_postcode"));
 
 			ac.setAc_address(mr.getParameter("ac_address"));
@@ -180,6 +184,9 @@ public class AccountDAO {
 
 			String ac_file = mr.getFilesystemName("ac_file");
 			ac.setAc_file(ac_file);
+			
+			ac.setAc_sessionkey(mr.getParameter("ac_id"));
+			
 			req.setAttribute("accountInfo", ac);
 
 			AccountMapper mm = ss.getMapper(AccountMapper.class);
@@ -219,11 +226,17 @@ public class AccountDAO {
 		}
 
 	}
-
+	
 	public int sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
 		String ac_id = (String) req.getParameter("pwFind_id");
 		String name = (String) req.getParameter("pwFind_name");
-
+		
+		System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
+		System.setProperty("jsse.enableSNIExtension", "false");
+		
+		System.out.println(ac_id);
+		System.out.println(name);
+		
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
 		AccountDTO vo = mm.selectAccount(ac_id);
 
@@ -231,7 +244,7 @@ public class AccountDAO {
 		if (vo != null) {
 			Random r = new Random();
 			int num = 0;
-			while(num >= 1000) {
+			while(num < 1000) {
 				num = r.nextInt(9999); // 랜덤난수설정
 			}
 			
@@ -241,11 +254,11 @@ public class AccountDAO {
 			if (vo.getAc_name().equals(name)) {
 //				 session.setAttribute("email", vo.getAc_id());
 
-				String setfrom = "jun19975@naver.com"; // naver
+				String setfrom = "jun19973@naver.com"; // naver
 				String tomail = ac_id; // 받는사람
-				String title = "[삼삼하개] 비밀번호변경 인증 이메일 입니다";
+				String title = "[GoodCamping] 비밀번호변경 인증 이메일 입니다";
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님"
-						+ System.getProperty("line.separator") + "삼삼하개 비밀번호찾기(변경) 인증번호는 " + num + " 입니다."
+						+ System.getProperty("line.separator") + "GoodCamping 비밀번호찾기(변경) 인증번호는 " + num + " 입니다."
 						+ System.getProperty("line.separator"); //
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
@@ -289,9 +302,17 @@ public class AccountDAO {
 	}
 
 	public void resetPw(HttpServletRequest req, AccountDTO a) {
+		
+		String ac_id = req.getParameter("ac_id");
+		String ac_pw = req.getParameter("ac_pw");
+		
+		Map<String, String> resetPw = new HashMap<String, String>();
+		resetPw.put("ac_id", ac_id);
+		resetPw.put("ac_pw", ac_pw);
+		
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
 
-		if (mm.updatePw(a) == 1) {
+		if (mm.updatePw(resetPw) == 1) {
 			req.setAttribute("r", "비밀번호 재설정 성공");
 		} else {
 			req.setAttribute("r", "비밀번호 재설정 실패");
@@ -462,7 +483,10 @@ public class AccountDAO {
 			if(mr.getParameter("ac_phone").equals("")) {
 				ac.setAc_phone(vo.getAc_phone());
 			}else {
-				ac.setAc_phone(mr.getParameter("ac_phone"));
+				String ac_phone = mr.getParameter("ac_phone");
+				ac_phone = ac_phone.replace("-", "");
+				
+				ac.setAc_phone(ac_phone);
 			}
 			
 			if(mr.getParameter("ac_postcode").equals("")) {

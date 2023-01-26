@@ -5,9 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/js/loginHead.js" />
+<script src="resources/js/loginHead.js" ></script>
 <link rel="stylesheet" href="resources/css/account-reg.css" />
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- <script type="text/javascript">
 $(document).ready(function(){
@@ -19,6 +18,7 @@ $("#ac_file").on('change',function(){
 </script> -->
 </head>
 <body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <div class="wrap3">
 	<div class="accountReg3">
 			<form action="accountReg.do" method="post" enctype="multipart/form-data" onsubmit="return signUpCheck()">

@@ -11,9 +11,8 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	      <!--Import materialize.css-->
 	<link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"  media="screen,projection"/>
-	  
     <link rel="stylesheet" href="resources/css/account-regN.css" />
-    <link rel="stylesheet" href="resources/js/loginHead.js" />
+    <script src="resources/js/loginHead.js" ></script>
 </head>
 <body>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -40,6 +39,8 @@
                     </div>
                 </div>
 
+            
+  	<div class="input-name-gender"> 
             <div class="row margin">
 	            <div class="input-field col s12">
 	                <!-- <i class="mdi-social-person-outline prefix"></i> -->
@@ -48,12 +49,15 @@
 	                <label for="ac_name">${sessionScope.loginAccount.ac_name }</label>
 	            </div>
             </div>
-             <div class="account_gender">
-                	<label for="ac_gender_man"><b> 남자 :</b></label> 
-                	<input id="ac_gender_man" type="radio" name="ac_gender" value="남"> 
-                	<label for="ac_gender_woman"><b> 여자 :</b></label> 
-                	<input id="ac_gender_woman" type="radio" name="ac_gender" value="여">
+            <div class="row margin">
+           	 	<div class="input-field gender">
+				     <select name="ac_gender" id="ac_gender">
+					    <option value="남">남성</option>
+					    <option value="여">여성</option>
+					</select>
+				</div>
             </div>
+       </div>
             <div class="row margin">
             <div class="input-field img_div col s12">
                 <!-- <i class="mdi-social-person-outline prefix"></i> -->
@@ -87,14 +91,14 @@
 	            <div class="input-field img_div col s12">
 	                <!-- <i class="mdi-action-lock-outline prefix"></i> -->
 	                <i class="material-icons prefix">phone</i>
-	                <input id="phone" name="phone" type="text" maxlength="12"/>
+	                <input id="phone" name="phone" type="text" oninput="autoHyphen2(this)" maxlength="13"/>
 	                <label for="phone">${sessionScope.loginAccount.ac_phone }</label>
 	                <img id="sendMessage" src="resources/account-img/searchimg2.png" onclick="sendSMS()">
 	            </div>
 	        </div>
 		            	<div id="check-id-result" style="display: none">
 				          	<input id="Random-num-input" type="hidden">
-		                	<input id="makeNumCheck" type="text" size="13" maxlength="6" placeholder="인증코드 6자리">
+		                	<input id="makeNumCheck"  type="text" size="13" maxlength="6" placeholder="인증코드 6자리">
 		                	<button type="button" id="completion" onclick="checkCompletion()">인증</button>
 		              	</div>
 
@@ -111,8 +115,8 @@
                 <div class="input-field img_div col s12">
                     <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                     <i class="material-icons prefix">home</i>
-                    <input id="ac_postcode" name="ac_postcode" type="text" disabled/>
-                    <label for="ac_postcode">${sessionScope.loginAccount.ac_postcode }</label>
+                    <input id="postcode" name="ac_postcode" type="text" disabled/>
+                    <label for="postcode">${sessionScope.loginAccount.ac_postcode }</label>
                     <img class="search_img" src="resources/account-img/searchimg2.png" onclick="daumPostcode()">
                 </div>
                 <div id="user_postcode">

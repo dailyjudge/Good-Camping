@@ -1,3 +1,8 @@
+const autoHyphen2 = (target) => {
+ target.value = target.value
+   .replace(/[^0-9]/g, '')
+  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+}
 function daumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -42,104 +47,116 @@ function daumPostcode() {
             document.getElementById("address").value = addr;
             // 커서를 상세주소 필드로 이동한다.
             document.getElementById("detailAddress").focus();
+            document.getElementById("user_postcode").style.display = 'block';
         }
     }).open();
 }
 function signUpCheck(){
-
-	  let email = document.getElementById("ac_id").value
-	  let password = document.getElementById("ac_pw").value
-	  let passwordCheck = document.getElementById("ac_pw2").value
-	  let name = document.getElementById("ac_name").value
-	  let birth = document.getElementById("ac_birth").value
+	  //변수에 담아주기
+	  let files = document.getElementById("ac_file");
+	  var uname = document.getElementById("ac_name");
+	  //성별
+	  var gender = document.getElementById("ac_gender");
+	  //아이디
+	  let email = document.getElementById("ac_id").value;
+	  let user_email = document.getElementById("ac_id");
+	  let email_check = document.getElementById("ac_id").value;
+	  //비밀번호
+	  var pwd = document.getElementById("ac_pw");
+	  var repwd = document.getElementById("ac_pw2");
+	  //모바일
+	  var mobile = document.getElementById("phone");
+	  let birth = document.getElementById("ac_birth");
+	  //주소
+	  let area = document.getElementById("postcode");
 	  
-	  let area = document.getElementById("postcode").value
-	  let gender_man = document.getElementById("ac_gender_man").checked
-	  let gender_woman = document.getElementById("ac_gender_woman").checked
-	  let files = document.getElementById("ac_files")
-	  let check = true;
-  
 	  // 이메일확인
 	  if(email.includes('@')){
 	    let emailId = email.split('@')[0]
 	    let emailServer = email.split('@')[1]
 	    if(emailId === "" || emailServer === ""){
 	      document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-	      check = false
 	    }
 	    else{
 	      document.getElementById("emailError").innerHTML=""
 	    }
 	  }else{
 	    document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-	    check = false
 	  }
 
 
-	  // 이름확인
-	  if(name===""){
-	    document.getElementById("nameError").innerHTML="이름이 올바르지 않습니다."
-	    check = false
-	  }else{
-	    document.getElementById("nameError").innerHTML=""
-	  }
 
 
-	  // 비밀번호 확인
-	  if(password !== passwordCheck){
-	    document.getElementById("passwordError").innerHTML=""
-	    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
-	    check = false
-	  }else{
-	    document.getElementById("passwordError").innerHTML=""
-	    document.getElementById("passwordCheckError").innerHTML=""
-	  }
 
-	  if(password===""){
-	    document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
-	    check = false
-	  }else{
-	    // document.getElementById("passwordError").innerHTML=""
-	  }
-	  if(passwordCheck===""){
-	    document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
-	    check = false
-	  }else{
-	    // document.getElementById("passwordCheckError").innerHTML=""
-	  }
-
-
-	  // 지역선택 확인
-	  if(area === ""){
-	    document.getElementById("areaError").innerHTML="지역을 선택해주세요."
-	    check = false
-	  }else{
-	    document.getElementById("areaError").innerHTML=""
-	  }
-
-	  // 성별체크확인
-	  if(!gender_man && !gender_woman){
-	    document.getElementById("genderError").innerHTML="성별을 선택해주세요."
-	    check = false
-	  }else{
-	    document.getElementById("genderError").innerHTML=""
-	  }
-	  
-	  if(check){
-	    document.getElementById("emailError").innerHTML=""
-	    document.getElementById("nameError").innerHTML=""
-	    document.getElementById("passwordError").innerHTML=""
-	    document.getElementById("passwordCheckError").innerHTML=""
-	    document.getElementById("areaError").innerHTML=""
-	    document.getElementById("genderError").innerHTML=""
-	    
-	    // 비동기 처리이벤트
-	    setTimeout(function() {
-	      alert("가입이 완료되었습니다.")
-	  },0);
-	  }
 	}
-	
+function joinform_check() {
+	  //변수에 담아주기
+	  var uid = document.getElementById("uid");
+	  var pwd = document.getElementById("pwd");
+	  var repwd = document.getElementById("repwd");
+	  var uname = document.getElementById("uname");
+	  var female = document.getElementById("female");
+	  var male = document.getElementById("male");
+	  var mobile = document.getElementById("mobile");
+	  var email_id = document.getElementById("email_id");
+	  var agree = document.getElementById("agree");
+
+	  if (uid.value == "") { //해당 입력값이 없을 경우 같은말: if(!uid.value)
+	    alert("아이디를 입력하세요.");
+	    uid.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
+	    return false; //return: 반환하다 return false:  아무것도 반환하지 말아라 아래 코드부터 아무것도 진행하지 말것
+	  };
+
+	  if (pwd.value == "") {
+	    alert("비밀번호를 입력하세요.");
+	    pwd.focus();
+	    return false;
+	  };
+
+	  //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
+	  var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+
+	  if (!pwdCheck.test(pwd.value)) {
+	    alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+	    pwd.focus();
+	    return false;
+	  };
+
+	  if (repwd.value !== pwd.value) {
+	    alert("비밀번호가 일치하지 않습니다..");
+	    repwd.focus();
+	    return false;
+	  };
+
+	  if (uname.value == "") {
+	    alert("이름을 입력하세요.");
+	    uname.focus();
+	    return false;
+	  };
+
+	  if (!female.checked && !male.checked) { //둘다 미체크시
+	    alert("성별을 선택해 주세요.");
+	    female.focus();
+	    return false;
+	  }
+
+	  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
+
+	  if (!reg.test(mobile.value)) {
+	    alert("전화번호는 숫자만 입력할 수 있습니다.");
+	    mobile.focus();
+	    return false;
+	  }
+
+	  if (email_id.value == "") {
+	    alert("이메일 주소를 입력하세요.");
+	    email_id.focus();
+	    return false;
+	  }
+
+	  //입력 값 전송
+	  document.join_form.submit(); //유효성 검사의 포인트   
+	}
 function checkidsame(){
 	var id = document.getElementById('ac_id');
 	let idValue = id.value;
@@ -148,9 +165,7 @@ function checkidsame(){
       alert("아이디를 입력하시오."); 
       id.focus();
  	} else{
- 	
-	//location.href='check.id?ac_id2='+idValue;
-	
+ 		
 	// ajax : 비동기 통신 기술
 	// url : 어디로 보낼지?
 	// data : parameter로 뭘 보낼지?
@@ -172,6 +187,8 @@ function checkidsame(){
 				// 값 세팅 $('#check-id-result').text(값);
 				$('#check-id-result').css('color', 'green');
 				$('#check-id-result').text('가능합니다');
+				$("#ac_pw").attr("disabled",false);
+				$('#ac_pw2').attr("disabled",false); 
 				console.log('가능합니다.');
 			} else {
 				console.log('불가합니다.');
@@ -212,7 +229,6 @@ function sendSMS(){
 			return;
 		}
 		
-  		document.getElementById("completion").disabled = false;
   		document.getElementById("check-id-result").style.display = "block";
   		
   		$.ajax({
@@ -221,8 +237,8 @@ function sendSMS(){
   				"num" : sendToNum
   				}
   		}).done(function(res) {
+  			$('#check-id-result').attr("display","block");
 			$('#Random-num-input').val(res);
-			alert(res);
 		})
     }
     function checkCompletion(){
@@ -276,8 +292,8 @@ function sendSMS(){
           img.setAttribute("height", "100%");
           img.setAttribute("id", "user-reg-image");
           img.setAttribute("style", "border-radius: 50%");
-          $("#user-profile").css("display", "none");
-          document.querySelector("div#profile").appendChild(img);
+          $("#test-img").css("display", "none");
+          document.querySelector("div#image_container").appendChild(img);
         };
         reader.readAsDataURL(event.target.files[0]);
       }
@@ -303,7 +319,6 @@ function findPw2(){
     		"pwFind_name" : pwFind_name
     	}
     }).done(function(res) {
-		alert(res);
 		
 		if(res != 0) {
 			$('#isPwEx').css('display','block');
@@ -332,6 +347,9 @@ function goChangePw2() {
 		let ac_id = $('#pwFind_id').val();
 	    
 	    location.href = 'changePw.after.findPw.go?ac_id=' + ac_id; 
+	}else{
+		alert("인증번호가 맞지 않습니다.");
+		return;
 	}
 	
 }

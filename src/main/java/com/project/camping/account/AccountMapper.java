@@ -28,6 +28,8 @@ public interface AccountMapper {
 
 	int deleteUserDoIt(String ac_id);
 
+	int updatePw(Map<String, String> resetPw);
+
 
 
 }
