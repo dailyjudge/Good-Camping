@@ -1,11 +1,15 @@
-# Good-Camping :tent:  
+# Good-Camping :tent: 
 
+<img src="https://user-images.githubusercontent.com/108406531/215086819-ac3ef379-30dd-4a10-a867-131ff78ab935.PNG">  
+
+## :fire: 팀원 소개
 <table>
 
   <tbody>
     	<tr>
 		  <td align="center">프로필</td>
-		  <td align="center">담당 업무</td>
+	          <td align="center">이메일</td>
+		<td align="center">담당 업무</td>
 		  <td align="center" colspan="2">개발 기간</td>
 	 </tr>	 
     <tr>
@@ -17,13 +21,16 @@
 	      </a>
 	      <br />
        	      </td>
+        <td align="left">
+	   judgemk1@naver.com
+     	    </td>
       <td align="left">
 	    :purple_heart: 캠핑장 정보 <br />
 	    :purple_heart: 로그인시 직전 페이지 유지 및 이동 <br />
 	    :purple_heart: 자동 로그인 <br />
      	    </td>
       <td align="center" rowspan="5">
-	    22.12.22 ~ 23.01.09
+	    2022.12.22 ~ 2023.01.09 (약 5주)
       </td>
    <tr/>
    <tr>
@@ -35,6 +42,9 @@
 	      </a>
 	      <br />
        	      </td>
+	   <td align="left">
+	   kye2644@gmail.com
+     	    </td>
       <td align="left">
 	    :purple_heart: 메인 페이지 <br />
 	    :purple_heart: 캠핑 스토어 <br />
@@ -49,6 +59,9 @@
 	      </a>
 	      <br />
        	      </td>
+      <td align="left">
+	   judgemk1@naver.com
+     	    </td>
       <td align="left">
 	    :purple_heart: 회원 관리 <br />
 	    :purple_heart: 캠핑 톡톡 <br />
