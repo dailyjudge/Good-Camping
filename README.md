@@ -102,7 +102,99 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
 
 ## :fire: 기능별 소개
 ### :zap: 회원 관리
+  #### 1.1 회원가입
+  * jQuery validation plugin을 이용한 유효성 검사
+  * ajax를 이용한 아이디 중복 검사  
+  
+  #### 1.2 ID 찾기
+  * coolsms를 이용한 휴대폰 인증 기능 구현
+  ```java
+  	public String sendSms_Do(HttpServletRequest request) {
+		Random random = new Random(); // 랜덤 함수 선언
+		int createNum = 0; // 1자리 난수
+		String ranNum = ""; // 1자리 난수 형변환 변수
+		int letter = 6; // 난수 자릿수:6
+		String resultNum = ""; // 결과 난수
 
+		for (int i = 0; i < letter; i++) {
+			createNum = random.nextInt(9); // 0부터 9까지 올 수 있는 1자리 난수 생성
+			ranNum = Integer.toString(createNum); // 1자리 난수를 String으로 형변환
+			resultNum += ranNum; // 생성된 난수(문자열)을 원하는 수(letter)만큼 더하며 나열
+		}
+
+		String api_key = "[coolsms 개인 api키]";
+		String api_secret = "[coolsms 개인 secret api키]";
+		Message coolsms = new Message(api_key, api_secret);
+
+		HashMap<String, String> set = new HashMap<String, String>();
+		set.put("to", request.getParameter("num")); // 수신번호
+
+		set.put("from", "[발신자 번호]"); // 발신번호, jsp에서 전송한 발신번호를 받아 map에 저장한다.
+		set.put("text", resultNum);
+		set.put("type", "sms"); // 문자 타입
+		set.put("app_version", "test app 1.2");
+
+		try {
+			JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+			return resultNum;
+		} catch (CoolsmsException e) {
+			System.out.println(e.getMessage());
+			System.out.println(e.getCode());
+		}
+		return null;
+	}
+  ```
+  #### 1.3 PW 찾기
+  * MailSender를 이용한 이메일 인증 번호 전송 기능 구현
+  ```java
+  	public int sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
+		String ac_id = (String) req.getParameter("pwFind_id");
+		String name = (String) req.getParameter("pwFind_name");
+
+		AccountMapper mm = ss.getMapper(AccountMapper.class);
+		AccountDTO vo = mm.selectAccount(ac_id);
+
+		if (vo != null) {
+			Random r = new Random();
+			int num = r.nextInt(8889)+1111;
+
+			if (vo.getAc_name().equals(name)) {
+
+				String setfrom = "@naver.com"; // naver
+				String tomail = ac_id; // 받는사람
+				String title = "[GoodCamping] 비밀번호변경 인증 이메일 입니다";
+				String content = System.getProperty("line.separator") + "안녕하세요 회원님"
+						+ System.getProperty("line.separator") + "GoodCamping 비밀번호찾기(변경) 인증번호는 " + num + " 입니다."
+						+ System.getProperty("line.separator"); 
+						
+				try {
+					MimeMessage message = mailSender.createMimeMessage();
+					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+					messageHelper.setFrom(setfrom);
+					messageHelper.setTo(tomail);
+					messageHelper.setSubject(title);
+					messageHelper.setText(content);
+
+					mailSender.send(message);
+
+					return num;
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}
+
+			return 0;
+		}
+		return 0;
+	}
+
+  ```
+  #### 1.4 로그인  
+  
+  #### 1.5 회원 정보 수정 및 탈퇴  
+  
 ### :zap: 캠핑장 정보
   #### 2.1 캠핑장 데이터 
   * 고캠핑 API를 통한 캠핑장 데이터 최신화
@@ -286,7 +378,9 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
   #### 3.6 주문 상품 목록 조회
   
   
+  ### :zap: 캠핑 톡톡  
   
+  #### 4.1 게시글 생성, 조회, 상세, 수정, 삭제
   
   
   
