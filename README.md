@@ -1,4 +1,6 @@
-# Good-Camping :tent: 
+# Good-Camping :tent:
+
+
 
 <img src="https://user-images.githubusercontent.com/108406531/215086819-ac3ef379-30dd-4a10-a867-131ff78ab935.PNG">  
 
@@ -53,7 +55,7 @@
    <tr>
       <td align="center">
 	      <a href="https://github.com/HaJunyoung" target="_blank">
-	      <img src="https://user-images.githubusercontent.com/108406531/215096144-5d9ec325-fba3-449d-955f-ca238bfc6ed5.png" width="200px;" alt=""/>
+	      <img src="https://user-images.githubusercontent.com/108406531/215096606-24c84d97-45d5-4a63-9c77-e79f386b6573.png" width="200px;" alt=""/>
 	      <br />
 	      <sub><b>하준영(Team Member)</b></sub>
 	      </a>
