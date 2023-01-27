@@ -1,6 +1,62 @@
-# Good-Camping :tent:
+# Good-Camping :tent:  
 
+<table>
 
+  <tbody>
+    	<tr>
+		  <td align="center">프로필</td>
+		  <td align="center">담당 업무</td>
+		  <td align="center" colspan="2">개발 기간</td>
+	 </tr>	 
+    <tr>
+      <td align="center">
+	      <a href="https://github.com/dailyjudge" target="_blank">
+	      <img src="https://user-images.githubusercontent.com/108406531/215073930-f44fa9d6-c61a-4767-b496-cda8404320f9.PNG" width="200px;" alt=""/>
+	      <br />
+	      <sub><b>정민규(Team Leader)</b></sub>
+	      </a>
+	      <br />
+       	      </td>
+      <td align="left">
+	    :purple_heart: 캠핑장 정보 <br />
+	    :purple_heart: 로그인시 직전 페이지 유지 및 이동 <br />
+	    :purple_heart: 자동 로그인 <br />
+     	    </td>
+      <td align="center" rowspan="5">
+	    22.12.22 ~ 23.01.09
+      </td>
+   <tr/>
+   <tr>
+      <td align="center">
+	      <a href="https://github.com/yeeun0526" target="_blank">
+	      <img src="https://user-images.githubusercontent.com/108406531/215073930-f44fa9d6-c61a-4767-b496-cda8404320f9.PNG" width="200px;" alt=""/>
+	      <br />
+	      <sub><b>정민규(Team Membeer)</b></sub>
+	      </a>
+	      <br />
+       	      </td>
+      <td align="left">
+	    :purple_heart: 메인 페이지 <br />
+	    :purple_heart: 캠핑 스토어 <br />
+     	    </td>
+   <tr/>
+   <tr>
+      <td align="center">
+	      <a href="https://github.com/HaJunyoung" target="_blank">
+	      <img src="https://user-images.githubusercontent.com/108406531/215073930-f44fa9d6-c61a-4767-b496-cda8404320f9.PNG" width="200px;" alt=""/>
+	      <br />
+	      <sub><b>하준영(Team Member)</b></sub>
+	      </a>
+	      <br />
+       	      </td>
+      <td align="left">
+	    :purple_heart: 회원 관리 <br />
+	    :purple_heart: 캠핑 톡톡 <br />
+     	    </td>
+   <tr/>
+  </tbody>
+</table>
+	      
 ## :fire: 소개
 코로나 대유행 시대가 지나고 여행은 망설이지만 일상적 공간을 통해 특별한 경험을 원하는 사람들이 증가하고있다. 이러한 공간 소비형 여가생활에 대한 사람들의 선호도가 높아지고 있는 가운데 우리는 캠핑을 즐기는 캠퍼들을 대상으로 캠핑장에 대한 다양한 정보를 제공하고자 사이트를 기획하였다.  
 TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 캠핑장 데이터를 자체 DB화하여 운영 및 관리하였고, 
@@ -21,7 +77,7 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
 <img src="https://img.shields.io/badge/sourcetree-blue?style=for-the-badge&logo=sourcetree&logoColor=white"> 
 <img src="https://img.shields.io/badge/discord-purple?style=for-the-badge&logo=discord&logoColor=white">  
 
-### :fire: 주요 기능
+## :fire: 주요 기능
 :zap: 회원 관리(회원가입, ID·PW 찾기, 로그인, 회원 정보 조회·수정·탈퇴) 
   
 :zap: 캠핑장 정보(캠핑장 조회·상세 조회, 카카오 맵·카카오 모빌리티 길찾기, 리뷰·조회수·좋아요, 테마·지도·검색어 검색, 좋아요 누른 목록)   
