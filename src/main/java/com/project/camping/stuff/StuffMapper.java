@@ -44,5 +44,18 @@ public interface StuffMapper {
 
 	int getCartCount(CartDTO c);
 
+	int insertSales(StuffSaleDTO saleDTO);
+
+	List<StuffSaleDTO> getTopItems(StuffSaleDTO saleDTO);
+
+	int getSalesitem(StuffSaleDTO saleDTO);
+
+	int updateSalesitem(StuffSaleDTO saleDTO);
+
+	List<StuffOrderDTO> getUserOrderList(AccountDTO a);
+
+	List<StuffUserOrderDTO> getOrderItems(StuffOrderDTO order);
+
+
 
 }

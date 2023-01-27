@@ -14,8 +14,14 @@
 	<link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"  media="screen,projection"/>
 	  
     <link rel="stylesheet" href="resources/css/account-regN.css" />
+<<<<<<< HEAD
     <link rel="stylesheet" href="resources/css/account-button.css" />
     <script src="resources/js/loginHead.js" ></script>
+=======
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script  src="resources/js/loginHead.js" ></script>
+
+>>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 </head>
 <body>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -47,8 +53,8 @@
 	            <div class="input-field col s12">
 	                <!-- <i class="mdi-social-person-outline prefix"></i> -->
 	                <i class="material-icons prefix">account_circle</i>
-	                <input id="ac_name" name="ac_name" type="text"/>
-	                <label for="ac_name">성함</label>
+	                <input id="ac_name" name="username" type="text" placeholder="성함"/>
+	                <label for="ac_name"></label>
 	            </div>
             </div>
             <div class="row margin">
@@ -64,7 +70,7 @@
             <div class="input-field img_div col s12">
                 <!-- <i class="mdi-social-person-outline prefix"></i> -->
                 <i class="material-icons prefix">email</i>
-                <input id="ac_id" name="ac_id" type="email" style="cursor: auto;" />
+                <input id="ac_id" name="email" type="email" style="cursor: auto;" />
                 <label for="ac_id">Email</label>
                 <img class="search_img" src="resources/account-img/searchimg2.png" onclick="checkidsame()">
             </div>
@@ -138,7 +144,12 @@
 
             <div class="row">
                 <div class="input-field col s12">
+<<<<<<< HEAD
                     <button type="button" onclick="signUpCheck();" class="btn waves-effect waves-light col s12">회원가입</button>
+=======
+                    <button class="btn waves-effect waves-light col s12">회원가입</button>
+                    
+>>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
                 </div>
                 <div class="input-field col s12">
                     <p class="margin center medium-small sign-up"><a href="login.go">로그인 페이지</a>로 돌아가기 </p>
@@ -149,6 +160,7 @@
             </div>
     </div>
 </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
+    <script  src="resources/js/account-regN.js" ></script>
 </body>
 </html>

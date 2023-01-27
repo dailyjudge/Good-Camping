@@ -154,7 +154,10 @@ html {
     overflow: hidden;
 }
 .profile img{
+<<<<<<< HEAD
 	width: 100%;
+=======
+>>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 	overflow: hidden;
 }
 

@@ -74,8 +74,13 @@ function kakao_pay(items) {
 	
 	let so_user_zoncode = $('#stuff-postcode').val();
 	let stuffAddress = $('#stuff-Address').val();
-	let stuffDetailAddress = $('#stuff-detailAddress').val();
+	let stuffDetailAddress = $('#stuff-detailAddress').val().trim();
 	
+	if(stuffDetailAddress == null||stuffDetailAddress == ''){
+		alert('상세주소를 입력해주세요');
+		$('#stuff-detailAddress').focus();
+		return false;
+	}
 	/*private int so_user_zoncode;
 	private String so_user_addr;
 	private String so_user_detailAddr;
@@ -95,7 +100,7 @@ function kakao_pay(items) {
 
 			
 			console.log(data.tid);
-			var win = window.open(data.next_redirect_pc_url, "PopupWin", "width=500,height=600,left=500");
+			var win = window.open(data.next_redirect_pc_url, "PopupWin", "width=500,height=700,left=500");
 			
 			
 			console.log('팝업 열리고 나서?');
