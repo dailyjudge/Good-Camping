@@ -15,7 +15,7 @@
     <tr>
       <td align="center">
 	      <a href="https://github.com/dailyjudge" target="_blank">
-	      <img src="https://user-images.githubusercontent.com/108406531/215073930-f44fa9d6-c61a-4767-b496-cda8404320f9.PNG" width="200px;" alt=""/>
+	      <img src="https://user-images.githubusercontent.com/108406531/215094751-b52c2673-23c9-4d73-a5a4-810e350a4e0e.jpg" width="200px;" alt=""/>
 	      <br />
 	      <sub><b>정민규(Team Leader)</b></sub>
 	      </a>
