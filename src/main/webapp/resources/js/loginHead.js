@@ -39,7 +39,7 @@ function daumPostcode() {
 				// 조합된 참고항목을 해당 필드에 넣는다.
 				document.getElementById("extraAddress").value = extraAddr;
 
-<<<<<<< HEAD
+
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('postcode').value = data.zonecode;
             document.getElementById("address").value = addr;
@@ -47,8 +47,10 @@ function daumPostcode() {
             document.getElementById("detailAddress").focus();
             document.getElementById("user_postcode").style.display = 'block';
         }
+		}
     }).open();
 }
+
 function signUpCheck(){
 	  //변수에 담아주기
 	  let files = document.getElementById("ac_file");
@@ -141,30 +143,7 @@ function signUpCheck(){
 		    user_email.focus();
 		    return;
 		};
-=======
-			} else {
-				document.getElementById("extraAddress").value = '';
-			}
 
-			// 우편번호와 주소 정보를 해당 필드에 넣는다.
-			document.getElementById('postcode').value = data.zonecode;
-			document.getElementById("address").value = addr;
-			// 커서를 상세주소 필드로 이동한다.
-			document.getElementById("detailAddress").focus();
-		}
-	}).open();
-}
-
-function signUpCheck() {
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
-
-	let email = document.getElementById("ac_id").value
-	let password = document.getElementById("ac_pw").value
-	let passwordCheck = document.getElementById("ac_pw2").value
-	let name = document.getElementById("ac_name").value
-	let birth = document.getElementById("ac_birth").value
-
-<<<<<<< HEAD
 		  //입력 값 전송
 		  document.join_form.submit(); //유효성 검사의 포인트   
 
@@ -196,114 +175,7 @@ function checkidsame(){
 		url: "check.id",
 		data: {
 			"ac_id2" : idValue
-=======
-	let area = document.getElementById("postcode").value
-	let gender_man = document.getElementById("ac_gender_man").checked
-	let gender_woman = document.getElementById("ac_gender_woman").checked
-	let files = document.getElementById("ac_files")
-	let check = true;
 
-	// 이메일확인
-	if (email.includes('@')) {
-		let emailId = email.split('@')[0]
-		let emailServer = email.split('@')[1]
-		if (emailId === "" || emailServer === "") {
-			document.getElementById("emailError").innerHTML = "이메일이 올바르지 않습니다."
-			check = false
-		} else {
-			document.getElementById("emailError").innerHTML = ""
-		}
-	} else {
-		document.getElementById("emailError").innerHTML = "이메일이 올바르지 않습니다."
-		check = false
-	}
-
-	// 이름확인
-	if (name === "") {
-		document.getElementById("nameError").innerHTML = "이름이 올바르지 않습니다."
-		check = false
-	} else {
-		document.getElementById("nameError").innerHTML = ""
-	}
-
-	// 비밀번호 확인
-	if (password !== passwordCheck) {
-		document.getElementById("passwordError").innerHTML = ""
-		document.getElementById("passwordCheckError").innerHTML = "비밀번호가 동일하지 않습니다."
-		check = false
-	} else {
-		document.getElementById("passwordError").innerHTML = ""
-		document.getElementById("passwordCheckError").innerHTML = ""
-	}
-
-	if (password === "") {
-		document.getElementById("passwordError").innerHTML = "비밀번호를 입력해주세요."
-		check = false
-	} else {
-		// document.getElementById("passwordError").innerHTML=""
-	}
-	if (passwordCheck === "") {
-		document.getElementById("passwordCheckError").innerHTML = "비밀번호를 다시 입력해주세요."
-		check = false
-	} else {
-		// document.getElementById("passwordCheckError").innerHTML=""
-	}
-
-	// 지역선택 확인
-	if (area === "") {
-		document.getElementById("areaError").innerHTML = "지역을 선택해주세요."
-		check = false
-	} else {
-		document.getElementById("areaError").innerHTML = ""
-	}
-
-	// 성별체크확인
-	if (!gender_man && !gender_woman) {
-		document.getElementById("genderError").innerHTML = "성별을 선택해주세요."
-		check = false
-	} else {
-		document.getElementById("genderError").innerHTML = ""
-	}
-
-	if (check) {
-		document.getElementById("emailError").innerHTML = ""
-		document.getElementById("nameError").innerHTML = ""
-		document.getElementById("passwordError").innerHTML = ""
-		document.getElementById("passwordCheckError").innerHTML = ""
-		document.getElementById("areaError").innerHTML = ""
-		document.getElementById("genderError").innerHTML = ""
-
-		// 비동기 처리이벤트
-		setTimeout(function() {
-			alert("가입이 완료되었습니다.")
-		}, 0);
-	}
-}
-
-function checkidsame() {
-	var id = document.getElementById('ac_id');
-	let idValue = id.value;
-
-	if (idValue == "") {
-		alert("아이디를 입력하시오.");
-		id.focus();
-	} else {
-
-		// location.href='check.id?ac_id2='+idValue;
-
-		// ajax : 비동기 통신 기술
-		// url : 어디로 보낼지?
-		// data : parameter로 뭘 보낼지?
-		// dataType : 어떤걸 받을지?
-		// contentType : 어떤걸 보낼지?
-		// success : 성공했을 때 실행할 콜백 (함수)
-		// onError : 실패했을 때
-
-		$.ajax({
-			url : "check.id",
-			data : {
-				"ac_id2" : idValue
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 			}
 		}).done(function(res) {
 			// 0 or 1
@@ -358,15 +230,7 @@ function sendSMS() {
 	document.getElementById("completion").disabled = false;
 	document.getElementById("check-id-result").style.display = "block";
 
-	$.ajax({
-		url : "sendSms.do",
-		data : {
-			"num" : sendToNum
-		}
-<<<<<<< HEAD
 		
-  		document.getElementById("check-id-result").style.display = "block";
-  		
   		$.ajax({
   			url: "sendSms.do",
   			data: {
@@ -460,74 +324,7 @@ function findPw2(){
 			$('#isPwEx').css('display','block');
 			$('.camping-login-button').css('display','none');
 			$('.camping-login-button2').css('display','block');
-=======
-	}).done(function(res) {
-		$('#Random-num-input').val(res);
-		alert(res);
-	})
-}
 
-function checkCompletion() {
-
-	let ranNum = $('#Random-num-input').val();
-	let userNum = $('#makeNumCheck').val();
-
-	console.log(typeof ranNum);
-	console.log(typeof userNum);
-
-	console.log(ranNum == userNum);
-
-	if (userNum == '') {
-		alert("인증번호를 입력하세요.");
-		return;
-	}
-
-	if (ranNum == userNum) {
-		alert("본인 인증에 성공하였습니다.");
-		/* $('#regSubmit').attr("disabled", 'false'); */
-	} else {
-		alert("본인 인증에 실패하였습니다.");
-		$("#makeNumCheck").focus();
-	}
-
-	/*
-	 * let makeNumCheck = document.getElementById("makeNumCheck").value; var
-	 * resultNum = document.getElementById( 'completion' ).getAttribute( 'value' );
-	 * var check2 = document.getElementById("makeNumCheck");
-	 * 
-	 * if(makeNumCheck != null){ if(makeNumCheck == resultNum){ alert("본인인증에
-	 * 성공하셨습니다"); document.getElementById("regSubmit").disabled = false; }else{
-	 * alert("본인인증 실패"); check2.focus(); } }else{ alert("인증코드를 입력하시오");
-	 * check2.focus(); }
-	 */
-}
-
-
-function findPw2() {
-	// pwFind_id 이메일
-	// pwFind_name 이름
-
-	let pwFind_id2 = $('#pwFind_id');
-	let pwFind_id = $('#pwFind_id').val();
-	let pwFind_name = $('#pwFind_name').val();
-
-	// 예외처리 부분
-
-	$.ajax({
-		url : "searchPW.do",
-		type : "POST",
-		data : {
-			"pwFind_id" : pwFind_id,
-			"pwFind_name" : pwFind_name
-		}
-	}).done(function(res) {
-		alert(res);
-
-		if (res != 0) {
-			$('#isPwEx').css('display', 'block');
-			$('.camping-login-button').css('display', 'none');
-			$('.camping-login-button2').css('display', 'block');
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 			$('#pwFind-auth-hidden').val(res);
 		} else {
 			alert("이름/이메일 주소를 다시 확인해주세요");
@@ -549,16 +346,12 @@ function goChangePw2() {
 		// 이름과 id 받기
 
 		let ac_id = $('#pwFind_id').val();
-<<<<<<< HEAD
 	    
 	    location.href = 'changePw.after.findPw.go?ac_id=' + ac_id; 
 	}else{
 		alert("인증번호가 맞지 않습니다.");
 		return;
-=======
 
-		location.href = 'changePw.after.findPw.go?ac_id=' + ac_id;
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 	}
 
 }
@@ -622,7 +415,6 @@ function deleteUser(user_id) {
 	
 }
 
-<<<<<<< HEAD
 function safetyPasswordPattern(str) {
 
     var pass = str.value;
@@ -690,22 +482,3 @@ function safetyPasswordPattern(str) {
     document.getElementById("makyText").innerHTML = message;
     document.getElementById("makyText").style.color = color;
 }
-=======
-
-function changeImg(event) {
-	let reader = new FileReader();
-
-	reader.onload = function(event) {
-		$("#user-reg-image").remove();
-		let img = document.createElement("img");
-		img.setAttribute("src", event.target.result);
-		img.setAttribute("width", "100%");
-		img.setAttribute("height", "100%");
-		img.setAttribute("id", "user-reg-image");
-		img.setAttribute("style", "border-radius: 50%");
-		$("#user-profile").css("display", "none");
-		document.querySelector(".profile").appendChild(img);
-	};
-	reader.readAsDataURL(event.target.files[0]);
-}
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c

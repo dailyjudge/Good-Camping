@@ -220,7 +220,7 @@ public class AccountDAO {
 	}
 	
 	public int sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
-<<<<<<< HEAD
+
 		String ac_id = (String) req.getParameter("pwFind_id");
 		String name = (String) req.getParameter("pwFind_name");
 		
@@ -230,11 +230,7 @@ public class AccountDAO {
 		System.out.println(ac_id);
 		System.out.println(name);
 		
-=======
-		String ac_id = (String) req.getParameter("ac_id");
-		String name = (String) req.getParameter("ac_name");
 
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
 		AccountDTO vo = mm.selectAccount(ac_id);
 
@@ -301,7 +297,7 @@ public class AccountDAO {
 
 	public void resetPw(HttpServletRequest req, AccountDTO a) {
 		
-		String ac_id = req.getParameter("ac_id");
+		String ac_id = req.getParameter("ac_id"); 
 		String ac_pw = req.getParameter("ac_pw");
 		
 		Map<String, String> resetPw = new HashMap<String, String>();
@@ -309,17 +305,11 @@ public class AccountDAO {
 		resetPw.put("ac_pw", ac_pw);
 		
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
-<<<<<<< HEAD
+
 
 		if (mm.updatePw(resetPw) == 1) {
 			req.setAttribute("r", "비밀번호 재설정 성공");
-=======
-		
-		
-		if (mm.updatePw(a) == 1) {
-			System.out.println("성공");
-			req.getSession().setAttribute("loginAccount", mm.getAccountById(a));
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
+
 		} else {
 			req.setAttribute("r", "비밀번호 재설정 실패");
 		}
