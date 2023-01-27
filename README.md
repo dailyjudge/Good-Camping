@@ -35,8 +35,7 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
 ### :zap: 회원 관리
 
 ### :zap: 캠핑장 정보
-  #### 1. 캠핑장
-  #### 1.1 캠핑장 데이터 
+  #### 2.1 캠핑장 데이터 
   * 고캠핑 API를 통한 캠핑장 데이터 최신화
   ```java
   public void refreshCampingData(HttpServletRequest request) {
@@ -97,13 +96,13 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
 			}
    }
    ```
-   #### 1.2 캠핑장 조회
+   #### 2.2 캠핑장 조회
    * 조회수, 좋아요 수, 리뷰수 순으로 정렬되어 캠핑장 정보 제공
    * 제공되는 부대시설 내용을 이미지로 표현
    * 로그인된 유저가 좋아요를 클릭하면 좋아요 누른 목록에 저장
    * 10개 단위로 페이징 처리
    
-   #### 1.3 캠핑장 상세
+   #### 2.3 캠핑장 상세
    * 캠핑장 홈페이지로 이동할 수 있는 링크 제공
    * 캠핑장 소개글, 캠핑장에 대한 상세 설명 제공
       - 카라반, 글램핑 장소 유무 여부
@@ -113,15 +112,15 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
    * 카카오 모빌리티 길찾기를 이용해 사용자의 현재 위치를 기반으로 소요되는 시간 정보 제공
    * 캠핑장에 대한 리뷰 작성 및 정보 제공
    
-   #### 1.4 캠핑장 조회수
+   #### 2.4 캠핑장 조회수
    * 캠핑장 상세 페이지 클릭시 조회수 1 증가
    * 새로고침 등 부정한 방법에 의한 조회수 증가 처리
    
-   #### 1.5 캠핑장 좋아요
+   #### 2.5 캠핑장 좋아요
    * 캠핑장 조회 화면에서 사용자가 좋어요 누른 항목 확인 가능
    * 사용자가 좋아요 버튼을 클릭하거나 취소하면 ajax를 이용하여 실시간 데이터 반영 처리
    
-   #### 1.6 캠핑장 검색
+   #### 2.6 캠핑장 검색
    * 검색어로 찾기
      - 원하는 키워드와 지역(선택)을 입력하여 캠핑장 검색
    * 테마로 찾기
@@ -129,9 +128,72 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
    * 지도로 찾기
      - 지도 이미지에 해당 지역을 클릭하면 ajax를 이용하여 실시간으로 해당 지역 추천 캠핑장 정보 제공
    
-   #### 1.7 좋아요 누른 목록
+   #### 2.7 좋아요 누른 목록
    * 사용자가 좋아요 누른 캠핑장 정보를 카드 형식으로 제공
    * 카드 아이템에 hover하면 캠핑장 해시태그 키워드 목록, 리뷰 별점 평균 보여주는 이벤트 사용
    * 카드 아이템 클릭시 해당 캠핑장 상세 정보 페이지로 이동
    
    
+### :zap: 캠핑 스토어
+ #### 3.1 캠핑용품 데이터 받기
+ * 네이버 쇼핑 검색 API를 이용하여 카테고리별 실제 상품 정보 받기
+ ```java
+ 	public void refreshStuffData() {
+		// 네이버 대분류 카테고리
+		String[] items = { "랜턴", "바비큐", "버너", "핫팩", "캠핑의자", "캠핑테이블", "캠핑코펠", "숯", "캠핑매트", "야전침대", "로프" };
+
+		for (int i = 0; i < items.length; i++) {
+			String str = items[i];
+
+			String url = "https://openapi.naver.com/v1/search/shop.json?query=";
+
+			HttpURLConnection huc = null;
+			int count = 0;
+
+			try {
+				url += URLEncoder.encode(str, "utf-8");
+				url += "&display=100";
+
+				URL u = new URL(url);
+
+				huc = (HttpURLConnection) u.openConnection();
+				huc.addRequestProperty("X-Naver-Client-Id", [고유 Client-Id]);
+				huc.addRequestProperty("X-Naver-Client-Secret", [고유 Client-Secret]);
+				
+				InputStream is = huc.getInputStream();
+				InputStreamReader isr = new InputStreamReader(is, "utf-8");
+
+				JSONParser jp = new JSONParser();
+				JSONObject stuffData = (JSONObject) jp.parse(isr);
+				JSONArray products = (JSONArray) stuffData.get("items");
+
+				for (Object p : products) {
+					JSONObject stuff = (JSONObject) p;
+
+					StuffDTO s = new StuffDTO();
+					s.setS_brand(stuff.get("brand").toString());
+					s.setS_category(stuff.get("category3").toString());
+					s.setS_productId(stuff.get("productId").toString());
+					s.setS_image(stuff.get("image").toString());
+					s.setS_detail_category(stuff.get("category4").toString());
+					s.setS_title(stuff.get("title").toString());
+					s.setS_price(stuff.get("lprice").toString());
+
+					System.out.println(s.toString());
+					if (ss.getMapper(StuffMapper.class).insertStuff(s) == 1) {
+						System.out.println(++count + "번째 데이터 삽입 성공");
+					} else {
+						System.out.println("실패");
+					}
+
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+ ```
+ 
+  #### 3.2 데이터
