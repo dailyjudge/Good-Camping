@@ -53,7 +53,7 @@
    <tr>
       <td align="center">
 	      <a href="https://github.com/HaJunyoung" target="_blank">
-	      <img src="https://user-images.githubusercontent.com/108406531/215073930-f44fa9d6-c61a-4767-b496-cda8404320f9.PNG" width="200px;" alt=""/>
+	      <img src="https://user-images.githubusercontent.com/108406531/215096144-5d9ec325-fba3-449d-955f-ca238bfc6ed5.png" width="200px;" alt=""/>
 	      <br />
 	      <sub><b>하준영(Team Member)</b></sub>
 	      </a>
