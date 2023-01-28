@@ -14,14 +14,9 @@
 	<link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"  media="screen,projection"/>
 	  
     <link rel="stylesheet" href="resources/css/account-regN.css" />
-<<<<<<< HEAD
     <link rel="stylesheet" href="resources/css/account-button.css" />
     <script src="resources/js/loginHead.js" ></script>
-=======
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <script  src="resources/js/loginHead.js" ></script>
 
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 </head>
 <body>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -53,7 +48,7 @@
 	            <div class="input-field col s12">
 	                <!-- <i class="mdi-social-person-outline prefix"></i> -->
 	                <i class="material-icons prefix">account_circle</i>
-	                <input id="ac_name" name="username" type="text" placeholder="성함"/>
+	                <input id="ac_name" name="ac_name" type="text" placeholder="성함"/>
 	                <label for="ac_name"></label>
 	            </div>
             </div>
@@ -70,7 +65,7 @@
             <div class="input-field img_div col s12">
                 <!-- <i class="mdi-social-person-outline prefix"></i> -->
                 <i class="material-icons prefix">email</i>
-                <input id="ac_id" name="email" type="email" style="cursor: auto;" />
+                <input id="ac_id" name="ac_id" type="text" />
                 <label for="ac_id">Email</label>
                 <img class="search_img" src="resources/account-img/searchimg2.png" onclick="checkidsame()">
             </div>
@@ -111,17 +106,19 @@
 	                <img id="sendMessage" src="resources/account-img/searchimg2.png" onclick="sendSMS()">
 	            </div>
 	        </div>
-		            	<div id="check-id-result2" > <!-- style="display: none" -->
+		            	<div id="check-id-result2" style="display: none" > <!--  -->
 				          	<input id="Random-num-input" type="hidden">
 		                	<input id="makeNumCheck" type="text" size="13" maxlength="6" placeholder="인증코드 6자리">
 		                	<button type="button" id="completion" class="w-btn2 w-btn-gra1" onclick="checkCompletion()">인증</button>
+		                	<input id="checkPhoneNum" type="hidden">
 		              	</div>
-
+                <div id="phoneText" class="set_center">
+                <span id="check-id-result">휴대폰 인증 먼저 해주세요</span>
+                </div>
             <div class="row margin">
                 <div class="input-field col s12">
-                    <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                     <i class="material-icons prefix">calendar_month</i>
-                    <input id="ac_birth" name="ac_birth" type="text" maxlength="6"/>
+                    <input id="ac_birth" name="ac_birth" type="text" maxlength="6" disabled/>
                     <label for="ac_birth">생년월일 ex)990101</label>
                 </div>
             </div>
@@ -130,7 +127,7 @@
                 <div class="input-field img_div col s12">
                     <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                     <i class="material-icons prefix">home</i>
-                    <input id="postcode" name="ac_postcode" type="text"/>
+                    <input id="postcode" name="ac_postcode" type="text" disabled/>
                     <label for="postcode"></label>
                     <img class="search_img" src="resources/account-img/searchimg2.png" onclick="daumPostcode()">
                 </div>
@@ -144,12 +141,7 @@
 
             <div class="row">
                 <div class="input-field col s12">
-<<<<<<< HEAD
                     <button type="button" onclick="signUpCheck();" class="btn waves-effect waves-light col s12">회원가입</button>
-=======
-                    <button class="btn waves-effect waves-light col s12">회원가입</button>
-                    
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
                 </div>
                 <div class="input-field col s12">
                     <p class="margin center medium-small sign-up"><a href="login.go">로그인 페이지</a>로 돌아가기 </p>
@@ -161,6 +153,5 @@
     </div>
 </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
-    <script  src="resources/js/account-regN.js" ></script>
 </body>
 </html>

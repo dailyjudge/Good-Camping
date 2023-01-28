@@ -25,7 +25,14 @@ public class BulletinController {
 	public String goToBulletinMain(HttpServletRequest request) {
 		
 		aDAO.loginCheck(request);
-		request.setAttribute("contentPage", "bulletin/ex1.jsp");
+		request.setAttribute("contentPage", "bulletin/board-start.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/go.board.comu", method = RequestMethod.GET)
+	public String goBoardComu(HttpServletRequest request) {
+		
+		aDAO.loginCheck(request);
+		request.setAttribute("contentPage", "bulletin/board-community.jsp");
 		return "index";
 	}
 	

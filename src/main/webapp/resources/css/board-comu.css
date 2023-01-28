@@ -1,0 +1,122 @@
+#start-left-board,#start-left-board:before,#start-left-board:after {
+	box-sizing: border-box;
+}
+
+.top_wrap_main{
+    display: flex;
+    position: relative;
+}
+body{
+	background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
+} 
+
+#board-top-wrap{
+	display: flex;
+	
+  	max-width:2000px;
+  	font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+  	line-height:1.4;
+}
+
+.section {
+	margin-top:60px;
+	margin-left:100px;
+  width: 800px;
+  height: 800px;
+  background-color : white;
+  border: 3px solid #fdfcfb;
+  overflow-block: hidden;
+	box-shadow: 1px 1px 2px 6px grey;
+	 border-radius: 10px;
+}
+.section2 {
+	margin-top:60px;
+	margin-left:30px;
+    width: 300px;
+    height: 300px;
+    border-radius: 10%;
+    overflow-block: hidden;
+    background-color: aliceblue;
+  }
+  
+#start-left-board {
+  	float: left;
+	position: relative;
+	top: 60px;
+  	left: 15px;
+	background: transparent;
+	z-index: 2;
+}
+
+#start-left-board ul {
+	text-align: center;
+}
+
+#start-left-board ul li {
+	position: relative;
+  width: 70px;
+  cursor: pointer;
+  background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+	text-transform: uppercase;
+	transition:all .4s ease-out;
+}
+
+#start-left-board ul li:after {
+	position: absolute;
+	background: rgb(237, 240, 238);
+	color: rgb(33, 20, 220);
+	top:0;
+	left: 70px;
+	width: 70px; height: 100%;
+	  opacity:.5;
+	  transform: perspective(400px) rotateY(90deg);
+	transform-origin: 0 100%;
+	transition:all .4s ease-out;
+}
+.col-dif{
+    background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+}
+#start-left-board ul li:nth-child(1):after { 
+	content: "Home";
+	line-height: 88px;
+}
+#start-left-board ul li:nth-child(2):after { 
+	content: "About";
+	line-height: 88px;
+}
+#start-left-board ul li:nth-child(3):after { 
+	content: "Work";
+	line-height: 85px;
+}
+#start-left-board ul li:nth-child(4):after { 
+	content: "Say hi";
+	line-height: 70px;
+}
+
+#start-left-board ul li:hover {
+	transform: translateX(-70px);
+}
+
+#start-left-board ul li:hover:after {
+  opacity: 1;
+	transform: perspective(400px) rotateY(0deg) scale(1) ;
+}
+
+
+#start-left-board ul li > div {
+	display: inline-block;
+	padding: 25px 0;
+	background: transparent;
+}
+
+#start-left-board ul li div { position: relative; }
+
+
+/*/// About me ////*/
+
+.nav-img{
+    width: 60%;
+}
+
+

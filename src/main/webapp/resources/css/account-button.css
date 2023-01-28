@@ -24,7 +24,7 @@ button {
     display: inline-block;
     border-radius: 15px;
     font-family: "paybooc-Light", sans-serif;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 5px rgb(0 0 0 / 20%);
     text-decoration: none;
     font-weight: 600;
     transition: 0.25s;
