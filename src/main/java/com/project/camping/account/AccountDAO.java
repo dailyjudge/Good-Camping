@@ -96,7 +96,17 @@ public class AccountDAO {
 		}
 
 	}
-
+	public boolean loginCheck2(HttpServletRequest request) {
+		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
+		
+		if(a != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
 	public void loginCheck(HttpServletRequest request) {
 		// 이건 나중에 한번 봄
 		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
@@ -184,6 +194,9 @@ public class AccountDAO {
 
 			String ac_file = mr.getFilesystemName("ac_file");
 			ac.setAc_file(ac_file);
+			
+			System.out.println("저장되는 경로(실제 서버) : "+path);
+			System.out.println("사진 이름 : "+ac_file);
 			
 			ac.setAc_sessionkey(mr.getParameter("ac_id"));
 			
@@ -447,77 +460,102 @@ public class AccountDAO {
 	public void accoutUpateDo(HttpServletRequest req, AccountDTO ac) {
 		String path = req.getSession().getServletContext().getRealPath("resources/profile_img");
 		MultipartRequest mr = null;
+		
 		try {
 			mr = new MultipartRequest(req, path, 31457200, "utf-8", new DefaultFileRenamePolicy());
-			String ac_id = mr.getParameter("ac_id");
+			String ac_id = (String) mr.getParameter("ac_id2");
+			
+			System.out.println(ac_id);
+			System.out.println(mr.getParameter("ac_id2"));
+			System.out.println(mr.getParameter("ac_pw"));
+			//파일
+			String ac_file = mr.getFilesystemName("ac_file");
+			System.out.println("파일 이름은 : " + ac_file);
+			
+			System.out.println(mr.getParameter("ac_birth"));
+			System.out.println(mr.getParameter("ac_phone"));
+			System.out.println(mr.getParameter("ac_postcode"));
+			System.out.println(mr.getParameter("ac_address"));
+			System.out.println(mr.getParameter("ac_detailAddress"));
+			System.out.println(mr.getParameter("ac_extraAddress"));
 			
 			//기존 정보 vo 불러오기
 			AccountMapper mm = ss.getMapper(AccountMapper.class);
 			AccountDTO vo = mm.selectAccount(ac_id);
 			
-			ac.setAc_id(mr.getParameter("ac_id"));
+			System.out.println(vo.getAc_birth());
+			System.out.println(vo.getAc_phone());
+			System.out.println(vo.getAc_address());
+			System.out.println(vo.getAc_detailAddress());
+			
+			//아이디는 업데이트 x
+			ac.setAc_id(vo.getAc_id());
+			//이름은 업데이트 x
+			ac.setAc_name(vo.getAc_name());
 			
 			//입력값 비교
-			if(mr.getParameter("ac_pw").equals("")) {
+			if(mr.getParameter("ac_pw").equals("1111")) {
 				ac.setAc_pw(vo.getAc_pw());
+				
 			}else {
 				ac.setAc_pw(mr.getParameter("ac_pw"));
+				
 			}
-			
-			if(mr.getParameter("ac_name").equals("")) {
-				ac.setAc_name(vo.getAc_name());
-			}else {
-				ac.setAc_name(mr.getParameter("ac_name"));
-			}
-			
-			if(mr.getParameter("ac_birth").equals("")) {
+	
+			if(mr.getParameter("ac_birth") == null || mr.getParameter("ac_birth").equals("") ) {
 				ac.setAc_birth(vo.getAc_birth());
+				
 			}else {
 				ac.setAc_birth(mr.getParameter("ac_birth"));
 			}
 			
-			if(mr.getParameter("ac_phone").equals("")) {
+			if(mr.getParameter("ac_phone") == null || mr.getParameter("ac_phone").equals("") ) {
 				ac.setAc_phone(vo.getAc_phone());
+
 			}else {
 				String ac_phone = mr.getParameter("ac_phone");
 				ac_phone = ac_phone.replace("-", "");
 				
 				ac.setAc_phone(ac_phone);
+
 			}
 			
-			if(mr.getParameter("ac_postcode").equals("")) {
+			if(mr.getParameter("ac_postcode") == null || mr.getParameter("ac_postcode").equals("") ) {
 				ac.setAc_postcode(vo.getAc_postcode());
+				
 			}else {
 				ac.setAc_postcode(mr.getParameter("ac_postcode"));
 			}
 			
-			if(mr.getParameter("ac_address").equals("")) {
-				ac.setAc_address(vo.getAc_address());
-			}else {
+			if(mr.getParameter("ac_address") == null || mr.getParameter("ac_address").equals("")) {
 				ac.setAc_address(mr.getParameter("ac_address"));
+			}else {
+				ac.setAc_address(vo.getAc_address());
 			}
 			
-			if(mr.getParameter("ac_detailAddress").equals("")) {
+			if(mr.getParameter("ac_detailAddress") == null || mr.getParameter("ac_detailAddress").equals("")) {
 				ac.setAc_detailAddress(vo.getAc_detailAddress());
+				
 			}else {
 				ac.setAc_detailAddress(mr.getParameter("ac_detailAddress"));
 			}
 			
-			if(mr.getParameter("ac_extraAddress").equals("")) {
+			if(mr.getParameter("ac_extraAddress") == null || mr.getParameter("ac_extraAddress").equals("")) {
 				ac.setAc_extraAddress(vo.getAc_extraAddress());
+				
 			}else {
 				ac.setAc_extraAddress(mr.getParameter("ac_extraAddress"));
 			}
 			
-			if(mr.getParameter("ac_gender").equals("")) {
+			if(mr.getParameter("ac_gender") == null || mr.getParameter("ac_gender").equals("")) {
 				ac.setAc_gender(vo.getAc_gender());
+				
 			}else {
 				ac.setAc_gender(mr.getParameter("ac_gender"));
 			}
 			
 			//파일
-			String ac_file = mr.getFilesystemName("ac_file");
-			if(mr.getParameter("ac_file").equals("")) {
+			if(ac_file == null || ac_file.equals("")) {
 				ac.setAc_file(vo.getAc_file());
 			}else {
 				ac.setAc_file(ac_file);
@@ -543,6 +581,7 @@ public class AccountDAO {
 
 	public void deleteUser(HttpServletRequest req) {
 		String ac_id = req.getParameter("ac_id");
+		System.out.println(ac_id);
 		
 		// user 삭제
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
@@ -552,19 +591,5 @@ public class AccountDAO {
 			req.setAttribute("r", "삭제 실패");
 		}
 	}
-
-
-//	public void deleteAccount(HttpServletRequest req, HttpSession session, AccountDTO ac) {
-//		String ac_id = req.getParameter("this_id");
-//		
-//		AccountMapper mm = ss.getMapper(AccountMapper.class);
-//		
-//		if(mm.GoDeleteAccount(ac_id)==1) {
-//			req.setAttribute("r", "탈퇴 성공");
-//		} else {
-//			req.setAttribute("r", "탈퇴 실패");
-//		}
-//		
-//	}
 
 }
