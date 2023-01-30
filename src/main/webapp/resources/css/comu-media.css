@@ -1,5 +1,5 @@
  .board_wrap {
- 		width: 1450px;
+ 		width: 800px;
         min-width: 320px;
         padding: 0 30px;
         box-sizing: border-box;
@@ -23,7 +23,7 @@
     }
 
     .board_list .title {
-        text-indent: 10px;
+        text-indent: 5px;
         text-align: center;
     }
 
@@ -59,7 +59,7 @@
 
     .board_view .info dl dt,
     .board_view .info dl dd {
-        font-size: 1.2rem;
+        font-size: 10pt;
     }
 
     .board_write .info dl {

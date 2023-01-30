@@ -115,23 +115,22 @@ public class BulletinDAO {
 		MultipartRequest mr = null;
 		try {
 			mr = new MultipartRequest(request, path, 31457200, "utf-8", new DefaultFileRenamePolicy());
-			System.out.println(ac.getAc_id());
-			System.out.println(mr.getParameter("comu_title"));
-			System.out.println(mr.getFilesystemName("comu_file"));
-			System.out.println(mr.getParameter("comu_content"));
 
+			String com_file_original = mr.getParameter("com_file_original");
 			cd.setComu_write_id(ac.getAc_id());
 			cd.setComu_title(mr.getParameter("comu_title"));
 			cd.setComu_no(mr.getParameter("comu_no"));
 			
 			String comu_content = mr.getParameter("comu_content");
 			cd.setComu_content(comu_content.replace("\r\n","<br>"));
-			
-			
-			String cd_file = mr.getFilesystemName("comu_file");
-			cd.setComu_file(cd_file);
+			String comu_file = mr.getFilesystemName("comu_file");
+			if(comu_file == null) {
+				cd.setComu_file(com_file_original);
+			}else {
+				cd.setComu_file(comu_file);
+			}
 			System.out.println("저장되는 경로(실제 서버) : "+path);
-			System.out.println("사진 이름 : "+cd_file);
+			System.out.println("사진 이름 : "+comu_file);
 			
 			if(ss.getMapper(BulletinMapper.class).UpdateThisBoard(cd) ==1) {
 				request.setAttribute("result", "성공");
@@ -142,7 +141,7 @@ public class BulletinDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			String fileName = mr.getFilesystemName("cd_file");
+			String fileName = mr.getFilesystemName("comu_file");
 			new File(path + "/" + fileName).delete();
 			request.setAttribute("r", "가입 실패");
 

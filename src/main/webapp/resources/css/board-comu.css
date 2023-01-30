@@ -5,9 +5,9 @@
 .top_wrap_main{
     display: flex;
     position: relative;
-    width:4000px;
+   
 }
-body{
+.areaDiv-content{
 	background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%); 
   	overflow: hidden;
 } 

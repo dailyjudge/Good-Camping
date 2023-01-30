@@ -47,7 +47,7 @@
 					</dl>
 				</div>
 				<div class="cont">${this_comu_vo.comu_content}</div>
-				<div>${this_comu_vo.comu_file}</div>
+				<div><img src="reources/comu-img/${this_comu_vo.comu_file}"></div>
 			</div>
 			<div class="bt_wrap">
 				<a href="go.board.comu" class="on">목록</a> 

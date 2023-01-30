@@ -42,12 +42,14 @@
 							<dl>
 								<dt>파일</dt>
 								<dd>
-									<input type="file" name="comu_file">${this_comu_vo.comu_file}</dd>
+									<input type="file" name="comu_file">
+									<img src="reources/comu-img/${this_comu_vo.comu_file}">
+									<input type="hidden" name="com_file_original" value="${this_comu_vo.comu_file}"> </dd>
 							</dl>
 						</div>
 						<div class="cont">
 							<textarea placeholder="내용 입력" name="comu_content">
-						${this_comu_vo.comu_content}
+							${this_comu_vo.comu_content}
 					</textarea>
 						</div>
 					</div>
