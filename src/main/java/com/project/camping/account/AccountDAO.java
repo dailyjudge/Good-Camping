@@ -233,7 +233,6 @@ public class AccountDAO {
 	}
 	
 	public int sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
-
 		String ac_id = (String) req.getParameter("pwFind_id");
 		String name = (String) req.getParameter("pwFind_name");
 		
@@ -246,7 +245,7 @@ public class AccountDAO {
 
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
 		AccountDTO vo = mm.selectAccount(ac_id);
-
+		System.out.println("vo 출력" + vo.toString());
 		// 실제로 아이디가 존재한다면.
 		if (vo != null) {
 			Random r = new Random();
@@ -255,6 +254,7 @@ public class AccountDAO {
 				num = r.nextInt(9999); // 랜덤난수설정
 			}
 			
+				System.out.println("num : " + num);
 //				session.setAttribute("num", num);
 //				session.setAttribute("the_id", ac_id);
 

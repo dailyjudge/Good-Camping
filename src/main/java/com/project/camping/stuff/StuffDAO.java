@@ -805,31 +805,34 @@ public class StuffDAO {
 			// 해당 유저가 주문한 내역을 먼저 가져오기. (주문 테이블에만 접근)
 			List<StuffOrderDTO> orders = ss.getMapper(StuffMapper.class).getUserOrderList(a);
 			
+			System.out.println("주문번호 출력");
+			for (StuffOrderDTO stuffOrderDTO : orders) {
+				System.out.print(stuffOrderDTO.getSo_no() + " ");
+			}
+			System.out.println();
+			
 			// 주문 번호에 해당하는 품목 전부를 가져와서 리스트화.
 			for(int i = 0; i < orders.size(); i++) {
 				// 주문 번호 1개
 				StuffOrderDTO order = orders.get(i);
-				
+				System.out.println(order.getSo_no() +"번 주문 조회 결과");
 				// 주문 번호에 해당하는 상품 리스트
 				List<StuffUserOrderDTO> orderItems = ss.getMapper(StuffMapper.class).getOrderItems(order);
-				
+				System.out.println(orderItems.size() + "개 조회 완료");
 				// 주문 번호, 상품 번호, 상품 이미지, 상품 제목, 상품 가격, 상품 수량, 주소, 주문 시각
+				
 				
 				// 실질적으로 실을 데이터
 				StuffUserOrderDTO suo = new StuffUserOrderDTO();
-				
 				// 필요한 내용
 				// 키 설정
 				suo.setSo_no(orderItems.get(0).getSo_no());
-				
 				// 1. 이미지
 				// 첫번째 이미지 사용
 				suo.setS_image(orderItems.get(0).getS_image());
-				
 				// 2. 이름 : ~ 외 ~ 개
 				// 1개일 때? 그 이상일 떄?
-				String title = orderItems.get(0).getS_title();
-				
+				String title = orderItems.get(0).getS_title().replace("<b>", "").replace("</b>", "");
 				suo.setS_title(orderItems.size() == 1 ? title : title + "외 " + (orderItems.size() - 1) + "개");
 				
 				// 3. 가격

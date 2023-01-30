@@ -157,6 +157,6 @@
 		<select id="getOrderItems" parameterType="com.project.camping.stuff.StuffOrderDTO" resultType="com.project.camping.stuff.StuffUserOrderDTO">
 			select so_no, s_image, s_title, s_price, soi_sc_amount, so_user_zoncode, so_user_addr, so_user_detailAddr, so_date 
 			from stuff, stuff_order, stuff_order_items
-			where s_no = so_stuff_no and so_no = soi_so_no and so_no = #{so_no} 
+			where s_no = soi_stuff_no and so_no = soi_so_no and so_no = #{so_no} 
 		</select>
 </mapper>

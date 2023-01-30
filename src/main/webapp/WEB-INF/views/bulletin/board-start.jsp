@@ -1,17 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-    <link rel="stylesheet" href="resources/css/board-start.css">
-    <script src="https://kit.fontawesome.com/ece9d84a35.js" crossorigin="anonymous"></script>
-</head>
-<body>
 <img class="forest-back" src="resources/board-img/forest.png">
 <img class="wellcome-img" src="resources/board-img/wellcome.png">
+
   <div id="board-top-wrap">
     <nav id="start-left-board">
         <ul>
@@ -42,5 +31,3 @@
       	wellcome
       </div> -->
    </div>
-</body>
-</html>
