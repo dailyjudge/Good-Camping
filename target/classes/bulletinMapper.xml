@@ -2,5 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.camping.bulletinB.BulletinMapper">
 
+<select id="getBoardCount" parameterType="com.project.camping.bulletinB.ComuDTO" resultType="java.lang.Integer">
+	select count(*) from comu_info
+</select>
+<select id="getBoards" resultType="com.project.camping.bulletinB.ComuDTO">
+	select * from comu_info order by comu_no desc
+</select>
+<select id="getThisBoard" parameterType="String" resultType="com.project.camping.bulletinB.ComuDTO">
+	select * from comu_info where comu_no = #{comu_no}
+</select>
+
+<select id="selectAllWhere" parameterType="String" resultType="com.project.camping.bulletinB.ComuDTO">
+select * from comu_info where comu_groupid = #{comu_groupid}
+</select>
+
+<insert id="writeToBoard" parameterType="com.project.camping.bulletinB.ComuDTO">
+	insert into comu_info values(comu_info_seq.nextval,'서울특별시',#{comu_title},#{comu_write_id},sysdate,null,'0',#{comu_content},#{comu_file})
+</insert>
+
+<update id="updateThisBoard" parameterType="String">
+ 	update comu_info set comu_readcount = comu_readcount +1 where comu_no = #{comu_no} 
+</update>
+<update id="UpdateThisBoard" parameterType="com.project.camping.bulletinB.ComuDTO">
+ 	update comu_info 
+ 	set comu_title = #{comu_title},
+ 		comu_file = #{comu_file}, comu_content = #{comu_content}
+ 	where comu_no = #{comu_no} 
+</update>
 
 </mapper>

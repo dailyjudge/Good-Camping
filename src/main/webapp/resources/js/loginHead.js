@@ -66,6 +66,7 @@ function signUpCheck(){
 	  var repwd = document.getElementById("ac_pw2");
 	  //모바일
 	  var mobile = document.getElementById("phone");
+	  //생년월일
 	  let birth = document.getElementById("ac_birth");
 	  //주소
 	  let postcode = document.getElementById("postcode");
@@ -79,7 +80,7 @@ function signUpCheck(){
 			    user_email.focus(); 
 			    return false; 
 			  };
-		  if (pwd.value == "") {
+		  if (pwd.value == "" || pwd.value.length < 4) {
 		    alert("비밀번호를 입력하세요.");
 		    pwd.focus();
 		    return false;
@@ -104,7 +105,7 @@ function signUpCheck(){
 			  mobile.focus();
 			  return false;
 		  };
-		  if (birth.value == "") {
+		  if (birth.value == "" || birth.value.length !=6 ) {
 			  alert("생년월일을 입력하세요.");
 			  birth.focus();
 			  return false;
@@ -129,6 +130,7 @@ function signUpCheck(){
 			  extraAddress.focus();
 			  return false;
 		  };
+
 		  //비밀번호 재확인
 		  if (repwd.value !== pwd.value) {
 			    alert("비밀번호가 일치하지 않습니다..");
@@ -144,6 +146,7 @@ function signUpCheck(){
 		    return;
 		};
 
+		alert("성공!");
 		  //입력 값 전송
 		  document.join_form.submit(); //유효성 검사의 포인트   
 
@@ -227,17 +230,15 @@ function sendSMS() {
 		return;
 	}
 
-	document.getElementById("completion").disabled = false;
-	document.getElementById("check-id-result").style.display = "block";
+	//document.getElementById("check-id-result").style.display = "block";
 
-		
   		$.ajax({
   			url: "sendSms.do",
   			data: {
   				"num" : sendToNum
   				}
   		}).done(function(res) {
-  			$('#check-id-result').attr("display","block");
+  			$('#check-id-result2').css('display','flex');
 			$('#Random-num-input').val(res);
 		})
     }
@@ -258,28 +259,16 @@ function sendSMS() {
     	
     	if(ranNum == userNum) {
     		alert("본인 인증에 성공하였습니다.");
+    		$('#ac_birth').attr("disabled", false);
+    		$('#postcode').attr("disabled", false);
+    		$('#phoneText').attr('style', "display:none;");
     		 /*	$('#regSubmit').attr("disabled", 'false'); */
     	} else {
     		alert("본인 인증에 실패하였습니다.");
     		$("#makeNumCheck").focus();
     	}
     	
-    /*	let makeNumCheck = document.getElementById("makeNumCheck").value;
-    	var resultNum = document.getElementById( 'completion' ).getAttribute( 'value' );
-    	var check2 = document.getElementById("makeNumCheck");
-    	
-    	if(makeNumCheck != null){
-	    	if(makeNumCheck == resultNum){
-	    		alert("본인인증에 성공하셨습니다");
-	    		document.getElementById("regSubmit").disabled = false;
-	    	}else{
-	    		alert("본인인증 실패");
-	    		check2.focus();
-	    	}
-	    }else{
-	    	alert("인증코드를 입력하시오");
-	    	check2.focus();
-	    }*/
+
     }
       function changeImg(event) {
         let reader = new FileReader();
@@ -406,8 +395,9 @@ function double_check_pw() {
 
 }
 function deleteUser(user_id) {
+	var delConfirm = confirm('정말 탈퇴하시겠습니까?');
 	
-	if(confirm("정말 탈퇴하시겠습니까?")){
+	if(delConfirm){
 		location.href='deleteUser.do?ac_id'+user_id; //페이지 이동
 	}else{
 		return;
@@ -426,8 +416,8 @@ function safetyPasswordPattern(str) {
     if(pass.length) {
 
         // 최대 입력 글자수를 제한한다.
-        if(pass.length < 8 || pass.length > 16) {
-            message = ":: 최소 8자 이상, 최대 16자 이하 ::";
+        if(pass.length < 4 || pass.length > 16) {
+            message = ":: 최소 4자 이상, 최대 16자 이하 ::";
             color = "#A23E48";
         }
 
@@ -482,3 +472,4 @@ function safetyPasswordPattern(str) {
     document.getElementById("makyText").innerHTML = message;
     document.getElementById("makyText").style.color = color;
 }
+
