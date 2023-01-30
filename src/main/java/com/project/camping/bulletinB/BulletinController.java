@@ -88,6 +88,20 @@ public class BulletinController {
 		request.setAttribute("contentPage", "bulletin/board-edit.jsp");
 		return "index";
 	}
+	//게시글 삭제
+	@RequestMapping(value = "/delete.thisBoard", method = RequestMethod.GET)
+	public String deleteThisBoard(HttpServletRequest request) {
+		
+		bDAO.deleteBoard(request);
+		
+		bDAO.getBoard(request);
+		bDAO.boardPaging(1, request);
+		
+		aDAO.loginCheck(request);
+		request.setAttribute("color", 1);
+		request.setAttribute("contentPage", "bulletin/board-community.jsp");
+		return "index";
+	}
 	
 	//게시글 수정
 	@RequestMapping(value = "/do.edit.thisBoard", method = RequestMethod.POST)

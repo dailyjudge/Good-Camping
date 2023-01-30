@@ -52,6 +52,9 @@
 				<c:if test="${this_comu_vo.comu_write_id == sessionScope.loginAccount.ac_id }">
 					<a href="edit.thisBoard?comu_no=${this_comu_vo.comu_no}">수정</a>
 				</c:if>
+				<c:if test="${this_comu_vo.comu_write_id == sessionScope.loginAccount.ac_id }">
+					<a href="delete.thisBoard?comu_no=${this_comu_vo.comu_no}">삭제</a>
+				</c:if>
 			</div>
 		</div>
 	</div>
