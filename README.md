@@ -1,7 +1,6 @@
 # Good-Camping :tent:
 
 
-
 <img src="https://user-images.githubusercontent.com/108406531/215086819-ac3ef379-30dd-4a10-a867-131ff78ab935.PNG">  
 
 ## :fire: 팀원 소개
@@ -386,4 +385,6 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
   #### 4.1 게시글 생성, 조회, 상세, 수정, 삭제
   
   
+  ## :fire: ERD
   
+  <img src="https://user-images.githubusercontent.com/108406531/215472229-8e5bf78a-3596-4f46-87de-0132cf1c9631.png">
