@@ -14,8 +14,8 @@ body{
   background: linear-gradient(-45deg, #1d2c41, #B7C9D9, #4FA3F0, #22131a) ;
   background-repeat: no-repeat;
   background-size: 400% 400%;
-  position: relative;
   animation: backgroundChange 20s ease-in-out infinite;
+  position: relative;
   /* display: flex;
   justify-content: center;
   align-items: center; */

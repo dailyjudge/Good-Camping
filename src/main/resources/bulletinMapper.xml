@@ -2,5 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.camping.bulletinB.BulletinMapper">
 
+<select id="selectAllWhere" parameterType="String" resultType="com.project.camping.bulletinB.ComuDTO">
+select * from comu_info where comu_groupid = #{comu_groupid}
+</select>
 
 </mapper>

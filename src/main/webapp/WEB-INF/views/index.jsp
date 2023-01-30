@@ -52,6 +52,9 @@
 <script type="text/javascript" src="resources/js/account.js"></script>
 <script type="text/javascript" src="resources/js/home.js"></script>
 <script type="text/javascript" src="resources/js/campingDetail.js"></script>
+<!-- ck editor -->
+<script type="text/javascript" src="resources/js/ko.js"></script>
+<script type="text/javascript" src="resources/js/ckeditor.js"></script>
 
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

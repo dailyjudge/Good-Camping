@@ -34,14 +34,13 @@
                 </div>
                 <div class="row margin">
                     <div class="filebox_wrap">
-                        <div id="image_container" class="profile"><img id="test-img" src="C:/ProgramData/CheckMAL/AppCheck/RansomShelter/Device/HarddiskVolume2/jyh/eGovFrameDev-3.9.0-64bit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/news/resources/profile_img/${sessionScope.loginAccount.ac_file}"></div>
+                        <div id="image_container" class="profile"><img id="test-img" src="resources/profile_img/${sessionScope.loginAccount.ac_file}"></div>
                         <div class="filebox">
                             <label for="ac_file">파일찾기</label>
-                            <input type="file" onchange="changeImg(event);" name="ac_file" id="ac_file" multiple="multiple" style="display: none">
+                            <input type="file" onchange="changeImg(event);" name="ac_file" id="ac_file" multiple="multiple">
                         </div>
                     </div>
                 </div>
-
             
   	<div class="input-name-gender"> 
             <div class="row margin">
@@ -102,7 +101,7 @@
 	                <img id="sendMessage" src="resources/account-img/searchimg2.png" onclick="sendSMS()">
 	            </div>
 	        </div>
-		            	<div id="check-id-result" style="display: none">
+		            	<div id="check-id-result2" style="display: none">
 				          	<input id="Random-num-input" type="hidden">
 		                	<input id="makeNumCheck"  type="text" size="13" maxlength="6" placeholder="인증코드 6자리">
 		                	<button type="button" id="completion" onclick="checkCompletion()">인증</button>

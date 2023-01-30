@@ -185,6 +185,9 @@ public class AccountDAO {
 			String ac_file = mr.getFilesystemName("ac_file");
 			ac.setAc_file(ac_file);
 			
+			System.out.println("저장되는 경로(실제 서버) : "+path);
+			System.out.println("사진 이름 : "+ac_file);
+			
 			ac.setAc_sessionkey(mr.getParameter("ac_id"));
 			
 			req.setAttribute("accountInfo", ac);
@@ -455,6 +458,9 @@ public class AccountDAO {
 			System.out.println(ac_id);
 			System.out.println(mr.getParameter("ac_id2"));
 			System.out.println(mr.getParameter("ac_pw"));
+			//파일
+			String ac_file = mr.getFilesystemName("ac_file");
+			System.out.println("파일 이름은 : " + ac_file);
 			
 			System.out.println(mr.getParameter("ac_birth"));
 			System.out.println(mr.getParameter("ac_phone"));
@@ -539,8 +545,7 @@ public class AccountDAO {
 			}
 			
 			//파일
-			String ac_file = mr.getFilesystemName("ac_file");
-			if(mr.getParameter("ac_file") == null || mr.getParameter("ac_file").equals("")) {
+			if(ac_file == null || ac_file.equals("")) {
 				ac.setAc_file(vo.getAc_file());
 			}else {
 				ac.setAc_file(ac_file);
@@ -566,6 +571,7 @@ public class AccountDAO {
 
 	public void deleteUser(HttpServletRequest req) {
 		String ac_id = req.getParameter("ac_id");
+		System.out.println(ac_id);
 		
 		// user 삭제
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
