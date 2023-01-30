@@ -27,38 +27,32 @@ public class BulletinController {
 		
 		aDAO.loginCheck(request);
 		
+		bDAO.getBoard(request);
+		
+		bDAO.boardPaging(1, request);
+		
 		request.setAttribute("color", 1);
-		request.setAttribute("contentPage", "bulletin/board-start.jsp");
+		request.setAttribute("contentPage", "bulletin/board-community.jsp");
 		return "index";
 	}
 	@RequestMapping(value = "/go.board.comu", method = RequestMethod.GET)
 	public String goBoardComu(HttpServletRequest request) {
 		
-		bDAO.getBoard(1, request);
-		
+		bDAO.getBoard(request);
+		bDAO.boardPaging(1, request);
 		aDAO.loginCheck(request);
+		
 		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "bulletin/board-community.jsp");
 		return "index";
 	}
 
 
-	 @RequestMapping(value = "/go.board.comu", method = RequestMethod.GET) public
-	 String goBoardComu(HttpServletRequest request) {
-	 
-		bDAO.getBoard(1, request);
-		
-		
-		aDAO.loginCheck(request); 
-		request.setAttribute("contentPage","bulletin/board-community.jsp"); 
-		return "index"; 
-	}
-
 	@RequestMapping(value = "/board.page.change", method = RequestMethod.GET)
 	public String boardpPageChange(HttpServletRequest request) {
 		
 		int p =Integer.parseInt(request.getParameter("p"));
-		bDAO.getBoard(p, request);
+		bDAO.boardPaging(p, request);
 		
 		aDAO.loginCheck(request);
 		request.setAttribute("color", 1);
@@ -102,7 +96,10 @@ public class BulletinController {
 		if(aDAO.loginCheck2(request)) {
 			bDAO.upDateBoard(request, cd);
 		}
-		bDAO.getBoard(1, request);
+		
+		bDAO.getBoard(request);
+		
+		bDAO.boardPaging(1, request);
 		
 		aDAO.loginCheck(request);
 		request.setAttribute("color", 1);
@@ -121,7 +118,9 @@ public class BulletinController {
 		if(aDAO.loginCheck2(request)) {
 			bDAO.uploadBoard(request, cd);
 		}
-		bDAO.getBoard(1, request);
+		
+		bDAO.getBoard(request);
+		bDAO.boardPaging(1, request);
 		
 		aDAO.loginCheck(request);
 		request.setAttribute("color", 1);

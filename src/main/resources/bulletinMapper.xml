@@ -6,7 +6,7 @@
 	select count(*) from comu_info
 </select>
 <select id="getBoards" resultType="com.project.camping.bulletinB.ComuDTO">
-	select * from comu_info order by comu_no desc
+	select * from comu_info order by comu_w_time desc
 </select>
 <select id="getThisBoard" parameterType="String" resultType="com.project.camping.bulletinB.ComuDTO">
 	select * from comu_info where comu_no = #{comu_no}

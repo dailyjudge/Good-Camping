@@ -18,10 +18,6 @@
 </head>
 <body>
 	<div class="board_wrap">
-		<div class="board_title">
-			<strong>공지사항</strong>
-			<p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
-		</div>
 		<div class="board_view_wrap">
 			<div class="board_view">
 				<div class="title">${this_comu_vo.comu_title}</div>
@@ -47,11 +43,15 @@
 					</dl>
 				</div>
 				<div class="cont">${this_comu_vo.comu_content}</div>
-				<div><img src="reources/comu-img/${this_comu_vo.comu_file}"></div>
+				<div>
+					<img style="width: 200px;" class="board-detail-img-container" src="resources/comu-img/${this_comu_vo.comu_file}">
+				</div>
 			</div>
 			<div class="bt_wrap">
 				<a href="go.board.comu" class="on">목록</a> 
-				<a href="edit.thisBoard?comu_no=${this_comu_vo.comu_no}">수정</a>
+				<c:if test="${this_comu_vo.comu_write_id == sessionScope.loginAccount.ac_id }">
+					<a href="edit.thisBoard?comu_no=${this_comu_vo.comu_no}">수정</a>
+				</c:if>
 			</div>
 		</div>
 	</div>

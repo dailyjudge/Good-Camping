@@ -24,9 +24,8 @@
 		<div class="top_wrap_main">
 			<div class="board_wrap">
 				<div class="board_title">
-					<strong>공지사항</strong>
-					<p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
-				
+					<strong>캠핑 톡톡</strong>
+					<p>다양한 의견을 공유하세요</p>
 				</div>
 				<div class="board_list_wrap">
 					<div class="board_list">
@@ -50,9 +49,13 @@
 						</c:forEach>
 					</div>
 					<div class="board_page">
-						<a href="board.page.change?p=${curPage -1 }" class="bt prev">&lt;</a>
+						<c:if test="${curPage != 1 }">
+							<a href="board.page.change?p=${curPage -1 }" class="bt prev">&lt;</a>
+						</c:if>
 						<a href="board.page.change?p=${curPage}" class="num">${curPage}</a> 
-						<a href="board.page.change?p=${curPage +1 }" class="bt next">&gt;</a> 
+						<c:if test="${pageCount != curPage }">
+							<a href="board.page.change?p=${curPage +1 }" class="bt next">&gt;</a> 
+						</c:if>
 					</div>
 					<div class="bt_wrap">
 						<a href="go.board.write" class="on">등록</a>
