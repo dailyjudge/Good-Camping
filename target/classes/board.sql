@@ -6,6 +6,7 @@ create table board_list(
 	bo_readcount varchar2(2000 char) not null,
 	bo_file varchar2(200 char) not null
 );
+
 drop table board_list;
 
 insert into board_list values(board_list_seq.nextval,'1111','jun', sysdate, 0, 'a.jpg');

@@ -109,22 +109,21 @@ public class AccountDAO {
 	
 	public void loginCheck(HttpServletRequest request) {
 		// 이건 나중에 한번 봄
+		
+		String page = request.getRequestURL().toString();
+		String params = request.getQueryString();
+		
+		if (params != null)
+			page += "?" + params;
+		System.out.println("page : " + page);
+		
+		// 로그인 화면 클릭한 경우가 아니라면
 		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
-
+		if (!page.contains("go.Login.Head"))
+			request.getSession().setAttribute("prevPage", page);
+		
 		if (a == null) {
-
 			request.setAttribute("loginPage", "account/login.jsp");
-
-			String page = request.getRequestURL().toString();
-			String params = request.getQueryString();
-
-			if (params != null)
-				page += "?" + params;
-			System.out.println("page : " + page);
-			// 로그인 화면 클릭한 경우가 아니라면
-			if (!page.contains("go.Login.Head"))
-				request.getSession().setAttribute("prevPage", page);
-
 		} else {
 			request.setAttribute("loginPage", "account/login_done.jsp");
 		}

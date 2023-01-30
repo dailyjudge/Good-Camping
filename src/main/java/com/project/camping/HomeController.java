@@ -40,6 +40,7 @@ public class HomeController {
 		aDAO.autoLogin(request);
 		aDAO.loginCheck(request);
 		
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "home.jsp");
 
 		return "index";
