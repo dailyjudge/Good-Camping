@@ -125,7 +125,7 @@ public class BulletinDAO {
 			cd.setComu_no(mr.getParameter("comu_no"));
 			
 			String comu_content = mr.getParameter("comu_content");
-			cd.setComu_content(comu_content.replace("<br>","\r\n"));
+			cd.setComu_content(comu_content.replace("\r\n","<br>"));
 			
 			
 			String cd_file = mr.getFilesystemName("comu_file");
@@ -171,6 +171,16 @@ public class BulletinDAO {
 		ss.getMapper(BulletinMapper.class).updateThisBoard(comu_no); // 조회수 +1
 		
 		String comu_content = vo.getComu_content();
+		
+		request.setAttribute("this_comu_vo", vo);
+	}
+	public void getEditBoard(HttpServletRequest request) {
+		String comu_no = request.getParameter("comu_no");
+		System.out.println(comu_no);
+		
+		ComuDTO vo = ss.getMapper(BulletinMapper.class).getThisBoard(comu_no); //선택한 게시물	
+		String comu_content = vo.getComu_content();
+		
 		vo.setComu_content(comu_content.replace("<br>","\r\n"));
 		
 		request.setAttribute("this_comu_vo", vo);

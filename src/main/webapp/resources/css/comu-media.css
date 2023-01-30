@@ -1,10 +1,10 @@
  .board_wrap {
- 		width : 100%;
+ 		width: 1450px;
         min-width: 320px;
         padding: 0 30px;
         box-sizing: border-box;
         margin-top:60px;
-    	margin-left: 100px;
+    	margin-left: auto;
     	margin-right: auto;
       	background-color : white;
   		border: 3px solid #fdfcfb;
@@ -24,6 +24,7 @@
 
     .board_list .title {
         text-indent: 10px;
+        text-align: center;
     }
 
     .board_list .top .title {
