@@ -87,6 +87,7 @@ public class AccountController {
 		aDAO.logout(req, response) ;
 		aDAO.loginCheck(req);
 		
+		req.setAttribute("color", 1);
 		req.setAttribute("contentPage", "home.jsp");
 		return "index";
 	}
