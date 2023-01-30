@@ -213,27 +213,25 @@ public class AccountDAO {
 	}
 
 	public int sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
-		String ac_id = (String) req.getParameter("ac_id");
-		String name = (String) req.getParameter("ac_name");
+		String ac_id = (String) req.getParameter("pwFind_id");
+		String name = (String) req.getParameter("pwFind_name");
 
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
 		AccountDTO vo = mm.selectAccount(ac_id);
-
+		System.out.println("vo 출력" + vo.toString());
 		// 실제로 아이디가 존재한다면.
 		if (vo != null) {
 			Random r = new Random();
-			int num = 0;
-			while(num >= 1000) {
-				num = r.nextInt(9999); // 랜덤난수설정
-			}
+			int num = r.nextInt(8889)+1111;
 			
+				System.out.println("num : " + num);
 //				session.setAttribute("num", num);
 //				session.setAttribute("the_id", ac_id);
 
 			if (vo.getAc_name().equals(name)) {
 //				 session.setAttribute("email", vo.getAc_id());
 
-				String setfrom = "jun19975@naver.com"; // naver
+				String setfrom = "@naver.com"; // naver
 				String tomail = ac_id; // 받는사람
 				String title = "[삼삼하개] 비밀번호변경 인증 이메일 입니다";
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님"

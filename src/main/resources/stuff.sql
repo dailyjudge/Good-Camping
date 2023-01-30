@@ -245,3 +245,16 @@ select s_image, s_title, s_price, s_no, ss_no, ss_stuff_no, ss_category, ss_coun
 				) 
 where ROWNUM <= 5 and s_no = ss_stuff_no 
 
+
+
+select so_no, s_image, s_title, s_price, soi_sc_amount, so_user_zoncode, so_user_addr, so_user_detailAddr, so_date 
+			from stuff, stuff_order, stuff_order_items
+			where s_no = soi_stuff_no and so_no = soi_so_no and so_no = 143
+
+select * from stuff_order where so_no = 143
+
+select * from stuff_order_items where soi_so_no = 102
+
+delete stuff_order where so_no = 101
+
+delete stuff_order_items where soi_so_no = 101

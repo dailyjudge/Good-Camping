@@ -267,7 +267,9 @@ function findPw2() {
 	let pwFind_id2 = $('#pwFind_id');
 	let pwFind_id = $('#pwFind_id').val();
 	let pwFind_name = $('#pwFind_name').val();
-
+	
+	console.log("id : " + pwFind_id);
+	console.log("name : " + pwFind_name);
 	// 예외처리 부분
 
 	$.ajax({

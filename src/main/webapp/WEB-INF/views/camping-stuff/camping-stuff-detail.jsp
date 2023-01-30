@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,17 +66,18 @@
 			</div>
 		</div>
 	</div>
-	  <div class="recommend-div">
-        <div class="recommend-title"><span>추천 상품</span></div>
-        <div class="stuff-recommend">
-        <c:forEach var="topItems" items="${topItems }">
-          <div class="recommend-items">
-            <img onclick="location.href='go.stuff.detail?s_no=${topItems.ss_stuff_no}'"src="${topItems.s_image }">
-          </div>
-         
-        </c:forEach>
-        </div>
-      </div>
+		<c:if test="${fn:length(topItems) != 0 }">
+		  <div class="recommend-div">
+	        <div class="recommend-title"><span>추천 상품</span></div>
+	        <div class="stuff-recommend">
+	        <c:forEach var="topItems" items="${topItems }">
+	          <div class="recommend-items">
+	            <img onclick="location.href='go.stuff.detail?s_no=${topItems.ss_stuff_no}'"src="${topItems.s_image }">
+	          </div>
+	        </c:forEach>
+	        </div>
+	      </div>
+		</c:if>
 	</div>
 </body>
 </html>

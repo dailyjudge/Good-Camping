@@ -34,4 +34,4 @@ $(".login-form").validate({
         error.insertAfter(element);
       }
     }
-  });
+});

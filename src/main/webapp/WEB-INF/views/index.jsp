@@ -22,6 +22,8 @@
 <link rel="stylesheet" href="resources/css/searchInput.css">
 <link rel="stylesheet" href="resources/css/camping-like.css">
 <link rel="stylesheet" href="resources/css/choiceButton.css">
+<link rel="stylesheet" href="resources/css/footer.css">
+<link rel="stylesheet" href="resources/css/stuffOrderList.css">
   <head>
     <meta charset="UTF-8" />
     <title>Good Camping</title>
@@ -70,6 +72,7 @@
 <script type="text/javascript" src="resources/js/choiceButton.js"></script>
 <script type="text/javascript" src="resources/js/campingStuffCart.js"></script>
 <script type="text/javascript" src="resources/js/accontLogin.js"></script>
+<script type="text/javascript" src="resources/js/campingOrder.js"></script>
 
 <script
   src="https://code.jquery.com/jquery-3.6.3.js"
@@ -199,6 +202,48 @@
       </div>
       <div class="areaDiv">
         <jsp:include page="${contentPage}"></jsp:include>
+      </div>
+      <div class="areaDiv">
+      	<footer>
+      <div class="menus">
+        <div class="menu-and-logo">
+            <div class="menu-and-logo-category"><a href="http://localhost:8080/camping/">Home</a></div>
+            <div class="menu-and-logo-category"><a href="go.camping.find">캠핑장찾기</a></div>
+            <div class="menu-and-logo-category"><a href="go.theme.find">옵션 검색</a></div>
+            <div class="menu-and-logo-category"><a href="go.camping.shop">캠핑 스토어</a></div>
+            <div class="menu-and-logo-category"><a href="">게시판</a></div>
+        </div>
+        <div class="git-info">
+          <div class="member-info">
+            <a class="git-logo" target="_blank" href="https://github.com/dailyjudge"><img src="resources/footer/GitHub-logo.png" /></a>
+            <div class="member-info-2">
+	            <span>정민규(TeamLeader)</span>
+				<span>judgemk1@naver.com</span>            
+            </div>
+          </div>
+          <div class="member-info">
+            <a class="git-logo" target="_blank" href="https://github.com/Yeeun0526"><img src="resources/footer/GitHub-logo.png" /></a>
+            <div class="member-info-2">
+            	<span>김예은(TeamMember)</span>
+            	<span>kye2644@gmail.com</span>
+            </div>
+          </div>
+          <div class="member-info">
+            <a class="git-logo" target="_blank" href="https://github.com/HaJunyoung"><img src="resources/footer/GitHub-logo.png" /></a>
+            <div class="member-info-2">
+	            <span>하준영(TeamMember)</span>
+	            <span>hyj@@@@@</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div id="footer-logo footer-logo-2">
+            <img id="footer-logo-img" src="resources/footer/greylogo.png" />
+          </div>
+          © Good Camping CORP. ALL RIGHTS RESERVED
+        </div>
+      </div>
+    </footer>
       </div>
     </div>
     
