@@ -1,7 +1,6 @@
 # Good-Camping :tent:
 
 
-
 <img src="https://user-images.githubusercontent.com/108406531/215086819-ac3ef379-30dd-4a10-a867-131ff78ab935.PNG">  
 
 ## :fire: 팀원 소개
@@ -40,7 +39,7 @@
 	      <a href="https://github.com/yeeun0526" target="_blank">
 	      <img src="https://user-images.githubusercontent.com/108406531/215096144-5d9ec325-fba3-449d-955f-ca238bfc6ed5.png" width="200px;" alt=""/>
 	      <br />
-	      <sub><b>김예은(Team Membeer)</b></sub>
+	      <sub><b>김예은(Team Member)</b></sub>
 	      </a>
 	      <br />
        	      </td>
@@ -62,7 +61,7 @@
 	      <br />
        	      </td>
       <td align="left">
-	   judgemk1@naver.com
+	   jun19973@naver.com
      	    </td>
       <td align="left">
 	    :purple_heart: 회원 관리 <br />
@@ -386,4 +385,6 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
   #### 4.1 게시글 생성, 조회, 상세, 수정, 삭제
   
   
+  ## :fire: ERD
   
+  <img src="https://user-images.githubusercontent.com/108406531/215472229-8e5bf78a-3596-4f46-87de-0132cf1c9631.png">

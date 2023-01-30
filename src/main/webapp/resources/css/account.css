@@ -73,9 +73,10 @@ a {
   text-align: center;
   padding: 20px 5px;
   margin: 0;
-  background-color: #45526C;
+  background-color: #0c964a;
   font-family: "Cafe24SsurroundAir";
 }
+
 #main-slide {
   display: flex;
   justify-content: center;
@@ -98,7 +99,7 @@ a {
   font-family: 'Happiness-Sans-Title';
   font-size: 1.1em;
   color: #fff;
-  background-color: #45526C;
+  background-color: #0c964a;
   margin: 0px 15px;
   padding: 20px 10px;
   position: relative;

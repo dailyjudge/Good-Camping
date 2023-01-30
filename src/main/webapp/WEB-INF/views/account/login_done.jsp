@@ -50,11 +50,25 @@
         </li>
       </ul>
     </nav>
+   
     <nav id="second-menu-nav">
-      <ul id="second-menu-ul">
-       <li class="second-menu-li" onclick="location.href='go.camping.find'">캠핑장 찾기</li>
-        <li class="second-menu-li" onclick="location.href='go.theme.find'">옵션 검색</li>
-        <li class="second-menu-li" onclick="location.href='go.camping.shop'">캠핑 스토어</li>
-        <li class="second-menu-li" onclick="location.href='go.Bulletin.Main'" >게시판</li>
-      </ul>
+
+    <c:choose>
+    	<c:when test="${color == 1 }">
+    		<ul id="second-menu-ul" style="background-color: #45526C">
+	    	    <li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.camping.find'">캠핑장 찾기</li>
+		        <li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.theme.find'">옵션 검색</li>
+		        <li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.camping.shop'">캠핑 스토어</li>
+	       	 	<li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.Bulletin.Main'">게시판</li>
+      		</ul>
+    	</c:when>
+    	<c:otherwise>
+    		<ul id="second-menu-ul">
+	    	    <li class="second-menu-li"  onclick="location.href='go.camping.find'">캠핑장 찾기</li>
+		        <li class="second-menu-li"  onclick="location.href='go.theme.find'">옵션 검색</li>
+		        <li class="second-menu-li"  onclick="location.href='go.camping.shop'">캠핑 스토어</li>
+	       	 	<li class="second-menu-li"  onclick="location.href='go.Bulletin.Main'">게시판</li>
+      		</ul>
+    	</c:otherwise>
+    </c:choose>
     </nav>

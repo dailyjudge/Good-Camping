@@ -10,7 +10,12 @@
 <title>Insert title here</title>
 </head>
 <script>
-	function goPayment3() {
+	function goPayment3(id) {
+		if (id == "") {
+		    alert("로그인이 필요한 서비스입니다.");
+		    return;
+		  }
+		
 		let no = $('#goBuyNow-btn').val();
 		let count = $('#stuff-amount-result').text();
 		
@@ -58,7 +63,7 @@
 						id="insertCart-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						ADD TO CART</button>
-					<button onclick="goPayment3()"
+					<button onclick="goPayment3('${sessionScope.loginAccount.ac_id}')"
 						id="goBuyNow-btn" value="${stuffs.s_no }"
 						class="button button--aylen button--border-thick button--inverted button--text-upper button--size-s">
 						BUY NOW</button>

@@ -25,9 +25,19 @@ public class BulletinController {
 	@RequestMapping(value = "/go.Bulletin.Main", method = RequestMethod.GET)
 	public String goToBulletinMain(HttpServletRequest request) {
 		
+		aDAO.loginCheck(request);
+		
+		request.setAttribute("color", 1);
+		request.setAttribute("contentPage", "bulletin/board-start.jsp");
+		return "index";
+	}
+	@RequestMapping(value = "/go.board.comu", method = RequestMethod.GET)
+	public String goBoardComu(HttpServletRequest request) {
+		
 		bDAO.getBoard(1, request);
 		
 		aDAO.loginCheck(request);
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "bulletin/board-community.jsp");
 		return "index";
 	}
@@ -51,6 +61,7 @@ public class BulletinController {
 		bDAO.getBoard(p, request);
 		
 		aDAO.loginCheck(request);
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "bulletin/board-community.jsp");
 		return "index";
 	}
@@ -58,6 +69,7 @@ public class BulletinController {
 	public String goBoardWrite(HttpServletRequest request) {
 		
 		aDAO.loginCheck(request);
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "bulletin/board-write.jsp");
 		return "index";
 	}
@@ -67,6 +79,7 @@ public class BulletinController {
 		bDAO.getThisBoard(request);
 		
 		aDAO.loginCheck(request);
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "bulletin/board-view.jsp");
 		return "index";
 	}
@@ -77,6 +90,7 @@ public class BulletinController {
 		bDAO.getEditBoard(request);
 		
 		aDAO.loginCheck(request);
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "bulletin/board-edit.jsp");
 		return "index";
 	}
@@ -91,6 +105,7 @@ public class BulletinController {
 		bDAO.getBoard(1, request);
 		
 		aDAO.loginCheck(request);
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "bulletin/board-community.jsp");
 		return "index";
 	}
@@ -109,6 +124,7 @@ public class BulletinController {
 		bDAO.getBoard(1, request);
 		
 		aDAO.loginCheck(request);
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "bulletin/board-community.jsp");
 		return "index";
 	}
