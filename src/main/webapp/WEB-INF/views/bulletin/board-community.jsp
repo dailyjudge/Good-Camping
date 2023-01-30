@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 <link rel="stylesheet" href="resources/css/board-style.css">
 <link rel="stylesheet" href="resources/css/comu-media.css">
 
-    <script src="resources/js/board.js" ></script>
+<script src="resources/js/board.js" ></script>
 <!-- 넓이 높이 조절 -->
 <style>
 .ck.ck-editor {
@@ -101,42 +102,22 @@
 							<div class="date">작성일</div>
 							<div class="count">조회</div>
 						</div>
-						<c:forEach var="c" items="${Comu }">
+						<c:forEach var="c" items="${comus }">
 							<div>
 								<div class="num">${c.comu_no }</div>
 								<div class="title">
-									<a href="view.html">${c.comu_title }</a>
+									<a href="go.board.view?comu_no=${c.comu_no }">${c.comu_title }</a>
 								</div>
 								<div class="writer">${c.comu_write_id }</div>
-								<div class="date">${c.comu_w_time }</div>
+								<div class="date"><fmt:formatDate value="${c.comu_w_time }" type="both" dateStyle="short" timeStyle="short"/></div>
 								<div class="count">${c.comu_readcount }</div>
 							</div>
 						</c:forEach>
-						<div>
-							<div class="num">2</div>
-							<div class="title">
-								<a href="view.html">글 제목이 들어갑니다.</a>
-							</div>
-							<div class="writer">김이름</div>
-							<div class="date">2021.1.15</div>
-							<div class="count">33</div>
-						</div>
-						<div>
-							<div class="num">1</div>
-							<div class="title">
-								<a href="view.html">글 제목이 들어갑니다.</a>
-							</div>
-							<div class="writer">김이름</div>
-							<div class="date">2021.1.15</div>
-							<div class="count">33</div>
-						</div>
 					</div>
 					<div class="board_page">
-						<a href="#" class="bt first"></a> <a href="#" class="bt prev"></a>
-						<a href="#" class="num on">1</a> <a href="#" class="num">2</a> <a
-							href="#" class="num">3</a> <a href="#" class="num">4</a> <a
-							href="#" class="num">5</a> <a href="#" class="bt next"></a> <a
-							ref="#" class="bt last"></a>
+						<a href="board.page.change?p=${curPage -1 }" class="bt prev">&lt;</a>
+						<a href="board.page.change?p=${curPage}" class="num">${curPage}</a> 
+						<a href="board.page.change?p=${curPage +1 }" class="bt next">&gt;</a> 
 					</div>
 					<div class="bt_wrap">
 						<a href="go.board.write" class="on">등록</a>

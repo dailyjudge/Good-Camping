@@ -3,14 +3,14 @@ package com.project.camping.bulletinB;
 import java.sql.Date;
 
 public class ComuDTO {
-	private String comu_no;
-	private String comu_groupid;
+	private String comu_no; //자동
+	private String comu_groupid; //임의로 서울
 	private String comu_title;
-	private String comu_write_id;
-	private Date comu_w_time;
-	private Date comu_d_time;
+	private String comu_write_id; //작성자
+	private Date comu_w_time; //sysdate
+	private Date comu_d_time; //null
 	
-	private String comu_readcount;
+	private String comu_readcount; // 처음 0
 	private String comu_content;
 	private String comu_file;
 	

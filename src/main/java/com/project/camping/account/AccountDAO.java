@@ -96,7 +96,17 @@ public class AccountDAO {
 		}
 
 	}
-
+	public boolean loginCheck2(HttpServletRequest request) {
+		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");
+		
+		if(a != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	
 	public void loginCheck(HttpServletRequest request) {
 		// 이건 나중에 한번 봄
 		AccountDTO a = (AccountDTO) request.getSession().getAttribute("loginAccount");

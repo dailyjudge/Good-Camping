@@ -39,5 +39,5 @@ insert into comu_info values(comu_info_seq.nextval,'서울특별시','이용 안
 insert into comu_info values(comu_info_seq.nextval,'서울특별시','이용 안내3','1212@naver.com',sysdate,null,'100','이용 수칙을 안내드리겠습니다3','4.jpg');
 insert into comu_info values(comu_info_seq.nextval,'경기도','이용 안내4','jun19975@naver.com',sysdate,null,'101','이용 수칙을 안내드리겠습니다4','5.jpg');
 
-
+select * from comu_info where comu_groupid = '서울특별시';
 select * from comu_info; 
