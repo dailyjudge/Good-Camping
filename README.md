@@ -61,7 +61,7 @@
 	      <br />
        	      </td>
       <td align="left">
-	   judgemk1@naver.com
+	   jun19973@naver.com
      	    </td>
       <td align="left">
 	    :purple_heart: 회원 관리 <br />
