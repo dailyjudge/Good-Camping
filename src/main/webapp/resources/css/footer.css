@@ -1,0 +1,104 @@
+@charset "UTF-8";
+footer {
+  font-family: "Cafe24SsurroundAir";
+  width: 100%;
+  height: fit-content;
+  background-color: #f7f7f7;
+  color: rgb(157, 157, 157);
+  display: flex;
+  justify-content: center;
+}
+.menus {
+  width: 100%;
+  /* border: 1px solid black; */
+  display: inline-block;
+}
+.menus div {
+  margin-top: 5px;
+  padding: 5px;
+  /* border: 1px solid black; */
+  min-width: fit-content;
+}
+
+.menus div a {
+  cursor: pointer;
+  /* border: 1px solid blueviolet; */
+}
+
+.menus div a:hover {
+  font-weight: 900;
+}
+.go-menu {
+  display: inline-block;
+  /* border: 1px solid brown; */
+  min-width: fit-content;
+}
+.menu-and-logo {
+  display: flex;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.menu-and-logo-category {
+	margin: 5px 5px;
+	background-color:#f7f7f7;
+	width: 30px;
+}
+.footer-bottom {
+  text-align: center;
+}
+
+#footer-logo-img {
+  width: 280px;
+  height: 50px;
+}
+
+#footer-logo {
+  height: fit-content;
+  text-align: center;
+}
+.git-info {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.git-logo img {
+  width: 45px;
+  height: 45px;
+  padding: 3px;
+}
+
+.member-info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.member-info span {
+  height: fit-content;
+}
+
+.footer-icons {
+  height: fit-content;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+}
+.footer-icon-img {
+  height: fit-content;
+  margin-bottom: 20px;
+}
+.footer-icon-img img {
+  padding: 10px;
+  width: 23px;
+  height: 23px;
+}
+
+.footer-logo-2 {
+	border: none;
+}
+
+.member-info-2 {
+	display: flex;
+	flex-direction: column;
+}

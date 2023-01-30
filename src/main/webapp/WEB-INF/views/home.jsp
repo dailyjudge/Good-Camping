@@ -24,6 +24,16 @@
         <div class="slideImg">
           <img class="slideshow-image" src="resources/home_img/wallpaperbetter.jpg" />
         </div>
+        <div class="slideImg">
+          <img class="slideshow-image" src="https://p4.wallpaperbetter.com/wallpaper/194/756/873/photography-camping-bonfire-chair-wallpaper-preview.jpg" />
+        </div>
+        <div class="slideImg">
+          <img class="slideshow-image" src="https://p4.wallpaperbetter.com/wallpaper/407/19/615/landscape-lake-pine-trees-camping-wallpaper-preview.jpg" />
+        </div>
+        <div class="slideImg">
+          <img class="slideshow-image" src="https://www.10wallpaper.com/wallpaper/1366x768/1607/Tent_camping_mountains_sunset-High_Quality_HD_Wallpaper_1366x768.jpg" />
+        </div>
+
       </div>
       <form action="do.search.campingSite" class="search-input-form" onsubmit="return searchCampingSite()">
         <div id="allform">

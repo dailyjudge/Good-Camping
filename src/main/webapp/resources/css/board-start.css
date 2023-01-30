@@ -9,26 +9,30 @@
 /* body{
 	background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
 } */
-body{
-  color: #fff;
-  background: linear-gradient(-45deg, #1d2c41, #B7C9D9, #4FA3F0, #22131a) ;
-  background-repeat: no-repeat;
-  background-size: 400% 400%;
-  animation: backgroundChange 20s ease-in-out infinite;
-  position: relative;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  overflow: hidden;
-}
 
+ .areaDiv-content{
+color: #fff;
+background: linear-gradient(-45deg, #1d2c41, #B7C9D9, #4FA3F0, #22131a);
+  background-repeat: repeat;
+  background-size: auto;
+background-repeat: repeat;
+background-size: auto;
+background-repeat: no-repeat;
+background-size: 400% 400%;
+animation: backgroundChange 10s ease-in-out infinite;
+position: relative;
+display: flex;
+align-items: center;
+overflow: hidden;
+TOP: 100px;
+height: 800px;
+} 
+ 
 .forest-back{
 	width: 100%;
-	z-index: -1;
 	position: absolute;
 }
 .wellcome-img{
-    z-index: -1;
     position: absolute;
     margin-left: 30%;
     width: 800px;

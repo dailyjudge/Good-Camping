@@ -80,6 +80,7 @@ public class StuffController {
 		req.setAttribute("Click", 2);
 		sDAO.getAllCart(req);
 		
+		sDAO.showAllUserOrderList(req);
 		aDAO.loginCheck(req);
 		req.setAttribute("contentPage", "camping-stuff/camping-stuff-cart.jsp");
 		return "index";
