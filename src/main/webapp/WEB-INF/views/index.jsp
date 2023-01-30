@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="resources/css/camping-theme.css" />
     <link rel="stylesheet" href="resources/css/modalcss.css" />
     <link rel="stylesheet" href="resources/css/account-login.css" />
+    <link rel="stylesheet" href="resources/css/comu-media.css" />
 
 <script>
         var sca = '01';

@@ -52,6 +52,8 @@ public class AccountController {
 		
 		aDAO.login(request, response, a);
 		aDAO.loginCheck(request);
+		
+		request.setAttribute("color", 1);
 		request.setAttribute("contentPage", "home.jsp");
 		
 		return "index";
@@ -107,7 +109,10 @@ public class AccountController {
 		aDAO.accoutUpateDo(req,ac);
 		
 		aDAO.loginCheck(req);
-		req.setAttribute("contentPage", "home.jsp");
+		
+		req.setAttribute("Click", 3);
+		req.setAttribute("contentPage", "account/ask_pw_page.jsp");
+		
 		return "index";
 	}
 

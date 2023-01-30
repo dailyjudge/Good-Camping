@@ -2,6 +2,7 @@ package com.project.camping.bulletinB;
 
 import java.io.File;
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.project.camping.account.AccountDTO;
 import com.project.camping.account.AccountMapper;
+import com.project.camping.main.MainDTO;
 
 
 
@@ -42,30 +44,34 @@ public class BulletinDAO {
 	}
 	
 	//페이징 조회
-	public void getBoard(int pageNo, HttpServletRequest req) {
-		
-		int count = 3;
-		int start = (pageNo -1) * count +1;
-		int end = start + (count -1);
-		
-		int boardCount = 0;
-		
-//		ComuDTO cd = new ComuDTO();
-		
-		List<ComuDTO> comus = ss.getMapper(BulletinMapper.class).getBoards();
-		
-/*		for(ComuDTO comu : comus) {
-			
-		}*/
-		
-		int pageCount = (int) Math.ceil(boardCount/ (double) count);
-		req.setAttribute("pageCount", pageCount);
-		
-		req.setAttribute("comus", comus);
-		req.setAttribute("curPage", pageNo);
-		
+	public void getBoard(HttpServletRequest req) {
+		// 한 번 받고 더 안받을라고 하는거. 내가 페이지를 옮기면 기존에 받아놓은 곳에서 꺼내쓸라고. => DB에 접근 안하려고
+		comus = ss.getMapper(BulletinMapper.class).getBoards();
 	}
 	
+	public void boardPaging(int pageNo, HttpServletRequest req) {
+		int count = 3;
+		int start = (pageNo -1) * count +1;
+		int end = start + (count - 1);
+		
+		// 7개
+		// 1~3 , 3~6, 7~9
+		// 예외처리
+		end = comus.size() < end ? comus.size() : end;
+		
+		List<ComuDTO> pagingComus = new ArrayList<ComuDTO>();
+
+		for (int i = start - 1; i < end; i++) {
+			pagingComus.add(comus.get(i));
+		}
+		
+		
+		int pageCount = (int) Math.ceil(comus.size()/ (double) count);
+		req.setAttribute("pageCount", pageCount);
+		
+		req.setAttribute("comus", pagingComus);
+		req.setAttribute("curPage", pageNo);
+	}
 	//신규 글 작성
 	public void uploadBoard(HttpServletRequest request, ComuDTO cd ) {
 		AccountDTO ac = (AccountDTO) request.getSession().getAttribute("loginAccount");
@@ -88,8 +94,8 @@ public class BulletinDAO {
 			
 			String cd_file = mr.getFilesystemName("comu_file");
 			cd.setComu_file(cd_file);
-			System.out.println("저장되는 경로(실제 서버) : "+path);
-			System.out.println("사진 이름 : "+cd_file);
+			System.out.println("저장되는 경로(실제 서버) : " + path);
+			System.out.println("사진 이름 : " + cd_file);
 			
 			if(ss.getMapper(BulletinMapper.class).writeToBoard(cd) ==1) {
 				request.setAttribute("result", "성공");
