@@ -39,7 +39,7 @@
 	      <a href="https://github.com/yeeun0526" target="_blank">
 	      <img src="https://user-images.githubusercontent.com/108406531/215096144-5d9ec325-fba3-449d-955f-ca238bfc6ed5.png" width="200px;" alt=""/>
 	      <br />
-	      <sub><b>김예은(Team Membeer)</b></sub>
+	      <sub><b>김예은(Team Member)</b></sub>
 	      </a>
 	      <br />
        	      </td>
