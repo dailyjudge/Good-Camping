@@ -41,6 +41,19 @@ public class BulletinController {
 		request.setAttribute("contentPage", "bulletin/board-community.jsp");
 		return "index";
 	}
+
+
+	 @RequestMapping(value = "/go.board.comu", method = RequestMethod.GET) public
+	 String goBoardComu(HttpServletRequest request) {
+	 
+		bDAO.getBoard(1, request);
+		
+		
+		aDAO.loginCheck(request); 
+		request.setAttribute("contentPage","bulletin/board-community.jsp"); 
+		return "index"; 
+	}
+
 	@RequestMapping(value = "/board.page.change", method = RequestMethod.GET)
 	public String boardpPageChange(HttpServletRequest request) {
 		
@@ -74,7 +87,7 @@ public class BulletinController {
 	@RequestMapping(value = "/edit.thisBoard", method = RequestMethod.GET)
 	public String editThisBoard(HttpServletRequest request) {
 		
-		bDAO.getThisBoard(request);
+		bDAO.getEditBoard(request);
 		
 		aDAO.loginCheck(request);
 		request.setAttribute("color", 1);
