@@ -52,6 +52,7 @@
     </nav>
    
     <nav id="second-menu-nav">
+
     <c:choose>
     	<c:when test="${color == 1 }">
     		<ul id="second-menu-ul" style="background-color: #45526C">

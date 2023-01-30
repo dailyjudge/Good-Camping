@@ -27,10 +27,13 @@ overflow: hidden;
 TOP: 100px;
 height: 800px;
 }  */
+.as11{
+}
  
 .forest-back{
-	width: 100%;
-	position: absolute;
+	width: 1300px;
+    position: absolute;
+    bottom: -455px;
 }
 .wellcome-img{
     position: absolute;
