@@ -18,6 +18,19 @@ button {
     width: 200px;
     font-size: 20px;
 }
+.w-btn2 {
+    position: relative;
+    border: none;
+    display: inline-block;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    width: 200px;
+    font-size: 20px;
+}
 
 .w-btn-outline {
     position: relative;
@@ -185,6 +198,11 @@ button {
     transform: scale(1.2);
     cursor: pointer;
 }
+.w-btn2:hover {
+    letter-spacing: 2px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
 
 .w-btn-outline:hover {
     letter-spacing: 2px;
@@ -194,6 +212,9 @@ button {
 
 .w-btn:active {
     transform: scale(1.5);
+}
+.w-btn2:active {
+    transform: scale(1.2);
 }
 
 .w-btn-outline:active {

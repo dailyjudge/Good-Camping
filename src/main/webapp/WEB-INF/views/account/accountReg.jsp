@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
+<script src="resources/js/loginHead.js" ></script>
+=======
 <script type="text/javascript" src="../resources/js/loginHead.js"></script>
+>>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 <link rel="stylesheet" href="resources/css/account-reg.css" />
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
 function changeImg(event) {
@@ -29,6 +32,7 @@ function changeImg(event) {
 </script>
 </head>
 <body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <div class="wrap3">
 	<div class="accountReg3">
 			<form action="accountReg.do" method="post" enctype="multipart/form-data" onsubmit="return signUpCheck()">

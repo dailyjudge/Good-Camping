@@ -12,16 +12,10 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	      <!--Import materialize.css-->
 	<link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"  media="screen,projection"/>
-	  
+    
     <link rel="stylesheet" href="resources/css/account-regN.css" />
-<<<<<<< HEAD
     <link rel="stylesheet" href="resources/css/account-button.css" />
     <script src="resources/js/loginHead.js" ></script>
-=======
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <script  src="resources/js/loginHead.js" ></script>
-
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
 </head>
 <body>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -32,8 +26,7 @@
 <div class="top-wrap"> 
     <div id="login-page" class="row">
         <div class="main-wrap col s12 z-depth-4 card-panel">
-            <form action="accountReg.do" name="join_form" method="post" class="login-form" enctype="multipart/form-data">
-
+            <form action="accountUpdate.do" method="post" class="login-form" enctype="multipart/form-data">
                 <div class="row first_row">
                     <div class="input-field col s12 center">
                        <a href="go.to.Main"><img src="resources/account-img/logo.png"></a>
@@ -41,26 +34,28 @@
                 </div>
                 <div class="row margin">
                     <div class="filebox_wrap">
-                        <div id="image_container" class="profile"><img id="test-img" src="https://cdn-icons-png.flaticon.com/128/5309/5309035.png"></div>
+                        <div class="profile"><img id="user-profile" src="resource/profile_img/${sessionScope.loginAccount.ac_file}"></div>
                         <div class="filebox">
                             <label for="ac_file">파일찾기</label>
-                            <input type="file" onchange="changeImg(event);" name="ac_file" id="ac_file" multiple="multiple" style="display: none">
+                            <input type="file" onchange="changeImg(event);" name="ac_file" id="ac_file" multiple="multiple">
                         </div>
                     </div>
                 </div>
-	<div class="input-name-gender"> 
+
+            
+  	<div class="input-name-gender"> 
             <div class="row margin">
 	            <div class="input-field col s12">
 	                <!-- <i class="mdi-social-person-outline prefix"></i> -->
 	                <i class="material-icons prefix">account_circle</i>
-	                <input id="ac_name" name="username" type="text" placeholder="성함"/>
-	                <label for="ac_name"></label>
+	                <input id="ac_name" name="ac_name" type="text"/>
+	                <label for="ac_name">${sessionScope.loginAccount.ac_name }</label>
 	            </div>
             </div>
             <div class="row margin">
            	 	<div class="input-field gender">
 				     <select name="ac_gender" id="ac_gender">
-					    <option value="남" selected>남성</option>
+					    <option value="남">남성</option>
 					    <option value="여">여성</option>
 					</select>
 				</div>
@@ -70,26 +65,19 @@
             <div class="input-field img_div col s12">
                 <!-- <i class="mdi-social-person-outline prefix"></i> -->
                 <i class="material-icons prefix">email</i>
-                <input id="ac_id" name="email" type="email" style="cursor: auto;" />
-                <label for="ac_id">Email</label>
-                <img class="search_img" src="resources/account-img/searchimg2.png" onclick="checkidsame()">
+                <input id="ac_id" name="ac_id" type="email" disabled style="cursor: auto;" />
+                <label for="ac_id">${sessionScope.loginAccount.ac_id }</label>
+                <img class="search_img" src="resources/account-img/searchimg2.png">
+                <br><span id="check-id-result"></span>
             </div>
-                <br>
-                <div class="set_center">
-                <span id="check-id-result"></span>
-                </div>
             </div>
     
             <div class="row margin">
             <div class="input-field col s12">
                 <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                 <i class="material-icons prefix">vpn_key</i>
-                <input id="ac_pw" name="ac_pw" type="password" onKeyup="safetyPasswordPattern(this);" disabled/>
+                <input id="ac_pw" name="ac_pw" type="password" />
                 <label for="ac_pw">Password</label>
-                <br>
-                <div class="set_center">
-                <span id="makyText">:: id 중복 검사 먼저해주세요 ::</span>
-                </div>
             </div>
             </div>
     
@@ -97,7 +85,7 @@
             <div class="input-field col s12">
                 <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                 <i class="material-icons prefix">vpn_key</i>
-                <input id="ac_pw2" name="ac_pw2" type="password" disabled />
+                <input id="ac_pw2" name="ac_pw2" type="password" />
                 <label for="ac_pw2">Password again</label>
             </div>
             </div>
@@ -106,15 +94,15 @@
 	            <div class="input-field img_div col s12">
 	                <!-- <i class="mdi-action-lock-outline prefix"></i> -->
 	                <i class="material-icons prefix">phone</i>
-	                <input id="phone" name="ac_phone" type="text" oninput="autoHyphen2(this)" maxlength="13"/>
-	                <label for="phone">휴대폰 번호</label>
+	                <input id="phone" name="phone" type="text" oninput="autoHyphen2(this)" maxlength="13"/>
+	                <label for="phone">${sessionScope.loginAccount.ac_phone }</label>
 	                <img id="sendMessage" src="resources/account-img/searchimg2.png" onclick="sendSMS()">
 	            </div>
 	        </div>
-		            	<div id="check-id-result2" > <!-- style="display: none" -->
+		            	<div id="check-id-result" style="display: none">
 				          	<input id="Random-num-input" type="hidden">
-		                	<input id="makeNumCheck" type="text" size="13" maxlength="6" placeholder="인증코드 6자리">
-		                	<button type="button" id="completion" class="w-btn2 w-btn-gra1" onclick="checkCompletion()">인증</button>
+		                	<input id="makeNumCheck"  type="text" size="13" maxlength="6" placeholder="인증코드 6자리">
+		                	<button type="button" id="completion" onclick="checkCompletion()">인증</button>
 		              	</div>
 
             <div class="row margin">
@@ -122,7 +110,7 @@
                     <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                     <i class="material-icons prefix">calendar_month</i>
                     <input id="ac_birth" name="ac_birth" type="text" maxlength="6"/>
-                    <label for="ac_birth">생년월일 ex)990101</label>
+                    <label for="ac_birth">${sessionScope.loginAccount.ac_birth }</label>
                 </div>
             </div>
 
@@ -130,37 +118,33 @@
                 <div class="input-field img_div col s12">
                     <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                     <i class="material-icons prefix">home</i>
-                    <input id="postcode" name="ac_postcode" type="text"/>
-                    <label for="postcode"></label>
+                    <input id="postcode" name="ac_postcode" type="text" disabled/>
+                    <label for="postcode">${sessionScope.loginAccount.ac_postcode }</label>
                     <img class="search_img" src="resources/account-img/searchimg2.png" onclick="daumPostcode()">
                 </div>
-	                <div id="user_postcode" style="display: none" >
-			            <br> <input type="text" name="ac_address" id="address" placeholder="주소"> 
-			            <br> <input type="text" name="ac_detailAddress" id="detailAddress" placeholder="상세주소">
-			            <br> <input type="text" name="ac_extraAddress" id="extraAddress" placeholder="참고항목">
-	            	</div>
-            	
+                <div id="user_postcode">
+		            <br> <input type="text" name="ac_address" id="address" placeholder="${sessionScope.loginAccount.ac_address }"> 
+		            <br> <input type="text" name="ac_detailAddress" id="detailAddress" placeholder="${sessionScope.loginAccount.ac_detailAddress }">
+		            <br> <input type="text" name="ac_extraAddress" id="extraAddress" placeholder="${sessionScope.loginAccount.ac_extraAddress }">
+            	</div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12">
-<<<<<<< HEAD
-                    <button type="button" onclick="signUpCheck();" class="btn waves-effect waves-light col s12">회원가입</button>
-=======
-                    <button class="btn waves-effect waves-light col s12">회원가입</button>
+                    <button type="submit" class="btn waves-effect waves-light col s12">회원정보 수정</button>
                     
->>>>>>> 66880d6464490d0693fd21f4ae5ffc670781cf2c
                 </div>
                 <div class="input-field col s12">
                     <p class="margin center medium-small sign-up"><a href="login.go">로그인 페이지</a>로 돌아가기 </p>
                 </div>
+                <div class="input-field col">
+                <button type="button" id="deleteUserId"class="btn waves-effect waves-light col" onclick="deleteUser(${sessionScope.loginAccount.ac_id});">회원 탈퇴</button>
+                </div>
             </div>
- 
             </form>
             </div>
     </div>
 </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
-    <script  src="resources/js/account-regN.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

@@ -47,6 +47,7 @@
 				<beans:value>classpath:stuffMapper.xml</beans:value>
 				<beans:value>classpath:accountMapper.xml</beans:value>
 				<beans:value>classpath:themeMapper.xml</beans:value>
+				<beans:value>classpath:bulletinMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

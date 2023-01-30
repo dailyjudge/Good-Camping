@@ -161,7 +161,7 @@ public class AccountDAO {
 	}
 
 	public void accoutRegDo(HttpServletRequest req, Model m, AccountDTO ac) {
-		String path = req.getSession().getServletContext().getRealPath("resources/profilePic");
+		String path = req.getSession().getServletContext().getRealPath("resources/profile_img");
 		MultipartRequest mr = null;
 		try {
 			mr = new MultipartRequest(req, path, 31457200, "utf-8", new DefaultFileRenamePolicy());
@@ -170,7 +170,11 @@ public class AccountDAO {
 			ac.setAc_pw(mr.getParameter("ac_pw"));
 			ac.setAc_name(mr.getParameter("ac_name"));
 			ac.setAc_birth(mr.getParameter("ac_birth"));
-			ac.setAc_phone(mr.getParameter("ac_phone"));
+			
+			String ac_phone = mr.getParameter("ac_phone");
+			ac_phone = ac_phone.replace("-", "");
+			
+			ac.setAc_phone(ac_phone);
 			ac.setAc_postcode(mr.getParameter("ac_postcode"));
 
 			ac.setAc_address(mr.getParameter("ac_address"));
@@ -180,6 +184,9 @@ public class AccountDAO {
 
 			String ac_file = mr.getFilesystemName("ac_file");
 			ac.setAc_file(ac_file);
+			
+			ac.setAc_sessionkey(mr.getParameter("ac_id"));
+			
 			req.setAttribute("accountInfo", ac);
 
 			AccountMapper mm = ss.getMapper(AccountMapper.class);
@@ -211,10 +218,17 @@ public class AccountDAO {
 		return ss.getMapper(AccountMapper.class).GoFindId(findId);
 
 	}
-
+	
 	public int sendPW_byMail(HttpServletRequest req, HttpSession session, HttpServletResponse response) {
 		String ac_id = (String) req.getParameter("pwFind_id");
 		String name = (String) req.getParameter("pwFind_name");
+		
+		System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
+		System.setProperty("jsse.enableSNIExtension", "false");
+		
+		System.out.println(ac_id);
+		System.out.println(name);
+		
 
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
 		AccountDTO vo = mm.selectAccount(ac_id);
@@ -222,7 +236,10 @@ public class AccountDAO {
 		// 실제로 아이디가 존재한다면.
 		if (vo != null) {
 			Random r = new Random();
-			int num = r.nextInt(8889)+1111;
+			int num = 0;
+			while(num < 1000) {
+				num = r.nextInt(9999); // 랜덤난수설정
+			}
 			
 				System.out.println("num : " + num);
 //				session.setAttribute("num", num);
@@ -231,11 +248,11 @@ public class AccountDAO {
 			if (vo.getAc_name().equals(name)) {
 //				 session.setAttribute("email", vo.getAc_id());
 
-				String setfrom = "@naver.com"; // naver
+				String setfrom = "jun19973@naver.com"; // naver
 				String tomail = ac_id; // 받는사람
-				String title = "[삼삼하개] 비밀번호변경 인증 이메일 입니다";
+				String title = "[GoodCamping] 비밀번호변경 인증 이메일 입니다";
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님"
-						+ System.getProperty("line.separator") + "삼삼하개 비밀번호찾기(변경) 인증번호는 " + num + " 입니다."
+						+ System.getProperty("line.separator") + "GoodCamping 비밀번호찾기(변경) 인증번호는 " + num + " 입니다."
 						+ System.getProperty("line.separator"); //
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
@@ -279,12 +296,20 @@ public class AccountDAO {
 	}
 
 	public void resetPw(HttpServletRequest req, AccountDTO a) {
+		
+		String ac_id = req.getParameter("ac_id"); 
+		String ac_pw = req.getParameter("ac_pw");
+		
+		Map<String, String> resetPw = new HashMap<String, String>();
+		resetPw.put("ac_id", ac_id);
+		resetPw.put("ac_pw", ac_pw);
+		
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
-		
-		
-		if (mm.updatePw(a) == 1) {
-			System.out.println("성공");
-			req.getSession().setAttribute("loginAccount", mm.getAccountById(a));
+
+
+		if (mm.updatePw(resetPw) == 1) {
+			req.setAttribute("r", "비밀번호 재설정 성공");
+
 		} else {
 			req.setAttribute("r", "비밀번호 재설정 실패");
 		}
@@ -416,6 +441,115 @@ public class AccountDAO {
 			return 1;
 		}else {
 			return 0;
+		}
+	}
+
+	public void accoutUpateDo(HttpServletRequest req, AccountDTO ac) {
+		String path = req.getSession().getServletContext().getRealPath("resources/profile_img");
+		MultipartRequest mr = null;
+		try {
+			mr = new MultipartRequest(req, path, 31457200, "utf-8", new DefaultFileRenamePolicy());
+			String ac_id = mr.getParameter("ac_id");
+			
+			//기존 정보 vo 불러오기
+			AccountMapper mm = ss.getMapper(AccountMapper.class);
+			AccountDTO vo = mm.selectAccount(ac_id);
+			
+			ac.setAc_id(mr.getParameter("ac_id"));
+			
+			//입력값 비교
+			if(mr.getParameter("ac_pw").equals("")) {
+				ac.setAc_pw(vo.getAc_pw());
+			}else {
+				ac.setAc_pw(mr.getParameter("ac_pw"));
+			}
+			
+			if(mr.getParameter("ac_name").equals("")) {
+				ac.setAc_name(vo.getAc_name());
+			}else {
+				ac.setAc_name(mr.getParameter("ac_name"));
+			}
+			
+			if(mr.getParameter("ac_birth").equals("")) {
+				ac.setAc_birth(vo.getAc_birth());
+			}else {
+				ac.setAc_birth(mr.getParameter("ac_birth"));
+			}
+			
+			if(mr.getParameter("ac_phone").equals("")) {
+				ac.setAc_phone(vo.getAc_phone());
+			}else {
+				String ac_phone = mr.getParameter("ac_phone");
+				ac_phone = ac_phone.replace("-", "");
+				
+				ac.setAc_phone(ac_phone);
+			}
+			
+			if(mr.getParameter("ac_postcode").equals("")) {
+				ac.setAc_postcode(vo.getAc_postcode());
+			}else {
+				ac.setAc_postcode(mr.getParameter("ac_postcode"));
+			}
+			
+			if(mr.getParameter("ac_address").equals("")) {
+				ac.setAc_address(vo.getAc_address());
+			}else {
+				ac.setAc_address(mr.getParameter("ac_address"));
+			}
+			
+			if(mr.getParameter("ac_detailAddress").equals("")) {
+				ac.setAc_detailAddress(vo.getAc_detailAddress());
+			}else {
+				ac.setAc_detailAddress(mr.getParameter("ac_detailAddress"));
+			}
+			
+			if(mr.getParameter("ac_extraAddress").equals("")) {
+				ac.setAc_extraAddress(vo.getAc_extraAddress());
+			}else {
+				ac.setAc_extraAddress(mr.getParameter("ac_extraAddress"));
+			}
+			
+			if(mr.getParameter("ac_gender").equals("")) {
+				ac.setAc_gender(vo.getAc_gender());
+			}else {
+				ac.setAc_gender(mr.getParameter("ac_gender"));
+			}
+			
+			//파일
+			String ac_file = mr.getFilesystemName("ac_file");
+			if(mr.getParameter("ac_file").equals("")) {
+				ac.setAc_file(vo.getAc_file());
+			}else {
+				ac.setAc_file(ac_file);
+			}
+			
+			req.setAttribute("accountInfo", ac);
+
+			if (mm.accountUpdateProfile(ac) == 1) {
+				req.setAttribute("r", "수정 성공");
+			} else {
+				req.setAttribute("r", "수정 실패");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			String fileName = mr.getFilesystemName("ac_file");
+			new File(path + "/" + fileName).delete();
+			req.setAttribute("r", "수정 실패");
+
+		}
+
+	}
+
+	public void deleteUser(HttpServletRequest req) {
+		String ac_id = req.getParameter("ac_id");
+		
+		// user 삭제
+		AccountMapper mm = ss.getMapper(AccountMapper.class);
+		if(mm.deleteUserDoIt(ac_id) == 1) {
+			req.setAttribute("r", "삭제 완료");
+		}else {
+			req.setAttribute("r", "삭제 실패");
 		}
 	}
 
