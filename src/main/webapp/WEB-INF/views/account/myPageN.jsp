@@ -126,8 +126,8 @@
                 </div>
                 <div id="user_postcode">
 		            <br> <input type="text" name="ac_address" id="address" value="${sessionScope.loginAccount.ac_address }"> 
-		            <br> <input type="text" name="ac_detailAddress" id="detailAddress" value="${sessionScope.loginAccount.ac_detailAddress }">
 		            <br> <input type="text" name="ac_extraAddress" id="extraAddress" value="${sessionScope.loginAccount.ac_extraAddress }">
+		            <br> <input type="text" name="ac_detailAddress" id="detailAddress" value="${sessionScope.loginAccount.ac_detailAddress }">
             	</div>
             </div>
 

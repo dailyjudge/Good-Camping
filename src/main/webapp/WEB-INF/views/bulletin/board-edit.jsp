@@ -43,7 +43,7 @@
 								<dt>파일</dt>
 								<dd>
 									<input type="file" name="comu_file">
-									<img src="reources/comu-img/${this_comu_vo.comu_file}">
+									<img src="resources/comu-img/${this_comu_vo.comu_file}">
 									<input type="hidden" name="com_file_original" value="${this_comu_vo.comu_file}"> </dd>
 							</dl>
 						</div>

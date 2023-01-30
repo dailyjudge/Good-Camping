@@ -23,7 +23,7 @@
 	    	    <li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.camping.find'">캠핑장 찾기</li>
 		        <li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.theme.find'">옵션 검색</li>
 		        <li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.camping.shop'">캠핑 스토어</li>
-	       	 	<li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.Bulletin.Main'">게시판</li>
+	       	 	<li class="second-menu-li" style="background-color: #45526C" onclick="location.href='go.Bulletin.Main'">캠핑 톡톡</li>
       		</ul>
     	</c:when>
     	<c:otherwise>
@@ -31,7 +31,7 @@
 	    	    <li class="second-menu-li" onclick="location.href='go.camping.find'">캠핑장 찾기</li>
 		        <li class="second-menu-li" onclick="location.href='go.theme.find'">옵션 검색</li>
 		        <li class="second-menu-li" onclick="location.href='go.camping.shop'">캠핑 스토어</li>
-	       	 	<li class="second-menu-li" onclick="location.href='go.Bulletin.Main'">게시판</li>
+	       	 	<li class="second-menu-li" onclick="location.href='go.Bulletin.Main'">캠핑 톡톡</li>
       		</ul>
     	</c:otherwise>
     </c:choose>

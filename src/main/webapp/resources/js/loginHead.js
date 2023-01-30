@@ -52,91 +52,90 @@ function daumPostcode() {
 }
 
 function signUpCheck(){
-	  //변수에 담아주기
+	  // 변수에 담아주기
 	  let files = document.getElementById("ac_file");
 	  var uname = document.getElementById("ac_name");
-	  //성별
+	  // 성별
 	  var gender = document.getElementById("ac_gender");
-	  //아이디
+	  // 아이디
 	  let email = document.getElementById("ac_id").value;
 	  let user_email = document.getElementById("ac_id");
 	  let email_check = document.getElementById("ac_id").value;
-	  //비밀번호
+	  // 비밀번호
 	  var pwd = document.getElementById("ac_pw");
 	  var repwd = document.getElementById("ac_pw2");
-	  //모바일
+	  // 모바일
 	  var mobile = document.getElementById("phone");
-	  //생년월일
+	  // 생년월일
 	  let birth = document.getElementById("ac_birth");
-	  //주소
+	  // 주소
 	  let postcode = document.getElementById("postcode");
 	  let address = document.getElementById("address");
 	  let detailAddress = document.getElementById("detailAddress");
 	  let extraAddress = document.getElementById("extraAddress");
 	  
-	  //값 입력 확인
+	  // 값 입력 확인
 		  if (email == "") { 
 			    alert("아이디를 입력하세요.");
 			    user_email.focus(); 
 			    return false; 
-			  };
+			  }
 		  if (pwd.value == "" || pwd.value.length < 4) {
 		    alert("비밀번호를 입력하세요.");
 		    pwd.focus();
 		    return false;
-		  };
+		  }
 		  if (uname.value == "") {
 			  alert("이름을 입력하세요.");
 			  uname.focus();
 			  return false;
-		  };
-		  if (files.value == "") {
-			  alert("파일을 업로드해주세요.");
-			  files.focus();
-			  return false;
-		  };
+		  }
+		  /*
+			 * if (files.value == "") { alert("파일을 업로드해주세요."); files.focus();
+			 * return false; };
+			 */
 		  if (gender.value == "") {
 			  alert("성별을 입력하세요.");
 			  gender.focus();
 			  return false;
-		  };
+		  }
 		  if (mobile.value == "") {
 			  alert("휴대폰 번호를 입력하세요.");
 			  mobile.focus();
 			  return false;
-		  };
+		  }
 		  if (birth.value == "" || birth.value.length !=6 ) {
 			  alert("생년월일을 입력하세요.");
 			  birth.focus();
 			  return false;
-		  };
+		  }
 		  if (postcode.value == "") {
 			  alert("우편번호를 입력하세요.");
 			  postcode.focus();
 			  return false;
-		  };
+		  }
 		  if (address.value == "") {
 			  alert("주소를 입력하세요.");
 			  address.focus();
 			  return false;
-		  };
+		  }
 		  if (detailAddress.value == "") {
 			  alert("상세주소를 입력하세요.");
 			  detailAddress.focus();
 			  return false;
-		  };
+		  }
 		  if (extraAddress.value == "") {
 			  alert("참고항목을 입력하세요.");
 			  extraAddress.focus();
 			  return false;
-		  };
+		  }
 
-		  //비밀번호 재확인
+		  // 비밀번호 재확인
 		  if (repwd.value !== pwd.value) {
 			    alert("비밀번호가 일치하지 않습니다..");
 			    repwd.focus();
 			    return false;
-			  };			  
+			  }			  
 	  // 이메일확인
 		var idCheck = /@./;
 
@@ -146,9 +145,8 @@ function signUpCheck(){
 		    return;
 		};
 
-		alert("성공!");
-		  //입력 값 전송
-		  document.join_form.submit(); //유효성 검사의 포인트   
+		  // 입력 값 전송
+		  document.join_form.submit(); // 유효성 검사의 포인트
 
 	}
 function checkidsame(){
@@ -172,7 +170,7 @@ function checkidsame(){
 	// dataType : 어떤걸 받을지?
 	// contentType : 어떤걸 보낼지?
 	// success : 성공했을 때 실행할 콜백 (함수)
-	// onError : 실패했을 때 
+	// onError : 실패했을 때
 	
 	$.ajax({
 		url: "check.id",
@@ -230,7 +228,7 @@ function sendSMS() {
 		return;
 	}
 
-	//document.getElementById("check-id-result").style.display = "block";
+	// document.getElementById("check-id-result").style.display = "block";
 
   		$.ajax({
   			url: "sendSms.do",
@@ -262,7 +260,7 @@ function sendSMS() {
     		$('#ac_birth').attr("disabled", false);
     		$('#postcode').attr("disabled", false);
     		$('#phoneText').attr('style', "display:none;");
-    		 /*	$('#regSubmit').attr("disabled", 'false'); */
+    		 /* $('#regSubmit').attr("disabled", 'false'); */
     	} else {
     		alert("본인 인증에 실패하였습니다.");
     		$("#makeNumCheck").focus();
@@ -290,8 +288,8 @@ function sendSMS() {
       
       
 function findPw2(){
-	//pwFind_id 이메일 
-    //pwFind_name 이름
+	// pwFind_id 이메일
+    // pwFind_name 이름
     
 	let pwFind_id2 = $('#pwFind_id');
 	let pwFind_id = $('#pwFind_id').val();
@@ -399,7 +397,7 @@ function deleteUserA(user_id) {
 	let delConfirm = confirm("정말 탈퇴하시겠습니까?");
 	
 	if(delConfirm){
-		location.href='deleteUser.do?ac_id='+user_id; //페이지 이동
+		location.href='deleteUser.do?ac_id='+user_id; // 페이지 이동
 	}else{
 		alert("취소하였습니다");
 	}

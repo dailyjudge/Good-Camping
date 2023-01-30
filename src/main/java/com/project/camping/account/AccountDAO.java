@@ -462,6 +462,7 @@ public class AccountDAO {
 		
 		try {
 			mr = new MultipartRequest(req, path, 31457200, "utf-8", new DefaultFileRenamePolicy());
+			
 			String ac_id = (String) mr.getParameter("ac_id2");
 			
 			System.out.println(ac_id);
@@ -493,10 +494,9 @@ public class AccountDAO {
 			ac.setAc_name(vo.getAc_name());
 			
 			//입력값 비교
-			if(mr.getParameter("ac_pw").equals("1111")) {
+			if(mr.getParameter("ac_pw").equals(vo.getAc_pw())) {
 				ac.setAc_pw(vo.getAc_pw());
-				
-			}else {
+			} else {
 				ac.setAc_pw(mr.getParameter("ac_pw"));
 				
 			}
@@ -557,7 +557,10 @@ public class AccountDAO {
 			if(ac_file == null || ac_file.equals("")) {
 				ac.setAc_file(vo.getAc_file());
 			}else {
+				//원래 여기서 기존 파일 지워줘야 함.
 				ac.setAc_file(ac_file);
+				
+				new File(path + "/" + vo.getAc_file()).delete();
 			}
 			
 			req.setAttribute("accountInfo", ac);
