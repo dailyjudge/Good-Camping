@@ -81,10 +81,13 @@
   src="https://code.jquery.com/jquery-3.6.3.js"
   integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
   crossorigin="anonymous"></script>
- 
+ <link rel="stylesheet" href="resources/css/board-start.css">
+    <script src="https://kit.fontawesome.com/ece9d84a35.js" crossorigin="anonymous"></script>
 <style type="text/css">
 .areaDiv {
 	margin: 0;
+	display: block;
+	
 }
 </style>
 <style>
@@ -203,7 +206,7 @@
       <div class="areaDiv">
         <jsp:include page="${loginPage}"></jsp:include>
       </div>
-      <div class="areaDiv">
+      <div class="areaDiv-content">
         <jsp:include page="${contentPage}"></jsp:include>
       </div>
       <div class="areaDiv">

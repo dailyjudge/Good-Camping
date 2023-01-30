@@ -8,7 +8,7 @@ create table board_list(
 );
 drop table board_list;
 
-insert into board_list values(board_list_seq.nextval,'1111','jun','971229','010-1111-1111','a','b','c','d','n','a.jpg');
+insert into board_list values(board_list_seq.nextval,'1111','jun', sysdate, 0, 'a.jpg');
 create sequence board_list_seq;
 drop sequence board_list_seq;
 
