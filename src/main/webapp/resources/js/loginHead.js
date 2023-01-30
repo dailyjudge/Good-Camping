@@ -399,7 +399,7 @@ function deleteUserA(user_id) {
 	let delConfirm = confirm("정말 탈퇴하시겠습니까?");
 	
 	if(delConfirm){
-		location.href='deleteUser.do?ac_id'+user_id; //페이지 이동
+		location.href='deleteUser.do?ac_id='+user_id; //페이지 이동
 	}else{
 		alert("취소하였습니다");
 	}

@@ -587,6 +587,7 @@ public class AccountDAO {
 		AccountMapper mm = ss.getMapper(AccountMapper.class);
 		if(mm.deleteUserDoIt(ac_id) == 1) {
 			req.setAttribute("r", "삭제 완료");
+			req.getSession().setAttribute("loginAccount", null);
 		}else {
 			req.setAttribute("r", "삭제 실패");
 		}

@@ -18,6 +18,9 @@
 <script src="resources/js/board.js" ></script>
 </head>
 <body>
+<div class="as11">
+<img class="forest-back" src="resources/board-img/forest.png">
+</div>
 		<div class="top_wrap_main">
 			<div class="board_wrap">
 				<div class="board_title">

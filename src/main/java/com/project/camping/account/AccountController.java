@@ -54,7 +54,7 @@ public class AccountController {
 		aDAO.loginCheck(request);
 		request.setAttribute("contentPage", "home.jsp");
 		
-		return "redirect:" + request.getSession().getAttribute("prevPage").toString();
+		return "index";
 	}
 	@RequestMapping(value = "/go.Login.Head", method = {RequestMethod.GET, RequestMethod.POST })
 	public String goLoginHead(HttpServletRequest request,Model model, HttpSession session) {
@@ -84,7 +84,7 @@ public class AccountController {
 	// 회원가입 & 로그아웃 (return 수정 필요)
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logoutDo(HttpServletRequest req, HttpServletResponse response) {
-		aDAO.logout(req, response) ;
+		aDAO.logout(req, response);
 		aDAO.loginCheck(req);
 		
 		req.setAttribute("contentPage", "home.jsp");
