@@ -218,7 +218,7 @@
             <div class="menu-and-logo-category"><a href="go.camping.find">캠핑장찾기</a></div>
             <div class="menu-and-logo-category"><a href="go.theme.find">옵션 검색</a></div>
             <div class="menu-and-logo-category"><a href="go.camping.shop">캠핑 스토어</a></div>
-            <div class="menu-and-logo-category"><a href="">게시판</a></div>
+            <div class="menu-and-logo-category"><a href="go.Bulletin.Main">캠핑톡톡</a></div>
         </div>
         <div class="git-info">
           <div class="member-info">
@@ -239,7 +239,7 @@
             <a class="git-logo" target="_blank" href="https://github.com/HaJunyoung"><img src="resources/footer/GitHub-logo.png" /></a>
             <div class="member-info-2">
 	            <span>하준영(TeamMember)</span>
-	            <span>hyj@@@@@</span>
+	            <span>jun19973@naver.com</span>
             </div>
           </div>
         </div>

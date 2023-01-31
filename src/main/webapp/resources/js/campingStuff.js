@@ -156,7 +156,7 @@ function count(type) {
 
   // 결과 출력
   if(number != 1){
-  sum.innerHTML = "<b>총 금액   " + (stuffPrice.value * number) + "</b>";
+  sum.innerHTML = "<b>총 금액   " + (stuffPrice.value * number).toLocaleString() +  "원</b>";
   }else{
 	  sum.innerHTML = "";
   }

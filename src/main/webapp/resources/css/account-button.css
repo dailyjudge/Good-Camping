@@ -147,7 +147,9 @@ button {
 
 .w-btn-blue-outline {
     border: 3px solid #6aafe6;
-    color: #6e6e6e;
+    color: white;
+    padding: 8px 15px;
+	border-radius: 5px;
 }
 
 .w-btn-pink-outline {
@@ -207,7 +209,7 @@ button {
 
 .w-btn:hover {
     letter-spacing: 2px;
-    transform: scale(1.2);
+    transform: scale(1.1);
     cursor: pointer;
 }
 .w-btn3:hover {
