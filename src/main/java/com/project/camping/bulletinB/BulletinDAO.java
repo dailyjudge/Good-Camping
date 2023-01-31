@@ -108,7 +108,7 @@ public class BulletinDAO {
 			e.printStackTrace();
 			String fileName = mr.getFilesystemName("cd_file");
 			new File(path + "/" + fileName).delete();
-			request.setAttribute("r", "가입 실패");
+			request.setAttribute("result", "가입 실패");
 
 		}
 
@@ -189,6 +189,13 @@ public class BulletinDAO {
 		vo.setComu_content(comu_content.replace("<br>","\r\n"));
 		
 		request.setAttribute("this_comu_vo", vo);
+	}
+	public void deleteBoard(HttpServletRequest request) {
+		String comu_no = request.getParameter("comu_no");
+		System.out.println(comu_no);
+		
+		ss.getMapper(BulletinMapper.class).deleteBoard(comu_no); //선택한 게시물 삭제	
+		
 	}
 
 }

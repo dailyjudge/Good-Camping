@@ -12,6 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="resources/css/board-style.css">
 <link rel="stylesheet" href="resources/css/comu-media.css">
+<link rel="stylesheet" href="resources/css/account-button.css">
 
 <script src="resources/js/board.js"></script>
 </head>
@@ -50,8 +51,8 @@
 						</div>
 					</div>
 					<div class="bt_wrap">
-						<button>수정</button>
-						<button type="button" onclick='history.back(-1);'>취소</button>
+						<button class="w-btn3 w-btn-blue w-btn-blue-outline">수정</button>
+						<button class="w-btn3 w-btn-blue w-btn-blue-outline" type="button" onclick='history.back(-1);'>취소</button>
 					</div>
 				</div>
 			</form>

@@ -18,5 +18,7 @@ public interface BulletinMapper {
 
 	int UpdateThisBoard(ComuDTO cd);
 
+	void deleteBoard(String comu_no);
+
 
 }
