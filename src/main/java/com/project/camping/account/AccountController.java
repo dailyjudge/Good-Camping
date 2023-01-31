@@ -45,12 +45,20 @@ public class AccountController {
 		request.setAttribute("contentPage", "home.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "/go.to.Main2", method = RequestMethod.GET)
+	public String goToMain2(HttpServletRequest request) {
+		
+		aDAO.loginCheck(request);
+		request.setAttribute("contentPage", "home.jsp");
+		return "index";
+	}
 	
 	//do.account.login
 	@RequestMapping(value = "/do.account.login", method = RequestMethod.POST)
 	public String refreshCampingData(HttpServletRequest request, HttpServletResponse response, AccountDTO a) {
 		
 		aDAO.login(request, response, a);
+		
 		aDAO.loginCheck(request);
 		
 		request.setAttribute("color", 1);

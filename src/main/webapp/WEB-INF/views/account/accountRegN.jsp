@@ -49,7 +49,7 @@
 	                <!-- <i class="mdi-social-person-outline prefix"></i> -->
 	                <i class="material-icons prefix">account_circle</i>
 	                <input id="ac_name" name="ac_name" type="text" placeholder="성함"/>
-	                <label for="ac_name"></label>
+	                <label for="ac_name" class="active"></label>
 	            </div>
             </div>
             <div class="row margin">
@@ -66,11 +66,11 @@
                 <!-- <i class="mdi-social-person-outline prefix"></i> -->
                 <i class="material-icons prefix">email</i>
                 <input id="ac_id" name="ac_id" type="text" />
-                <label for="ac_id">Email</label>
+                <label for="ac_id" class="active">Email</label>
                 <img class="search_img" src="resources/account-img/searchimg2.png" onclick="checkidsame()">
             </div>
                 <br>
-                <div class="set_center">
+                <div class="set_center" >
                 <span id="check-id-result"></span>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                 <i class="material-icons prefix">vpn_key</i>
                 <input id="ac_pw" name="ac_pw" type="password" onKeyup="safetyPasswordPattern(this);" disabled/>
-                <label for="ac_pw">Password</label>
+                <label for="ac_pw" class="active">Password</label>
                 <br>
                 <div class="set_center">
                 <span id="makyText">:: id 중복 검사 먼저해주세요 ::</span>
@@ -93,7 +93,7 @@
                 <!-- <i class="mdi-action-lock-outline prefix"></i> -->
                 <i class="material-icons prefix">vpn_key</i>
                 <input id="ac_pw2" name="ac_pw2" type="password" disabled />
-                <label for="ac_pw2">Password again</label>
+                <label for="ac_pw2" class="active">Password again</label>
             </div>
             </div>
 
@@ -102,7 +102,7 @@
 	                <!-- <i class="mdi-action-lock-outline prefix"></i> -->
 	                <i class="material-icons prefix">phone</i>
 	                <input id="phone" name="ac_phone" type="text" oninput="autoHyphen2(this)" maxlength="13"/>
-	                <label for="phone">휴대폰 번호</label>
+	                <label for="phone" class="active">휴대폰 번호</label>
 	                <img id="sendMessage" src="resources/account-img/searchimg2.png" onclick="sendSMS()">
 	            </div>
 	        </div>
@@ -119,7 +119,7 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">calendar_month</i>
                     <input id="ac_birth" name="ac_birth" type="text" maxlength="6" disabled/>
-                    <label for="ac_birth">생년월일 ex)990101</label>
+                    <label for="ac_birth" class="active">생년월일 ex)990101</label>
                 </div>
             </div>
 
