@@ -18,10 +18,6 @@
 </head>
 <body>
 		<div class="board_wrap">
-			<div class="board_title">
-				<strong>공지사항</strong>
-				<p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
-			</div>
 			<form action="do.edit.thisBoard" method="post"
 				enctype="multipart/form-data">
 				<div class="board_write_wrap">
@@ -49,9 +45,7 @@
 							</dl>
 						</div>
 						<div class="cont">
-							<textarea placeholder="내용 입력" name="comu_content">
-							${this_comu_vo.comu_content}
-					</textarea>
+							<textarea placeholder="내용 입력" name="comu_content">${this_comu_vo.comu_content}</textarea>
 						</div>
 					</div>
 					<div class="bt_wrap">

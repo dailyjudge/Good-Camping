@@ -27,8 +27,7 @@
 <body>
 	<div class="board_wrap">
 		<div class="board_title">
-			<strong>공지사항</strong>
-			<p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+			<strong>게시글 작성</strong>
 		</div>
 		<form action="do.upload-board" method="post"
 			enctype="multipart/form-data">
