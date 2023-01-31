@@ -45,9 +45,7 @@
 							</dl>
 						</div>
 						<div class="cont">
-							<textarea placeholder="내용 입력" name="comu_content">
-							${this_comu_vo.comu_content}
-					</textarea>
+							<textarea placeholder="내용 입력" name="comu_content">${this_comu_vo.comu_content}</textarea>
 						</div>
 					</div>
 					<div class="bt_wrap">

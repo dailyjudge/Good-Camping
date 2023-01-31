@@ -12,7 +12,7 @@
 	select * from comu_info where comu_no = #{comu_no}
 </select>
 <delete id="deleteBoard" parameterType="String">
-	delete comu_info where comu_no = #{comu_no} 
+	select * from comu_info where comu_no = #{comu_no}
 </delete>
 
 <select id="selectAllWhere" parameterType="String" resultType="com.project.camping.bulletinB.ComuDTO">
