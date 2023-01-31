@@ -388,3 +388,8 @@ TourAPI4.0에서 제공하는 고캠핑 API를 이용하여 응답받은 국내 
   ## :fire: ERD
   
   <img src="https://user-images.githubusercontent.com/108406531/215472229-8e5bf78a-3596-4f46-87de-0132cf1c9631.png">
+  
+  
+  ## :fire: 발표자료
+  [GoodCamping.pdf](https://github.com/dailyjudge/Good-Camping/files/10545267/GoodCamping.pdf)
+
