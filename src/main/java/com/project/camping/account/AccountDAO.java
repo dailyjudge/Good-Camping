@@ -260,7 +260,7 @@ public class AccountDAO {
 			if (vo.getAc_name().equals(name)) {
 //				 session.setAttribute("email", vo.getAc_id());
 
-				String setfrom = "jun19973@naver.com"; // naver
+				String setfrom = "goodcamping802@naver.com"; // naver
 				String tomail = ac_id; // 받는사람
 				String title = "[GoodCamping] 비밀번호변경 인증 이메일 입니다";
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님"
@@ -527,9 +527,10 @@ public class AccountDAO {
 			}
 			
 			if(mr.getParameter("ac_address") == null || mr.getParameter("ac_address").equals("")) {
-				ac.setAc_address(mr.getParameter("ac_address"));
-			}else {
 				ac.setAc_address(vo.getAc_address());
+			}else {
+				
+				ac.setAc_address(mr.getParameter("ac_address"));
 			}
 			
 			if(mr.getParameter("ac_detailAddress") == null || mr.getParameter("ac_detailAddress").equals("")) {

@@ -351,10 +351,10 @@ function searchID() {
 
 	$.ajax({
 		url : "searchID.do",
-
+		type: "POST",
 		data : {
-			"ac_name" : idFind_name,
-			"ac_phone" : idFind_phone
+			"sr_name" : idFind_name,
+			"sr_phone" : idFind_phone
 		}
 	}).done(function(res) {
 

@@ -137,13 +137,13 @@
                     
                 </div>
                 <div class="input-field col s12">
-                    <p class="margin center medium-small sign-up"><a href="login.go">로그인 페이지</a>로 돌아가기 </p>
+                    <p class="margin center medium-small sign-up"><a href="go.to.Main2">HOME 페이지</a>로 돌아가기 </p>
                 </div>
                 <div class="input-field col">
                 <button type="button" id="deleteUserId"class="btn waves-effect waves-light col" onclick="deleteUserA('${sessionScope.loginAccount.ac_id}');">회원 탈퇴</button>
                 </div>
             </div>
-            </form>
+            </form>s
             </div>
     </div>
 </div>

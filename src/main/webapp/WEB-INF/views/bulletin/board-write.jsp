@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="resources/css/board-style.css">
 <link rel="stylesheet" href="resources/css/comu-media.css">
+<link rel="stylesheet" href="resources/css/account-button.css">
 
 <!-- 넓이 높이 조절 -->
 <style>
@@ -59,8 +60,8 @@
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<button>등록</button>
-					<button type="button" onclick="location.href='go.board.comu'">취소</button>
+					<button class="w-btn3 w-btn-blue w-btn-blue-outline">등록</button>
+					<button class="w-btn3 w-btn-blue w-btn-blue-outline" type="button" onclick="location.href='go.board.comu'">취소</button>
 				</div>
 			</div>
 		</form>
